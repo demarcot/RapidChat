@@ -1,0 +1,21 @@
+
+//package.json
+"scripts": {
+  "start": "node ./bin/www"
+},
+--dependancies
+"debug": "~0.7.4",
+"jade": "~1.3.0",
+"stylus": "0.42.3",
+"socket.io": "^0.9.16"
+"morgan": "~1.0.0",
+"static-favicon": "~1.0.0",
+
+
+//server.js
+
+favicon = require('static-favicon'),
+logger = require('morgan'),
+    io = require('socket.io'),
+
+    io = io.listen(server),
