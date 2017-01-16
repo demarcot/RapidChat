@@ -6,7 +6,7 @@ var express = require('express'),
     cookieParser = require('cookie-parser'),
     bodyParser = require('body-parser');
 
-//var mongodb = require('mongodb'); 
+//var mongodb = require('mongodb');
 
 
 server.listen(3000);
@@ -17,6 +17,9 @@ var urlencodedParser = bodyParser.urlencoded({ extended: false });
 app.use(cookieParser());
 
 app.use(express.static(__dirname +  '/frontend/app/'));
+
+require('./routes/api')(app);
+
 
 app.use(function (req, res, next) {
   var err = new Error('Not Found');
