@@ -18,10 +18,15 @@ var urlencodedParser = bodyParser.urlencoded({ extended: false });
 
 app.use(cookieParser());
 
+//express will use this as a static route for the web page serving
 app.use(express.static(__dirname +  '/frontend/app/'));
 
+//this is our test routes for the API Will come in to play later on
 require('./routes/api')(app);
 
+
+// this is our require for the socket.io js file
+require('./sockets/sockCore')(io);
 
 app.use(function (req, res, next) {
   var err = new Error('Not Found');
