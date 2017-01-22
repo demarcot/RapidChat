@@ -6,24 +6,23 @@ var express = require('express'),
     io = io.listen(server),
     path = require('path'),
     cookieParser = require('cookie-parser'),
-    bodyParser = require('body-parser');
+    bodyParser = require('body-parser'),
+    mongodb = require('mongodb'),
+    MongoClient = mongodb.MongoClient;
 
-var mongodb = require('mongodb');
-var runningDB;
-var MongoClient = mongodb.MongoClient;
-var myUrl = 'mongodb://localhost:27017';
-MongoClient.connect(myUrl, function(err, db) {
-  
-  if(err)
-  {
-    console.log("Error connecting to MongoDB... you suck!");
-  }
-  else
-  {
-    console.log("Connection established to: ", myUrl);
-    runningDB = db;
-  }
-});
+//mongodb stuff
+//var mongodb = require('mongodb');
+//var MongoClient = mongodb.MongoClient;
+
+
+
+// MongoClient.connect(myUrl, function(err, db) {
+//   assert.equal(null, err);
+//   console.log("Connected correctly to server.");
+//   db.close();
+// });
+
+
 
 server.listen(3000);
 app.use(bodyParser.urlencoded());
