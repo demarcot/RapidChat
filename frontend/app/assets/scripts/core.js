@@ -7,6 +7,11 @@ coreApp.controller('coreCtrl', ['$scope','restFactory', function($scope, restFac
     $scope.messages = data;
   });
   };
+  $scope.showUsers = function(){
+    restFactory.getUsers().success(function (data) {
+    $scope.users = data;
+  });
+  }
 
 
 }]);

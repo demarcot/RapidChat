@@ -7,9 +7,13 @@ coreApp.factory('restFactory',['$http', function($http){
 function getMessages() {
     return $http.get('/api/getMsgs');
 }
+function getUsers(){
+  return $http.get('/api/getUsers');
+}
 
 var factory = {
-  getMessages : getMessages
+  getMessages : getMessages,
+  getUsers: getUsers
 };
 return factory;
 

@@ -6,23 +6,7 @@ var express = require('express'),
     io = io.listen(server),
     path = require('path'),
     cookieParser = require('cookie-parser'),
-    bodyParser = require('body-parser'),
-    mongodb = require('mongodb'),
-    MongoClient = mongodb.MongoClient;
-
-//mongodb stuff
-//var mongodb = require('mongodb');
-//var MongoClient = mongodb.MongoClient;
-
-
-
-// MongoClient.connect(myUrl, function(err, db) {
-//   assert.equal(null, err);
-//   console.log("Connected correctly to server.");
-//   db.close();
-// });
-
-
+    bodyParser = require('body-parser');
 
 server.listen(3000);
 app.use(bodyParser.urlencoded());
