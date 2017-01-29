@@ -19,7 +19,16 @@ app.use(cookieParser());
 app.use(express.static(__dirname +  '/frontend/app/'));
 
 //this is our test routes for the API Will come in to play later on
-require('./routes/api')(app);
+//require('./routes/api')(app);
+
+// use JWT auth to secure the api
+app.use('/api', expressJwt({ secret: config.secret }).unless({ path: ['/api/users/authenticate', '/api/users/register'] }));
+
+// routes
+app.use('/login', require('./routes/controllers/login.controller'));
+app.use('/register', require('./routes/controllers/register.controller'));
+app.use('/app', require('./routes/controllers/app.controller'));
+app.use('/api/users', require('./routes/controllers/api/users.controller'));
 
 
 // this is our require for the socket.io js file
