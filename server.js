@@ -1,3 +1,4 @@
+require('rootpath')();
 var express = require('express'),
     http = require('http'),
     app = express(),
@@ -7,8 +8,21 @@ var express = require('express'),
     path = require('path'),
     cookieParser = require('cookie-parser'),
     bodyParser = require('body-parser');
+var expressJwt = require('express-jwt');
+var config = require('config.json');
+var session = require('express-session');
 
-server.listen(3000);
+
+//view engine
+app.set('view engine', 'ejs');
+app.set('ejsViews', __dirname + '/ejsViews');
+app.use(session({ secret: config.secret, resave: false, saveUninitialized: true }));
+
+
+//server.listen(3000);
+server.listen(3000, function () {
+    console.log('Server listening at http://' + server.address().address + ':' + server.address().port);
+});
 app.use(bodyParser.urlencoded());
 app.use(bodyParser.json());
 var urlencodedParser = bodyParser.urlencoded({ extended: false });
