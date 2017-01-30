@@ -8,12 +8,14 @@ var express = require('express'),
     path = require('path'),
     cookieParser = require('cookie-parser'),
     bodyParser = require('body-parser'),
-    config = require('config.json');
+    config = require('config.json'),
+    expressJwt = require('express-jwt'),
+    session = require('express-session');
 
 
 //view engine
 app.set('view engine', 'ejs');
-app.set('ejsViews', __dirname + '/ejsViews');
+app.set('views', __dirname + '/ejsViews');
 app.use(session({ secret: config.secret, resave: false, saveUninitialized: true }));
 
 

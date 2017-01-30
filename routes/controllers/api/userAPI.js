@@ -1,7 +1,7 @@
 var config = require('config.json');
 var express = require('express');
 var router = express.Router();
-var userService = require('services/userAPIService');
+var userService = require('routes/services/userAPIService');
 
 // routes
 router.post('/authenticate', authenticateUser);
@@ -82,4 +82,4 @@ function deleteUser(req, res) {
         .catch(function (err) {
             res.status(400).send(err);
         });
-} 
+}

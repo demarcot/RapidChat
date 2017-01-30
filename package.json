@@ -13,5 +13,8 @@
     "bcryptjs":"^2.4.0",
     "jsonwebtoken":"^7.2.1",
     "lodash":"^4.17.4",
-    "express-jwt": "^5.1.0"
+    "express-jwt": "^5.1.0",
+    "rootpath":"0.1.2",
+    "express-session":"1.15.0",
+    "mongojs":"2.4.0"
   }}
