@@ -30,7 +30,9 @@ var urlencodedParser = bodyParser.urlencoded({ extended: false });
 app.use(cookieParser());
 
 //express will use this as a static route for the web page serving
-app.use(express.static(__dirname +  '/frontend/app/'));
+app.get('/', function (req, res) {
+    return res.redirect('/frontend/app');
+});
 
 //this is our test routes for the API Will come in to play later on
 //require('./routes/api')(app);
@@ -41,7 +43,7 @@ app.use('/api', expressJwt({ secret: config.secret }).unless({ path: ['/api/user
 // routes
 app.use('/login', require('./routes/controllers/login'));
 app.use('/register', require('./routes/controllers/register'));
-app.use('/app', require('./routes/controllers/appController'));
+app.use('/frontend/app', require('./routes/controllers/appController'));
 app.use('/api/users', require('./routes/controllers/api/userAPI'));
 
 
