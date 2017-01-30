@@ -1,0 +1,4 @@
+{
+    "connectionURL": "mongodb://localhost:27017/rapidDB",
+    "secret": "TestSecret"
+}

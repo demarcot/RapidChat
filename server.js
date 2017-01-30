@@ -6,7 +6,8 @@ var express = require('express'),
     io = io.listen(server),
     path = require('path'),
     cookieParser = require('cookie-parser'),
-    bodyParser = require('body-parser');
+    bodyParser = require('body-parser'),
+    config = require('config.json');
 
 server.listen(3000);
 app.use(bodyParser.urlencoded());
@@ -25,10 +26,10 @@ app.use(express.static(__dirname +  '/frontend/app/'));
 app.use('/api', expressJwt({ secret: config.secret }).unless({ path: ['/api/users/authenticate', '/api/users/register'] }));
 
 // routes
-app.use('/login', require('./routes/controllers/login.controller'));
-app.use('/register', require('./routes/controllers/register.controller'));
-app.use('/app', require('./routes/controllers/app.controller'));
-app.use('/api/users', require('./routes/controllers/api/users.controller'));
+app.use('/login', require('./routes/controllers/login'));
+app.use('/register', require('./routes/controllers/register'));
+app.use('/app', require('./routes/controllers/appController'));
+app.use('/api/users', require('./routes/controllers/api/userAPI'));
 
 
 // this is our require for the socket.io js file
