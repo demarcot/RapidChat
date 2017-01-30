@@ -13,6 +13,7 @@
     "angular-route": "1.5.9",
     "socket.io-client": "~0.9.16",
     "angular-socket-io": "~0.7.0",
-    "socket.io": "~0.9.15"
+    "socket.io": "~0.9.15",
+    "angular-ui-router": "0.3.1"
   }
 }
