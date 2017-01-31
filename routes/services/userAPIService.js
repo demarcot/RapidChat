@@ -40,7 +40,7 @@ function authenticate(username, password) {
 function getById(_id) {
     var deferred = Q.defer();
 
-    db.users.findById(_id, function (err, user) {
+    db.users.findOne({_id: mongo.ObjectId(_id)}, function (err, user) {
         if (err) deferred.reject(err);
 
         if (user) {
@@ -95,7 +95,7 @@ function update(_id, userParam) {
     var deferred = Q.defer();
 
     // validation
-    db.users.findById(_id, function (err, user) {
+    db.users.findOne({_id: mongo.ObjectId(_id)}, function (err, user) {
         if (err) deferred.reject(err);
 
         if (user.username !== userParam.username) {
@@ -131,7 +131,7 @@ function update(_id, userParam) {
         }
 
         db.users.update(
-            { _id: mongo.helper.toObjectID(_id) },
+            { _id: mongo.ObjectId(_id) },
             { $set: set },
             function (err, doc) {
                 if (err) deferred.reject(err);
@@ -147,7 +147,7 @@ function _delete(_id) {
     var deferred = Q.defer();
 
     db.users.remove(
-        { _id: mongo.helper.toObjectID(_id) },
+        { _id: mongo.ObjectId(_id) },
         function (err) {
             if (err) deferred.reject(err);
 
