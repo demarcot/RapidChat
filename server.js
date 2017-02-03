@@ -12,6 +12,8 @@ var express = require('express'),
     expressJwt = require('express-jwt'),
     session = require('express-session');
 
+// this is our require for the socket.io js file
+require('./sockets/sockCore')(io);
 
 //view engine
 app.set('view engine', 'ejs');
@@ -47,8 +49,20 @@ app.use('/frontend/app', require('./routes/controllers/appController'));
 app.use('/api/users', require('./routes/controllers/api/userAPI'));
 
 
-// this is our require for the socket.io js file
-require('./sockets/sockCore')(io);
+
+
+
+//This is going to be our socket.io connection and message relay
+io.on('connection', function (socket) {
+
+ socket.on('message', function (from, msg) {
+
+      console.log("A Message trigger has occured");
+    });
+
+});
+
+
 
 app.use(function (req, res, next) {
   var err = new Error('Not Found');

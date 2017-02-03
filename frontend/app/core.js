@@ -2,7 +2,8 @@
     'use strict';
 
     angular
-        .module('coreApp', ['ui.router'])
+        .module('coreApp', ['ui.router', 'ngCookies', 'ngResource', 'ngSanitize', 'btford.socket-io'])
+        .value('nickName', '**IMPLEMENT_THIS_PART**')
         .config(config)
         .run(run);
 
