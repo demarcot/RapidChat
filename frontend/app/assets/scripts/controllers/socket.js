@@ -1,4 +1,4 @@
-angular.module('chatApp')
+angular.module('coreApp')
 .controller('SocketCtrl', function ($log, $scope, chatSocket, messageFormatter, nickName) {
   $scope.nickName = nickName;
   $scope.messageLog = '';

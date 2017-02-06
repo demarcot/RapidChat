@@ -3,7 +3,7 @@ module.exports = function (io) {
   io.on('connection', function (socket) {
     socket.broadcast.emit('user connected');
 
-    socket.on('message', function (from, msg,colour) {
+    socket.on('message', function (from, msg) {
 
       console.log('recieved message from', from, 'msg', JSON.stringify(msg));
 
