@@ -25,7 +25,12 @@
                 controller: 'personalizeCtrl',
                 controllerAs: 'vm',
                 data: { activeTab: 'personalize' }
-            });
+            })
+            .state('secretchat', {
+                url: '/secretChat',
+                templateUrl: 'assets/views/personalize.html',
+                data: { activeTab: 'secretchat' }
+              );
     }
 
     function run($http, $rootScope, $window) {
