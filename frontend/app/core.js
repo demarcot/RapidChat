@@ -28,9 +28,9 @@
             })
             .state('secretchat', {
                 url: '/secretChat',
-                templateUrl: 'assets/views/personalize.html',
+                templateUrl: 'assets/views/testChat.html',
                 data: { activeTab: 'secretchat' }
-              );
+               });
     }
 
     function run($http, $rootScope, $window) {

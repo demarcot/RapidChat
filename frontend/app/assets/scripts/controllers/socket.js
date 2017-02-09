@@ -1,5 +1,6 @@
 angular.module('coreApp')
-.controller('SocketCtrl', function ($log, $scope, chatSocket, messageFormatter, nickName) {
+.controller('SocketCtrl', function ($log, $scope, chatSocket, messageFormatter, nickName, UserService) {
+  $scope.chatRoom = 'default';
   $scope.nickName = nickName;
   $scope.messageLog = '';
   $scope.messageTest = [];
@@ -38,4 +39,20 @@ angular.module('coreApp')
       $scope.messageTest.push({date: new Date(), name: data.source, message: data.payload});
     });
   });
+
+
+
+
+  $scope.init = function() {
+    console.log("test");
+    UserService.GetCurrent().then(function (user) {
+          $scope.username = user.username;
+          chatSocket.emit('currentRoom', $scope.username, $scope.chatRoom);
+    });
+
+  };
+
+   $scope.init();
+
+
 });
