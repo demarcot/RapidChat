@@ -1,6 +1,6 @@
 angular.module('coreApp')
-.controller('SocketCtrl', function ($log, $scope, chatSocket, messageFormatter, nickName, UserService) {
-  $scope.chatRoom = 'default';
+.controller('SocketCtrl', function ($log, $scope, chatSocket, messageFormatter, nickName, UserService, $state) {
+  $scope.chatRoom = $state.current.name;
   $scope.nickName = nickName;
   $scope.messageLog = '';
   $scope.messageTest = [];
@@ -44,7 +44,7 @@ angular.module('coreApp')
 
 
   $scope.init = function() {
-    console.log("test");
+
     UserService.GetCurrent().then(function (user) {
           $scope.username = user.username;
           chatSocket.emit('currentRoom', $scope.username, $scope.chatRoom);

@@ -3,6 +3,12 @@ module.exports = function (io) {
   io.sockets.on('connection', function (socket) {
 
     socket.on("currentRoom", function(username, chatRoom) {
+
+      socket.join(chatRoom);
+      socket.emit("broadcast", {
+        payload: "User connected " + username +" to " + chatRoom,
+        source:"Server"
+      });
       console.log("User:", username);
       console.log("Chat Room", chatRoom);
     });
