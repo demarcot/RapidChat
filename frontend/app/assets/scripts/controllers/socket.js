@@ -24,7 +24,7 @@ angular.module('coreApp')
     }
 
     $log.debug('sending message', $scope.message);
-    chatSocket.emit('message', nickName, $scope.message);
+    chatSocket.emit('message', nickName, $scope.message, $scope.chatRoom);
     $scope.message = '';
   };
 
@@ -47,7 +47,8 @@ angular.module('coreApp')
 
     UserService.GetCurrent().then(function (user) {
           $scope.username = user.username;
-          chatSocket.emit('currentRoom', $scope.username, $scope.chatRoom);
+          $scope.oldRoom = localStorage.getItem("oldRoom");
+          chatSocket.emit('currentRoom', $scope.username, $scope.chatRoom, $scope.oldRoom);
     });
 
   };

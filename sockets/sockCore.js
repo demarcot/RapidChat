@@ -2,16 +2,26 @@ module.exports = function (io) {
   'use strict';
   io.sockets.on('connection', function (socket) {
 
-    socket.on("currentRoom", function(username, chatRoom) {
-
+    socket.on("currentRoom", function(username, chatRoom, oldRoom) {
+      socket.leave(oldRoom);
       socket.join(chatRoom);
-      socket.emit("broadcast", {
+      io.sockets.to(chatRoom).emit("broadcast", {
         payload: "User connected " + username +" to " + chatRoom,
-        source:"Server"
+        source: "Server"
       });
       console.log("User:", username);
       console.log("Chat Room", chatRoom);
+      console.log("Old Room", oldRoom)
     });
+
+    socket.on("message", function(from, msg, chatRoom){
+      io.sockets.to(chatRoom).emit("broadcast", {
+        payload: msg,
+        source: from
+      });
+    });
+
+    //socket.on
 
    });
 
