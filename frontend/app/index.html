@@ -7,12 +7,13 @@
     <meta charset="utf-8">
     <title>RapidChat</title>
   </head>
-  <body class="container">
+  <body class="container" ng-controller="oldRoomCtrl">
     <!-- header -->
     <header>
         <ul class="nav nav-tabs">
-            <li ng-class="{active: activeTab === 'chatLayout'}"><a ui-sref="chatLayout">Home</a></li>
+            <li ng-class="{active: activeTab === 'chatLayout'}"><a ui-sref="chatLayout" ng-click="setOldRoom()">Home</a></li>
             <li ng-class="{active: activeTab === 'personalize'}"><a ui-sref="personalize">Account</a></li>
+            <li ng-class="{active: activeTab === 'secretChat'}"><a ui-sref="secretchat" ng-click="setOldRoom()">Secret Chat</a></li>
             <li><a href="/login" target="_self">Logout</a></li>
         </ul>
         <div class="flash-message" ng-if="flash">
@@ -44,6 +45,7 @@
 		<script src="assets/scripts/controllers/chatLayoutCtrl.js" charset="utf-8"></script>
     <script src="assets/scripts/controllers/personalizeCtrl.js" charset="utf-8"></script>
     <script src="assets/scripts/controllers/socket.js"></script>
+    <script src="assets/scripts/controllers/oldRoomCtrl.js"></script>
     <script src="assets/scripts/services/socket.js"></script>
     <script src="assets/scripts/services/messageformatter.js"></script>
     <script src="assets/scripts/directives/chatbox.js"></script>
