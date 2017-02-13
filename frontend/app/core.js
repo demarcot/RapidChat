@@ -30,7 +30,12 @@
                 url: '/secretChat',
                 templateUrl: 'assets/views/testChat.html',
                 data: { activeTab: 'secretchat' }
-               });
+               })
+            .state('chatRoomById',{
+              url: '/chatRoom/:chatRoomId',
+              templateUrl:'assets/views/testChat.html',
+              data:{activeTab: ':chatRoomId'}
+            });
     }
 
     function run($http, $rootScope, $window) {

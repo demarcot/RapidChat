@@ -7,13 +7,14 @@
     <meta charset="utf-8">
     <title>RapidChat</title>
   </head>
-  <body class="container" ng-controller="oldRoomCtrl">
+  <body class="container" >
     <!-- header -->
     <header>
-        <ul class="nav nav-tabs">
+        <ul class="nav nav-tabs" ng-controller="oldRoomCtrl">
             <li ng-class="{active: activeTab === 'chatLayout'}"><a ui-sref="chatLayout" ng-click="setOldRoom()">Home</a></li>
             <li ng-class="{active: activeTab === 'personalize'}"><a ui-sref="personalize">Account</a></li>
             <li ng-class="{active: activeTab === 'secretChat'}"><a ui-sref="secretchat" ng-click="setOldRoom()">Secret Chat</a></li>
+            <li ng-repeat="room in chatRooms" ng-class="{active: activeTab === 'room.chatRoomId'}"><a ui-sref="chatRoomById({chatRoomId: room.chatRoomId})" ng-click="setOldRoom()">{{room.chatRoomName}}</a></li>
             <li><a href="/login" target="_self">Logout</a></li>
         </ul>
         <div class="flash-message" ng-if="flash">

@@ -1,6 +1,7 @@
 angular.module('coreApp')
 .controller('SocketCtrl', function ($log, $scope, chatSocket, messageFormatter, nickName, UserService, $state) {
-  $scope.chatRoom = $state.current.name;
+  $scope.chatRoom = $state.params.chatRoomId;
+  console.log($state)
   $scope.nickName = nickName;
   $scope.messageLog = '';
   $scope.messageTest = [];
