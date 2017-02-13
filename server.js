@@ -47,6 +47,7 @@ app.use('/login', require('./routes/controllers/login'));
 app.use('/register', require('./routes/controllers/register'));
 app.use('/frontend/app', require('./routes/controllers/appController'));
 app.use('/api/users', require('./routes/controllers/api/userAPI'));
+app.use('/test/api', require('./routes/controllers/api/chatroomAPI'));
 
 
 

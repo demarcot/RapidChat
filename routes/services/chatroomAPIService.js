@@ -3,9 +3,6 @@ var _ = require('lodash');
 var jwt = require('jsonwebtoken');
 var bcrypt = require('bcryptjs');
 var Q = require('q');
-//var mongo = require('mongoskin');
-//var db = mongo.db(config.connectionString, { native_parser: true });
-//db.bind('users');
 var mongo = require('mongojs');
 var db = mongo(config.connectionURL, ['chatrooms']);
 
@@ -19,6 +16,11 @@ service.insertMessage = insertMessage;
 
 module.exports = service;
 
+/*
+	Get chatroom by id
+	- id
+	- need anything else?
+*/
 function getById(_id) {
     var deferred = Q.defer();
 
@@ -36,71 +38,37 @@ function getById(_id) {
     return deferred.promise;
 }
 
+/*
+	Create chatroom
+	- chatroomParam contains:
+		- name
+		- users?
+		- ?
+*/
 function create(chatroomParam) {
     var deferred = Q.defer();
 
-    // validation
-    db.chatrooms.findOne(
-        { chatroomName: chatroomParam.name },
-        function (err, chatroom) {
+    db.chatrooms.insert(
+        chatroomParam,
+        function (err, doc) {
             if (err) deferred.reject(err);
 
-            if (chatroom) {
-                // username already exists
-                deferred.reject('Chatroom "' + chatroomParam.name + '" is already taken');
-            } else {
-                createChatroom();
-            }
+            deferred.resolve();
         });
-
-    function createChatroom() {
-        // set user object to userParam without the cleartext password
-        var chatroom = chatroomParam;
-       
-        db.chatrooms.insert(
-            chatroom,
-            function (err, doc) {
-                if (err) deferred.reject(err);
-
-                deferred.resolve();
-            });
-    }
-
+    
     return deferred.promise;
 }
 
+/*
+	Insert message into chatroom
+	- message by message or bulk insertions?
+	- message content
+	- author
+	- timestamp
+	- ?
+*/
 function insertMessage(_id, chatroomParam) {
     var deferred = Q.defer();
-    
-    /*
-    // validation
-    db.chatrooms.findOne({_id: mongo.ObjectId(_id)}, function (err, chatroom) {
-        if (err) deferred.reject(err);
-
-        if (chatroom.name !== chatroomParam.name) {
-            // chatroom name has changed so check if the new chatroom name is already taken
-            db.chatrooms.findOne(
-                { name: chatroomParam.name },
-                function (err, chatroom) {
-                    if(err) deferred.reject(err);
-
-                    if (chatroom) {
-                        // chatroom name already exists
-                        deferred.reject('Chatroom "' + req.body.chatroomName + '" is already taken')
-                    } else {
-                        updateChatroom();
-                    }
-                });
-        } else {
-            updateChatroom();
-        }
-    });
-    */
-
-    /*
-    function updateChatroom() {
-    }
-    */
     
     db.chatrooms.update
     (
@@ -112,11 +80,16 @@ function insertMessage(_id, chatroomParam) {
             deferred.resolve();
         }
     );
-    
-
+  
     return deferred.promise;
 }
 
+/*
+	TODO(Tom): Need to figure this out. Probably once it's connected to the front end, and I can see what's wrong.
+	Get messages
+	- number of messages to get
+	- ?
+*/
 function getMessages(_id, chatroomParam)
 {
     var deferred = Q.defer();
@@ -134,6 +107,10 @@ function getMessages(_id, chatroomParam)
     
 }
 
+/*
+	Delete chatroom
+	- do we want this ability?
+*/
 function _delete(_id) {
     var deferred = Q.defer();
 
