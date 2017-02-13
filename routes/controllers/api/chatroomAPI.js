@@ -14,7 +14,8 @@ module.exports = router;
 
 function getChatroom(req, res)
 {
-	chatroomService.getById(req.???)
+	console.log("getChatroom: ", req);
+	chatroomService.getById(req)
 	.then(function (chatroom)
 	{
 		if(chatroom)
@@ -31,7 +32,8 @@ function getChatroom(req, res)
 
 function createChatroom(req, res)
 {
-	chatroomService.create(req.???)
+	console.log("createChatroom: ", req);
+	chatroomService.create(req)
 	.then(function ()
 	{
 		res.sendStatus(200);
@@ -44,7 +46,8 @@ function createChatroom(req, res)
 
 function deleteChatroom(req, res)
 {
-    chatroomService.delete(req.???)
+	console.log("deleteChatroom: ", req);
+    chatroomService.delete(req)
         .then(function () {
             res.sendStatus(200);
         })
@@ -55,7 +58,8 @@ function deleteChatroom(req, res)
 
 function getMessages(req, res)
 {
-	chatroomService.getMessages(req.???, req.???)
+	console.log("getMessages: ", req);
+	chatroomService.getMessages(req, req)
 	.then(function (messages)
 	{
 		if(messages)
@@ -71,7 +75,8 @@ function getMessages(req, res)
 
 function insertMessage(req, res)
 {
-	chatroomService.insertMessage(req.???, req.???)
+	console.log("insertMessage: ", req);
+	chatroomService.insertMessage(req, req)
 	.then(function ()
 	{
 		res.sendStatus(200);
