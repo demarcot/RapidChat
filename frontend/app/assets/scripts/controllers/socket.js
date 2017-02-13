@@ -1,5 +1,18 @@
 angular.module('coreApp')
-.controller('SocketCtrl', function ($log, $scope, chatSocket, messageFormatter, nickName, UserService, $state) {
+.controller('SocketCtrl', function ($log, $scope, chatSocket, messageFormatter, nickName, UserService, $state, ChatRoomService) {
+  //test tom API REMOVEEE!!!!!
+  $scope.chatRoomTest = {'name':''};
+
+  $scope.createChatRoom = function() {
+    ChatRoomService.Create($scope.chatRoomTest).then(function(chatRoom){
+       console.log("Test :",chatRoom);
+    });
+    //console.log($scope.chatRoomTest.name);
+  };
+
+//api tom end remove right after done
+
+
   $scope.chatRoom = $state.params.chatRoomId;
   console.log($state)
   $scope.nickName = nickName;

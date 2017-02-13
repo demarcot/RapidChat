@@ -27,13 +27,13 @@ function getChatroom(req, res)
 	{
 		res.status(400).send(err);
 	});
-	
+
 }
 
 function createChatroom(req, res)
 {
-	console.log("createChatroom: ", req);
-	chatroomService.create(req)
+	console.log("createChatroom: ", req.body.name);
+	chatroomService.create(req.body)
 	.then(function ()
 	{
 		res.sendStatus(200);
