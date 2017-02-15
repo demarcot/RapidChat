@@ -1,0 +1,59 @@
+.messages 	     			 {
+      background-color : #15A2B2;
+      color						 : #333333;
+      height					 : 100%;
+      position 				 : fixed;}
+
+.input								 {
+      background-color : #D2A215;
+      color						 : #999999;
+      height					 : 100px;
+      position				 : fixed;
+      bottom					 : 0px;
+      left						 : 0px;}
+
+.input-message				 {
+      background-color : #222222;
+      color						 : #AAAAAA;
+      width						 : 100%;
+      padding					 : 12px 20px;
+      margin					 : 8px 0;
+      display					 : inline-block;
+      position				 : relative;
+      top							 : 15%;
+      border					 : 1px solid #333;
+      border-radius		 : 4px;
+      box-sizing			 : border-box;}
+
+.send 	      				 {
+      background-color : #123456;
+      color						 : #333333;
+      height					 : 100px;
+      position				 : fixed;
+      bottom					 : 0px;
+      right						 : 0px;}
+
+.send-button  	       {
+      display					 : inline-block;
+      padding		 			 : 15px 25px;
+      font-size	 			 : 24px;
+      cursor		 			 : pointer;
+      text-align			 : center;
+      text-decoration	 : none;
+      outline		 			 : none;
+      color						 : #fff;
+      background-color : #15A2B2;
+      border		 			 : none;
+      border-radius		 : 15px;
+      box-shadow	 		 : 0 9px #888;
+      position				 : relative;
+      top							 : 10%;
+      left						 : 25%;}
+
+.send-button:hover     {
+      background-color : #0592A2}
+
+.send-button:active    {
+      background-color : #0592A2;
+      box-shadow			 : 0 5px #666;
+      transform				 : translateY(4px);}
