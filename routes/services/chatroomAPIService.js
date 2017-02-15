@@ -21,10 +21,11 @@ module.exports = service;
 	- id
 	- need anything else?
 */
-function getById(_id) {
+function getById(chatroomParam) {
     var deferred = Q.defer();
 
-    db.chatrooms.findOne({_id: mongo.ObjectId(_id)}, function (err, chatroom) {
+    db.chatrooms.findOne({_id: mongo.ObjectId(chatroomParam._id)}, function (err, chatroom) 
+	{
         if (err) deferred.reject(err);
 
         if (chatroom) {
@@ -42,14 +43,24 @@ function getById(_id) {
 	Create chatroom
 	- chatroomParam contains:
 		- name
-		- users?
-		- ?
+		- accepted users <- contains user id who created it upon init
+		- pending users <- empty upon init
+		- messages [] <- empty upon init
+		- private <- false upon init
+		- max users <- set by user during creation
 */
 function create(chatroomParam) {
     var deferred = Q.defer();
 
     db.chatrooms.insert(
-        chatroomParam,
+		{
+			'name': chatroomParam.name,
+			'acceptedUsers': [chatroomParam.userId],
+			'pendingUsers': [],
+			'messages': [],
+			'private': chatroomParam.privateStatus,
+			'maxUsers': chatroomParam.maxUsers
+		},
         function (err, doc) {
             if (err) deferred.reject(err);
 
@@ -60,26 +71,24 @@ function create(chatroomParam) {
 }
 
 /*
+	TODO(Tom): This needs to be tested. How do we get the id of the chatroom?
 	Insert message into chatroom
-	- message by message or bulk insertions?
 	- message content
-	- author
+	- author <- Should this be the username in case the user account gets deleted?
 	- timestamp
 	- ?
 */
-function insertMessage(_id, chatroomParam) {
+function insertMessage(chatroomParam) {
     var deferred = Q.defer();
     
-    db.chatrooms.update
-    (
-        {_id: mongo.ObjectId(_id), auth: chatroomParam.usernameInserting, msg: chatroomParam.messageContent},
-        {$push: {messages: {author: auth, messageContent: msg}}},
+    db.chatrooms.update(
+        {_id: mongo.ObjectId(chatroomParam._id)},
+        {$push: {'messages': {'author': chatroomParam.userName, 'messageContent': chatroomParam.messageContent, 'timestamp': chatroomParam.timestamp}}},
         function(err, doc)
         {
             if(err) deferred.reject(err);
             deferred.resolve();
-        }
-    );
+        });
   
     return deferred.promise;
 }
@@ -90,32 +99,50 @@ function insertMessage(_id, chatroomParam) {
 	- number of messages to get
 	- ?
 */
-function getMessages(_id, chatroomParam)
+function getMessages(chatroomParam)
 {
     var deferred = Q.defer();
 
-    //chatroomParam, in this case should have the number of messages to get?
-    //this command doesn't look right
-    //might need a function inside this call that returns
+	//The query currently gets the correct chatroom
     var docsToReturn = db.chatrooms.find
     (	
-        {$query: {name: chatroomParam.name}, $orderby: {$natural: -1} },
+        {$query: {_id: mongo.ObjectId(chatroomParam._id)}},
         {}
-    )
+    ).limit(chatroomParam.messageNum);
     deferred.resolve(docsToReturn);
     //db.yourcollectionname.find({$query: {}, $orderby: {$natural : -1}}).limit(yournumber)  <-- something like this to get last N elements?
     
 }
 
 /*
-	Delete chatroom
-	- do we want this ability?
+	Invite User(s)
+	- chatroom id
+	- username
 */
-function _delete(_id) {
+function inviteUser(chatroomParam)
+{
+	var deferred = Q.defer();
+	
+	//Instead of inserting username, find userId and insert that?
+	db.chatrooms.update
+	(
+		{_id: mongo.ObjectId(chatroomParam._id)},
+		{$push: {'pendingUsers': chatroomParam.username}},
+		function (err, doc)
+		{
+			if(err) deferred.reject(err);
+			deferred.resolve();
+		}
+	);
+	
+	return deferred.promise;
+}
+
+function _delete(chatroomParam) {
     var deferred = Q.defer();
 
     db.chatrooms.remove(
-        { _id: mongo.ObjectId(_id) },
+        { _id: mongo.ObjectId(chatroomParam._id) },
         function (err) {
             if (err) deferred.reject(err);
 
