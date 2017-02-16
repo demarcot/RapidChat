@@ -39,9 +39,21 @@
     </div>
 </div>
 </div> -->
-<div class="container-fluid">
+<!-- <div class="container-fluid">
   <div class="col-sm-12 messages">
-    <p>Messages</p>
+    <ul class="chat">
+      <li class="left clearfix"  ng-repeat="message in messageTest track by $index">
+            <div class="chat-body clearfix">
+                <div class="header">
+                    <strong class="primary-font">{{message.name}}</strong> <small class="pull-right text-muted">
+                        <span class="glyphicon glyphicon-time"></span>{{message.date | date:'MM/dd/yyyy @ h:mma'}}</small>
+                </div>
+                <p>
+                    {{message.message}}
+                </p>
+            </div>
+      </li>
+    </ul>
   </div>
   <div class="col-sm-10 input">
     <input type="text" name="message" placeholder="Type your message here." class="input-message">
@@ -49,4 +61,10 @@
   <div class="col-sm-2 send">
     <button class="send-button">Send</button>
   </div>
-</div>
+  <div class="input-group">
+      <input id="btn-input" type="text" class="form-control input-sm input-message" placeholder="Type your message here..." required ng-max='50' ng-model='message' focus ng-keypress="myFunct($event)">
+      <span class="input-group-btn">
+          <button class="btn btn-default btn-sm" id="btn-chat" ng-enable='form.$valid' ng-click="sendMessage(message)">Send</button>
+      </span>
+  </div>
+</div> -->
