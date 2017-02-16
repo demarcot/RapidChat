@@ -8,11 +8,12 @@ var db = mongo(config.connectionURL, ['chatrooms']);
 
 var service = {};
 
-service.getById = getById;
+service.getAll = getAll;
 service.create = create;
 service.delete = _delete;
 service.getMessages = getMessages;
 service.insertMessage = insertMessage;
+service.inviteUser = inviteUser;
 
 module.exports = service;
 
@@ -21,15 +22,15 @@ module.exports = service;
 	- id
 	- need anything else?
 */
-function getById(chatroomParam) {
+function getAll() {
     var deferred = Q.defer();
 
-    db.chatrooms.findOne({_id: mongo.ObjectId(chatroomParam._id)}, function (err, chatroom) 
+    db.chatrooms.findOne({}, function (err, chatrooms) 
 	{
         if (err) deferred.reject(err);
 
         if (chatroom) {
-            deferred.resolve(chatroom);
+            deferred.resolve(chatrooms);
         } else {
             // chatroom not found
             deferred.resolve();
