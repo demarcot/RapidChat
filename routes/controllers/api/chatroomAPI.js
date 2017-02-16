@@ -13,12 +13,10 @@ router.put('/inviteUser', inviteUser);
 
 module.exports = router;
 
-function getChatroom(req, res)
+function getAllChatroom(req, res)
 {
-	var chatroomParam = {'_id': req.body._id};
-	
-	console.log("Get Chatroom:\n\tchatroomParam:\n\t", chatroomParam);
-	chatroomService.getById(chatroomParam)
+	console.log("Get Chatroom:\n\tchatroomParam:\n\t");
+	chatroomService.getAll()
 	.then(function (chatroom)
 	{
 		if(chatroom)
@@ -103,4 +101,13 @@ function inviteUser(req, res)
 	var chatroomParam = {'_id': req.body._id, 'username': req.body.username};
 	
 	console.log("Invite User:\n\tchatroomParam:\n\t", chatroomParam);
+	chatroomService.inviteUser(chatroomParam)
+	.then(function ()
+	{
+		res.sendStatus(200);
+	})
+	.catch(function(err)
+	{
+		res.status(400).send(err);
+	});
 }

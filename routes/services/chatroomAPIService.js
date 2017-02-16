@@ -21,15 +21,15 @@ module.exports = service;
 	- id
 	- need anything else?
 */
-function getById(chatroomParam) {
+function getAll() {
     var deferred = Q.defer();
 
-    db.chatrooms.findOne({_id: mongo.ObjectId(chatroomParam._id)}, function (err, chatroom) 
+    db.chatrooms.findOne({}, function (err, chatrooms) 
 	{
         if (err) deferred.reject(err);
 
         if (chatroom) {
-            deferred.resolve(chatroom);
+            deferred.resolve(chatrooms);
         } else {
             // chatroom not found
             deferred.resolve();
