@@ -4,7 +4,7 @@ var router = express.Router();
 var chatroomService = require('routes/services/chatroomAPIService');
 
 // routes
-router.get('/getChatroom', getChatroom);
+router.get('/getAllChatrooms', getAllChatrooms);
 router.post('/createChatroom', createChatroom);
 router.delete('/:_id', deleteChatroom);
 router.get('/getMessages', getMessages);
@@ -13,7 +13,7 @@ router.put('/inviteUser', inviteUser);
 
 module.exports = router;
 
-function getAllChatroom(req, res)
+function getAllChatrooms(req, res)
 {
 	console.log("Get Chatroom:\n\tchatroomParam:\n\t");
 	chatroomService.getAll()

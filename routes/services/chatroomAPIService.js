@@ -8,11 +8,12 @@ var db = mongo(config.connectionURL, ['chatrooms']);
 
 var service = {};
 
-service.getById = getById;
+service.getAll = getAll;
 service.create = create;
 service.delete = _delete;
 service.getMessages = getMessages;
 service.insertMessage = insertMessage;
+service.inviteUser = inviteUser;
 
 module.exports = service;
 
