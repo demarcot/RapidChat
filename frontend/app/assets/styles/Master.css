@@ -1,67 +1,32 @@
-/*.messages 	     			 {*/
-      background-color : #111155;
-      color						 : #AAAAAA;
-      height					 : 100%;
-      /*position 				 : fixed;*/
-      }
+.group-input           {
+      position         : absolute;
+      bottom           : 0px;
+}
 
-/*.input								 {*/
-      /*background-color : #D2A215;
-      color						 : #AAAAAA;*/
-      /*height					 : 100px;*/
-      position				 : fixed;
-      bottom					 : 0px;}
+.chat-content          {
+      position         : relative;
+      height           : 100%;
+      width            : inherit;
+}
 
-/*.input-message				 {*/
-      background-color : #222222;
-      color						 : #AAAAAA;}
-      /*width						 : 100%;
-      padding					 : 12px 20px;
-      margin					 : 8px 0;
-      display					 : inline-block;
-      position				 : relative;
-      top							 : 15%;
-      border					 : 1px solid #333;
-      border-radius		 : 4px;
-      box-sizing			 : border-box;}*/
+.messages              {
+      height           : 100%;
+}
 
-/*.send 	      				 {*/
-      background-color : #00CC00;
-      color						 : #333333;
-      /*height					 : 100px;*/
-      position				 : fixed;
-      bottom					 : 0px;}
+.scroll                {
+      overflow-y       : scroll;
+      position         : fixed;
+      height:calc(100% - 144px) ;
+      width: calc(100% - 200px);
+}
 
-/*.send-button  	       {*/
-      display					 : inline-block;
-      padding		 			 : 15px 25px;
-      font-size	 			 : 24px;
-      cursor		 			 : pointer;
-      text-align			 : center;
-      text-decoration	 : none;
-      outline		 			 : none;
-      color						 : #fff;
-      background-color : #15A2B2;
-      border		 			 : none;
-      border-radius		 : 15px;
-      box-shadow	 		 : 0 9px #888;
-      position				 : relative;
-      top							 : 10%;
-      left						 : 25%;}
+.navbar                {
+      border-radius    : 0px;
+}
 
-/*.send-button:hover     {
-      background-color : #0592A2}*/
+.bottom-of-page{bottom:0px}
 
-/*.send-button:active    {*/
-      background-color : #0592A2;
-      box-shadow			 : 0 5px #666;
-      transform				 : translateY(4px);}
-
-      /*Topnav style*/
-      .navbar {
-          border-radius: 0px;
-      }
-
+.full-height{height: 100%}
 /*Side Navigation Bar*/
 
 .nav-side-menu {
@@ -206,7 +171,10 @@
   }
   #main {
   	width:calc(100% - 200px);
-  	float: right;
+    position: fixed;
+    height : 100%;
+    left: 200px;
+    bottom: 0px;
   }
 }
 
@@ -214,3 +182,5 @@ body {
   margin: 0px;
   padding: 0px;
 }
+
+html {height: 100%;}

@@ -70,9 +70,8 @@
             </ul>
         </div>
     </div>
-    <div class="container" id="main">
-        <div class="row">
-            <div class="col-md-12">
+    <div class="container-fluid" id="main">
+        <div>
               <nav class="navbar navbar-default">
                 <ul class="nav navbar-nav" ng-controller="oldRoomCtrl">
                     <li ng-class="{active: activeTab === 'chatLayout'}"><a ui-sref="chatLayout" ng-click="setOldRoom()">Home</a></li>
@@ -87,9 +86,12 @@
                   <div class="{{'alert alert-' + flash.type}}" ng-bind="flash.message"></div>
               </div>
 
-            </div>
+
+        </div>
+        <div>
             <div ui-view></div>
         </div>
+        <!-- <div>Hello</div> -->
     </div>
 
       <!-- External JS Dependancies -->
