@@ -8,23 +8,89 @@
     <meta charset="utf-8">
     <title>RapidChat</title>
   </head>
-  <body class="container" >
+  <body>
     <!-- header -->
     <header>
-        <ul class="nav nav-tabs" ng-controller="oldRoomCtrl">
-            <li ng-class="{active: activeTab === 'chatLayout'}"><a ui-sref="chatLayout" ng-click="setOldRoom()">Home</a></li>
-            <li ng-class="{active: activeTab === 'personalize'}"><a ui-sref="personalize">Account</a></li>
-            <li ng-class="{active: activeTab === 'secretChat'}"><a ui-sref="secretchat" ng-click="setOldRoom()">Secret Chat</a></li>
-            <li ng-repeat="room in chatRooms" ng-class="{active: activeTab === 'room.chatRoomId'}"><a ui-sref="chatRoomById({chatRoomId: room.chatRoomId})" ng-click="setOldRoom()">{{room.chatRoomName}}</a></li>
-            <li><a href="/login" target="_self">Logout</a></li>
-        </ul>
-        <div class="flash-message" ng-if="flash">
-            <div class="{{'alert alert-' + flash.type}}" ng-bind="flash.message"></div>
-        </div>
+
     </header>
 
+    <div class="nav-side-menu">
+        <div class="brand">Brand Logo</div>
+        <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+        <div class="menu-list">
+            <ul id="menu-content" class="menu-content collapse out">
+                <li>
+                    <a href="#">
+                        <i class="fa fa-dashboard fa-lg"></i> Dashboard
+                    </a>
+                </li>
+                <li data-toggle="collapse" data-target="#products" class="collapsed active">
+                    <a href="#"><i class="fa fa-gift fa-lg"></i> UI Elements <span class="arrow"></span></a>
+                </li>
+                <ul class="sub-menu collapse" id="products">
+                    <li class="active"><a href="#">CSS3 Animation</a></li>
+                    <li><a href="#">General</a></li>
+                    <li><a href="#">Buttons</a></li>
+                    <li><a href="#">Tabs &amp; Accordions</a></li>
+                    <li><a href="#">Typography</a></li>
+                    <li><a href="#">FontAwesome</a></li>
+                    <li><a href="#">Slider</a></li>
+                    <li><a href="#">Panels</a></li>
+                    <li><a href="#">Widgets</a></li>
+                    <li><a href="#">Bootstrap Model</a></li>
+                </ul>
+                <li data-toggle="collapse" data-target="#service" class="collapsed">
+                    <a href="#"><i class="fa fa-globe fa-lg"></i> Services <span class="arrow"></span></a>
+                </li>
+                <ul class="sub-menu collapse" id="service">
+                    <li>New Service 1</li>
+                    <li>New Service 2</li>
+                    <li>New Service 3</li>
+                </ul>
 
-    <div ui-view></div>
+
+                <li data-toggle="collapse" data-target="#new" class="collapsed">
+                    <a href="#"><i class="fa fa-car fa-lg"></i> New <span class="arrow"></span></a>
+                </li>
+                <ul class="sub-menu collapse" id="new">
+                    <li>New New 1</li>
+                    <li>New New 2</li>
+                    <li>New New 3</li>
+                </ul>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-user fa-lg"></i> Profile
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-users fa-lg"></i> Users
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="container" id="main">
+        <div class="row">
+            <div class="col-md-12">
+              <nav class="navbar navbar-default">
+                <ul class="nav navbar-nav" ng-controller="oldRoomCtrl">
+                    <li ng-class="{active: activeTab === 'chatLayout'}"><a ui-sref="chatLayout" ng-click="setOldRoom()">Home</a></li>
+                    <li ng-class="{active: activeTab === 'personalize'}"><a ui-sref="personalize">Account</a></li>
+                    <li ng-class="{active: activeTab === 'secretChat'}"><a ui-sref="secretchat" ng-click="setOldRoom()">Secret Chat</a></li>
+                    <li ng-repeat="room in chatRooms" ng-class="{active: activeTab === 'room.chatRoomId'}"><a ui-sref="chatRoomById({chatRoomId: room.chatRoomId})" ng-click="setOldRoom()">{{room.chatRoomName}}</a></li>
+                    <li><a href="/login" target="_self">Logout</a></li>
+                </ul>
+              </nav>
+
+              <div class="flash-message" ng-if="flash">
+                  <div class="{{'alert alert-' + flash.type}}" ng-bind="flash.message"></div>
+              </div>
+
+            </div>
+            <div ui-view></div>
+        </div>
+    </div>
 
       <!-- External JS Dependancies -->
     <script src="assets/bower_components/jquery/dist/jquery.min.js" charset="utf-8"></script>
