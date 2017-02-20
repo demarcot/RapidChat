@@ -80,7 +80,9 @@
 <div>
   <div class="panel panel-default">
     <div class="panel-header">
-      Hello head
+    <!-- FIXME: add the chat room name to panel header  -->
+    **Chat Room Name**
+    
     </div>
     <div>
       <div class="panel-body scroll">
@@ -92,7 +94,7 @@
                           <span class="glyphicon glyphicon-time"></span>{{message.date | date:'MM/dd/yyyy @ h:mma'}}</small>
                   </div>
                   <p>
-                      {{message.message}} Meg
+                      {{message.message}}
                   </p>
               </div>
           </li>

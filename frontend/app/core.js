@@ -3,7 +3,7 @@
 
     angular
         .module('coreApp', ['ui.router', 'ngCookies', 'ngResource', 'ngSanitize', 'btford.socket-io'])
-        .value('nickName', '**IMPLEMENT_THIS_PART**')
+        .value('nickName', 'Nick_name')
         .config(config)
         .run(run);
 
