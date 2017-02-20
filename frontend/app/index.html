@@ -5,6 +5,8 @@
       <!--External Css Dependancies -->
     <link rel="stylesheet" href="assets\bower_components\bootstrap\dist\css\bootstrap.min.css">
     <link rel="stylesheet" href="assets/styles/Master.css">
+    <link rel="stylesheet" href="assets\imgs\font-awesome-4.7.0\css\font-awesome.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8">
     <title>RapidChat</title>
   </head>
@@ -72,8 +74,8 @@
     </div>
     <div class="container-fluid" id="main">
         <div>
-              <nav class="navbar navbar-default">
-                <ul class="nav navbar-nav" ng-controller="oldRoomCtrl">
+              <nav class="navbar navbar-default hom">
+                <ul class="nav navbar-nav right-buffer" ng-controller="oldRoomCtrl">
                     <li ng-class="{active: activeTab === 'chatLayout'}"><a ui-sref="chatLayout" ng-click="setOldRoom()">Home</a></li>
                     <li ng-class="{active: activeTab === 'personalize'}"><a ui-sref="personalize">Account</a></li>
                     <li ng-class="{active: activeTab === 'secretChat'}"><a ui-sref="secretchat" ng-click="setOldRoom()">Secret Chat</a></li>

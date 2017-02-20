@@ -16,12 +16,16 @@
 .scroll                {
       overflow-y       : scroll;
       position         : fixed;
-      height:calc(100% - 144px) ;
-      width: calc(100% - 200px);
+      height           : calc(100% - 144px);
+      width            : calc(100% - 200px);
 }
 
 .navbar                {
       border-radius    : 0px;
+}
+
+.right-buffer {
+  padding-right: 10px;
 }
 
 .bottom-of-page{bottom:0px}
@@ -139,11 +143,10 @@
   -ms-transition: all 1s ease;
   transition: all 1s ease;
 }
-@media (max-width: 767px) {
+@media (max-width: 1000px) {
   .nav-side-menu {
     position: relative;
     width: 100%;
-    margin-bottom: 10px;
   }
   .nav-side-menu .toggle-btn {
     display: block;
@@ -164,11 +167,29 @@
     padding-left: 20px;
     line-height: 50px !important;
   }
+
+  .hom {display:none;}
+
+  .com {
+    font-size: 32px;
+  }
+
+  .input-com {
+
+  }
+
+  .nav>li>a {
+    padding: 10px 0px 10px 15px;
+  }
+  .scroll {
+    width : 100%;
+  }
 }
-@media (min-width: 767px) {
+@media (min-width: 1000px) {
   .nav-side-menu .menu-list .menu-content {
     display: block;
   }
+
   #main {
   	width:calc(100% - 200px);
     position: fixed;
