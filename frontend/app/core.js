@@ -26,10 +26,10 @@
                 controllerAs: 'vm',
                 data: { activeTab: 'personalize' }
             })
-            .state('secretchat', {
+            .state('secretChat', {
                 url: '/secretChat',
                 templateUrl: 'assets/views/testChat.html',
-                data: { activeTab: 'secretchat' }
+                data: { activeTab: 'secretChat' }
                })
             .state('chatRoomById',{
               url: '/chatRoom/:chatRoomId',

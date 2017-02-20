@@ -79,11 +79,6 @@
 
 <div>
   <div class="panel panel-default">
-    <div class="panel-header">
-    <!-- FIXME: add the chat room name to panel header  -->
-    **Chat Room Name**
-    
-    </div>
     <div>
       <div class="panel-body scroll">
         <ul>
@@ -103,9 +98,9 @@
     </div>
     <div class="panel-footer group-input">
       <div class="input-group">
-        <input type="text" class="form-control input-sm" placeholder="Type your message here..." required ng-max='50' ng-model='message' focus ng-keypress="myFunct($event)">
+        <input type="text" class="form-control input-sm input-message" placeholder="Type your message here..." required ng-max='50' ng-model='message' focus ng-keypress="myFunct($event)">
         <span class="input-group-btn">
-          <button class="btn btn-default btn-sm" ng-enable='form.$valid' ng-click="sendMessage(message)">Send</button>
+          <button class="btn btn-default btn-sm button-style" ng-enable='form.$valid' ng-click="sendMessage(message)">Send</button>
         </span>
       </div>
     </div>
