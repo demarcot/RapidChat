@@ -5,6 +5,7 @@ angular.module('coreApp')
 
   $scope.chatRoom = $state.params.chatRoomId;
   console.log($state)
+  
   $scope.nickName = nickName;
   $scope.messageLog = '';
   $scope.messageTest = [];
@@ -51,6 +52,7 @@ angular.module('coreApp')
 
     UserService.GetCurrent().then(function (user) {
           $scope.username = user.username;
+          nickName = $scope.username;
           $scope.oldRoom = localStorage.getItem("oldRoom");
           chatSocket.emit('currentRoom', $scope.username, $scope.chatRoom, $scope.oldRoom);
     });
