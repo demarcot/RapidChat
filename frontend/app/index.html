@@ -21,11 +21,6 @@
         <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
         <div class="menu-list">
             <ul id="menu-content" class="menu-content collapse out">
-                <li>
-                    <a href="#">
-                        <i class="fa fa-dashboard fa-lg"></i> Dashboard
-                    </a>
-                </li>
                 <li data-toggle="collapse" data-target="#products" class="collapsed">
                     <a href="#"><i class="fa fa-gift fa-lg"></i> UI Elements <span class="arrow"></span></a>
                 </li>
@@ -41,34 +36,23 @@
                     <li><a href="#">Widgets</a></li>
                     <li><a href="#">Bootstrap Model</a></li>
                 </ul>
-                <li data-toggle="collapse" data-target="#service" class="collapsed">
-                    <a href="#"><i class="fa fa-globe fa-lg"></i> Services <span class="arrow"></span></a>
+                <li data-toggle="collapse" data-target="#chatrooms" class="collapsed">
+                    <a><i class="fa fa-globe fa-lg"></i> Chat Rooms <span class="arrow"></span></a>
                 </li>
-                <ul class="sub-menu collapse" id="service">
-                    <li>New Service 1</li>
-                    <li>New Service 2</li>
-                    <li>New Service 3</li>
+                <ul class="sub-menu collapse" id="chatrooms" ng-controller="oldRoomCtrl">
+                  <li ng-repeat="room in chatRooms" ui-sref="chatRoomById({chatRoomId: room.chatRoomId})" ng-click="setOldRoom()"><a>{{room.chatRoomName}}</a></li>
                 </ul>
-
-
-                <li data-toggle="collapse" data-target="#new" class="collapsed">
-                    <a href="#"><i class="fa fa-car fa-lg"></i> New <span class="arrow"></span></a>
+                <li data-toggle="collapse" data-target="#users" class="collapsed">
+                    <a>
+                        <i class="fa fa-users fa-lg"></i> Users  <span class="arrow"></span>
+                    </a>
                 </li>
-                <ul class="sub-menu collapse" id="new">
+                <ul class="sub-menu collapse" id="users">
                     <li>New New 1</li>
                     <li>New New 2</li>
                     <li>New New 3</li>
                 </ul>
-                <li>
-                    <a href="#">
-                        <i class="fa fa-user fa-lg"></i> Profile
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="fa fa-users fa-lg"></i> Users
-                    </a>
-                </li>
+
             </ul>
         </div>
     </div>
@@ -76,11 +60,13 @@
         <div>
               <nav class="navbar navbar-default hom">
                 <ul class="nav navbar-nav right-buffer" ng-controller="oldRoomCtrl">
-                    <li ng-class="{active: activeTab === 'chatLayout'}"><a ui-sref="chatLayout" ng-click="setOldRoom()">Home</a></li>
+                    <li ng-class="{active: activeTab === 'chatLayout'}"><a ui-sref="chatLayout" ng-click="setOldRoom()">Dashboard</a></li>
                     <li ng-class="{active: activeTab === 'personalize'}"><a ui-sref="personalize">Account</a></li>
-                    <li ng-class="{active: activeTab === 'secretChat'}"><a ui-sref="secretChat" ng-click="setOldRoom()">Secret Chat</a></li>
-                    <li ng-repeat="room in chatRooms" ng-class="{active: activeTab === 'room.chatRoomId'}"><a ui-sref="chatRoomById({chatRoomId: room.chatRoomId})" ng-click="setOldRoom()">{{room.chatRoomName}}</a></li>
                     <li><a href="/login" target="_self">Logout</a></li>
+                      <!-- <div class="input-group input-group-sm">
+                        <input type="text" class="form-control" placeholder="Search.." aria-describedby="searchbar-addon">
+                        <span class="input-group-addon" id="searchbar-addon"><i class="fa fa-search fa-lg"></i></span>
+                      </div> -->
                 </ul>
               </nav>
 
