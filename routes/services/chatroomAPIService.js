@@ -25,11 +25,11 @@ module.exports = service;
 function getAll() {
     var deferred = Q.defer();
 
-    db.chatrooms.findOne({}, function (err, chatrooms) 
+    db.chatrooms.find({}, function (err, chatrooms) 
 	{
         if (err) deferred.reject(err);
 
-        if (chatroom) {
+        if (chatrooms) {
             deferred.resolve(chatrooms);
         } else {
             // chatroom not found

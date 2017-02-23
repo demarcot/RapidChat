@@ -53,17 +53,7 @@ app.use('/test/api', require('./routes/controllers/api/chatroomAPI'));
 
 
 
-//This is going to be our socket.io connection and message relay
-io.on('connection', function (socket) {
-
- socket.on('message', function (from, msg) {
-
-      console.log("A Message trigger has occured");
-    });
-
-});
-
-
+io.set('heatbeat', false);
 
 app.use(function (req, res, next) {
   var err = new Error('Not Found');
