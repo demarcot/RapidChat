@@ -13,6 +13,7 @@ var service = {};
 
 service.authenticate = authenticate;
 service.getById = getById;
+service.getAll = getAll;
 service.create = create;
 service.update = update;
 service.delete = _delete;
@@ -48,6 +49,24 @@ function getById(_id) {
             deferred.resolve(_.omit(user, 'hash'));
         } else {
             // user not found
+            deferred.resolve();
+        }
+    });
+
+    return deferred.promise;
+}
+
+function getAll() {
+    var deferred = Q.defer();
+
+    db.users.find({}, function (err, users) 
+	{
+        if (err) deferred.reject(err);
+
+        if (users) {
+            deferred.resolve(users);
+        } else {
+            // chatroom not found
             deferred.resolve();
         }
     });
