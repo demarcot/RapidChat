@@ -1,9 +1,10 @@
 .group-input           {
-      position         : absolute;
+      position         : fixed;
       bottom           : 0px;
-      background-color : #444444;
+      background-color : #3F098F;
       color						 : #AAAAAA;
       border-top       : 0px;
+      border-left      : 1px solid #FFFFFF;
 }
 
 .chat-content          {
@@ -17,10 +18,11 @@
 }
 
 .scroll                {
-      overflow-y       : scroll;
+      overflow-y       : auto;
       position         : fixed;
-      height           : calc(100% - 120px);
+      height           : calc(100% - 100px);
       width            : calc(100% - 200px);
+      border-left      : 1px solid #FFF;
 }
 
 .navbar                {
@@ -42,11 +44,11 @@
 
 .full-height{height: 100%}
 .input-message				 {
-      background-color : #222222;
+      background-color : #1E032B;
       color						 : #AAAAAA;
 }
 .chat-background{
-      background-color : #222222;
+      background-color : #1E032B;
       color						 : #AAAAAA;
 }
 .header-style{
@@ -62,7 +64,7 @@
 .panel{border: 0;}
 
 .button-style{
-  background-color: #222222;
+  background-color: #1E032B;
   color: #AAAAAA;
 }
 .button-style:hover{
@@ -89,6 +91,30 @@
   background-color: #FF3366;
 }
 
+::-webkit-scrollbar {
+    width: 12px;
+    border-radius: 0px;
+}
+
+::-webkit-scrollbar-track {
+    -webkit-box-solid: inset 0 0 6px rgba(255,0,0,1);
+    -webkit-border-radius: 0px;
+    border-radius: 0px;
+    background-color: #3F098F;
+}
+
+::-webkit-scrollbar-thumb {
+    border: 1px solid rgba(255, 255, 255, .7);
+    border-radius: 0px;
+    -webkit-border-radius: 0px;
+    -webkit-box-solid: inset 0 0 6px rgba(0,255,0,1);
+    background: #1E032B;
+}
+
+.panel{
+  margin-bottom: 0px;
+}
+
 /*Side Navigation Bar*/
 
 .nav-side-menu {
@@ -96,7 +122,7 @@
   font-family: verdana;
   font-size: 12px;
   font-weight: 200;
-  background-color: #20A4F3;
+  background-color: #3F098F;
   position: fixed;
   top: 0px;
   width: 200px;
@@ -224,21 +250,22 @@
     padding-left: 20px;
     line-height: 50px !important;
   }
-
   .hom {display:none;}
-
   .com {
     font-size: 32px;
   }
-
   .input-com {}
-
   .nav>li>a {
     padding: 10px 0px 10px 15px;
     color: #E1FFFF;
   }
   .scroll {
+    position: absolute;
+    max-height: initial;
     width : 100%;
+  }
+  .panel-body{
+    padding-bottom: 50px;
   }
 }
 @media (min-width: 1000px) {
@@ -257,7 +284,7 @@
 body {
   margin: 0px;
   padding: 0px;
-  background-color : #222222;
+  background-color : #1E032B;
   color						 : #AAAAAA;
 }
 html {height: 100%;}
