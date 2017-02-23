@@ -28,7 +28,6 @@ angular.module('coreApp')
   $scope.callApi = function() {
       UserService.GetAll().then(function(user){
         $scope.allUsers = user;
-        console.log($scope.allUsers);
       });
     };
 

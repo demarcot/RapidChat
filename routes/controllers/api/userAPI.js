@@ -54,7 +54,7 @@ function getCurrentUser(req, res) {
         });
 }
 
-function getAllUsers()
+function getAllUsers(req, res)
 {
 	userService.getAll()
 	.then(function(users)
