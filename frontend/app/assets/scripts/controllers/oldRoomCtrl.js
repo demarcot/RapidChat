@@ -1,5 +1,5 @@
 angular.module('coreApp')
-.controller('oldRoomCtrl', function ($scope, $state){
+.controller('oldRoomCtrl', function ($scope, $state, ChatRoomService, UserService){
 
     $scope.setOldRoom = function(){
       localStorage.setItem("oldRoom", $state.params.chatRoomId);
@@ -24,6 +24,17 @@ angular.module('coreApp')
       "isPrivate":"false"
     }
   ];
+
+  $scope.callApi = function() {
+      UserService.GetAll().then(function(user){
+        $scope.allUsers = user;
+        console.log($scope.allUsers);
+      });
+    };
+
+
+      $scope.callApi();
+
 
 
 

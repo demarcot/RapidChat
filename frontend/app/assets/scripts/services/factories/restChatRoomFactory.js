@@ -9,7 +9,7 @@
         var service = {};
 
         // service.GetCurrent = GetCurrent;
-        // service.GetAll = GetAll;
+        service.GetAll = GetAll;
         // service.GetById = GetById;
         // service.GetByUsername = GetByUsername;
         service.Create = Create;
@@ -22,9 +22,9 @@
         //     return $http.get('/api/users/current').then(handleSuccess, handleError);
         // }
         //
-        // function GetAll() {
-        //     return $http.get('/api/users').then(handleSuccess, handleError);
-        // }
+        function GetAll() {
+            return $http.get('/test/api/chatrooms').then(handleSuccess, handleError);
+        }
         //
         // function GetById(_id) {
         //     return $http.get('/api/users/' + _id).then(handleSuccess, handleError);
