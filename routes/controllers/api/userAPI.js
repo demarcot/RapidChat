@@ -67,7 +67,7 @@ function getAllUsers()
 	.catch(function(err)
 	{
 		res.status(400).send(err);
-	})
+	});
 }
 
 function updateUser(req, res) {
