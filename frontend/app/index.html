@@ -15,9 +15,9 @@
     <header>
 
     </header>
-
+    <div  ng-controller="oldRoomCtrl">
     <div class="nav-side-menu">
-        <div class="brand">Brand Logo</div>
+        <div class="brand">Rapid Chat</div>
         <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
         <div class="menu-list">
             <ul id="menu-content" class="menu-content collapse out">
@@ -39,7 +39,7 @@
                 <li data-toggle="collapse" data-target="#chatrooms" class="collapsed">
                     <a><i class="fa fa-globe fa-lg"></i> Chat Rooms <span class="arrow"></span></a>
                 </li>
-                <ul class="sub-menu collapse" id="chatrooms" ng-controller="oldRoomCtrl">
+                <ul class="sub-menu collapse" id="chatrooms">
                   <li ng-repeat="room in chatRooms" ui-sref="chatRoomById({chatRoomId: room.chatRoomId})" ng-click="setOldRoom()"><a>{{room.chatRoomName}}</a></li>
                 </ul>
                 <li data-toggle="collapse" data-target="#users" class="collapsed">
@@ -59,7 +59,7 @@
     <div class="container-fluid" id="main">
         <div>
               <nav class="navbar navbar-default hom">
-                <ul class="nav navbar-nav right-buffer" ng-controller="oldRoomCtrl">
+                <ul class="nav navbar-nav right-buffer">
                     <li ng-class="{active: activeTab === 'chatLayout'}"><a ui-sref="chatLayout" ng-click="setOldRoom()">Dashboard</a></li>
                     <li ng-class="{active: activeTab === 'personalize'}"><a ui-sref="personalize">Account</a></li>
                     <li><a href="/login" target="_self">Logout</a></li>
@@ -74,14 +74,13 @@
                   <div class="{{'alert alert-' + flash.type}}" ng-bind="flash.message"></div>
               </div>
 
-
         </div>
         <div>
             <div ui-view></div>
         </div>
         <!-- <div>Hello</div> -->
     </div>
-
+    </div>
       <!-- External JS Dependancies -->
     <script src="assets/bower_components/jquery/dist/jquery.min.js" charset="utf-8"></script>
     <script src="assets/bower_components/bootstrap/dist/js/bootstrap.min.js" charset="utf-8"></script>
