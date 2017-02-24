@@ -9,7 +9,7 @@
         var service = {};
 
         // service.GetCurrent = GetCurrent;
-        // service.GetAll = GetAll;
+        service.GetAll = GetAll;
         // service.GetById = GetById;
         // service.GetByUsername = GetByUsername;
         service.Create = Create;
@@ -23,7 +23,7 @@
         // }
         //
         function GetAll() {
-            return $http.get('/test/api/getAllChatrooms').then(handleSuccess, handleError);
+            return $http.get('/test/api/chatrooms').then(handleSuccess, handleError);
         }
         //
         // function GetById(_id) {
@@ -42,9 +42,9 @@
         //     return $http.put('/api/users/' + user._id, user).then(handleSuccess, handleError);
         // }
 
-        function Delete(_id) {
-            return $http.delete('/test/api/chatRoom/' + _id).then(handleSuccess, handleError);
-        }
+        // function Delete(_id) {
+        //     return $http.delete('/api/users/' + _id).then(handleSuccess, handleError);
+        // }
 
         // private functions
 

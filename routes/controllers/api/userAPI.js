@@ -7,6 +7,7 @@ var userService = require('routes/services/userAPIService');
 router.post('/authenticate', authenticateUser);
 router.post('/register', registerUser);
 router.get('/current', getCurrentUser);
+router.get('/all', getAllUsers);
 router.put('/:_id', updateUser);
 router.delete('/:_id', deleteUser);
 
@@ -51,6 +52,22 @@ function getCurrentUser(req, res) {
         .catch(function (err) {
             res.status(400).send(err);
         });
+}
+
+function getAllUsers(req, res)
+{
+	userService.getAll()
+	.then(function(users)
+	{
+		if(users)
+			res.send(users);
+		else
+			res.sendStatus(404);
+	})
+	.catch(function(err)
+	{
+		res.status(400).send(err);
+	});
 }
 
 function updateUser(req, res) {

@@ -17,10 +17,10 @@ function getAllChatrooms(req, res)
 {
 	console.log("Get Chatroom:\n\tchatroomParam:\n\t");
 	chatroomService.getAll()
-	.then(function (chatroom)
+	.then(function (chatrooms)
 	{
-		if(chatroom)
-			res.send(chatroom);
+		if(chatrooms)
+			res.send(chatrooms);
 		else
 			res.sendStatus(404);
 	})
