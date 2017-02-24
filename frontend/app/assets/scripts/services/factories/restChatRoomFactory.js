@@ -23,7 +23,7 @@
         // }
         //
         function GetAll() {
-            return $http.get('/test/api/chatrooms').then(handleSuccess, handleError);
+            return $http.get('/test/api/getAllChatrooms').then(handleSuccess, handleError);
         }
         //
         // function GetById(_id) {

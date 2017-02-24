@@ -29,6 +29,11 @@ angular.module('coreApp')
       UserService.GetAll().then(function(user){
         $scope.allUsers = user;
       });
+
+      ChatRoomService.GetAll().then(function(chatrooms){
+        $scope.allChatRooms = chatrooms;
+        console.log(chatrooms);
+      });
     };
 
 
