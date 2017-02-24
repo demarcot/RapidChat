@@ -5,6 +5,7 @@ var chatroomService = require('routes/services/chatroomAPIService');
 
 // routes
 router.get('/getAllChatrooms', getAllChatrooms);
+router.get('getAllowedChatrooms', getAllowedChatrooms);
 router.post('/createChatroom', createChatroom);
 router.delete('/:_id', deleteChatroom);
 router.get('/getMessages', getMessages);
@@ -15,7 +16,7 @@ module.exports = router;
 
 function getAllChatrooms(req, res)
 {
-	console.log("Get Chatroom:\n\tchatroomParam:\n\t");
+	console.log("Get all chatrooms...\n");
 	chatroomService.getAll()
 	.then(function (chatrooms)
 	{
@@ -31,9 +32,29 @@ function getAllChatrooms(req, res)
 
 }
 
+function getAllowedChatrooms(req, res)
+{
+	var chatroomParam = {'username': req.body.username};
+	
+	console.log("Get allowed chatrooms...\n");
+	chatroomService.getAllowedChatrooms(chatroomParam)
+	.then(function (chatrooms)
+	{
+		if(chatrooms)
+			res.send(chatrooms);
+		else
+			res.sendStatus(404);
+	})
+	.catch(function (err)
+	{
+		res.status(400).send(err);
+	});
+	
+}
+
 function createChatroom(req, res)
 {
-	var chatroomParam = {'name': req.body.name, 'userId': req.body.userId, 'privateStatus': req.body.privateStatus, 'maxUsers': req.body.maxUsers}
+	var chatroomParam = {'name': req.body.name, 'userId': req.body.userId, 'privateStatus': req.body.privateStatus, 'direct': req.body.direct, 'maxUsers': req.body.maxUsers}
 	
 	console.log("Create Chatroom:\n\tchatroomParam:\n\t", chatroomParam);
 	chatroomService.create(chatroomParam)

@@ -9,6 +9,7 @@ var db = mongo(config.connectionURL, ['chatrooms']);
 var service = {};
 
 service.getAll = getAll;
+service.getAllowedChatrooms = getAllowedChatrooms;
 service.create = create;
 service.delete = _delete;
 service.getMessages = getMessages;
@@ -25,7 +26,7 @@ module.exports = service;
 function getAll() {
     var deferred = Q.defer();
 
-    db.chatrooms.find({}, function (err, chatrooms) 
+    db.chatrooms.find({}, {"name":1}, function (err, chatrooms) 
 	{
         if (err) deferred.reject(err);
 
@@ -38,6 +39,33 @@ function getAll() {
     });
 
     return deferred.promise;
+}
+
+/*
+	This function returns all the chatrooms that a specific user is allowed to know about
+	chatroomParam
+	-	username
+*/
+function getAllowedChatrooms(chatroomParam)
+{
+	var deferred = Q.defer()
+	
+	db.chatrooms.find({"acceptedUsers": chatroomParam.username}, {"name":1}, function (err, chatrooms)
+		{
+			if(err) deferred.reject(err);
+			
+			if(chatrooms)
+			{
+				deferred.resolve(chatrooms);
+			}
+			else
+			{
+				//chatrooms not found
+				deferred.resolve();
+			}
+		});
+	
+	return deferred.promise;
 }
 
 /*
@@ -60,6 +88,7 @@ function create(chatroomParam) {
 			'pendingUsers': [],
 			'messages': [],
 			'private': chatroomParam.privateStatus,
+			'direct': chatroomParam.direct,
 			'maxUsers': chatroomParam.maxUsers
 		},
         function (err, doc) {
@@ -107,9 +136,9 @@ function getMessages(chatroomParam)
 	//The query currently gets the correct chatroom
     var docsToReturn = db.chatrooms.find
     (	
-        {$query: {_id: mongo.ObjectId(chatroomParam._id)}},
-        {}
-    ).limit(chatroomParam.messageNum);
+        {_id: mongo.ObjectId(chatroomParam._id)},
+        {"messages":1, "_id":0}
+    )
     deferred.resolve(docsToReturn);
     //db.yourcollectionname.find({$query: {}, $orderby: {$natural : -1}}).limit(yournumber)  <-- something like this to get last N elements?
     
