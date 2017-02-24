@@ -41,6 +41,7 @@
                 </li>
                 <ul class="sub-menu collapse" id="chatrooms">
                   <li ng-repeat="room in chatRooms" ui-sref="chatRoomById({chatRoomId: room.chatRoomId})" ng-click="setOldRoom()"><a>{{room.chatRoomName}}</a></li>
+                  <li data-toggle="modal" data-target="#createRoom">Create Room</li>
                 </ul>
                 <li data-toggle="collapse" data-target="#users" class="collapsed">
                     <a>
@@ -48,9 +49,7 @@
                     </a>
                 </li>
                 <ul class="sub-menu collapse" id="users">
-                    <li>New New 1</li>
-                    <li>New New 2</li>
-                    <li>New New 3</li>
+                    <li ng-repeat="user in allUsers" ui-sref="chatRoomById({chatRoomId: user._id})" ng-click="setOldRoom()">{{user.username}}</li>
                 </ul>
 
             </ul>
@@ -81,6 +80,29 @@
         <!-- <div>Hello</div> -->
     </div>
     </div>
+
+    <!-- Modal -->
+<div class="modal fade" id="createRoom" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Create Chatroom</h4>
+      </div>
+      <div class="modal-body">
+        <form class="form-group" ng-submit="" method="post">
+          <input type="text" name="Chatroom Name" value="" class="form-control">
+          <button type="radio" name="btn btn-radio"></button>
+        </form>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Create</button>
+      </div>
+    </div>
+  </div>
+</div>
       <!-- External JS Dependancies -->
     <script src="assets/bower_components/jquery/dist/jquery.min.js" charset="utf-8"></script>
     <script src="assets/bower_components/bootstrap/dist/js/bootstrap.min.js" charset="utf-8"></script>
