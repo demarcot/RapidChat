@@ -1,5 +1,5 @@
 <%- include('temps/header') %>
-<div class="form-container">
+<div class="form-container login-style">
     <h2>Register</h2>
     <% if(locals.error) { %>
         <div class="alert alert-danger"><%= error %></div>
@@ -22,8 +22,8 @@
             <input type="password" name="password" id="password" class="form-control" required />
         </div>
         <div class="form-group">
-            <button type="submit" class="btn btn-primary">Register</button>
-            <a href="/login" class="btn btn-link">Cancel</a>
+            <button type="submit" class="btn btn-primary button-style">Register</button>
+            <a href="/login" class="btn btn-link link-color">Cancel</a>
         </div>
     </form>
 </div>

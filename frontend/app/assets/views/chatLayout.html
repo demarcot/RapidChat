@@ -1,6 +1,24 @@
 <!-- <h1>Hello {{vm.user.firstName}}</h1> -->
 <div>
-Make this The Dashboard
+  <div>
+    <h1 class="center-heading">
+      Hello {{vm.user.firstName}}, Welcome to Rapid Chat!
+    </h1>
+  </div>
+  <div class="left-style">
+      If you would like to directly message another user, click one of the users below.
+      <ul class="no-bullet chat-links" id="users">
+          <li class="link-style" ng-repeat="user in allUsers" ng-click="setOldRoom()"><a ui-sref="chatRoomById({chatRoomId: user._id})">{{user.username}}</a></li>
+      </ul>
+  </div>
+
+  <div class="right-style">
+      If you would like to join a public chat room, click one of the public rooms below.
+      <ul class="no-bullet chat-links" id="chatrooms">
+        <li class="link-style" ng-repeat="room in chatRooms"  ng-click="setOldRoom()"><a ui-sref="chatRoomById({chatRoomId: room._id})">{{room.name}}</a></li>
+        <li class="link-style" data-toggle="modal" data-target="#createRoom"><a>Create A New Chat Room</a></li>
+      </ul>
+  </div>
 </div>
 
 

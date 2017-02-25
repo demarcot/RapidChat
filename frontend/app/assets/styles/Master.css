@@ -4,7 +4,7 @@
       background-color : #3F098F;
       color						 : #AAAAAA;
       border-top       : 0px;
-      border-left      : 0px solid #FFFFFF;
+      border-left      : 1px solid #FFFFFF;
 }
 .chat-content          {
       position         : relative;
@@ -19,7 +19,7 @@
       position         : fixed;
       height           : calc(100% - 100px);
       width            : calc(100% - 200px);
-      border-left      : 0px solid #FFF;
+      border-left      : 1px solid #FFF;
 }
 .right-buffer {
   padding-right: 10px;
@@ -68,6 +68,27 @@
   background-color: #A68CB3;
   text-align: center;
 }
+
+/*Create Chatroom Style*/
+.header-style{
+  background-color: #3F098F;
+}
+.body-style{
+  background-color: #2F0769;
+}
+.footer-style{
+  background-color: #3F098F;
+  margin-top: 0px;
+  border-top: 0px;
+}
+.input-chatroom{
+  background-color : #1E032B;
+  color						 : #AAAAAA;
+}
+.close-button{
+  color:           : #FFFFFF;
+}
+
 /*Message Input Color*/
 .input-message				 {
       background-color : #1E032B;
@@ -85,6 +106,38 @@
 }
 .button-style:focus{
   background-color: #2E0244;
+  color: #AAAAAA;
+}
+
+/*Alternate Button Styling*/
+.altbutton-style{
+  background-color: #460467;
+  color: #AAAAAA;
+  font-weight: bold;
+  border-color: #CCC;
+}
+.altbutton-style:hover{
+  background-color: #5F058D;
+  color: #AAAAAA;
+  border-color: #CCC;
+
+}
+.altbutton-style:focus{
+  background-color: #5F058D;
+  color: #AAAAAA;
+  border-color: #CCC;
+
+}
+.alt2button-style{
+  background-color: #48003D;
+  color: #AAAAAA;
+}
+.alt2button-style:hover{
+  background-color: #6D005C;
+  color: #AAAAAA;
+}
+.alt2button-style:focus{
+  background-color: #6D005C;
   color: #AAAAAA;
 }
 
@@ -121,7 +174,7 @@
   color: #E1FFFF;
 }
 
-/*Scrollbar*/
+/*Scrollbar Styling*/
 ::-webkit-scrollbar {
     width: 12px;
     border-radius: 0px;
@@ -145,8 +198,49 @@
   list-style: none;
 }
 
-/*Side Navigation Bar*/
+/*Dashboard Styling*/
+.center-heading{
+  width: 100%;
+  text-align: center;
+}
+.left-style{
+  /*background-color: #FFF;*/
+  position: absolute;
+  width: 50%;
+  height: calc(100% - 120px);
+  bottom: 0px;
+  left: 0px;
+  text-align: center;
+  border-right: 2px solid #48003D;
+  border-top: 4px solid #48003D;
+  font-size: 24px;
+}
+.right-style{
+  /*background-color: #000;*/
+  position: absolute;
+  width: 50%;
+  height: calc(100% - 120px);
+  bottom: 0px;
+  right: 0px;
+  text-align: center;
+  border-left: 2px solid #48003D;
+  border-top: 4px solid #48003D;
+  font-size: 24px;
+}
+.chat-links{
+  text-decoration: underline;
+  padding-left: 0px;
+  display: block;
+}
+.link-style:hover{
+  color: #FFFFFF;
+}
+.link-style{
+  max-width: 99%;
+  width: auto;
+}
 
+/*Side Navigation Bar*/
 .nav-side-menu {
   overflow: auto;
   font-family: verdana;
@@ -294,12 +388,28 @@
     color: #E1FFFF;
   }
   .scroll {
-    position: absolute;
-    max-height: initial;
-    width : 100%;
+    position    : absolute;
+    max-height  : initial;
+    width       : 100%;
+    border-left : 0px solid #FFF;
   }
   .panel-body{
-    padding-bottom: 50px;
+    padding-bottom: 10px;
+  }
+  .group-input{
+    border-left: 0px solid #FFFFFF;
+  }
+  .left-style{
+    position: relative;
+    width: 100%;
+    height: auto;
+    border-right: 0px;
+  }
+  .right-style{
+    position: relative;
+    width: 100%;
+    height: auto;
+    border-left: 0px;
   }
 }
 /*Desktop Adjustments*/
@@ -322,4 +432,14 @@ body {
   background-color : #1E032B;
   color						 : #AAAAAA;
 }
-html {height: 100%;}
+html {
+  height: 100%;
+  font-size: 16px;
+}
+a {
+  color: #AAAAAA;
+  cursor: pointer;
+}
+a:hover{
+  color: #FFFFFF;
+}
