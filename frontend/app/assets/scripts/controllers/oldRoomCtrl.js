@@ -5,33 +5,18 @@ angular.module('coreApp')
       localStorage.setItem("oldRoom", $state.params.chatRoomId);
     };
 
-    $scope.chatRooms = [{
-      "chatRoomName":"testroom",
-      "chatRoomId": "abc120",
-      "chatRoomMembers":["Tom","Mike","Kyle"],
-      "isPrivate":"false"
-    },
-    {
-      "chatRoomName":"testroom1",
-      "chatRoomId": "abc121",
-      "chatRoomMembers":["Tom","Mike","Kyle"],
-      "isPrivate":"false"
-    },
-    {
-      "chatRoomName":"testroom2",
-      "chatRoomId": "abc122",
-      "chatRoomMembers":["Tom","Mike","Kyle"],
-      "isPrivate":"false"
-    }
-  ];
+
+    //This should grab all current direct messages
 
   $scope.callApi = function() {
       UserService.GetAll().then(function(user){
         $scope.allUsers = user;
       });
 
+      //This should grab all current chatrooms 
+
       ChatRoomService.GetAll().then(function(chatrooms){
-        $scope.allChatRooms = chatrooms;
+        $scope.chatRooms = chatrooms;
         console.log(chatrooms);
       });
     };
