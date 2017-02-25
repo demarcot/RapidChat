@@ -18,8 +18,8 @@ module.exports = function (io) {
 
     socket.on("message", function(from, msg, chatRoom){
 		//On message send, broadcast to all users that this chatroom has been updated. Frontend logic for who should update what.
-		//TODO(Tom, Mike): send the hashed name of the chatroom for the clients to compare to so we don't leak private chatroom names 
-		io.sockets.to("updateRoom").emit("broadcast", {payload:chatRoom});
+		//TODO(Tom, Mike): send the hashed name of the chatroom for the clients to compare to so we don't leak private chatroom names
+		  io.sockets.to("updateRoom").emit("notify", {payload:chatRoom});
       io.sockets.to(chatRoom).emit("broadcast", {
         payload: msg,
         source: from
