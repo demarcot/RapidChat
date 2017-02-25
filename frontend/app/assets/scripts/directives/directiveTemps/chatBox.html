@@ -6,11 +6,11 @@
           <li  ng-repeat="message in messageTest track by $index">
               <div>
                   <div>
-                      <strong class="primary-font">{{message.name}}</strong> <small class="pull-right text-muted">
-                          <span class="glyphicon glyphicon-time"></span> {{message.date | date:'MM/dd/yyyy @ h:mma'}}</small>
+                      <strong class="primary-font">{{message.author}}</strong> <small class="pull-right text-muted">
+                          <span class="glyphicon glyphicon-time"></span> {{message.timestamp | date:'MM/dd/yyyy @ h:mma'}}</small>
                   </div>
                   <p>
-                      {{message.message}}
+                      {{message.messageContent}}
                   </p>
               </div>
           </li>

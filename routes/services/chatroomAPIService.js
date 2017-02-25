@@ -26,7 +26,7 @@ module.exports = service;
 function getAll() {
     var deferred = Q.defer();
 
-    db.chatrooms.find({}, {"name":1}, function (err, chatrooms) 
+    db.chatrooms.find({}, {"name":1}, function (err, chatrooms)
 	{
         if (err) deferred.reject(err);
 
@@ -49,11 +49,11 @@ function getAll() {
 function getAllowedChatrooms(chatroomParam)
 {
 	var deferred = Q.defer()
-	
+
 	db.chatrooms.find({"acceptedUsers": chatroomParam.username}, {"name":1}, function (err, chatrooms)
 		{
 			if(err) deferred.reject(err);
-			
+
 			if(chatrooms)
 			{
 				deferred.resolve(chatrooms);
@@ -64,7 +64,7 @@ function getAllowedChatrooms(chatroomParam)
 				deferred.resolve();
 			}
 		});
-	
+
 	return deferred.promise;
 }
 
@@ -96,7 +96,7 @@ function create(chatroomParam) {
 
             deferred.resolve();
         });
-    
+
     return deferred.promise;
 }
 
@@ -110,16 +110,16 @@ function create(chatroomParam) {
 */
 function insertMessage(chatroomParam) {
     var deferred = Q.defer();
-    
+
     db.chatrooms.update(
         {_id: mongo.ObjectId(chatroomParam._id)},
-        {$push: {'messages': {'author': chatroomParam.userName, 'messageContent': chatroomParam.messageContent, 'timestamp': chatroomParam.timestamp}}},
+        {$push: {'messages': {'author': chatroomParam.username, 'messageContent': chatroomParam.messageContent, 'timestamp': chatroomParam.timestamp}}},
         function(err, doc)
         {
             if(err) deferred.reject(err);
             deferred.resolve();
         });
-  
+
     return deferred.promise;
 }
 
@@ -133,17 +133,24 @@ function getMessages(chatroomParam)
 {
     var deferred = Q.defer();
 
-	//The query currently gets the correct chatroom
-    var docsToReturn = db.chatrooms.find
-    (	
+    //The query currently gets the correct chatroom
+    db.chatrooms.find
+    (
         {_id: mongo.ObjectId(chatroomParam._id)},
-        {"messages":1, "_id":0}
-    )
-    deferred.resolve(docsToReturn);
-    //db.yourcollectionname.find({$query: {}, $orderby: {$natural : -1}}).limit(yournumber)  <-- something like this to get last N elements?
-    
-}
+        {"messages":1, "_id":0},
+        function(err, docs)
+        {
+            if(err) deferred.reject(err);
 
+            if(docs)
+                deferred.resolve(docs);
+            else
+                deferred.resolve();
+        }
+    );
+    return deferred.promise;
+    //db.yourcollectionname.find({$query: {}, $orderby: {$natural : -1}}).limit(yournumber)  <-- something like this to get last N elements?
+}
 /*
 	Invite User(s)
 	- chatroom id
@@ -152,7 +159,7 @@ function getMessages(chatroomParam)
 function inviteUser(chatroomParam)
 {
 	var deferred = Q.defer();
-	
+
 	//Instead of inserting username, find userId and insert that?
 	db.chatrooms.update
 	(
@@ -164,7 +171,7 @@ function inviteUser(chatroomParam)
 			deferred.resolve();
 		}
 	);
-	
+
 	return deferred.promise;
 }
 
