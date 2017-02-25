@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('coreApp', ['ui.router', 'ngCookies', 'ngResource', 'ngSanitize', 'btford.socket-io', 'luegg.directives', 'ngMaterial'])
+        .module('coreApp', ['ui.router', 'ngCookies', 'ngResource', 'ngSanitize', 'btford.socket-io', 'luegg.directives'])
         .value('nickName', 'Nick_name')
         .config(config)
         .run(run);
