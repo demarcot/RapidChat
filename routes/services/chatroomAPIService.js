@@ -80,27 +80,38 @@ function getAllowedChatrooms(chatroomParam)
 */
 function create(chatroomParam) {
     var deferred = Q.defer();
-
-    db.chatrooms.insert(
+	
+	if(db.chatrooms.find({"direct":true, "acceptedUsers": chatroomParam.acceptedUsers}, {"_id":1}, function(err, chatrooms)
 		{
-			'name': chatroomParam.name,
-			'acceptedUsers': chatroomParam.acceptedUsers,
-			'pendingUsers': [],
-			'messages': [],
-			'private': chatroomParam.privateStatus,
-			'direct': chatroomParam.direct,
-			'maxUsers': chatroomParam.maxUsers
-		},
-        function (err, chatroom) {
+			if (err) deferred.reject(err);
+			if(chatrooms)
+			{
+				console.log(chatrooms);
+				deferred.resolve(chatrooms._id);
+			}
+		}))
+	else
+	{
+		db.chatrooms.insert(
+			{
+				'name': chatroomParam.name,
+				'acceptedUsers': chatroomParam.acceptedUsers,
+				'pendingUsers': [],
+				'messages': [],
+				'private': chatroomParam.privateStatus,
+				'direct': chatroomParam.direct,
+				'maxUsers': chatroomParam.maxUsers
+			},
+			function (err, chatroom) {
 
-            if (err) deferred.reject(err);
-            if (chatroom) {
-              deferred.resolve(chatroom._id);
-            } else {
-              deferred.resolve();
-            }
-        });
-
+				if (err) deferred.reject(err);
+				if (chatroom) {
+				  deferred.resolve(chatroom._id);
+				} else {
+				  deferred.resolve();
+				}
+			});
+	}
     return deferred.promise;
 }
 
