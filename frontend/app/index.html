@@ -23,7 +23,7 @@
         <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
         <div class="menu-list">
             <ul id="menu-content" class="menu-content collapse out">
-                <li data-toggle="collapse" data-target="#products" class="collapsed">
+                <!-- <li data-toggle="collapse" data-target="#products" class="collapsed">
                     <a href="#"><i class="fa fa-gift fa-lg"></i> UI Elements <span class="arrow"></span></a>
                 </li>
                 <ul class="sub-menu collapse" id="products">
@@ -37,21 +37,22 @@
                     <li><a href="#">Panels</a></li>
                     <li><a href="#">Widgets</a></li>
                     <li><a href="#">Bootstrap Model</a></li>
-                </ul>
+                </ul> -->
                 <li data-toggle="collapse" data-target="#chatrooms" class="collapsed">
                     <a><i class="fa fa-globe fa-lg"></i> Chat Rooms <span class="arrow"></span></a>
                 </li>
                 <ul class="sub-menu collapse" id="chatrooms">
-                  <li ng-repeat="room in chatRooms" ui-sref="chatRoomById({chatRoomId: room._id})" ng-click="setOldRoom()"><a>{{room.name}}</a></li>
+                  <li ng-repeat="room in chatRooms[0].publicChatRooms track by $index" ui-sref="chatRoomById({chatRoomId: room._id})" ng-click="setOldRoom()"><a>{{room.name}}</a></li>
+                  <li ng-repeat="room in chatRooms[1].allowedChatRooms track by $index" ui-sref="chatRoomById({chatRoomId: room._id})" ng-click="setOldRoom()" ng-show="room.direct === false">{{room.name}}</li>
                   <li data-toggle="modal" data-target="#createRoom">Create Room</li>
                 </ul>
-                <li data-toggle="collapse" data-target="#users" class="collapsed">
+                <li data-toggle="collapse" data-target="#direct" class="collapsed">
                     <a>
-                        <i class="fa fa-users fa-lg"></i> Users  <span class="arrow"></span>
+                        <i class="fa fa-users fa-lg"></i> Direct Messages <span class="arrow"></span>
                     </a>
                 </li>
-                <ul class="sub-menu collapse" id="users">
-                    <li ng-repeat="user in allUsers" ui-sref="chatRoomById({chatRoomId: user._id})" ng-click="setOldRoom()">{{user.username}}</li>
+                <ul class="sub-menu collapse" id="direct">
+                    <li ng-repeat="room in chatRooms[1].allowedChatRooms track by $index" ui-sref="chatRoomById({chatRoomId: room._id})" ng-click="setOldRoom()" ng-show="room.direct === true">{{room.name}}</li>
                 </ul>
 
             </ul>

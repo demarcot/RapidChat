@@ -26,7 +26,7 @@ module.exports = service;
 function getAll() {
     var deferred = Q.defer();
 
-    db.chatrooms.find({}, {"name":1}, function (err, chatrooms)
+    db.chatrooms.find({"private":false}, {"name":1}, function (err, chatrooms)
 	{
         if (err) deferred.reject(err);
 
@@ -50,7 +50,7 @@ function getAllowedChatrooms(chatroomParam)
 {
 	var deferred = Q.defer()
 
-	db.chatrooms.find({"acceptedUsers": chatroomParam.username}, {"name":1}, function (err, chatrooms)
+	db.chatrooms.find({"acceptedUsers": chatroomParam.username}, {"name":1, "direct":1}, function (err, chatrooms)
 		{
 			if(err) deferred.reject(err);
 
@@ -84,17 +84,21 @@ function create(chatroomParam) {
     db.chatrooms.insert(
 		{
 			'name': chatroomParam.name,
-			'acceptedUsers': [chatroomParam.userId],
+			'acceptedUsers': chatroomParam.acceptedUsers,
 			'pendingUsers': [],
 			'messages': [],
 			'private': chatroomParam.privateStatus,
 			'direct': chatroomParam.direct,
 			'maxUsers': chatroomParam.maxUsers
 		},
-        function (err, doc) {
-            if (err) deferred.reject(err);
+        function (err, chatroom) {
 
-            deferred.resolve();
+            if (err) deferred.reject(err);
+            if (chatroom) {
+              deferred.resolve(chatroom._id);
+            } else {
+              deferred.resolve();
+            }
         });
 
     return deferred.promise;
