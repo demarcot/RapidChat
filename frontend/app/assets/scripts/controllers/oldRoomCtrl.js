@@ -21,6 +21,7 @@ angular.module('coreApp')
       ChatRoomService.Create($scope.newDirectMessage).then(function(chatroomId) {
 
         $state.go("chatRoomById", {chatRoomId: chatroomId});
+        console.log("Chat Room id", chatroomId);
       });
     };
 

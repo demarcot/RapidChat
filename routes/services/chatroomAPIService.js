@@ -80,18 +80,25 @@ function getAllowedChatrooms(chatroomParam)
 */
 function create(chatroomParam) {
     var deferred = Q.defer();
-	
-	if(db.chatrooms.find({"direct":true, "acceptedUsers": chatroomParam.acceptedUsers}, {"_id":1}, function(err, chatrooms)
-		{
-			if (err) deferred.reject(err);
-			if(chatrooms)
-			{
-				console.log(chatrooms);
-				deferred.resolve(chatrooms._id);
-			}
-		}))
-	else
-	{
+    var directCheck;
+  db.chatrooms.find({"direct":true, "acceptedUsers": { "$size" : 2, "$all": chatroomParam.acceptedUsers }}, {"_id":1}, function(err, chatrooms)
+    {
+      if (err) deferred.reject(err);
+      if(chatrooms)
+      {
+        console.log("Found chatrooms",chatrooms);
+        directCheck = chatrooms[0]._id;
+        console.log("Chat ", directCheck);
+        if(directCheck){
+          deferred.resolve(directCheck);
+          return deferred.promise;
+        }
+      }
+    });
+    if (directCheck) {
+
+
+
 		db.chatrooms.insert(
 			{
 				'name': chatroomParam.name,
@@ -107,12 +114,14 @@ function create(chatroomParam) {
 				if (err) deferred.reject(err);
 				if (chatroom) {
 				  deferred.resolve(chatroom._id);
+          console.log("Hello");
 				} else {
 				  deferred.resolve();
 				}
 			});
-	}
+    }
     return deferred.promise;
+
 }
 
 /*
