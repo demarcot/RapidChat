@@ -67,9 +67,19 @@ angular.module('coreApp')
           $scope.oldRoom = localStorage.getItem("oldRoom");
           chatSocket.emit('currentRoom', $scope.username, $scope.chatRoom, $scope.oldRoom);
     });
+
+    // NOTE: make case for empty room!
     ChatRoomService.GetMessages($scope.chatRoomId).then(function (messages) {
-      console.log(messages);
-      $scope.messageTest = messages[0].messages;
+      console.log("messages ",messages[0].messages);
+
+
+        if (messages[0].messages == null) {
+          $scope.messageTest = [];
+          console.log("This is when the messages are empty");
+        }
+        else {
+          $scope.messageTest = messages[0].messages;
+        }
     });
 
 
