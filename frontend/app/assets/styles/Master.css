@@ -88,6 +88,14 @@
 .close-button{
   color:           : #FFFFFF;
 }
+.private-check{
+  top: 20px;
+  position: relative;
+}
+.private-text{
+  top: 10px;
+  position: relative;
+}
 
 /*Message Input Color*/
 .input-message				 {
