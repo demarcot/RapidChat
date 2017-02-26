@@ -88,12 +88,14 @@
     <div class="modal-content">
       <div class="modal-header header-style">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Create Chatroom</h4>
+        <h4 class="modal-title" id="myModalLabel">Create Chat Room</h4>
       </div>
       <div class="modal-body body-style">
         <form class="form-group" ng-submit="" method="post">
-          <input type="text" name="Chatroom Name" value="" class="form-control input-chatroom">
-          <button type="radio" name="btn btn-radio"></button>
+          <input type="text" name="Chatroom Name" value="" class="form-control input-chatroom" placeholder="Name the chat room here.">
+          <div class="private-check">
+            <input type="checkbox"> Private</input>
+          </div>
         </form>
 
       </div>
