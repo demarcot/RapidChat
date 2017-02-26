@@ -84,7 +84,7 @@ function create(chatroomParam) {
   db.chatrooms.find({"direct":true, "acceptedUsers": { "$size" : 2, "$all": chatroomParam.acceptedUsers }}, {"_id":1}, function(err, chatrooms)
     {
       if (err) deferred.reject(err);
-      if(chatrooms)
+      if(chatrooms.length > 0)
       {
         console.log("Found chatrooms",chatrooms);
         directCheck = chatrooms[0]._id;
@@ -94,34 +94,33 @@ function create(chatroomParam) {
           return deferred.promise;
         }
       }
+        else if(directCheck == null) {
+        db.chatrooms.insert(
+          {
+            'name': chatroomParam.name,
+            'acceptedUsers': chatroomParam.acceptedUsers,
+            'pendingUsers': [],
+            'messages': [],
+            'private': chatroomParam.privateStatus,
+            'direct': chatroomParam.direct,
+            'maxUsers': chatroomParam.maxUsers
+          },
+          function (err, chatroom) {
+
+            if (err) deferred.reject(err);
+            if (chatroom) {
+              deferred.resolve(chatroom._id);
+              console.log("Hello");
+            } else {
+              deferred.resolve();
+            }
+          });
+        }
+        else {
+          console.log("This means the devs are bad");
+        }
     });
-    if (directCheck) {
-
-
-
-		db.chatrooms.insert(
-			{
-				'name': chatroomParam.name,
-				'acceptedUsers': chatroomParam.acceptedUsers,
-				'pendingUsers': [],
-				'messages': [],
-				'private': chatroomParam.privateStatus,
-				'direct': chatroomParam.direct,
-				'maxUsers': chatroomParam.maxUsers
-			},
-			function (err, chatroom) {
-
-				if (err) deferred.reject(err);
-				if (chatroom) {
-				  deferred.resolve(chatroom._id);
-          console.log("Hello");
-				} else {
-				  deferred.resolve();
-				}
-			});
-    }
     return deferred.promise;
-
 }
 
 /*
