@@ -86,7 +86,7 @@
       </div>
 
     <!-- Modal -->
-<div class="modal fade" id="createRoom" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div ng-controller="modalCtrl" class="modal fade" id="createRoom" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header header-style">
@@ -95,16 +95,16 @@
       </div>
       <div class="modal-body body-style">
         <form class="form-group" ng-submit="" method="post">
-          <input type="text" name="Chatroom Name" value="" class="form-control input-chatroom" placeholder="Name the chat room here.">
-          <div class="private-check">
+          <input type="text" name="Chatroom Name" value="" class="form-control input-chatroom" placeholder="Name the chat room here." ng-model="chatRoomName">
+          <!-- <div class="private-check">
             <input type="checkbox"> Private</input>
-          </div>
+          </div> -->
         </form>
 
       </div>
       <div class="modal-footer footer-style">
         <button type="button" class="btn btn-default alt2button-style" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary altbutton-style">Create</button>
+        <button type="button" class="btn btn-primary altbutton-style" ng-click="createChatroom()">Create</button>
       </div>
     </div>
   </div>
@@ -135,6 +135,7 @@
     <script src="assets/scripts/controllers/personalizeCtrl.js" charset="utf-8"></script>
     <script src="assets/scripts/controllers/socket.js"></script>
     <script src="assets/scripts/controllers/oldRoomCtrl.js"></script>
+    <script src="assets/scripts/controllers/modalCtrl.js"></script>
     <script src="assets/scripts/services/socket.js"></script>
     <script src="assets/scripts/services/messageformatter.js"></script>
     <script src="assets/scripts/directives/chatbox.js"></script>
