@@ -50,8 +50,12 @@
 }
 .p-wrap{
   word-wrap: break-word;
+  padding-left: 44px;
 }
-
+.logo-style{
+  width: 200px;
+  height: 50px;
+}
 /*User Account Info Style*/
 .account-info{
   position: relative;
@@ -207,6 +211,7 @@
 /*Message Styling*/
 .no-bullet{
   list-style: none;
+  padding-left: 20px;
 }
 
 /*Dashboard Styling*/
@@ -421,6 +426,10 @@
     width: 100%;
     height: auto;
     border-left: 0px;
+  }
+  .brand{
+    text-align: center !important;
+    padding-left: 0px;
   }
 }
 /*Desktop Adjustments*/
