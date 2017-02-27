@@ -1,7 +1,7 @@
 .group-input           {
       position         : fixed;
       bottom           : 0px;
-      background-color : #3F098F;
+      background-color : #BBBBBB;
       color						 : #AAAAAA;
       border-top       : 0px;
       border-left      : 1px solid #FFFFFF;
@@ -27,7 +27,7 @@
 .bottom-of-page{bottom:0px}
 .full-height{height: 100%}
 .chat-background{
-      background-color : #1E032B;
+      background-color : #DDDDDD;
       color						 : #AAAAAA;
 }
 .header-style{
@@ -64,32 +64,32 @@
   left: 25%;
 }
 .save-button{
-  background-color: #48003D;
+  background-color: #333333;
   color: #AAAAAA
 }
 .save-button:hover{
-  background-color: #6D005C;
+  background-color: #555555;
 }
 .alert-success{
   color: #000000;
-  background-color: #A68CB3;
+  background-color: #999999;
   text-align: center;
 }
 
 /*Create Chatroom Style*/
 .header-style{
-  background-color: #3F098F;
+  background-color: #BBBBBB;
 }
 .body-style{
-  background-color: #2F0769;
+  background-color: #777777;
 }
 .footer-style{
-  background-color: #3F098F;
+  background-color: #BBBBBB;
   margin-top: 0px;
   border-top: 0px;
 }
 .input-chatroom{
-  background-color : #1E032B;
+  background-color : #DDDDDD;
   color						 : #AAAAAA;
 }
 .close-button{
@@ -106,21 +106,21 @@
 
 /*Message Input Color*/
 .input-message				 {
-      background-color : #1E032B;
+      background-color : #DDDDDD;
       color						 : #AAAAAA;
 }
 
 /*Message Send Button Color*/
 .button-style{
-  background-color: #1E032B;
+  background-color: #DDDDDD;
   color: #AAAAAA;
 }
 .button-style:hover{
-  background-color: #2E0244;
+  background-color: #111111;
   color: #AAAAAA;
 }
 .button-style:focus{
-  background-color: #2E0244;
+  background-color: #111111;
   color: #AAAAAA;
 }
 
@@ -144,32 +144,32 @@
 
 }
 .alt2button-style{
-  background-color: #48003D;
+  background-color: #333333;
   color: #AAAAAA;
 }
 .alt2button-style:hover{
-  background-color: #6D005C;
+  background-color: #555555;
   color: #AAAAAA;
 }
 .alt2button-style:focus{
-  background-color: #6D005C;
+  background-color: #555555;
   color: #AAAAAA;
 }
 
 /*Top Navbar Color & Transition*/
 .navbar                {
       border-radius    : 0px;
-      background-color : #48003D;
+      background-color : #99D3DF;
       border-top       : 0px;
       border-bottom    : 0px;
       border-left      : 0px;
       border-right     : 0px;
       border-color     : #23282E;
       margin-bottom: 0px;
-      color: #E1FFFF;
+      color: #E9E9E9;
 }
 .navbar-default .navbar-nav :hover{
-  background-color: #95007D;
+  background-color: #88BBD6;
   -webkit-transition: all 1s ease;
   -moz-transition: all 1s ease;
   -o-transition: all 1s ease;
@@ -179,14 +179,14 @@
 .navbar-default .navbar-nav>.active>a,
 .navbar-default .navbar-nav>.active>a:hover,
 .navbar-default .navbar-nav>.active>a:focus{
-  background-color: #6D005C;
-  color: #E1FFFF;
+  background-color: #88BBD6;
+  color: #E9E9E9;
 }
 .navbar-default .navbar-nav>li>a{
-  color: #E1FFFF;
+  color: #E9E9E9;
 }
 .navbar-default .navbar-nav>li>a:hover{
-  color: #E1FFFF;
+  color: #E9E9E9;
 }
 
 /*Scrollbar Styling*/
@@ -198,14 +198,14 @@
     -webkit-box-solid: inset 0 0 6px rgba(255,0,0,1);
     -webkit-border-radius: 0px;
     border-radius: 0px;
-    background-color: #3F098F;
+    background-color: #99D3DF;
 }
 ::-webkit-scrollbar-thumb {
     border: 1px solid rgba(255, 255, 255, .7);
     border-radius: 0px;
     -webkit-border-radius: 0px;
     -webkit-box-solid: inset 0 0 6px rgba(0,255,0,1);
-    background: #1E032B;
+    background: #88BBD6;
 }
 
 /*Message Styling*/
@@ -220,27 +220,25 @@
   text-align: center;
 }
 .left-style{
-  /*background-color: #FFF;*/
   position: absolute;
   width: 50%;
   height: calc(100% - 120px);
   bottom: 0px;
   left: 0px;
   text-align: center;
-  border-right: 2px solid #48003D;
-  border-top: 4px solid #48003D;
+  border-right: 2px solid #333333;
+  border-top: 4px solid #333333;
   font-size: 24px;
 }
 .right-style{
-  /*background-color: #000;*/
   position: absolute;
   width: 50%;
   height: calc(100% - 120px);
   bottom: 0px;
   right: 0px;
   text-align: center;
-  border-left: 2px solid #48003D;
-  border-top: 4px solid #48003D;
+  border-left: 2px solid #333333;
+  border-top: 4px solid #333333;
   font-size: 24px;
 }
 .chat-links{
@@ -262,16 +260,16 @@
   font-family: verdana;
   font-size: 12px;
   font-weight: 200;
-  background-color: #3F098F;
+  background-color: #88BBD6;
   position: fixed;
   top: 0px;
   width: 200px;
   height: 100%;
-  color: #e1ffff;
+  color: #E9E9E9;
 }
 .nav-side-menu .brand {
-  background-color: #48003D;
-  line-height: 50px;
+  background-color: #99D3DF;
+  /*line-height: 50px;*/
   display: block;
   text-align: center;
   font-size: 14px;
@@ -324,15 +322,15 @@
 }
 .nav-side-menu ul .sub-menu li,
 .nav-side-menu li .sub-menu li {
-  background-color: #2F0769;
+  background-color: #77AAC5;
   border: none;
   line-height: 28px;
-  border-bottom: 1px solid #15052C;
+  border-bottom: 1px solid #161616;
   margin-left: 0px;
 }
 .nav-side-menu ul .sub-menu li:hover,
 .nav-side-menu li .sub-menu li:hover {
-  background-color: #15A2B2;
+  background-color: #99D3DF;
 }
 .nav-side-menu ul .sub-menu li:before,
 .nav-side-menu li .sub-menu li:before {
@@ -350,7 +348,7 @@
 }
 .nav-side-menu li a {
   text-decoration: none;
-  color: #e1ffff;
+  color: #E9E9E9;
 }
 .nav-side-menu li a i {
   padding-left: 10px;
@@ -358,8 +356,8 @@
   padding-right: 20px;
 }
 .nav-side-menu li:hover {
-  border-left: 3px solid #95007D;
-  background-color: #15A2B2;
+  border-left: 3px solid #E9E9E9;
+  background-color: #99D3DF;
   -webkit-transition: all 1s ease;
   -moz-transition: all 1s ease;
   -o-transition: all 1s ease;
@@ -383,8 +381,8 @@
     top: 10px;
     z-index: 10 !important;
     padding: 3px;
-    background-color: #222222;
-    color: #FFFFFF;
+    background-color: #161616;
+    color: #E9E9E9;
     width: 40px;
     text-align: center;
   }
@@ -394,14 +392,16 @@
     padding-left: 20px;
     line-height: 50px !important;
   }
-  .hom {display:none;}
+  .hom {
+    display: none;
+  }
   .com {
     font-size: 32px;
   }
   .input-com {}
   .nav>li>a {
     padding: 10px 0px 10px 15px;
-    color: #E1FFFF;
+    color: #E9E9E9;
   }
   .scroll {
     position    : absolute;
@@ -449,17 +449,17 @@
 body {
   margin: 0px;
   padding: 0px;
-  background-color : #1E032B;
-  color						 : #AAAAAA;
+  background-color : #161616;
+  color						 : #E9E9E9;
 }
 html {
   height: 100%;
   font-size: 16px;
 }
 a {
-  color: #AAAAAA;
+  color: #99D3DF;
   cursor: pointer;
 }
 a:hover{
-  color: #FFFFFF;
+  color: #E9E9E9;
 }

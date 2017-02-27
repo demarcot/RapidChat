@@ -8,15 +8,16 @@
   <div class="left-style">
       If you would like to directly message another user, click one of the users below.
       <ul class="no-bullet chat-links" id="users">
-          <li class="link-style" ng-repeat="user in allUsers" ng-click="setOldRoom(); createDirectMessage(vm.user.username, user.username)"><a>{{user.username}}</a></li>
+          <li class="link-style" ng-repeat="user in allUsers" ><identicon username='user.username' size='40' /><a ng-click="setOldRoom(); createDirectMessage(vm.user.username, user.username)">{{user.username}}</a></li>
       </ul>
   </div>
 
   <div class="right-style">
       If you would like to join a public chat room, click one of the public rooms below.
       <ul class="no-bullet chat-links" id="chatrooms">
-        <li class="link-style" ng-repeat="room in chatRooms"  ng-click="setOldRoom()"><a ui-sref="chatRoomById({chatRoomId: room._id})">{{room.name}}</a></li>
-        <li class="link-style" data-toggle="modal" data-target="#createRoom"><a>Create A New Chat Room</a></li>
+        <li ng-repeat="room in chatRooms[0].publicChatRooms track by $index" ui-sref="chatRoomById({chatRoomId: room._id})" ng-click="setOldRoom()"><a>{{room.name}}</a></li>
+        <li ng-repeat="room in chatRooms[1].allowedChatRooms track by $index" ui-sref="chatRoomById({chatRoomId: room._id})" ng-click="setOldRoom()" ng-show="room.direct === false">{{room.name}}</li>
+        <li class="link-style"><a data-toggle="modal" data-target="#createRoom">Create A New Chat Room</a></li>
       </ul>
   </div>
 </div>
