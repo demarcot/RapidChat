@@ -6,6 +6,8 @@ angular.module('coreApp')
       localStorage.setItem("oldRoom", $state.params.chatRoomId);
     };
 
+  
+
     //THis creates a Direct Message
     $scope.createDirectMessage = function(invokingUser, invitedUser){
 
