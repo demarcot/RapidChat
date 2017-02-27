@@ -48,6 +48,9 @@
   border-bottom-right-radius: 0px;
   border-bottom-left-radius : 0px;
 }
+.p-wrap{
+  word-wrap: break-word;
+}
 
 /*User Account Info Style*/
 .account-info{
