@@ -50,7 +50,7 @@ function getAllowedChatrooms(chatroomParam)
 {
 	var deferred = Q.defer()
 
-	db.chatrooms.find({"acceptedUsers": chatroomParam.username}, {"name":1, "direct":1}, function (err, chatrooms)
+	db.chatrooms.find({"acceptedUsers": chatroomParam.username}, {"name":1, "direct":1, "acceptedUsers":1}, function (err, chatrooms)
 		{
 			if(err) deferred.reject(err);
 

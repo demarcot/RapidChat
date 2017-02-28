@@ -15,6 +15,7 @@ angular.module('coreApp')
 
       $state.go("chatRoomById", {chatRoomId: chatroomId});
       console.log("Chat Room id", chatroomId);
+      location.reload();
     });
   };
 

@@ -6,7 +6,7 @@ angular.module('coreApp')
       localStorage.setItem("oldRoom", $state.params.chatRoomId);
     };
 
-  
+
 
     //THis creates a Direct Message
     $scope.createDirectMessage = function(invokingUser, invitedUser){
@@ -24,6 +24,7 @@ angular.module('coreApp')
 
         $state.go("chatRoomById", {chatRoomId: chatroomId});
         console.log("Chat Room id", chatroomId);
+        location.reload();
       });
     };
 
@@ -46,7 +47,14 @@ angular.module('coreApp')
       $scope.username = {"username":user.username};
 
       ChatRoomService.GetAllowedChatrooms($scope.username).then(function(chatrooms){
-        $scope.allowedChatRooms = chatrooms;
+        $scope.allowedChatRooms = [];
+        for (var i = 0; i < chatrooms.length; i++) {
+          var temp = chatrooms[i].acceptedUsers.indexOf($scope.username.username);
+          chatrooms[i].acceptedUsers.splice(temp,1);
+          console.log(chatrooms[i].acceptedUsers);
+          $scope.allowedChatRooms.push(chatrooms[i]);
+          console.log($scope.allowedChatRooms);
+        }
         $scope.chatRooms.push({"allowedChatRooms":$scope.allowedChatRooms});
         console.log("Accepted Chatrooms", $scope.chatRooms[1]);
 

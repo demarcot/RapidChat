@@ -8,7 +8,7 @@
   <div class="left-style">
       If you would like to directly message another user, click one of the users below.
       <ul class="no-bullet chat-links" id="users">
-          <li class="link-style" ng-repeat="user in allUsers" ><identicon username='user.username' size='40' /><a ng-click="setOldRoom(); createDirectMessage(vm.user.username, user.username)">{{user.username}}</a></li>
+          <li class="link-style" ng-repeat="user in allUsers" ng-hide="user.username===vm.user.username"><identicon username='user.username' size='40' /><a ng-click="setOldRoom(); createDirectMessage(vm.user.username, user.username)">{{user.username}}</a></li>
       </ul>
   </div>
 

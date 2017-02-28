@@ -9,15 +9,15 @@
 
     function config($stateProvider, $urlRouterProvider) {
         // default route
-        $urlRouterProvider.otherwise("/");
+        $urlRouterProvider.otherwise("/dashboard");
 
         $stateProvider
-            .state('chatLayout', {
-                url: '/',
+            .state('dashboard', {
+                url: '/dashboard',
                 templateUrl: 'assets/views/chatLayout.html',
                 controller: 'chatLayoutCtrl',
                 controllerAs: 'vm',
-                data: { activeTab: 'home' }
+                data: { activeTab: 'dashboard' }
             })
             .state('personalize', {
                 url: '/personalize',
