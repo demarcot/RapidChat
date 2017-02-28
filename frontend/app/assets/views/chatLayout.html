@@ -1,14 +1,15 @@
 <!-- <h1>Hello {{vm.user.firstName}}</h1> -->
-<div>
+
+<!-- <div>
   <div>
     <h1 class="center-heading">
       Hello {{vm.user.firstName}}, Welcome to Rapid Chat!
     </h1>
   </div>
-  <div class="left-style">
+  <div class="container left-style">
       If you would like to directly message another user, click one of the users below.
-      <ul class="no-bullet chat-links" id="users">
-          <li class="link-style" ng-repeat="user in allUsers" ng-hide="user.username===vm.user.username"><identicon username='user.username' size='40' /><a ng-click="setOldRoom(); createDirectMessage(vm.user.username, user.username)">{{user.username}}</a></li>
+      <div class="no-bullet chat-links" id="users">
+          <div class="link-style col-md-4" ng-repeat="user in allUsers" ng-hide="user.username===vm.user.username"><identicon username='user.username' size='40' /><a ng-click="setOldRoom(); createDirectMessage(vm.user.username, user.username)">{{user.username}}</a></li>
       </ul>
   </div>
 
@@ -20,9 +21,22 @@
         <li class="link-style"><a data-toggle="modal" data-target="#createRoom">Create A New Chat Room</a></li>
       </ul>
   </div>
+</div> -->
+
+<div class="container-fluid left-style">
+  <div class="col-xs-12">
+    Direct Messages
+  </div>
+    <div class="link-style col-sm-12 col-md-4" ng-repeat="user in allUsers" ng-hide="user.username===vm.user.username"><identicon username='user.username' size='40'></identicon><br /><a ng-click="setOldRoom(); createDirectMessage(vm.user.username, user.username)">{{user.username}}</a></div>
 </div>
-
-
+<div class="container-fluid right-style">
+  <div class="col-xs-12">
+    Public Chat Rooms
+  </div>
+    <div class="link-style col-sm-12" ng-repeat="room in chatRooms[0].publicChatRooms track by $index" ><a ui-sref="chatRoomById({chatRoomId: room._id})" ng-click="setOldRoom()"><i class="fa fa-comments-o fa-lg"></i>&nbsp;{{room.name}}</a></div>
+    <div class="link-style col-sm-12" ng-repeat="room in chatRooms[1].allowedChatRooms track by $index" ng-show="room.direct === false"><a ui-sref="chatRoomById({chatRoomId: room._id})" ng-click="setOldRoom()"><i class="fa fa-comments-o fa-lg"></i>&nbsp;{{room.name}}</a></div>
+    <div class="link-style col-sm-12"><a data-toggle="modal" data-target="#createRoom"><i class="fa fa-comments-o fa-lg"></i>&nbsp;Create A New Chat Room</a></div>
+</div>
 <!-- Scripts  -->
 <!-- bower:js -->
 

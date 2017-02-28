@@ -5,6 +5,7 @@
       color						 : #161616;
       border-top       : 0px;
       border-left      : 1px solid #FFFFFF;
+      font-size: 16px;
 }
 .chat-content          {
       position         : relative;
@@ -20,6 +21,7 @@
       height           : calc(100% - 100px);
       width            : calc(100% - 200px);
       border-left      : 1px solid #FFF;
+      font-size        : 20px;
 }
 .right-buffer {
   padding-right: 10px;
@@ -72,7 +74,7 @@
 }
 .alert-success{
   color: #000000;
-  background-color: #999999;
+  background-color: #97CECC;
   text-align: center;
 }
 
@@ -84,7 +86,7 @@
   background-color: #E9E9E9;
 }
 .footer-style{
-  background-color: #97CECC;
+  background-color: #0FCDA1;
   margin-top: 0px;
   border-top: 0px;
 }
@@ -108,12 +110,14 @@
 .input-message				 {
       background-color : #E9E9E9;
       color						 : #161616;
+      font-size: 16px;
 }
 
 /*Message Send Button Color*/
 .button-style{
   background-color: #DDDDDD;
   color: #161616;
+  font-size: 12px;
 }
 .button-style:hover{
   background-color: #E9E9E9;
@@ -126,7 +130,7 @@
 
 /*Alternate Button Styling*/
 .altbutton-style{
-  background-color: #97CECC;
+  background-color: #0FCDA1;
   color: #161616;
   font-weight: bold;
   border-color: #CCC;
@@ -167,6 +171,7 @@
       border-color     : #23282E;
       margin-bottom: 0px;
       color: #E9E9E9;
+      font-size: 16px;
 }
 .navbar-default .navbar-nav :hover{
   background-color: #C4421A;
@@ -221,25 +226,25 @@
 }
 .left-style{
   position: absolute;
-  width: 50%;
-  height: calc(100% - 120px);
+  width: calc(50% - 12px);
+  height: calc(100% - 70px);
   bottom: 0px;
   left: 0px;
   text-align: center;
-  border-right: 2px solid #333333;
-  border-top: 4px solid #333333;
   font-size: 24px;
+  background-color: #D6D6D6;
+  border: 1px solid #FFF;
 }
 .right-style{
   position: absolute;
-  width: 50%;
-  height: calc(100% - 120px);
+  width: calc(50% - 12px);
+  height: calc(100% - 70px);
   bottom: 0px;
   right: 0px;
   text-align: center;
-  border-left: 2px solid #333333;
-  border-top: 4px solid #333333;
   font-size: 24px;
+  background-color: #D6D6D6;
+  border: 1px solid #FFF;
 }
 .chat-links{
   text-decoration: underline;
@@ -250,29 +255,28 @@
   color: #FFFFFF;
 }
 .link-style{
-  max-width: 99%;
-  width: auto;
+  padding-top: 10px
 }
 
 /*Side Navigation Bar*/
 .nav-side-menu {
   overflow: auto;
-  font-family: verdana;
-  font-size: 12px;
+  font-family: 'Jura', sans-serif;
+  font-size: 15px;
   font-weight: 200;
-  background-color: #97CECC;
+  background-color: #0FCDA1;
   position: fixed;
   top: 0px;
   width: 200px;
   height: 100%;
-  color: #E9E9E9;
+  color: #161616;
 }
 .nav-side-menu .brand {
-  background-color: #97CECC;
-  /*line-height: 50px;*/
+  background-color: #0FCDA1;
+  line-height: 50px;
   display: block;
   text-align: center;
-  font-size: 14px;
+  font-size: 24px;
 }
 .nav-side-menu .toggle-btn {
   display: none;
@@ -280,7 +284,7 @@
 .nav-side-menu ul,
 .nav-side-menu li {
   list-style: none;
-  padding: 0px;
+  padding-left: 10px;
   margin: 0px;
   line-height: 35px;
   cursor: pointer;
@@ -322,7 +326,7 @@
 }
 .nav-side-menu ul .sub-menu li,
 .nav-side-menu li .sub-menu li {
-  background-color: #97CECC;
+  background-color: #0fcda1;
   border: none;
   line-height: 28px;
   /*border-bottom: 1px solid #161616;*/
@@ -348,7 +352,7 @@
 }
 .nav-side-menu li a {
   text-decoration: none;
-  color: #E9E9E9;
+  color: #161616;
 }
 .nav-side-menu li a i {
   padding-left: 10px;
@@ -368,7 +372,7 @@
   background-color: #000;
 }
 .left-buffer{
-  padding-left: 10px;
+  padding-left: 0px;
 }
 /*Mobile Adjustments*/
 @media (max-width: 999px) {
@@ -440,6 +444,9 @@
   .nav-side-menu .menu-list .menu-content {
     display: block;
   }
+  .hod {
+    display: none;
+  }
   #main {
   	width:calc(100% - 200px);
     position: fixed;
@@ -454,15 +461,17 @@ body {
   padding: 0px;
   background-color : #E9E9E9;
   color						 : #161616;
+  font-family: 'Jura', sans-serif;
 }
 html {
   height: 100%;
   font-size: 16px;
+  font-family: 'Jura', sans-serif;
 }
 a {
-  color: #97CECC;
+  color: #12908E;
   cursor: pointer;
 }
 a:hover{
-  color: #12908E;
+  color: #16594A;
 }

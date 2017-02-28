@@ -20,7 +20,7 @@ app.set('view engine', 'ejs');
 app.set('views', __dirname + '/ejsViews');
 app.use(session({ secret: config.secret, resave: false, saveUninitialized: true }));
 
-
+app.use(express.static(__dirname + '/public'));
 //server.listen(3000);
 server.listen(3000, function () {
     console.log('Server listening at http://' + server.address().address + ':' + server.address().port);
