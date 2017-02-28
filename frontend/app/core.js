@@ -2,22 +2,22 @@
     'use strict';
 
     angular
-        .module('coreApp', ['ui.router', 'ngCookies', 'ngResource', 'ngSanitize', 'btford.socket-io'])
-        .value('nickName', '**IMPLEMENT_THIS_PART**')
+        .module('coreApp', ['ui.router', 'ngCookies', 'ngResource', 'ngSanitize', 'btford.socket-io', 'luegg.directives', 'ui.identicon'])
+        .value('nickName', 'Nick_name')
         .config(config)
         .run(run);
 
     function config($stateProvider, $urlRouterProvider) {
         // default route
-        $urlRouterProvider.otherwise("/");
+        $urlRouterProvider.otherwise("/dashboard");
 
         $stateProvider
-            .state('chatLayout', {
-                url: '/',
+            .state('dashboard', {
+                url: '/dashboard',
                 templateUrl: 'assets/views/chatLayout.html',
                 controller: 'chatLayoutCtrl',
                 controllerAs: 'vm',
-                data: { activeTab: 'home' }
+                data: { activeTab: 'dashboard' }
             })
             .state('personalize', {
                 url: '/personalize',
@@ -26,10 +26,10 @@
                 controllerAs: 'vm',
                 data: { activeTab: 'personalize' }
             })
-            .state('secretchat', {
+            .state('secretChat', {
                 url: '/secretChat',
                 templateUrl: 'assets/views/testChat.html',
-                data: { activeTab: 'secretchat' }
+                data: { activeTab: 'secretChat' }
                })
             .state('chatRoomById',{
               url: '/chatRoom/:chatRoomId',

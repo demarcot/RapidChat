@@ -1,0 +1,87 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "identicon.js",
+        "scope": null,
+        "escapedName": "identicon.js",
+        "name": "identicon.js",
+        "rawSpec": "",
+        "spec": "latest",
+        "type": "tag"
+      },
+      "C:\\Users\\cabralk1\\Documents\\GitHub\\RapidChat\\frontend\\app\\assets"
+    ]
+  ],
+  "_from": "identicon.js@latest",
+  "_id": "identicon.js@2.1.0",
+  "_inCache": true,
+  "_location": "/identicon.js",
+  "_nodeVersion": "6.4.0",
+  "_npmOperationalInternal": {
+    "host": "packages-18-east.internal.npmjs.com",
+    "tmp": "tmp/identicon.js-2.1.0.tgz_1485799132086_0.9036329600494355"
+  },
+  "_npmUser": {
+    "name": "stewartlord",
+    "email": "stew@offbynone.com"
+  },
+  "_npmVersion": "3.10.3",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "identicon.js",
+    "scope": null,
+    "escapedName": "identicon.js",
+    "name": "identicon.js",
+    "rawSpec": "",
+    "spec": "latest",
+    "type": "tag"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/identicon.js/-/identicon.js-2.1.0.tgz",
+  "_shasum": "211d0b3fc061354557229ee9d6e66c0746f0983c",
+  "_shrinkwrap": null,
+  "_spec": "identicon.js",
+  "_where": "C:\\Users\\cabralk1\\Documents\\GitHub\\RapidChat\\frontend\\app\\assets",
+  "author": {
+    "name": "stewardlord"
+  },
+  "bugs": {
+    "url": "https://github.com/stewartlord/identicon.js/issues"
+  },
+  "dependencies": {},
+  "description": "GitHub-style identicons in JS with no server-side processing.",
+  "devDependencies": {
+    "gulp": "^3.9.0"
+  },
+  "directories": {},
+  "dist": {
+    "shasum": "211d0b3fc061354557229ee9d6e66c0746f0983c",
+    "tarball": "https://registry.npmjs.org/identicon.js/-/identicon.js-2.1.0.tgz"
+  },
+  "gitHead": "8cb95ccead86ba4bb3bea0f3bae1689c8fc3138a",
+  "homepage": "https://github.com/stewartlord/identicon.js",
+  "keywords": [
+    "identicon"
+  ],
+  "license": "BSD",
+  "main": "identicon.js",
+  "maintainers": [
+    {
+      "name": "stewartlord",
+      "email": "stew@offbynone.com"
+    }
+  ],
+  "name": "identicon.js",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stewartlord/identicon.js.git"
+  },
+  "scripts": {},
+  "version": "2.1.0"
+}

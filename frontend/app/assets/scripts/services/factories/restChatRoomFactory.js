@@ -9,7 +9,10 @@
         var service = {};
 
         // service.GetCurrent = GetCurrent;
-        // service.GetAll = GetAll;
+        service.GetAll = GetAll;
+        service.InsertMessage = InsertMessage;
+        service.GetMessages = GetMessages;
+        service.GetAllowedChatrooms = GetAllowedChatrooms;
         // service.GetById = GetById;
         // service.GetByUsername = GetByUsername;
         service.Create = Create;
@@ -22,9 +25,18 @@
         //     return $http.get('/api/users/current').then(handleSuccess, handleError);
         // }
         //
-        // function GetAll() {
-        //     return $http.get('/api/users').then(handleSuccess, handleError);
-        // }
+        function GetAll() {
+            return $http.get('/test/api/getAllChatrooms').then(handleSuccess, handleError);
+        }
+        function GetAllowedChatrooms(username) {
+            return $http.post('/test/api/getAllowedChatrooms', username).then(handleSuccess, handleError);
+        }
+        function InsertMessage(message) {
+            return $http.post('/test/api/insertMessage', message).then(handleSuccess, handleError);
+        }
+        function GetMessages(chatRoom) {
+            return $http.post('/test/api/getMessages', chatRoom).then(handleSuccess, handleError);
+        }
         //
         // function GetById(_id) {
         //     return $http.get('/api/users/' + _id).then(handleSuccess, handleError);

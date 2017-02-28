@@ -4,27 +4,122 @@
     <!--<link rel="stylesheet" href="/css/master.css"> -->
       <!--External Css Dependancies -->
     <link rel="stylesheet" href="assets\bower_components\bootstrap\dist\css\bootstrap.min.css">
+    <link rel="stylesheet" href="assets/styles/Master.css">
+    <link rel="stylesheet" href="assets\imgs\font-awesome-4.7.0\css\font-awesome.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Jura">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8">
     <title>RapidChat</title>
   </head>
-  <body class="container" >
+  <body>
     <!-- header -->
     <header>
-        <ul class="nav nav-tabs" ng-controller="oldRoomCtrl">
-            <li ng-class="{active: activeTab === 'chatLayout'}"><a ui-sref="chatLayout" ng-click="setOldRoom()">Home</a></li>
-            <li ng-class="{active: activeTab === 'personalize'}"><a ui-sref="personalize">Account</a></li>
-            <li ng-class="{active: activeTab === 'secretChat'}"><a ui-sref="secretchat" ng-click="setOldRoom()">Secret Chat</a></li>
-            <li ng-repeat="room in chatRooms" ng-class="{active: activeTab === 'room.chatRoomId'}"><a ui-sref="chatRoomById({chatRoomId: room.chatRoomId})" ng-click="setOldRoom()">{{room.chatRoomName}}</a></li>
-            <li><a href="/login" target="_self">Logout</a></li>
-        </ul>
-        <div class="flash-message" ng-if="flash">
-            <div class="{{'alert alert-' + flash.type}}" ng-bind="flash.message"></div>
-        </div>
+
     </header>
+    <div  ng-controller="oldRoomCtrl">
 
 
-    <div ui-view></div>
+    <div class="nav-side-menu">
+        <div class="brand">
+          <!-- <img src="assets\imgs\Rapid_Chat_Logo.dwkMaLMO_K5Manr_DMiHLmHiQRY" class="logo-style"> -->
+          Rapid Chat
+        </div>
+        <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+        <div class="menu-list">
+            <ul id="menu-content" class="menu-content collapse out">
+                <!-- <li data-toggle="collapse" data-target="#products" class="collapsed">
+                    <a href="#"><i class="fa fa-gift fa-lg"></i> UI Elements <span class="arrow"></span></a>
+                </li>
+                <ul class="sub-menu collapse" id="products">
+                    <li class="active"><a href="#">CSS3 Animation</a></li>
+                    <li><a href="#">General</a></li>
+                    <li><a href="#">Buttons</a></li>
+                    <li><a href="#">Tabs &amp; Accordions</a></li>
+                    <li><a href="#">Typography</a></li>
+                    <li><a href="#">FontAwesome</a></li>
+                    <li><a href="#">Slider</a></li>
+                    <li><a href="#">Panels</a></li>
+                    <li><a href="#">Widgets</a></li>
+                    <li><a href="#">Bootstrap Model</a></li>
+                </ul> -->
+                <li data-toggle="collapse" data-target="#chatrooms" class="">
+                    <a><i class="fa fa-globe fa-lg left-buffer"></i> Chat Rooms <span class="arrow"></span></a>
+                </li>
+                <ul id="chatrooms">
+                  <li class="left-buffer" ng-repeat="room in chatRooms[0].publicChatRooms track by $index" ui-sref="chatRoomById({chatRoomId: room._id})" ng-click="setOldRoom()"><a>{{room.name}}</a></li>
+                  <li class="left-buffer" ng-repeat="room in chatRooms[1].allowedChatRooms track by $index" ui-sref="chatRoomById({chatRoomId: room._id})" ng-click="setOldRoom()" ng-show="room.direct === false">{{room.name}}</li>
+                  <li data-toggle="modal" data-target="#createRoom">Create Room</li>
+                </ul>
+                <li data-toggle="collapse" data-target="#direct" class="not(collapsed)">
+                    <a>
+                        <i class="fa fa-users fa-lg left-buffer"></i> Direct Messages <span class="arrow"></span>
+                    </a>
+                </li>
+                <ul id="direct">
+                    <li ng-repeat="room in chatRooms[1].allowedChatRooms track by $index" ui-sref="chatRoomById({chatRoomId: room._id})" ng-click="setOldRoom()" ng-show="room.direct === true"><identicon username='room.acceptedUsers[0]' size='16'></identicon>&nbsp;&nbsp;{{room.acceptedUsers[0]}}</li>
+                </ul>
+                <li data-toggle="collapse" data-target="#options" class="hod">
+                    <a><i class="fa fa-cogs fa-lg left-buffer"></i> Options <span class="arrow"></span></a>
+                </li>
+                <ul id="options">
+                  <li class="hod" ng-class="{active: activeTab === 'dashboard'}"><a ui-sref="dashboard" ng-click="setOldRoom()"><i class="fa fa-home fa-lg left-buffer"></i>Dashboard</a></li>
+                  <li class="hod" ng-class="{active: activeTab === 'personalize'}"><a ui-sref="personalize" ng-click="setOldRoom()"><i class="fa fa-user fa-lg left-buffer"></i>Account</a></li>
+                  <li class="hod right-buffer"><a href="/login" target="_self"><i class="fa fa-sign-out fa-lg"></i>Logout</a></li>
+                </ul>
+            </ul>
+        </div>
+    </div>
+    <div class="container-fluid" id="main">
+        <div>
+              <nav class="navbar navbar-default hom">
+                <ul class="nav navbar-nav right-buffer">
+                    <li ng-class="{active: activeTab === 'dashboard'}"><a ui-sref="dashboard" ng-click="setOldRoom()">Dashboard</a></li>
+                    <li ng-class="{active: activeTab === 'personalize'}"><a ui-sref="personalize" ng-click="setOldRoom()">Account</a></li>
+                      <!-- <div class="input-group input-group-sm">
+                        <input type="text" class="form-control" placeholder="Search.." aria-describedby="searchbar-addon">
+                        <span class="input-group-addon" id="searchbar-addon"><i class="fa fa-search fa-lg"></i></span>
+                      </div> -->
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                  <li class="right-buffer"><a href="/login" target="_self"><i class="fa fa-sign-out fa-lg"></i>Logout</a></li>
+                </ul>
+              </nav>
 
+              <div class="flash-message" ng-if="flash">
+                  <div class="{{'alert alert-' + flash.type}}" ng-bind="flash.message"></div>
+              </div>
+
+        </div>
+        <div>
+            <div ui-view></div>
+        </div>
+        <!-- <div>Hello</div> -->
+      </div>
+
+    <!-- Create Chat Room Modal -->
+<div ng-controller="modalCtrl" class="modal fade" id="createRoom" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header header-style">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Create Chat Room</h4>
+      </div>
+      <div class="modal-body body-style">
+        <form class="form-group" ng-submit="" method="post">
+          <input type="text" name="Chatroom Name" value="" class="form-control input-chatroom" placeholder="Name the chat room here." ng-model="chatRoomName">
+          <!-- <div class="private-check">
+            <input type="checkbox"> Private</input>
+          </div> -->
+        </form>
+
+      </div>
+      <div class="modal-footer footer-style">
+        <button type="button" class="btn btn-default alt2button-style" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary altbutton-style" ng-click="createChatroom()">Create</button>
+      </div>
+    </div>
+  </div>
+</div>
       <!-- External JS Dependancies -->
     <script src="assets/bower_components/jquery/dist/jquery.min.js" charset="utf-8"></script>
     <script src="assets/bower_components/bootstrap/dist/js/bootstrap.min.js" charset="utf-8"></script>
@@ -38,7 +133,10 @@
     <script src="assets/bower_components/angular-route/angular-route.js"></script>
     <script src="assets/bower_components/socket.io-client/dist/socket.io.js"></script>
     <script src="assets/bower_components/angular-socket-io/socket.js"></script>
-
+    <script src="assets/bower_components/angular-scroll-glue/src/scrollglue.js" charset="utf-8"></script>
+    <script src="assets/imgs/identicon.js/pnglib.js"></script>
+    <script src="assets/imgs/identicon.js/identicon.js"></script>
+    <script src="assets/imgs/angular-identicon/dist/angular-identicon.js"></script>
     <!-- these are all of our files dont forget all script tags must come in the body and load core.js FIRST then all other modules -->
     <script src="core.js" charset="utf-8"></script>
     <script src="assets/scripts/services/factories/restUserFactory.js" charset="utf-8"></script>
@@ -48,6 +146,7 @@
     <script src="assets/scripts/controllers/personalizeCtrl.js" charset="utf-8"></script>
     <script src="assets/scripts/controllers/socket.js"></script>
     <script src="assets/scripts/controllers/oldRoomCtrl.js"></script>
+    <script src="assets/scripts/controllers/modalCtrl.js"></script>
     <script src="assets/scripts/services/socket.js"></script>
     <script src="assets/scripts/services/messageformatter.js"></script>
     <script src="assets/scripts/directives/chatbox.js"></script>

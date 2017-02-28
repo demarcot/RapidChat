@@ -1,6 +1,8 @@
 module.exports = function (io) {
   'use strict';
   io.sockets.on('connection', function (socket) {
+	  //This is a logical room. Use for alerts...
+	  socket.join("updateRoom");
 
     socket.on("currentRoom", function(username, chatRoom, oldRoom) {
       socket.leave(oldRoom);
@@ -15,13 +17,16 @@ module.exports = function (io) {
     });
 
     socket.on("message", function(from, msg, chatRoom){
+		//On message send, broadcast to all users that this chatroom has been updated. Frontend logic for who should update what.
+		//TODO(Tom, Mike): send the hashed name of the chatroom for the clients to compare to so we don't leak private chatroom names
+		  io.sockets.to("updateRoom").emit("notify", {payload:chatRoom});
       io.sockets.to(chatRoom).emit("broadcast", {
         payload: msg,
         source: from
       });
     });
 
-    //socket.on
+
 
    });
 
