@@ -13,7 +13,7 @@
         service.InsertMessage = InsertMessage;
         service.GetMessages = GetMessages;
         service.GetAllowedChatrooms = GetAllowedChatrooms;
-        // service.GetById = GetById;
+        service.getById = getById;
         // service.GetByUsername = GetByUsername;
         service.Create = Create;
         // service.Update = Update;
@@ -36,6 +36,9 @@
         }
         function GetMessages(chatRoom) {
             return $http.post('/test/api/getMessages', chatRoom).then(handleSuccess, handleError);
+        }
+        function getById(chatRoomId) {
+            return $http.post('/test/api/getById', chatRoomId).then(handleSuccess, handleError);
         }
         //
         // function GetById(_id) {

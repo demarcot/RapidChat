@@ -6,12 +6,12 @@ angular.module('coreApp')
   $scope.chatRoom = $state.params.chatRoomId;
   $scope.chatRoomId = {'_id': $state.params.chatRoomId }
   console.log($state)
-
+  $scope.messageTest= [];
   $scope.nickName = nickName;
   $scope.messageLog = '';
 
 
-// NOTE: Watching for user to hit enter and call send message 
+// NOTE: Watching for user to hit enter and call send message
   $scope.myFunct = function(keyEvent) {
 
   if (keyEvent.which === 13)
@@ -37,6 +37,7 @@ angular.module('coreApp')
         console.log("Cannot send this");
       } else {
         $log.debug('sending message', $scope.message);
+
         chatSocket.emit('message', nickName, $scope.message, $scope.chatRoom);
 
         $scope.encapMessge = {
@@ -75,7 +76,14 @@ angular.module('coreApp')
           nickName = $scope.username;
           $scope.oldRoom = localStorage.getItem("oldRoom");
           chatSocket.emit('currentRoom', $scope.username, $scope.chatRoom, $scope.oldRoom);
+          // ChatRoomService.getById($scope.chatRoomId).then(function(chatRoom){
+          //   $scope.chatRoomName = chatRoom;
+          //   console.log("Chat room thing", chatRoom)
+          //     chatSocket.emit('currentRoom', $scope.username, $scope.chatRoom, $scope.oldRoom, $scope.chatRoomName);
+          // })
+
     });
+
 
     // NOTE: make case for empty room!
     ChatRoomService.GetMessages($scope.chatRoomId).then(function (messages) {
@@ -83,11 +91,15 @@ angular.module('coreApp')
 
 
         if (messages[0].messages == null) {
-          $scope.messageTest = [];
+
           console.log("This is when the messages are empty");
         }
         else {
-          $scope.messageTest = messages[0].messages;
+          for (var i = 0; i < messages[0].messages.length; i++) {
+              $scope.messageTest.push(messages[0].messages[i]);
+
+              console.log("added message");
+          }
         }
     });
 

@@ -4,11 +4,11 @@ module.exports = function (io) {
 	  //This is a logical room. Use for alerts...
 	  socket.join("updateRoom");
 
-    socket.on("currentRoom", function(username, chatRoom, oldRoom) {
+    socket.on("currentRoom", function(username, chatRoom, oldRoom, name) {
       socket.leave(oldRoom);
       socket.join(chatRoom);
       io.sockets.to(chatRoom).emit("broadcast", {
-        payload: "User connected " + username +" to " + chatRoom,
+        payload: "Connected " + username +" to " + chatRoom,
         source: "Server"
       });
       console.log("User:", username);

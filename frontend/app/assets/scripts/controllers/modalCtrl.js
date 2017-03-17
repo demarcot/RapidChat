@@ -1,5 +1,5 @@
 angular.module('coreApp')
-.controller('modalCtrl', function ($scope, $state,$stateParams, ChatRoomService, UserService){
+.controller('modalCtrl', function ($scope, $state,$stateParams, ChatRoomService, UserService, $window){
 
   $scope.createChatroom = function() {
     $scope.newChatRoom = {
@@ -13,10 +13,13 @@ angular.module('coreApp')
 
     ChatRoomService.Create($scope.newChatRoom).then(function(chatroomId) {
 
-      $state.go("chatRoomById", {chatRoomId: chatroomId});
+      $state.go("chatRoomById", {chatRoomId: chatroomId},{reload:true});
       console.log("Chat Room id", chatroomId);
-      location.reload();
+      $window.location.reload();
     });
+  };
+  $scope.reloadPage = function(){
+    location.reload();
   };
 
 })

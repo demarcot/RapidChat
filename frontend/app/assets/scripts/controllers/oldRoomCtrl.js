@@ -1,5 +1,5 @@
 angular.module('coreApp')
-.controller('oldRoomCtrl', function ($scope, $state,$stateParams, ChatRoomService, UserService){
+.controller('oldRoomCtrl', function ($scope, $state,$stateParams, ChatRoomService, UserService, $window){
   $scope.chatRooms = [];
 
     $scope.setOldRoom = function(){
@@ -24,7 +24,7 @@ angular.module('coreApp')
 
         $state.go("chatRoomById", {chatRoomId: chatroomId});
         console.log("Chat Room id", chatroomId);
-        location.reload();
+        $window.location.reload();
       });
     };
 
