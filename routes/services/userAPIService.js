@@ -59,7 +59,7 @@ function getById(_id) {
 function getAll() {
     var deferred = Q.defer();
 
-    db.users.find({}, function (err, users) 
+    db.users.find({}, function (err, users)
 	{
         if (err) deferred.reject(err);
 
@@ -94,6 +94,7 @@ function create(userParam) {
     function createUser() {
         // set user object to userParam without the cleartext password
         var user = _.omit(userParam, 'password');
+        user.colors={'topBarColor':"#F98F45",'topBarHover':"#C4421A",'sideBarColor':"#0FCDA1",'sideBarHover':"#12908E",'textColor':"#161616"};
 
         // add hashed password to user object
         user.hash = bcrypt.hashSync(userParam.password, 10);
@@ -142,6 +143,7 @@ function update(_id, userParam) {
             firstName: userParam.firstName,
             lastName: userParam.lastName,
             username: userParam.username,
+            colors: userParam.colors,
         };
 
         // update password if it was entered
