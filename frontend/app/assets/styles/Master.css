@@ -172,6 +172,7 @@
       margin-bottom: 0px;
       color: #E9E9E9;
       font-size: 16px;
+      text-shadow: 1px 1px rgba(0,0,0,.5);
 }
 .navbar-default .navbar-nav :hover{
   background-color: #C4421A;
@@ -270,6 +271,7 @@
   width: 200px;
   height: 100%;
   color: #161616;
+  text-shadow: 1px 1px rgba(255,255,255,.5);
 }
 .nav-side-menu .brand {
   background-color: #0FCDA1;
@@ -469,9 +471,5 @@ html {
   font-family: 'Jura', sans-serif;
 }
 a {
-  color: #12908E;
   cursor: pointer;
-}
-a:hover{
-  color: #16594A;
 }

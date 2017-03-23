@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <!--<link rel="stylesheet" href="/css/master.css"> -->
+      <!--<link rel="stylesheet" href="/css/master.css"> -->
       <!--External Css Dependancies -->
     <link rel="stylesheet" href="assets\bower_components\bootstrap\dist\css\bootstrap.min.css">
     <link rel="stylesheet" href="assets/styles/Master.css">
@@ -12,21 +12,20 @@
     <title>RapidChat</title>
   </head>
   <body>
-    <!-- header -->
     <header>
 
     </header>
-    <div  ng-controller="oldRoomCtrl">
-    <style>
-    .nav-side-menu li:hover
-    {
-      background-color: {{sideHover}};
-    }
-    .navbar-default .navbar-nav :hover
-    {
-      background-color: {{topHover}};
-    }
-    </style>
+    <div ng-controller="oldRoomCtrl">
+      <style>
+        .nav-side-menu li:hover
+        {
+          background-color: {{sideHover}};
+        }
+        .navbar-default .navbar-nav :hover
+        {
+          background-color: {{topHover}};
+        }
+      </style>
 
     <div class="nav-side-menu" ng-style="sideStyle">
         <div class="brand" ng-style="sideStyle">
@@ -34,7 +33,7 @@
           Rapid Chat
         </div>
         <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
-        <div class="menu-list">
+        <div class="menu-list" ng-style="sideStyle">
             <ul id="menu-content" class="menu-content collapse out">
                 <!-- <li data-toggle="collapse" data-target="#products" class="collapsed">
                     <a href="#"><i class="fa fa-gift fa-lg"></i> UI Elements <span class="arrow"></span></a>
@@ -51,12 +50,12 @@
                     <li><a href="#">Widgets</a></li>
                     <li><a href="#">Bootstrap Model</a></li>
                 </ul> -->
-                <li data-toggle="collapse" data-target="#chatrooms" class="">
+                <li data-toggle="collapse" data-target="#chatrooms">
                     <a><i class="fa fa-globe fa-lg left-buffer"></i> Chat Rooms <span class="arrow"></span></a>
                 </li>
                 <ul id="chatrooms">
                   <li class="left-buffer" ng-repeat="room in chatRooms[0].publicChatRooms track by $index" ui-sref="chatRoomById({chatRoomId: room._id})" ng-click="setOldRoom()"><a>{{room.name}}</a></li>
-                  <li class="left-buffer" ng-repeat="room in chatRooms[1].allowedChatRooms track by $index" ui-sref="chatRoomById({chatRoomId: room._id})" ng-click="setOldRoom()" ng-show="room.direct === false">{{room.name}}</li>
+                  <li class="left-buffer" ng-repeat="room in chatRooms[1].allowedChatRooms track by $index" ui-sref="chatRoomById({chatRoomId: room._id})" ng-click="setOldRoom()" ng-show="room.direct === false"><a>{{room.name}}</a></li>
                   <li data-toggle="modal" data-target="#createRoom">Create Room</li>
                 </ul>
                 <li data-toggle="collapse" data-target="#direct" class="not(collapsed)">
@@ -73,6 +72,7 @@
                 <ul id="options">
                   <li class="hod" ng-class="{active: activeTab === 'dashboard'}"><a ui-sref="dashboard" ng-click="setOldRoom()"><i class="fa fa-home fa-lg left-buffer"></i>Dashboard</a></li>
                   <li class="hod" ng-class="{active: activeTab === 'personalize'}"><a ui-sref="personalize" ng-click="setOldRoom()"><i class="fa fa-user fa-lg left-buffer"></i>Account</a></li>
+                  <li class="hod" ng-class="{active: activeTab === 'admin'}"><a ui-sref="admin" ng-click="setOldRoom()"><i class="fa fa-user fa-lg left-buffer"></i>Admin</a></li>
                   <li class="hod right-buffer"><a href="/login" target="_self"><i class="fa fa-sign-out fa-lg"></i>Logout</a></li>
                 </ul>
             </ul>
@@ -84,6 +84,7 @@
                 <ul class="nav navbar-nav right-buffer">
                     <li ng-class="{active: activeTab === 'dashboard'}"><a ui-sref="dashboard" ng-click="setOldRoom()">Dashboard</a></li>
                     <li ng-class="{active: activeTab === 'personalize'}"><a ui-sref="personalize" ng-click="setOldRoom()">Account</a></li>
+                    <li ng-class="{active: activeTab === 'admin'}"><a ui-sref="admin" ng-click="setOldRoom()">Admin</a></li>
                     <!-- <li><a><i class="fa fa-comments fa-lg"></i> {{}}</a></li> -->
                       <!-- <div class="input-group input-group-sm">
                         <input type="text" class="form-control" placeholder="Search.." aria-describedby="searchbar-addon">
@@ -103,7 +104,6 @@
         <div>
             <div ui-view></div>
         </div>
-        <!-- <div>Hello</div> -->
       </div>
 
     <!-- Create Chat Room Modal -->
