@@ -17,10 +17,19 @@
 
     </header>
     <div  ng-controller="oldRoomCtrl">
+    <style>
+    .nav-side-menu li:hover
+    {
+      background-color: {{sideHover}};
+    }
+    .navbar-default .navbar-nav :hover
+    {
+      background-color: {{topHover}};
+    }
+    </style>
 
-
-    <div class="nav-side-menu">
-        <div class="brand">
+    <div class="nav-side-menu" ng-style="sideStyle">
+        <div class="brand" ng-style="sideStyle">
           <!-- <img src="assets\imgs\Rapid_Chat_Logo.dwkMaLMO_K5Manr_DMiHLmHiQRY" class="logo-style"> -->
           Rapid Chat
         </div>
@@ -71,7 +80,7 @@
     </div>
     <div class="container-fluid" id="main">
         <div>
-              <nav class="navbar navbar-default hom">
+              <nav class="navbar navbar-default hom" ng-style="topStyle">
                 <ul class="nav navbar-nav right-buffer">
                     <li ng-class="{active: activeTab === 'dashboard'}"><a ui-sref="dashboard" ng-click="setOldRoom()">Dashboard</a></li>
                     <li ng-class="{active: activeTab === 'personalize'}"><a ui-sref="personalize" ng-click="setOldRoom()">Account</a></li>

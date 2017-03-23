@@ -5,7 +5,10 @@ angular.module('coreApp')
     $scope.setOldRoom = function(){
       localStorage.setItem("oldRoom", $state.params.chatRoomId);
     };
-
+//    $scope.sideStyle = {"background-color":"#0000FF"};
+//    $scope.topStyle = {"background-color":"#FF00FF"};
+//    $scope.sideHover = {"background-color":"#0000BB"};
+//    $scope.topHover = {"background-color":"#0000BB"};
 
 
     //THis creates a Direct Message
@@ -45,6 +48,12 @@ angular.module('coreApp')
       });
     UserService.GetCurrent().then(function (user) {
       $scope.username = {"username":user.username};
+      $scope.sideStyle = {"background-color": user.colors.sideBarColor};
+      $scope.sideHover = user.colors.sideBarHover;
+      $scope.topStyle = {"background-color": user.colors.topBarColor};
+      $scope.topHover = user.colors.topBarHover;
+      console.log($scope.sideHover);
+
 
       ChatRoomService.GetAllowedChatrooms($scope.username).then(function(chatrooms){
         $scope.allowedChatRooms = [];
