@@ -14,6 +14,7 @@ var service = {};
 service.authenticate = authenticate;
 service.getById = getById;
 service.getAll = getAll;
+service.getIsAdmin = getIsAdmin;
 service.create = create;
 service.update = update;
 service.delete = _delete;
@@ -38,6 +39,7 @@ function authenticate(username, password) {
     return deferred.promise;
 }
 
+//TODO(Tom): Return only (id? and ) username
 function getById(_id) {
     var deferred = Q.defer();
 
@@ -56,6 +58,7 @@ function getById(_id) {
     return deferred.promise;
 }
 
+//TODO(Tom): Return only ids and usernames
 function getAll() {
     var deferred = Q.defer();
 
@@ -67,6 +70,24 @@ function getAll() {
             deferred.resolve(users);
         } else {
             // chatroom not found
+            deferred.resolve();
+        }
+    });
+
+    return deferred.promise;
+}
+
+function getIsAdmin(_id) {
+    var deferred = Q.defer();
+
+    db.users.findOne({_id: mongo.ObjectId(_id)}, {isAdmin:1} function (err, user) {
+        if (err) deferred.reject(err);
+
+        if (user) {
+            // return user (without hashed password)
+            deferred.resolve(user);
+        } else {
+            // user not found
             deferred.resolve();
         }
     });
