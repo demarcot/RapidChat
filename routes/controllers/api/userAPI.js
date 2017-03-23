@@ -7,6 +7,7 @@ var userService = require('routes/services/userAPIService');
 router.post('/authenticate', authenticateUser);
 router.post('/register', registerUser);
 router.get('/current', getCurrentUser);
+router.get('/isAdmin', getIsAdmin);
 router.get('/all', getAllUsers);
 router.put('/:_id', updateUser);
 router.delete('/:_id', deleteUser);
@@ -72,6 +73,21 @@ function getAllUsers(req, res)
 	{
 		res.status(400).send(err);
 	});
+}
+
+function getIsAdmin(req, res) {
+	console.log("\nGet current user admin status...\n");
+    userService.getIsAdmin(req.user.sub)
+        .then(function (user) {
+            if (user) {
+                res.send(user);
+            } else {
+                res.sendStatus(404);
+            }
+        })
+        .catch(function (err) {
+            res.status(400).send(err);
+        });
 }
 
 function updateUser(req, res) {
