@@ -18,7 +18,7 @@
         service.Create = Create;
         // service.Update = Update;
         service.Delete = Delete;
-        service.checkNotify = checkNotify;
+        service.notifyCheck = notifyCheck;
 
         return service;
 
@@ -61,9 +61,9 @@
         //     return $http.put('/api/users/' + user._id, user).then(handleSuccess, handleError);
         // }
 
-        // function Delete(_id) {
-        //     return $http.delete('/api/users/' + _id).then(handleSuccess, handleError);
-        // }
+        function Delete(_id) {
+             return $http.delete('/api/users/' + _id).then(handleSuccess, handleError);
+         }
 
         // private functions
 

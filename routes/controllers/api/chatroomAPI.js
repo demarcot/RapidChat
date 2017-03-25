@@ -6,6 +6,7 @@ var chatroomService = require('routes/services/chatroomAPIService');
 // routes
 router.get('/getAllChatrooms', getAllChatrooms);
 router.post('/getAllowedChatrooms', getAllowedChatrooms);
+router.post('/notifyCheck', notifyCheck);
 router.post('/getById', getById);
 router.post('/createChatroom', createChatroom);
 router.delete('/:_id', deleteChatroom);
@@ -71,6 +72,24 @@ function getAllowedChatrooms(req, res)
 		res.status(400).send(err);
 	});
 
+}
+
+function notifyCheck(req, res)
+{
+	var chatroomParam = req.body.chatroomParam;
+	
+	console.log("Notify check...");
+	chatroomService.notifyCheck(chatroomParam)
+	.then(function (stat)
+	{
+		console.log("Chatroomparam ", chatroomParam);
+		console.log("notifyCheck: ", stat);
+		res.send(stat);
+	})
+	.catch(function (err)
+	{
+		res.status(400).send(err);
+	});
 }
 
 function createChatroom(req, res)

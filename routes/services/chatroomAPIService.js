@@ -11,6 +11,7 @@ var service = {};
 service.getAll = getAll;
 service.getAllowedChatrooms = getAllowedChatrooms;
 service.getById = getById;
+service.notifyCheck = notifyCheck;
 service.create = create;
 service.delete = _delete;
 service.getMessages = getMessages;
@@ -42,46 +43,8 @@ function getAll() {
     return deferred.promise;
 }
 
-// function getById(chatroomParam) {
-//     var deferred = Q.defer();
-//
-//     db.chatrooms.find({"_id":chatroomParam._id}, {"name":1}, function (err, chatrooms)
-// 	{
-//         if (err) deferred.reject(err);
-//
-//         if (chatrooms) {
-//             deferred.resolve(chatrooms);
-//         } else {
-//             // chatroom not found
-//             deferred.resolve();
-//         }
-//     });
-//
-//     return deferred.promise;
-// }
-// function getById(chatroomParam) {
-//     var deferred = Q.defer();
-//     console.log("Hi there Mike. The data you gave me is: ", chatroomParam._id);
-//     console.log("Hey Mike. It's me again. Let's check if the data changes when you put it in this stupid mongo function: ", mongo.ObjectId(chatroomParam._id));
-//
-//     db.chatrooms.find({"_id":mongo.ObjectId(chatroomParam._id)}, {"name":1}, function (err, chatrooms)
-//     {
-//         if (err) deferred.reject(err);
-//
-//         if (chatrooms) {
-//             deferred.resolve(chatrooms);
-//         } else {
-//             // chatroom not found
-//             deferred.resolve();
-//         }
-//     });
-//
-//     return deferred.promise;
-// }
 function getById(chatroomParam) {
     var deferred = Q.defer();
-    console.log("Hi there Mike. The data you gave me is: ", chatroomParam._id);
-    console.log("Hey Mike. It's me again. Let's check if the data changes when you put it in this stupid mongo function: ", mongo.ObjectId(chatroomParam._id));
 
     db.chatrooms.find({"_id":mongo.ObjectId(chatroomParam._id)}, {"name":1}, function (err, chatrooms)
     {
@@ -121,6 +84,44 @@ function getAllowedChatrooms(chatroomParam)
 			{
 				//chatrooms not found
 				deferred.resolve();
+			}
+		});
+
+	return deferred.promise;
+}
+
+function notifyCheck(chatroomParam)
+{
+	var deferred = Q.defer()
+	var retBool;
+	
+	//If it is a public room, user needs to be notified
+	db.chatrooms.find({"_id":mongo.ObjectId(chatroomParam.chatroomId), "private": "false"}, {"_id":1}, function(err, chatrooms)
+		{
+			if(err) deferred.reject(err);
+			
+			if(chatrooms)
+			{
+				retBool = true;
+				deferred.resolve(retBool);
+			}
+		});
+	
+	//If it is not public, notify the user if they are on the acceptedUsers list
+	db.chatrooms.find({"_id": mongo.ObjectId(chatroomParam.chatroomId), "acceptedUsers": chatroomParam.username}, {"_id":1}, function (err, chatrooms)
+		{
+			if(err) deferred.reject(err);
+
+			if(chatrooms)
+			{
+				retBool = true;
+				deferred.resolve(retBool);
+			}
+			else
+			{
+				//chatrooms not found
+				retBool = false;
+				deferred.resolve(retBool);
 			}
 		});
 
