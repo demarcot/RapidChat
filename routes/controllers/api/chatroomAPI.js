@@ -76,8 +76,8 @@ function getAllowedChatrooms(req, res)
 
 function notifyCheck(req, res)
 {
-	var chatroomParam = req.body.chatroomParam;
-	
+	var chatroomParam = {"chatroomId": req.body._id, "username": req.body.username};
+
 	console.log("Notify check...");
 	chatroomService.notifyCheck(chatroomParam)
 	.then(function (stat)
