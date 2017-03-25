@@ -17,7 +17,7 @@ angular.module('coreApp')
 
     UserService.GetCurrent().then(function(user) {
       $scope.notifyInfo = {
-        '_id':$scope.currentChatRoom,
+        '_id':data._id,
         'username':  user.username
       };
       ChatRoomService.notifyCheck($scope.notifyInfo).then(function(bool){

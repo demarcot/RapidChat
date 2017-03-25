@@ -100,8 +100,9 @@ function notifyCheck(chatroomParam)
 		{
 			if(err) deferred.reject(err);
 			
-			if(chatrooms)
+			if(chatrooms.length > 0)
 			{
+				console.log("PUBLIC CHATROOM");
 				retBool = true;
 				deferred.resolve(retBool);
 			}
@@ -112,14 +113,17 @@ function notifyCheck(chatroomParam)
 		{
 			if(err) deferred.reject(err);
 
-			if(chatrooms)
+			if(chatrooms.length > 0)
 			{
+				console.log("GOOD PRIVATE CHATROOM");
+				console.log("notify chatrooms: ", chatrooms);
 				retBool = true;
 				deferred.resolve(retBool);
 			}
 			else
 			{
 				//chatrooms not found
+				console.log("BAD PRIVATE CHATROOM");
 				retBool = false;
 				deferred.resolve(retBool);
 			}
