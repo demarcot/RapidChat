@@ -54,8 +54,8 @@
                     <a><i class="fa fa-globe fa-lg left-buffer"></i> Chat Rooms <span class="arrow"></span></a>
                 </li>
                 <ul id="chatrooms">
-                  <li class="left-buffer" ng-repeat="room in chatRooms[0].publicChatRooms track by $index" ui-sref="chatRoomById({chatRoomId: room._id})" ng-click="setOldRoom()"><a>{{room.name}}</a></li>
-                  <li class="left-buffer" ng-repeat="room in chatRooms[1].allowedChatRooms track by $index" ui-sref="chatRoomById({chatRoomId: room._id})" ng-click="setOldRoom()" ng-show="room.direct === false"><a>{{room.name}}</a></li>
+                  <li class="left-buffer" ng-repeat="room in chatRooms[0].publicChatRooms track by $index" ui-sref="chatRoomById({chatRoomId: room._id})" ng-click="setOldRoom()" ui-sref-active="active"><a>{{room.name}}</a></li>
+                  <li class="left-buffer" ng-repeat="room in chatRooms[1].allowedChatRooms track by $index" ui-sref="chatRoomById({chatRoomId: room._id})" ng-click="setOldRoom()" ng-show="room.direct === false" ui-sref-active="active"><a>{{room.name}}</a></li>
                   <li data-toggle="modal" data-target="#createRoom">Create Room</li>
                 </ul>
                 <li data-toggle="collapse" data-target="#direct" class="not(collapsed)">
@@ -64,7 +64,7 @@
                     </a>
                 </li>
                 <ul id="direct">
-                    <li ng-repeat="room in chatRooms[1].allowedChatRooms track by $index" ui-sref="chatRoomById({chatRoomId: room._id})" ng-click="setOldRoom()" ng-show="room.direct === true"><identicon username='room.acceptedUsers[0]' size='16'></identicon>&nbsp;&nbsp;{{room.acceptedUsers[0]}}</li>
+                    <li ng-repeat="room in chatRooms[1].allowedChatRooms track by $index" ui-sref="chatRoomById({chatRoomId: room._id})" ng-click="setOldRoom()" ng-show="room.direct === true" ui-sref-active="active"><identicon username='room.acceptedUsers[0]' size='16'></identicon>&nbsp;&nbsp;{{room.acceptedUsers[0]}}</li>
                 </ul>
                 <li data-toggle="collapse" data-target="#options" class="hod">
                     <a><i class="fa fa-cogs fa-lg left-buffer"></i> Options <span class="arrow"></span></a>
@@ -147,10 +147,12 @@
     <script src="assets/imgs/identicon.js/pnglib.js"></script>
     <script src="assets/imgs/identicon.js/identicon.js"></script>
     <script src="assets/imgs/angular-identicon/dist/angular-identicon.js"></script>
+
     <!-- these are all of our files dont forget all script tags must come in the body and load core.js FIRST then all other modules -->
     <script src="core.js" charset="utf-8"></script>
     <script src="assets/scripts/services/factories/restUserFactory.js" charset="utf-8"></script>
     <script src="assets/scripts/services/factories/restChatRoomFactory.js" charset="utf-8"></script>
+    <script src="assets/scripts/controllers/adminCtrl.js" charset="utf-8"></script>
     <script src="assets/scripts/services/flashService.js" charset="utf-8"></script>
 		<script src="assets/scripts/controllers/chatLayoutCtrl.js" charset="utf-8"></script>
     <script src="assets/scripts/controllers/personalizeCtrl.js" charset="utf-8"></script>
@@ -160,6 +162,7 @@
     <script src="assets/scripts/services/socket.js"></script>
     <script src="assets/scripts/services/messageFormatter.js"></script>
     <script src="assets/scripts/directives/chatBox.js"></script>
+    <script src="assets/scripts/controllers/notifyCtrl.js" charset="utf-8"></script>
 <!--     <script src="assets\scripts\services\factories\restFactory.js" charset="utf-8"></script> -->
   </body>
 </html>

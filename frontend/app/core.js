@@ -30,7 +30,14 @@
                 url: '/secretChat',
                 templateUrl: 'assets/views/testChat.html',
                 data: { activeTab: 'secretChat' }
-               })
+              })
+              .state('admin',{
+                url:'/admin',
+                templateUrl:'assets/views/admin.html',
+                controller:'adminCtrl',
+                controllerAs:'vm',
+                data:{activeTab:'admin'}
+              })
             .state('chatRoomById',{
               url: '/chatRoom/:chatRoomId',
               templateUrl:'assets/views/testChat.html',

@@ -5,10 +5,7 @@ angular.module('coreApp')
     $scope.setOldRoom = function(){
       localStorage.setItem("oldRoom", $state.params.chatRoomId);
     };
-//    $scope.sideStyle = {"background-color":"#0000FF"};
-//    $scope.topStyle = {"background-color":"#FF00FF"};
-//    $scope.sideHover = {"background-color":"#0000BB"};
-//    $scope.topHover = {"background-color":"#0000BB"};
+
 
 
     //THis creates a Direct Message
@@ -24,7 +21,6 @@ angular.module('coreApp')
         "maxUsers": 2
       };
       ChatRoomService.Create($scope.newDirectMessage).then(function(chatroomId) {
-
         $state.go("chatRoomById", {chatRoomId: chatroomId});
         console.log("Chat Room id", chatroomId);
         $window.location.reload();
@@ -46,6 +42,8 @@ angular.module('coreApp')
         $scope.chatRooms.push({"publicChatRooms":$scope.publicChatRooms});
         console.log("Public Chatrooms", $scope.chatRooms[0]);
       });
+
+
     UserService.GetCurrent().then(function (user) {
       $scope.username = {"username":user.username};
       $scope.sideStyle = {"background-color": user.colors.sideBarColor};

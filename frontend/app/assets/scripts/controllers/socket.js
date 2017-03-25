@@ -61,6 +61,7 @@ angular.module('coreApp')
       return;
     }
     $scope.$apply(function() {
+      console.log("Data payload", data.payload);
       $scope.messageLog = $scope.messageLog + messageFormatter(new Date(), data.source, data.payload);
       $scope.messageTest.push({timestamp: new Date(), author: data.source, messageContent: data.payload});
     });
@@ -76,11 +77,11 @@ angular.module('coreApp')
           nickName = $scope.username;
           $scope.oldRoom = localStorage.getItem("oldRoom");
           chatSocket.emit('currentRoom', $scope.username, $scope.chatRoom, $scope.oldRoom);
-          // ChatRoomService.getById($scope.chatRoomId).then(function(chatRoom){
-          //   $scope.chatRoomName = chatRoom;
-          //   console.log("Chat room thing", chatRoom)
-          //     chatSocket.emit('currentRoom', $scope.username, $scope.chatRoom, $scope.oldRoom, $scope.chatRoomName);
-          // })
+          ChatRoomService.getById($scope.chatRoomId).then(function(chatRoom){
+            $scope.chatRoomName = chatRoom[0].name;
+            console.log("Chat room thing", chatRoom)
+              chatSocket.emit('currentRoom', $scope.username, $scope.chatRoom, $scope.oldRoom, $scope.chatRoomName);
+          })
 
     });
 

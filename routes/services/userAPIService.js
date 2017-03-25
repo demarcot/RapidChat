@@ -80,7 +80,7 @@ function getAll() {
 function getIsAdmin(_id) {
     var deferred = Q.defer();
 
-    db.users.findOne({_id: mongo.ObjectId(_id)}, {isAdmin:1} function (err, user) {
+    db.users.findOne({_id: mongo.ObjectId(_id)}, {isAdmin:1}, function (err, user) {
         if (err) deferred.reject(err);
 
         if (user) {

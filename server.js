@@ -43,6 +43,7 @@ app.get('/', function (req, res) {
 app.use('/api', expressJwt({ secret: config.secret }).unless({ path: ['/api/users/authenticate', '/api/users/register'] }));
 
 // routes
+app.use('/brochure', require('./routes/controllers/brochure'));
 app.use('/login', require('./routes/controllers/login'));
 app.use('/register', require('./routes/controllers/register'));
 app.use('/frontend/app', require('./routes/controllers/appController'));

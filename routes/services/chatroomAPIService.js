@@ -42,17 +42,57 @@ function getAll() {
     return deferred.promise;
 }
 
+// function getById(chatroomParam) {
+//     var deferred = Q.defer();
+//
+//     db.chatrooms.find({"_id":chatroomParam._id}, {"name":1}, function (err, chatrooms)
+// 	{
+//         if (err) deferred.reject(err);
+//
+//         if (chatrooms) {
+//             deferred.resolve(chatrooms);
+//         } else {
+//             // chatroom not found
+//             deferred.resolve();
+//         }
+//     });
+//
+//     return deferred.promise;
+// }
+// function getById(chatroomParam) {
+//     var deferred = Q.defer();
+//     console.log("Hi there Mike. The data you gave me is: ", chatroomParam._id);
+//     console.log("Hey Mike. It's me again. Let's check if the data changes when you put it in this stupid mongo function: ", mongo.ObjectId(chatroomParam._id));
+//
+//     db.chatrooms.find({"_id":mongo.ObjectId(chatroomParam._id)}, {"name":1}, function (err, chatrooms)
+//     {
+//         if (err) deferred.reject(err);
+//
+//         if (chatrooms) {
+//             deferred.resolve(chatrooms);
+//         } else {
+//             // chatroom not found
+//             deferred.resolve();
+//         }
+//     });
+//
+//     return deferred.promise;
+// }
 function getById(chatroomParam) {
     var deferred = Q.defer();
+    console.log("Hi there Mike. The data you gave me is: ", chatroomParam._id);
+    console.log("Hey Mike. It's me again. Let's check if the data changes when you put it in this stupid mongo function: ", mongo.ObjectId(chatroomParam._id));
 
-    db.chatrooms.find({"_id":chatroomParam._id}, {"name":1}, function (err, chatrooms)
-	{
+    db.chatrooms.find({"_id":mongo.ObjectId(chatroomParam._id)}, {"name":1}, function (err, chatrooms)
+    {
         if (err) deferred.reject(err);
 
         if (chatrooms) {
+            console.log("You found something! ", chatrooms);
             deferred.resolve(chatrooms);
         } else {
             // chatroom not found
+            console.log("You found nothing! You Lose!");
             deferred.resolve();
         }
     });
