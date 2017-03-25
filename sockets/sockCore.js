@@ -21,18 +21,13 @@ module.exports = function (io) {
         console.log("Name of room: ", name);
         if (name != undefined) {
           io.sockets.to(chatRoom).emit("broadcast", {
-
             payload: "Connected " + username +" to " + name,
             source: "Server"
           });
         }
-
-      console.log("User:", username);
-      console.log("Chat Room", chatRoom);
-      console.log("Old Room", oldRoom)
     });
 
-    socket.on("message", function(from, msg, chatRoom){
+    socket.on("message", function(from, msg, chatRoom, name){
       //On message send, broadcast to all users that this chatroom has been updated. Frontend logic for who should update what.
       //TODO(Tom, Mike): send the hashed name of the chatroom for the clients to compare to so we don't leak private chatroom names
       // socket.on("notify", function(author, chatroom, chatroomId){

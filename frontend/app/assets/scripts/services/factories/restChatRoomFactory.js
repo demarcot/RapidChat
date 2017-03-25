@@ -17,7 +17,8 @@
         // service.GetByUsername = GetByUsername;
         service.Create = Create;
         // service.Update = Update;
-        // service.Delete = Delete;
+        service.Delete = Delete;
+        service.checkNotify = checkNotify;
 
         return service;
 
@@ -39,6 +40,9 @@
         }
         function getById(chatRoomId) {
             return $http.post('/test/api/getById', chatRoomId).then(handleSuccess, handleError);
+        }
+        function notifyCheck(chatRoomInfo) {
+            return $http.post('/test/api/notifyCheck', chatRoomInfo).then(handleSuccess, handleError);
         }
         //
         // function GetById(_id) {

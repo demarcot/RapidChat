@@ -73,6 +73,7 @@
                   <li class="hod" ng-class="{active: activeTab === 'dashboard'}"><a ui-sref="dashboard" ng-click="setOldRoom()"><i class="fa fa-home fa-lg left-buffer"></i>Dashboard</a></li>
                   <li class="hod" ng-class="{active: activeTab === 'personalize'}"><a ui-sref="personalize" ng-click="setOldRoom()"><i class="fa fa-user fa-lg left-buffer"></i>Account</a></li>
                   <li class="hod" ng-class="{active: activeTab === 'admin'}"><a ui-sref="admin" ng-click="setOldRoom()"><i class="fa fa-user fa-lg left-buffer"></i>Admin</a></li>
+                  <li class="hod right-buffer" ><a><i class="fa fa-bell fa-lg"></i></a></li>
                   <li class="hod right-buffer"><a href="/login" target="_self"><i class="fa fa-sign-out fa-lg"></i>Logout</a></li>
                 </ul>
             </ul>
@@ -85,6 +86,7 @@
                     <li ng-class="{active: activeTab === 'dashboard'}"><a ui-sref="dashboard" ng-click="setOldRoom()">Dashboard</a></li>
                     <li ng-class="{active: activeTab === 'personalize'}"><a ui-sref="personalize" ng-click="setOldRoom()">Account</a></li>
                     <li ng-class="{active: activeTab === 'admin'}"><a ui-sref="admin" ng-click="setOldRoom()">Admin</a></li>
+
                     <!-- <li><a><i class="fa fa-comments fa-lg"></i> {{}}</a></li> -->
                       <!-- <div class="input-group input-group-sm">
                         <input type="text" class="form-control" placeholder="Search.." aria-describedby="searchbar-addon">
@@ -92,6 +94,7 @@
                       </div> -->
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
+                  <li ng-controller="notifyCtrl" ng-click="read()" class="right-buffer"><a><i class="fa fa-bell fa-lg"></i></a></li>
                   <li class="right-buffer"><a href="/login" target="_self"><i class="fa fa-sign-out fa-lg"></i>Logout</a></li>
                 </ul>
               </nav>

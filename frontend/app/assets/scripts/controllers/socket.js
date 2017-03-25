@@ -38,7 +38,7 @@ angular.module('coreApp')
       } else {
         $log.debug('sending message', $scope.message);
 
-        chatSocket.emit('message', nickName, $scope.message, $scope.chatRoom);
+        chatSocket.emit('message', nickName, $scope.message, $scope.chatRoom, $scope.chatRoomName);
 
         $scope.encapMessge = {
           "_id":$scope.chatRoom,
@@ -52,6 +52,7 @@ angular.module('coreApp')
         $scope.message = '';
       };
 }
+
 
 
   $scope.$on('socket:broadcast', function(event, data) {
