@@ -17,6 +17,7 @@ service.delete = _delete;
 service.getMessages = getMessages;
 service.insertMessage = insertMessage;
 service.inviteUser = inviteUser;
+service.moveToAccepted = moveToAccepted;
 
 module.exports = service;
 
@@ -129,6 +130,34 @@ function notifyCheck(chatroomParam)
 			}
 		});
 
+	return deferred.promise;
+}
+
+function moveToAccepted(chatroomParam)
+{
+	var deferred = Q.defer();
+	var newPendingUsers;
+	db.chatrooms.findOne({"_id": chatroomParam._id, "pendingUsers": chatroomParam.username}, {"pendingUsers":1, "acceptedUsers":1}, function(err, doc)
+		{
+			if(err) deferred.reject(err);
+			
+			if(doc.length > 0)
+			{
+				newPendingUsers = doc.pendingUsers.splice(indexOf(chatroomParam.username), 1);
+				db.chatrooms.update({"_id": chatroomParam._id}, {"pendingUsers": newPendingUsers, $push: {'acceptedUsers': chatroomParam.username}}, function(err, docs)
+					{
+						if(err) deferred.reject(err);
+						
+						deferred.resolve(true);
+					});
+			}
+			else
+			{
+				console.log("Trouble moving user, ", chatroomParam.username + ", to that chatroom...");
+				deferred.resolve(false);
+			}
+		});
+	
 	return deferred.promise;
 }
 

@@ -12,6 +12,7 @@ router.post('/createChatroom', createChatroom);
 router.delete('/:_id', deleteChatroom);
 router.post('/getMessages', getMessages);
 router.post('/insertMessage', insertMessage);
+router.post('moveToAccepted', moveToAccepted);
 router.put('/inviteUser', inviteUser);
 
 module.exports = router;
@@ -166,6 +167,22 @@ function inviteUser(req, res)
 	.then(function ()
 	{
 		res.sendStatus(200);
+	})
+	.catch(function(err)
+	{
+		res.status(400).send(err);
+	});
+}
+
+function moveToAccepted(req, res)
+{
+	var chatroomParam = {"_id": req.body._id, "username": req.body.username};
+	
+	console.log("Move user to accepted list...");
+	chatroomService.moveToAccepted(chatroomParam)
+	.then(function (ret)
+	{
+		res.sendStatus(ret);
 	})
 	.catch(function(err)
 	{
