@@ -141,11 +141,12 @@
                 <!-- <div class="private-check">
                 <input type="checkbox"> Private</input>
                 </div> -->
+                <input type="checkbox" name="isPrivate" ng-model="isPrivate">Click here for Private chatboxs {{isPrivate}}</input>
               </form>
             </div>
             <div class="modal-footer footer-style" ng-style="sideStyle">
-              <button type="button" class="btn btn-default alt2button-style" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary altbutton-style" ng-click="createChatroom()" ng-class="sideStyle">Create</button>
+              <button type="button" class="btn btn-default alt2button-style" data-dismiss="modal">Close </button>
+              <button type="button" class="btn btn-primary altbutton-style" ng-click="createChatroom(username.username)" ng-class="sideStyle">Create</button>
             </div>
           </div>
         </div>
@@ -184,5 +185,6 @@
     <script src="assets/scripts/directives/chatBox.js"></script>
     <script src="assets/scripts/controllers/notifyCtrl.js" charset="utf-8"></script>
     <!-- <script src="assets\scripts\services\factories\restFactory.js" charset="utf-8"></script> -->
+  </div>
   </body>
 </html>

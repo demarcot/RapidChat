@@ -168,6 +168,7 @@ function moveToAccepted(chatroomParam)
 function create(chatroomParam) {
     var deferred = Q.defer();
     var directCheck;
+      console.log("chat param 1", chatroomParam);
   db.chatrooms.find({"direct":true, "acceptedUsers": { "$size" : 2, "$all": chatroomParam.acceptedUsers }}, {"_id":1}, function(err, chatrooms)
     {
       if (err) deferred.reject(err);
@@ -179,7 +180,8 @@ function create(chatroomParam) {
           return deferred.promise;
         }
       }
-        else if(directCheck == null) {
+        else  {
+          console.log("chat param", chatroomParam);
         db.chatrooms.insert(
           {
             'name': chatroomParam.name,
@@ -199,8 +201,6 @@ function create(chatroomParam) {
               deferred.resolve();
             }
           });
-        }
-        else {
         }
     });
     return deferred.promise;
