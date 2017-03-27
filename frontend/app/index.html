@@ -17,12 +17,22 @@
     </header>
     <div ng-controller="oldRoomCtrl">
       <style>
-        .nav-side-menu li:hover
-        {
+        .nav-side-menu li:hover{
           background-color: {{sideHover}};
         }
-        .navbar-default .navbar-nav :hover
-        {
+        .nav-side-menu ul .active, .nav-side-menu li .active{
+          background-color: {{sideHover}};
+        }
+        .navbar-default .navbar-nav>li>a:hover{
+          background-color: {{topHover}};
+        }
+        .navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:hover, .navbar-default .navbar-nav>.active>a:focus{
+          background-color: {{topHover}};
+        }
+        .navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:hover, .navbar-default .navbar-nav>.open>a:focus{
+          background-color: {{topHover}};
+        }
+        .dropdown-menu>li>a:hover{
           background-color: {{topHover}};
         }
       </style>
@@ -73,7 +83,7 @@
                   <li class="hod" ng-class="{active: activeTab === 'dashboard'}"><a ui-sref="dashboard" ng-click="setOldRoom()"><i class="fa fa-home fa-lg left-buffer"></i>Dashboard</a></li>
                   <li class="hod" ng-class="{active: activeTab === 'personalize'}"><a ui-sref="personalize" ng-click="setOldRoom()"><i class="fa fa-user fa-lg left-buffer"></i>Account</a></li>
                   <li class="hod" ng-class="{active: activeTab === 'admin'}"><a ui-sref="admin" ng-click="setOldRoom()"><i class="fa fa-user fa-lg left-buffer"></i>Admin</a></li>
-                  <li class="hod right-buffer" ><a><i class="fa fa-bell fa-lg"></i></a></li>
+                  <li class="hod right-buffer" ><a><i class="fa fa-bell fa-lg"></i>Notifications</a></li>
                   <li class="hod right-buffer"><a href="/login" target="_self"><i class="fa fa-sign-out fa-lg"></i>Logout</a></li>
                 </ul>
             </ul>
@@ -94,7 +104,16 @@
                       </div> -->
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                  <li ng-controller="notifyCtrl" ng-click="read()" class="right-buffer"><a><i class="fa fa-bell fa-lg"></i></a></li>
+                    <li ng-controller="notifyCtrl" ng-click="read()">
+                      <a class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="fa fa-bell fa-lg"></i></a>
+                          <ul class="dropdown-menu notify-style" ng-style="topStyle" ng-show="newNotifications">
+                            <li ng-repeat="note in notifications track by $index" ui-sref="chatRoomById({chatRoomId: note._id})" ng-click="setOldRoom()" ui-sref-active="active"><a>{{note.author}} in room {{note.chatroom}}</a></li>
+                            <li class="divider"></li>
+                            <li id="note-footer" class="notify-button">Clear Notifications</li>
+                          </ul>
+
+                    </li>
                   <li class="right-buffer"><a href="/login" target="_self"><i class="fa fa-sign-out fa-lg"></i>Logout</a></li>
                 </ul>
               </nav>
@@ -113,7 +132,7 @@
 <div ng-controller="modalCtrl" class="modal fade" id="createRoom" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <div class="modal-header header-style">
+      <div class="modal-header header-style" ng-style="topStyle">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="myModalLabel">Create Chat Room</h4>
       </div>
@@ -126,9 +145,9 @@
         </form>
 
       </div>
-      <div class="modal-footer footer-style">
+      <div class="modal-footer footer-style" ng-style="sideStyle">
         <button type="button" class="btn btn-default alt2button-style" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary altbutton-style" ng-click="createChatroom()">Create</button>
+        <button type="button" class="btn btn-primary altbutton-style" ng-click="createChatroom()" ng-class="sideStyle">Create</button>
       </div>
     </div>
   </div>

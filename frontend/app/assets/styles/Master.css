@@ -58,6 +58,19 @@
   width: 200px;
   height: 50px;
 }
+.notify-style{
+  max-height: 200px;
+  overflow: auto;
+}
+.notify-button{
+  text-align: center;
+}
+.dropdown-menu>li>a{
+  color: #E9E9E9;
+}
+.dropdown-menu>li>a:hover{
+  color: #E9E9E9;
+}
 /*User Account Info Style*/
 .account-info{
   position: relative;
@@ -172,16 +185,16 @@
       margin-bottom: 0px;
       color: #E9E9E9;
       font-size: 16px;
-      text-shadow: 1px 1px rgba(0,0,0,.5);
+      text-shadow: 1px 1px rgba(0,0,0,.8);
 }
-.navbar-default .navbar-nav :hover{
+/*.navbar-default .navbar-nav :hover{
   background-color: #C4421A;
   -webkit-transition: all 1s ease;
   -moz-transition: all 1s ease;
   -o-transition: all 1s ease;
   -ms-transition: all 1s ease;
   transition: all 1s ease;
-}
+}*/
 .navbar-default .navbar-nav>.active>a,
 .navbar-default .navbar-nav>.active>a:hover,
 .navbar-default .navbar-nav>.active>a:focus{
@@ -193,7 +206,14 @@
 }
 .navbar-default .navbar-nav>li>a:hover{
   color: #E9E9E9;
+  background-color: #C4421A;
+  -webkit-transition: all 1s ease;
+  -moz-transition: all 1s ease;
+  -o-transition: all 1s ease;
+  -ms-transition: all 1s ease;
+  transition: all 1s ease;
 }
+
 
 /*Scrollbar Styling*/
 ::-webkit-scrollbar {
@@ -204,14 +224,14 @@
     -webkit-box-solid: inset 0 0 6px rgba(255,0,0,1);
     -webkit-border-radius: 0px;
     border-radius: 0px;
-    background-color: #99D3DF;
+    background-color: #FFFFFF;
 }
 ::-webkit-scrollbar-thumb {
     border: 1px solid rgba(255, 255, 255, .7);
     border-radius: 0px;
     -webkit-border-radius: 0px;
     -webkit-box-solid: inset 0 0 6px rgba(0,255,0,1);
-    background: #88BBD6;
+    background: #777777;
 }
 
 /*Message Styling*/
@@ -449,6 +469,14 @@
   .hod {
     display: none;
   }
+  .scroll-account{
+    overflow-y       : auto;
+    position         : fixed;
+    height           : calc(100% - 50px);
+    width            : calc(100% - 200px);
+    border-left      : 1px solid #FFF;
+    bottom: 0px;
+  }
   #main {
   	width:calc(100% - 200px);
     position: fixed;
@@ -471,5 +499,9 @@ html {
   font-family: 'Jura', sans-serif;
 }
 a {
+  color: #12908E;
   cursor: pointer;
+}
+a:hover{
+  color: #16594A;
 }

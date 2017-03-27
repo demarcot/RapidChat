@@ -25,7 +25,7 @@
 
 <div class="container-fluid left-style">
   <div class="col-xs-12">
-    Direct Messages
+   Users
   </div>
     <div class="link-style col-sm-12 col-md-4" ng-repeat="user in allUsers" ng-hide="user.username===vm.user.username"><identicon username='user.username' size='40'></identicon><br /><a ng-click="setOldRoom(); createDirectMessage(vm.user.username, user.username)">{{user.username}}</a></div>
 </div>

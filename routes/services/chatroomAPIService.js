@@ -95,42 +95,44 @@ function notifyCheck(chatroomParam)
 {
 	var deferred = Q.defer()
 	var retBool;
-	
 	//If it is a public room, user needs to be notified
-	db.chatrooms.find({"_id":mongo.ObjectId(chatroomParam.chatroomId), "private": "false"}, {"_id":1}, function(err, chatrooms)
+  db.chatrooms.find({"_id":mongo.ObjectId(chatroomParam.chatroomId), "private": false}, {"_id":1}, function(err, chatrooms)
 		{
 			if(err) deferred.reject(err);
-			
+      console.log("publicChatQuery");
 			if(chatrooms.length > 0)
 			{
 				console.log("PUBLIC CHATROOM");
 				retBool = true;
 				deferred.resolve(retBool);
 			}
+      else { db.chatrooms.find({"_id": mongo.ObjectId(chatroomParam.chatroomId), "acceptedUsers": chatroomParam.username, "private": true}, {"_id":1}, function (err, chatrooms)
+    		{
+    			if(err) deferred.reject(err);
+
+    			if(chatrooms.length > 0)
+    			{
+    				console.log("GOOD PRIVATE CHATROOM");
+    				console.log("notify chatrooms: ", chatrooms);
+    				retBool = true;
+    				deferred.resolve(retBool);
+    			}
+    			else
+    			{
+    				//chatrooms not found
+    				console.log("BAD PRIVATE CHATROOM");
+    				retBool = false;
+    				deferred.resolve(retBool);
+    			}
+    		});
+      }
 		});
-	
+
 	//If it is not public, notify the user if they are on the acceptedUsers list
-	db.chatrooms.find({"_id": mongo.ObjectId(chatroomParam.chatroomId), "acceptedUsers": chatroomParam.username}, {"_id":1}, function (err, chatrooms)
-		{
-			if(err) deferred.reject(err);
 
-			if(chatrooms.length > 0)
-			{
-				console.log("GOOD PRIVATE CHATROOM");
-				console.log("notify chatrooms: ", chatrooms);
-				retBool = true;
-				deferred.resolve(retBool);
-			}
-			else
-			{
-				//chatrooms not found
-				console.log("BAD PRIVATE CHATROOM");
-				retBool = false;
-				deferred.resolve(retBool);
-			}
-		});
 
-	return deferred.promise;
+
+      return deferred.promise;
 }
 
 function moveToAccepted(chatroomParam)
@@ -140,14 +142,14 @@ function moveToAccepted(chatroomParam)
 	db.chatrooms.findOne({"_id": chatroomParam._id, "pendingUsers": chatroomParam.username}, {"pendingUsers":1, "acceptedUsers":1}, function(err, doc)
 		{
 			if(err) deferred.reject(err);
-			
+
 			if(doc.length > 0)
 			{
 				newPendingUsers = doc.pendingUsers.splice(indexOf(chatroomParam.username), 1);
 				db.chatrooms.update({"_id": chatroomParam._id}, {"pendingUsers": newPendingUsers, $push: {'acceptedUsers': chatroomParam.username}}, function(err, docs)
 					{
 						if(err) deferred.reject(err);
-						
+
 						deferred.resolve(true);
 					});
 			}
@@ -157,7 +159,7 @@ function moveToAccepted(chatroomParam)
 				deferred.resolve(false);
 			}
 		});
-	
+
 	return deferred.promise;
 }
 
