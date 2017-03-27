@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
-      <!--<link rel="stylesheet" href="/css/master.css"> -->
-      <!--External Css Dependancies -->
+    <!--<link rel="stylesheet" href="/css/master.css"> -->
+    <!--External Css Dependancies -->
     <link rel="stylesheet" href="assets\bower_components\bootstrap\dist\css\bootstrap.min.css">
     <link rel="stylesheet" href="assets/styles/Master.css">
     <link rel="stylesheet" href="assets\imgs\font-awesome-4.7.0\css\font-awesome.min.css">
@@ -13,7 +13,6 @@
   </head>
   <body>
     <header>
-
     </header>
     <div ng-controller="oldRoomCtrl">
       <style>
@@ -36,8 +35,8 @@
           background-color: {{topHover}};
         }
       </style>
-
-    <div class="nav-side-menu" ng-style="sideStyle">
+      <!-- Side Menu -->
+      <div class="nav-side-menu" ng-style="sideStyle">
         <div class="brand" ng-style="sideStyle">
           <!-- <img src="assets\imgs\Rapid_Chat_Logo.dwkMaLMO_K5Manr_DMiHLmHiQRY" class="logo-style"> -->
           Rapid Chat
@@ -88,71 +87,70 @@
                 </ul>
             </ul>
         </div>
-    </div>
-    <div class="container-fluid" id="main">
+      </div>
+      <div class="container-fluid" id="main">
         <div>
-              <nav class="navbar navbar-default hom" ng-style="topStyle">
-                <ul class="nav navbar-nav right-buffer">
-                    <li ng-class="{active: activeTab === 'dashboard'}"><a ui-sref="dashboard" ng-click="setOldRoom()">Dashboard</a></li>
-                    <li ng-class="{active: activeTab === 'personalize'}"><a ui-sref="personalize" ng-click="setOldRoom()">Account</a></li>
-                    <li ng-class="{active: activeTab === 'admin'}"><a ui-sref="admin" ng-click="setOldRoom()">Admin</a></li>
+          <!-- Top Navigation Bar -->
+          <nav class="navbar navbar-default hom" ng-style="topStyle">
+            <ul class="nav navbar-nav right-buffer">
+              <li ng-class="{active: activeTab === 'dashboard'}"><a ui-sref="dashboard" ng-click="setOldRoom()">Dashboard</a></li>
+              <li ng-class="{active: activeTab === 'personalize'}"><a ui-sref="personalize" ng-click="setOldRoom()">Account</a></li>
+              <li ng-class="{active: activeTab === 'admin'}"><a ui-sref="admin" ng-click="setOldRoom()">Admin</a></li>
 
-                    <!-- <li><a><i class="fa fa-comments fa-lg"></i> {{}}</a></li> -->
+              <!-- <li><a><i class="fa fa-comments fa-lg"></i> {{}}</a></li> -->
                       <!-- <div class="input-group input-group-sm">
                         <input type="text" class="form-control" placeholder="Search.." aria-describedby="searchbar-addon">
                         <span class="input-group-addon" id="searchbar-addon"><i class="fa fa-search fa-lg"></i></span>
                       </div> -->
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li ng-controller="notifyCtrl" ng-click="read()">
+                <a class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell fa-lg"></i></a>
+                <ul class="dropdown-menu notify-style" ng-style="topStyle" ng-show="newNotifications">
+                  <li ng-repeat="note in notifications track by $index" ui-sref="chatRoomById({chatRoomId: note._id})" ng-click="setOldRoom()" ui-sref-active="active"><a>{{note.author}} in room {{note.chatroom}}</a></li>
+                  <li class="divider"></li>
+                  <li id="note-footer" class="notify-button">Clear Notifications</li>
                 </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li ng-controller="notifyCtrl" ng-click="read()">
-                      <a class="dropdown-toggle" data-toggle="dropdown">
-                        <i class="fa fa-bell fa-lg"></i></a>
-                          <ul class="dropdown-menu notify-style" ng-style="topStyle" ng-show="newNotifications">
-                            <li ng-repeat="note in notifications track by $index" ui-sref="chatRoomById({chatRoomId: note._id})" ng-click="setOldRoom()" ui-sref-active="active"><a>{{note.author}} in room {{note.chatroom}}</a></li>
-                            <li class="divider"></li>
-                            <li id="note-footer" class="notify-button">Clear Notifications</li>
-                          </ul>
+              </li>
+              <li class="right-buffer"><a href="/login" target="_self"><i class="fa fa-sign-out fa-lg"></i>Logout</a></li>
+            </ul>
+          </nav>
 
-                    </li>
-                  <li class="right-buffer"><a href="/login" target="_self"><i class="fa fa-sign-out fa-lg"></i>Logout</a></li>
-                </ul>
-              </nav>
-
-              <div class="flash-message" ng-if="flash">
-                  <div class="{{'alert alert-' + flash.type}}" ng-bind="flash.message"></div>
-              </div>
+          <div class="flash-message" ng-if="flash">
+            <div class="{{'alert alert-' + flash.type}}" ng-bind="flash.message"></div>
+          </div>
 
         </div>
+        <!-- UI Body -->
         <div>
-            <div ui-view></div>
+          <div ui-view></div>
         </div>
       </div>
 
     <!-- Create Chat Room Modal -->
-<div ng-controller="modalCtrl" class="modal fade" id="createRoom" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header header-style" ng-style="topStyle">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Create Chat Room</h4>
+      <div ng-controller="modalCtrl" class="modal fade" id="createRoom" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header header-style" ng-style="topStyle">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Create Chat Room</h4>
+            </div>
+            <div class="modal-body body-style">
+              <form class="form-group" ng-submit="" method="post">
+                <input type="text" name="Chatroom Name" value="" class="form-control input-chatroom" placeholder="Name the chat room here." ng-model="chatRoomName">
+                <!-- <div class="private-check">
+                <input type="checkbox"> Private</input>
+                </div> -->
+              </form>
+            </div>
+            <div class="modal-footer footer-style" ng-style="sideStyle">
+              <button type="button" class="btn btn-default alt2button-style" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary altbutton-style" ng-click="createChatroom()" ng-class="sideStyle">Create</button>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="modal-body body-style">
-        <form class="form-group" ng-submit="" method="post">
-          <input type="text" name="Chatroom Name" value="" class="form-control input-chatroom" placeholder="Name the chat room here." ng-model="chatRoomName">
-          <!-- <div class="private-check">
-            <input type="checkbox"> Private</input>
-          </div> -->
-        </form>
-
-      </div>
-      <div class="modal-footer footer-style" ng-style="sideStyle">
-        <button type="button" class="btn btn-default alt2button-style" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary altbutton-style" ng-click="createChatroom()" ng-class="sideStyle">Create</button>
-      </div>
-    </div>
-  </div>
-</div>
-      <!-- External JS Dependancies -->
+    <!-- External JS Dependancies -->
     <script src="assets/bower_components/jquery/dist/jquery.min.js" charset="utf-8"></script>
     <script src="assets/bower_components/bootstrap/dist/js/bootstrap.min.js" charset="utf-8"></script>
     <script src="assets/bower_components/angular/angular.min.js" charset="utf-8"></script>
@@ -185,6 +183,6 @@
     <script src="assets/scripts/services/messageFormatter.js"></script>
     <script src="assets/scripts/directives/chatBox.js"></script>
     <script src="assets/scripts/controllers/notifyCtrl.js" charset="utf-8"></script>
-<!--     <script src="assets\scripts\services\factories\restFactory.js" charset="utf-8"></script> -->
+    <!-- <script src="assets\scripts\services\factories\restFactory.js" charset="utf-8"></script> -->
   </body>
 </html>
