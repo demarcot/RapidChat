@@ -14,7 +14,7 @@ angular.module('coreApp')
     ChatRoomService.Create($scope.newChatRoom).then(function(chatroomId) {
 
       $state.go("chatRoomById", {chatRoomId: chatroomId},{reload:true});
-      console.log("Chat Room id", chatroomId);
+  
       $window.location.reload();
     });
   };

@@ -15,12 +15,10 @@ router.delete('/:_id', deleteUser);
 module.exports = router;
 
 function authenticateUser(req, res) {
-	console.log("\nAuthenticate user...\n");
     userService.authenticate(req.body.username, req.body.password)
         .then(function (token) {
             if (token) {
                 // authentication successful
-                console.log("token: ",token);
                 res.send({ token: token });
             } else {
                 // authentication failed
@@ -33,7 +31,6 @@ function authenticateUser(req, res) {
 }
 
 function registerUser(req, res) {
-	console.log("\nRegister user...\n");
     userService.create(req.body)
         .then(function () {
             res.sendStatus(200);
@@ -44,7 +41,6 @@ function registerUser(req, res) {
 }
 
 function getCurrentUser(req, res) {
-	console.log("\nGet current user...\n");
     userService.getById(req.user.sub)
         .then(function (user) {
             if (user) {
@@ -60,7 +56,6 @@ function getCurrentUser(req, res) {
 
 function getAllUsers(req, res)
 {
-	console.log("\nGet all users...\n");
 	userService.getAll()
 	.then(function(users)
 	{
@@ -76,7 +71,6 @@ function getAllUsers(req, res)
 }
 
 function getIsAdmin(req, res) {
-	console.log("\nGet current user admin status...\n");
     userService.getIsAdmin(req.user.sub)
         .then(function (user) {
             if (user) {
@@ -91,7 +85,6 @@ function getIsAdmin(req, res) {
 }
 
 function updateUser(req, res) {
-	console.log("\nUpdate user...\n");
     var userId = req.user.sub;
     if (req.params._id !== userId) {
         // can only update own account
@@ -108,7 +101,6 @@ function updateUser(req, res) {
 }
 
 function deleteUser(req, res) {
-	console.log("\nDelete user...\n");
     var userId = req.user.sub;
     if (req.params._id !== userId) {
         // can only delete own account

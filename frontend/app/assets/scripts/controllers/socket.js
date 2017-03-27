@@ -5,7 +5,7 @@ angular.module('coreApp')
 // NOTE: Estabish variables
   $scope.chatRoom = $state.params.chatRoomId;
   $scope.chatRoomId = {'_id': $state.params.chatRoomId }
-  console.log($state)
+
   $scope.messageTest= [];
   $scope.nickName = nickName;
   $scope.messageLog = '';
@@ -34,7 +34,7 @@ angular.module('coreApp')
 
       // NOTE: This needs to be a catch for an empty message
       if ($scope.message=='') {
-        console.log("Cannot send this");
+
       } else {
         $log.debug('sending message', $scope.message);
 
@@ -47,7 +47,7 @@ angular.module('coreApp')
           "timestamp": new Date()
         };
         ChatRoomService.InsertMessage($scope.encapMessge).then(function(data) {
-          console.log(data);
+
         });
         $scope.message = '';
       };
@@ -62,7 +62,7 @@ angular.module('coreApp')
       return;
     }
     $scope.$apply(function() {
-      console.log("Data payload", data.payload);
+
       $scope.messageLog = $scope.messageLog + messageFormatter(new Date(), data.source, data.payload);
       $scope.messageTest.push({timestamp: new Date(), author: data.source, messageContent: data.payload});
     });
@@ -89,18 +89,18 @@ angular.module('coreApp')
 
     // NOTE: make case for empty room!
     ChatRoomService.GetMessages($scope.chatRoomId).then(function (messages) {
-      console.log("messages ",messages[0].messages);
+
 
 
         if (messages[0].messages == null) {
 
-          console.log("This is when the messages are empty");
+
         }
         else {
           for (var i = 0; i < messages[0].messages.length; i++) {
               $scope.messageTest.push(messages[0].messages[i]);
 
-              console.log("added message");
+              
           }
         }
     });

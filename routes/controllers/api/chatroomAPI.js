@@ -19,7 +19,7 @@ module.exports = router;
 
 function getAllChatrooms(req, res)
 {
-	console.log("Get all chatrooms...\n");
+
 	chatroomService.getAll()
 	.then(function (chatrooms)
 	{
@@ -39,7 +39,7 @@ function getById(req, res)
 {
 
 	var chatroomParam = {"_id": req.body._id}
-	console.log("Get all chatrooms...\n");
+
 	chatroomService.getById(chatroomParam)
 	.then(function (chatrooms)
 	{
@@ -59,7 +59,7 @@ function getAllowedChatrooms(req, res)
 {
 	var chatroomParam = {'username': req.body.username};
 
-	console.log("Get allowed chatrooms...\n");
+
 	chatroomService.getAllowedChatrooms(chatroomParam)
 	.then(function (chatrooms)
 	{
@@ -79,12 +79,11 @@ function notifyCheck(req, res)
 {
 	var chatroomParam = {"chatroomId": req.body._id, "username": req.body.username};
 
-	console.log("Notify check...");
+
 	chatroomService.notifyCheck(chatroomParam)
 	.then(function (stat)
 	{
-		console.log("Chatroomparam ", chatroomParam);
-		console.log("notifyCheck: ", stat);
+
 		res.send(stat);
 	})
 	.catch(function (err)
@@ -97,7 +96,6 @@ function createChatroom(req, res)
 {
 	var chatroomParam = {'name': req.body.name, 'acceptedUsers': req.body.acceptedUsers, 'privateStatus': req.body.privateStatus, 'direct': req.body.direct, 'maxUsers': req.body.maxUsers}
 
-	console.log("Create Chatroom:\n\tchatroomParam:\n\t", chatroomParam);
 	chatroomService.create(chatroomParam)
 	.then(function (chatroomId)
 	{
@@ -113,7 +111,6 @@ function deleteChatroom(req, res)
 {
 	var chatroomParam = {'_id': req.body._id};
 
-	console.log("Delete Chatroom:\n\tchatroomParam:\n\t", chatroomParam);
     chatroomService.delete(chatroomParam)
         .then(function () {
             res.sendStatus(200);
@@ -127,7 +124,6 @@ function getMessages(req, res)
 {
 	var chatroomParam = {'_id': req.body._id};
 
-	console.log("Get Messages:\n\tchatroomParam:\n\t", chatroomParam);
 	chatroomService.getMessages(chatroomParam)
 	.then(function (messages)
 	{
@@ -146,7 +142,6 @@ function insertMessage(req, res)
 {
 	var chatroomParam = {'_id': req.body._id, 'username': req.body.username, 'messageContent': req.body.messageContent, 'timestamp': req.body.timestamp};
 
-	console.log("Insert Message:\n\tchatroomParam:\n\t", req.body);
 	chatroomService.insertMessage(chatroomParam)
 	.then(function ()
 	{
@@ -162,7 +157,6 @@ function inviteUser(req, res)
 {
 	var chatroomParam = {'_id': req.body._id, 'username': req.body.username};
 
-	console.log("Invite User:\n\tchatroomParam:\n\t", chatroomParam);
 	chatroomService.inviteUser(chatroomParam)
 	.then(function ()
 	{
@@ -178,7 +172,6 @@ function moveToAccepted(req, res)
 {
 	var chatroomParam = {"_id": req.body._id, "username": req.body.username};
 	
-	console.log("Move user to accepted list...");
 	chatroomService.moveToAccepted(chatroomParam)
 	.then(function (ret)
 	{

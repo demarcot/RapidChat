@@ -18,7 +18,6 @@ module.exports = function (io) {
     socket.on("currentRoom", function(username, chatRoom, oldRoom, name) {
       socket.leave(oldRoom);
       socket.join(chatRoom);
-        console.log("Name of room: ", name);
         if (name != undefined) {
           io.sockets.to(chatRoom).emit("broadcast", {
             payload: "Connected " + username +" to " + name,

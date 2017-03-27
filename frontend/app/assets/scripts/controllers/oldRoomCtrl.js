@@ -22,7 +22,7 @@ angular.module('coreApp')
       };
       ChatRoomService.Create($scope.newDirectMessage).then(function(chatroomId) {
         $state.go("chatRoomById", {chatRoomId: chatroomId});
-        console.log("Chat Room id", chatroomId);
+
         $window.location.reload();
       });
     };
@@ -40,7 +40,7 @@ angular.module('coreApp')
       ChatRoomService.GetAll().then(function(chatrooms){
         $scope.publicChatRooms = chatrooms;
         $scope.chatRooms.push({"publicChatRooms":$scope.publicChatRooms});
-        console.log("Public Chatrooms", $scope.chatRooms[0]);
+
       });
 
 
@@ -50,7 +50,7 @@ angular.module('coreApp')
       $scope.sideHover = user.colors.sideBarHover;
       $scope.topStyle = {"background-color": user.colors.topBarColor};
       $scope.topHover = user.colors.topBarHover;
-      console.log($scope.sideHover);
+
 
 
       ChatRoomService.GetAllowedChatrooms($scope.username).then(function(chatrooms){
@@ -58,12 +58,12 @@ angular.module('coreApp')
         for (var i = 0; i < chatrooms.length; i++) {
           var temp = chatrooms[i].acceptedUsers.indexOf($scope.username.username);
           chatrooms[i].acceptedUsers.splice(temp,1);
-          console.log(chatrooms[i].acceptedUsers);
+
           $scope.allowedChatRooms.push(chatrooms[i]);
-          console.log($scope.allowedChatRooms);
+
         }
         $scope.chatRooms.push({"allowedChatRooms":$scope.allowedChatRooms});
-        console.log("Accepted Chatrooms", $scope.chatRooms[1]);
+        
 
         });
       });

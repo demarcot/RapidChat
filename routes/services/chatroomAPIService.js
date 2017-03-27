@@ -52,11 +52,9 @@ function getById(chatroomParam) {
         if (err) deferred.reject(err);
 
         if (chatrooms) {
-            console.log("You found something! ", chatrooms);
             deferred.resolve(chatrooms);
         } else {
             // chatroom not found
-            console.log("You found nothing! You Lose!");
             deferred.resolve();
         }
     });
@@ -99,10 +97,8 @@ function notifyCheck(chatroomParam)
   db.chatrooms.find({"_id":mongo.ObjectId(chatroomParam.chatroomId), "private": false}, {"_id":1}, function(err, chatrooms)
 		{
 			if(err) deferred.reject(err);
-      console.log("publicChatQuery");
 			if(chatrooms.length > 0)
 			{
-				console.log("PUBLIC CHATROOM");
 				retBool = true;
 				deferred.resolve(retBool);
 			}
@@ -112,15 +108,12 @@ function notifyCheck(chatroomParam)
 
     			if(chatrooms.length > 0)
     			{
-    				console.log("GOOD PRIVATE CHATROOM");
-    				console.log("notify chatrooms: ", chatrooms);
     				retBool = true;
     				deferred.resolve(retBool);
     			}
     			else
     			{
     				//chatrooms not found
-    				console.log("BAD PRIVATE CHATROOM");
     				retBool = false;
     				deferred.resolve(retBool);
     			}
@@ -155,7 +148,6 @@ function moveToAccepted(chatroomParam)
 			}
 			else
 			{
-				console.log("Trouble moving user, ", chatroomParam.username + ", to that chatroom...");
 				deferred.resolve(false);
 			}
 		});
@@ -181,9 +173,7 @@ function create(chatroomParam) {
       if (err) deferred.reject(err);
       if(chatrooms.length > 0)
       {
-        console.log("Found chatrooms",chatrooms);
         directCheck = chatrooms[0]._id;
-        console.log("Chat ", directCheck);
         if(directCheck){
           deferred.resolve(directCheck);
           return deferred.promise;
@@ -205,14 +195,12 @@ function create(chatroomParam) {
             if (err) deferred.reject(err);
             if (chatroom) {
               deferred.resolve(chatroom._id);
-              console.log("Hello");
             } else {
               deferred.resolve();
             }
           });
         }
         else {
-          console.log("This means the devs are bad");
         }
     });
     return deferred.promise;
