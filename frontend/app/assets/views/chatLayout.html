@@ -9,6 +9,10 @@
     Public Chat Rooms
   </div>
     <div class="link-style col-sm-12" ng-repeat="room in chatRooms[0].publicChatRooms track by $index" ><a ui-sref="chatRoomById({chatRoomId: room._id})" ng-click="setOldRoom()"><i class="fa fa-comments-o fa-lg"></i>&nbsp;{{room.name}}</a></div>
+  <br />
+  <div class="col-xs-12">
+    Private Chat Rooms
+  </div>
     <div class="link-style col-sm-12" ng-repeat="room in chatRooms[1].allowedChatRooms track by $index" ng-show="room.direct === false"><a ui-sref="chatRoomById({chatRoomId: room._id})" ng-click="setOldRoom()"><i class="fa fa-comments-o fa-lg"></i>&nbsp;{{room.name}}</a></div>
     <div class="link-style col-sm-12"><a data-toggle="modal" data-target="#createRoom"><i class="fa fa-comments-o fa-lg"></i>&nbsp;Create A New Chat Room</a></div>
 </div>

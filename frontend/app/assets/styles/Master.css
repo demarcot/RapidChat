@@ -291,10 +291,7 @@
 .admin-page{
   position: relative;
   width: 100%;
-  height: 100%;
-  background-color: #D6D6D6;
   border-top: 2px solid #E9E9E9;
-  vertical-align: middle;
 }
 .admin-style{
   border-bottom: 2px solid #E9E9E9;
@@ -312,11 +309,18 @@
 .admin-button{
   position: relative;
   font-size: 16px;
-  vertical-align: middle;
   float: right;
   background-color: #CC0000;
   color: #FFFFFF;
   display: inline-block;
+}
+.scroll-admin{
+  overflow-y       : auto;
+  position         : fixed;
+  height           : calc(100% - 50px);
+  width            : calc(100% - 200px);
+  bottom           : 0px;
+  background-color : #D6D6D6;
 }
 
 /*Side Navigation Bar*/

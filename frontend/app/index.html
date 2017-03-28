@@ -131,28 +131,29 @@
       </div>
 
     <!-- Create Chat Room Modal -->
-      <div ng-controller="modalCtrl" class="modal fade" id="createRoom" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header header-style" ng-style="topStyle">
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Create Chat Room</h4>
-            </div>
-            <div class="modal-body body-style">
-              <form class="form-group" ng-submit="" method="post">
-                <input type="text" name="Chatroom Name" value="" class="form-control input-chatroom" placeholder="Name the chat room here." ng-model="chatRoomName">
-                <div class="private-text">
-                  <input type="checkbox" class="private-check">&nbsp;Make the Chat Room Private</input>
+    <div ng-controller="modalCtrl" class="modal fade" id="createRoom" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header header-style" ng-style="topStyle">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Create Chat Room</h4>
                 </div>
-              </form>
-            </div>
-            <div class="modal-footer footer-style" ng-style="sideStyle">
-              <button type="button" class="btn btn-default alt2button-style" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary altbutton-style" ng-click="createChatroom()" ng-style="sideStyle">Create</button>
+                <div class="modal-body body-style">
+                  <form class="form-group" ng-submit="" method="post">
+                    <input type="text" name="Chatroom Name" value="" class="form-control input-chatroom" placeholder="Name the chat room here." ng-model="chatRoomName">
+                    <!-- <div class="private-check">
+                    <input type="checkbox"> Private</input>
+                    </div> -->
+                    <input type="checkbox" name="isPrivate" ng-model="isPrivate">Click here for Private chatboxs {{isPrivate}}</input>
+                  </form>
+                </div>
+                <div class="modal-footer footer-style" ng-style="sideStyle">
+                  <button type="button" class="btn btn-default alt2button-style" data-dismiss="modal">Close </button>
+                  <button type="button" class="btn btn-primary altbutton-style" ng-click="createChatroom(username.username)" ng-class="sideStyle">Create</button>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
     <!-- External JS Dependancies -->
     <script src="assets/bower_components/jquery/dist/jquery.min.js" charset="utf-8"></script>
     <script src="assets/bower_components/bootstrap/dist/js/bootstrap.min.js" charset="utf-8"></script>
@@ -187,5 +188,6 @@
     <script src="assets/scripts/directives/chatBox.js"></script>
     <script src="assets/scripts/controllers/notifyCtrl.js" charset="utf-8"></script>
     <!-- <script src="assets\scripts\services\factories\restFactory.js" charset="utf-8"></script> -->
+  </div>
   </body>
 </html>
