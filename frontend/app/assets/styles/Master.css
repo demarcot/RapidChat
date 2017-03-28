@@ -58,6 +58,11 @@
   width: 200px;
   height: 50px;
 }
+.pull-right{
+  float: right;
+}
+
+/*Notification*/
 .notify-style{
   max-height: 200px;
   overflow: auto;
@@ -71,6 +76,7 @@
 .dropdown-menu>li>a:hover{
   color: #E9E9E9;
 }
+
 /*User Account Info Style*/
 .account-info{
   position: relative;
@@ -111,12 +117,12 @@
   color:           : #161616;
 }
 .private-check{
-  top: 20px;
-  position: relative;
+  vertical-align: text-bottom;
+  align-items: center;
 }
 .private-text{
-  top: 10px;
-  position: relative;
+  align-items: center;
+  position: absolute;
 }
 
 /*Message Input Color*/
@@ -247,25 +253,27 @@
 }
 .left-style{
   position: absolute;
-  width: calc(50% - 12px);
-  height: calc(100% - 70px);
-  bottom: 0px;
-  left: 0px;
+  width: calc(50% - 9px);
+  height: calc(100% - 62px);
+  bottom: 6px;
+  left: 6px;
   text-align: center;
   font-size: 24px;
   background-color: #D6D6D6;
   border: 1px solid #FFF;
+  overflow: auto;
 }
 .right-style{
   position: absolute;
-  width: calc(50% - 12px);
-  height: calc(100% - 70px);
-  bottom: 0px;
-  right: 0px;
+  width: calc(50% - 9px);
+  height: calc(100% - 62px);
+  bottom: 6px;
+  right: 6px;
   text-align: center;
   font-size: 24px;
   background-color: #D6D6D6;
   border: 1px solid #FFF;
+  overflow: auto;
 }
 .chat-links{
   text-decoration: underline;
@@ -277,6 +285,38 @@
 }
 .link-style{
   padding-top: 10px
+}
+
+/*Admin Page*/
+.admin-page{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: #D6D6D6;
+  border-top: 2px solid #E9E9E9;
+  vertical-align: middle;
+}
+.admin-style{
+  border-bottom: 2px solid #E9E9E9;
+  border-left: 2px solid #E9E9E9;
+  border-right: 2px solid #E9E9E9;
+  vertical-align: middle;
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+.admin-name{
+  font-size: 16px;
+  color: #161616;
+  float: left;
+}
+.admin-button{
+  position: relative;
+  font-size: 16px;
+  vertical-align: middle;
+  float: right;
+  background-color: #CC0000;
+  color: #FFFFFF;
+  display: inline-block;
 }
 
 /*Side Navigation Bar*/
@@ -306,7 +346,7 @@
 .nav-side-menu ul,
 .nav-side-menu li {
   list-style: none;
-  padding-left: 10px;
+  padding-left: 5px;
   margin: 0px;
   line-height: 35px;
   cursor: pointer;

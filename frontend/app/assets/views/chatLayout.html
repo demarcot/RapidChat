@@ -1,28 +1,3 @@
-<!-- <h1>Hello {{vm.user.firstName}}</h1> -->
-
-<!-- <div>
-  <div>
-    <h1 class="center-heading">
-      Hello {{vm.user.firstName}}, Welcome to Rapid Chat!
-    </h1>
-  </div>
-  <div class="container left-style">
-      If you would like to directly message another user, click one of the users below.
-      <div class="no-bullet chat-links" id="users">
-          <div class="link-style col-md-4" ng-repeat="user in allUsers" ng-hide="user.username===vm.user.username"><identicon username='user.username' size='40' /><a ng-click="setOldRoom(); createDirectMessage(vm.user.username, user.username)">{{user.username}}</a></li>
-      </ul>
-  </div>
-
-  <div class="right-style">
-      If you would like to join a public chat room, click one of the public rooms below.
-      <ul class="no-bullet chat-links" id="chatrooms">
-        <li ng-repeat="room in chatRooms[0].publicChatRooms track by $index" ui-sref="chatRoomById({chatRoomId: room._id})" ng-click="setOldRoom()"><a>{{room.name}}</a></li>
-        <li ng-repeat="room in chatRooms[1].allowedChatRooms track by $index" ui-sref="chatRoomById({chatRoomId: room._id})" ng-click="setOldRoom()" ng-show="room.direct === false">{{room.name}}</li>
-        <li class="link-style"><a data-toggle="modal" data-target="#createRoom">Create A New Chat Room</a></li>
-      </ul>
-  </div>
-</div> -->
-
 <div class="container-fluid left-style">
   <div class="col-xs-12">
    Users
@@ -37,10 +12,3 @@
     <div class="link-style col-sm-12" ng-repeat="room in chatRooms[1].allowedChatRooms track by $index" ng-show="room.direct === false"><a ui-sref="chatRoomById({chatRoomId: room._id})" ng-click="setOldRoom()"><i class="fa fa-comments-o fa-lg"></i>&nbsp;{{room.name}}</a></div>
     <div class="link-style col-sm-12"><a data-toggle="modal" data-target="#createRoom"><i class="fa fa-comments-o fa-lg"></i>&nbsp;Create A New Chat Room</a></div>
 </div>
-<!-- Scripts  -->
-<!-- bower:js -->
-
-
-
-
-<!-- socket js -->

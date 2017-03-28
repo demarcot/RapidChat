@@ -34,6 +34,9 @@
         .dropdown-menu>li>a:hover{
           background-color: {{topHover}};
         }
+        .altbutton-style:hover{
+          background-color: {{sideHover}};
+        }
       </style>
       <!-- Side Menu -->
       <div class="nav-side-menu" ng-style="sideStyle">
@@ -59,12 +62,12 @@
                     <li><a href="#">Widgets</a></li>
                     <li><a href="#">Bootstrap Model</a></li>
                 </ul> -->
-                <li data-toggle="collapse" data-target="#chatrooms">
+                <li data-toggle="collapse" data-target="#chatrooms" class="not(collapsed)">
                     <a><i class="fa fa-globe fa-lg left-buffer"></i> Chat Rooms <span class="arrow"></span></a>
                 </li>
-                <ul id="chatrooms">
+                <ul id="chatrooms" class="in">
                   <li class="left-buffer" ng-repeat="room in chatRooms[0].publicChatRooms track by $index" ui-sref="chatRoomById({chatRoomId: room._id})" ng-click="setOldRoom()" ui-sref-active="active"><a>{{room.name}}</a></li>
-                  <li class="left-buffer" ng-repeat="room in chatRooms[1].allowedChatRooms track by $index" ui-sref="chatRoomById({chatRoomId: room._id})" ng-click="setOldRoom()" ng-show="room.direct === false" ui-sref-active="active"><a>{{room.name}}</a></li>
+                  <li class="left-buffer" ng-repeat="room in chatRooms[1].allowedChatRooms track by $index" ui-sref="chatRoomById({chatRoomId: room._id})" ng-click="setOldRoom()" ng-show="room.direct === false" ui-sref-active="active"><a>{{room.name}}</a><i class="fa fa-lock pull-right"></i></li>
                   <li data-toggle="modal" data-target="#createRoom">Create Room</li>
                 </ul>
                 <li data-toggle="collapse" data-target="#direct" class="not(collapsed)">
@@ -72,7 +75,7 @@
                         <i class="fa fa-users fa-lg left-buffer"></i> Direct Messages <span class="arrow"></span>
                     </a>
                 </li>
-                <ul id="direct">
+                <ul id="direct" class="in">
                     <li ng-repeat="room in chatRooms[1].allowedChatRooms track by $index" ui-sref="chatRoomById({chatRoomId: room._id})" ng-click="setOldRoom()" ng-show="room.direct === true" ui-sref-active="active"><identicon username='room.acceptedUsers[0]' size='16'></identicon>&nbsp;&nbsp;{{room.acceptedUsers[0]}}</li>
                 </ul>
                 <li data-toggle="collapse" data-target="#options" class="hod">
@@ -138,14 +141,14 @@
             <div class="modal-body body-style">
               <form class="form-group" ng-submit="" method="post">
                 <input type="text" name="Chatroom Name" value="" class="form-control input-chatroom" placeholder="Name the chat room here." ng-model="chatRoomName">
-                <!-- <div class="private-check">
-                <input type="checkbox"> Private</input>
-                </div> -->
+                <div class="private-text">
+                  <input type="checkbox" class="private-check">&nbsp;Make the Chat Room Private</input>
+                </div>
               </form>
             </div>
             <div class="modal-footer footer-style" ng-style="sideStyle">
               <button type="button" class="btn btn-default alt2button-style" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary altbutton-style" ng-click="createChatroom()" ng-class="sideStyle">Create</button>
+              <button type="button" class="btn btn-primary altbutton-style" ng-click="createChatroom()" ng-style="sideStyle">Create</button>
             </div>
           </div>
         </div>

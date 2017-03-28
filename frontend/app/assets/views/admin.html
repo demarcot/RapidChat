@@ -1,4 +1,14 @@
-<div class="container-fluid">
-  <div class="link-style col-sm-12 col-md-12" ng-repeat="user in allUsers" ng-hide="user.username===vm.user.username">
-    <identicon username='user.username' size='40'></identicon><br />{{user.username}}</div>
+<div class="scroll-account">
+  <div class="container-fluid admin-page">
+    <div class="col-sm-12 col-md-12 admin-style admin-name" ng-repeat="user in allUsers" ng-hide="user.username===vm.user.username">
+      <identicon username='user.username' size='24'></identicon>
+        {{user.username}}
+        <button class="admin-button">Delete User</button>
+      </div>
+      <div class="col-sm-12 admin-style admin-name" ng-repeat="room in chatRooms[0].publicChatRooms track by $index">
+        <i class="fa fa-comments-o fa-lg"></i>
+        &nbsp;{{room.name}}
+        <button class="admin-button">Delete Chat Room</button>
+      </div>
+    </div>
 </div>
