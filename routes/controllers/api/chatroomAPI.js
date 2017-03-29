@@ -14,6 +14,7 @@ router.delete('/:_id', deleteChatroom);
 router.post('/getMessages', getMessages);
 router.post('/insertMessage', insertMessage);
 router.post('moveToAccepted', moveToAccepted);
+router.post('removeFromAccepted', removeFromAccepted);
 router.put('/inviteUser', inviteUser);
 
 module.exports = router;
@@ -190,6 +191,21 @@ function moveToAccepted(req, res)
 	var chatroomParam = {"_id": req.body._id, "username": req.body.username};
 
 	chatroomService.moveToAccepted(chatroomParam)
+	.then(function (ret)
+	{
+		res.sendStatus(ret);
+	})
+	.catch(function(err)
+	{
+		res.status(400).send(err);
+	});
+}
+
+function removeFromAccepted(req, res)
+{
+	var chatroomParam = {"_id": req.body._id, "username": req.body.username};
+
+	chatroomService.removeFromAccepted(chatroomParam)
 	.then(function (ret)
 	{
 		res.sendStatus(ret);

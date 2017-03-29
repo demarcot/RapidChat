@@ -19,6 +19,7 @@ service.getMessages = getMessages;
 service.insertMessage = insertMessage;
 service.inviteUser = inviteUser;
 service.moveToAccepted = moveToAccepted;
+service.removeFromAccepted = removeFromAccepted;
 
 module.exports = service;
 
@@ -173,6 +174,34 @@ function moveToAccepted(chatroomParam)
 		});
 
 	return deferred.promise;
+}
+
+function removeFromAccepted(chatroomParam)
+{
+    var deferred = Q.defer();
+    var newPendingUsers;
+    db.chatrooms.findOne({"_id": chatroomParam._id}, {"acceptedUsers":1}, function(err, doc)
+        {
+            if(err) deferred.reject(err);
+
+            if(doc.length > 0)
+            {
+                newAcceptedUsers = doc.acceptedUsers.splice(indexOf(chatroomParam.username), 1);
+                db.chatrooms.update({"_id": chatroomParam._id}, {"acceptedUsers": newAcceptedUsers}, function(err, docs)
+                    {
+                        if(err) deferred.reject(err);
+
+                        deferred.resolve(true);
+                    });
+            }
+            else
+            {
+                console.log("Trouble removing user, ", chatroomParam.username + ", from that chatroom...");
+                deferred.resolve(false);
+            }
+        });
+
+    return deferred.promise;
 }
 
 /*
