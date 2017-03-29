@@ -10,6 +10,7 @@
 
         vm.user = null;
         vm.users = null;
+        vm.allChatRooms = null;
         vm.deleteChatroom = deleteChatroom;
         vm.deleteUser = deleteUser;
 
@@ -19,8 +20,7 @@
              UserService.Delete(_id)
                  .then(function () {
                      // log user out
-
-                     $window.location.reload();
+                       initController();
                  })
                  .catch(function (error) {
                      FlashService.Error(error);
@@ -30,7 +30,7 @@
               ChatRoomService.Delete(_id)
                   .then(function () {
                       // log user out
-                      $window.location.reload();
+                        initController();
                   })
                   .catch(function (error) {
                       FlashService.Error(error);
@@ -45,6 +45,10 @@
             });
             UserService.GetAll().then(function (users){
               vm.allUsers = users;
+            });
+            ChatRoomService.getPublicAndPrivate().then(function(rooms){
+              vm.allChatRooms = rooms;
+              console.log(rooms);
             });
         }
       }

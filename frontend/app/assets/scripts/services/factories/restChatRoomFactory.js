@@ -14,6 +14,7 @@
         service.GetMessages = GetMessages;
         service.GetAllowedChatrooms = GetAllowedChatrooms;
         service.getById = getById;
+        service.getPublicAndPrivate = getPublicAndPrivate;
         // service.GetByUsername = GetByUsername;
         service.Create = Create;
         // service.Update = Update;
@@ -44,6 +45,9 @@
         function notifyCheck(chatRoomInfo) {
             return $http.post('/test/api/notifyCheck', chatRoomInfo).then(handleSuccess, handleError);
         }
+        function getPublicAndPrivate(){
+          return $http.get('/test/api/getPublicAndPrivate').then(handleSuccess, handleError);
+        }
         //
         // function GetById(_id) {
         //     return $http.get('/api/users/' + _id).then(handleSuccess, handleError);
@@ -62,7 +66,7 @@
         // }
 
         function Delete(_id) {
-             return $http.delete('test/api/' + _id).then(handleSuccess, handleError);
+             return $http.delete('/test/api/' + _id).then(handleSuccess, handleError);
          }
 
         // private functions

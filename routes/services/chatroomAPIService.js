@@ -336,7 +336,7 @@ function _delete(chatroomParam) {
     var deferred = Q.defer();
 
     db.chatrooms.remove(
-        { _id: mongo.ObjectId(chatroomParam._id) },
+        { _id: mongo.ObjectId(chatroomParam) },
         function (err) {
             if (err) deferred.reject(err);
 
