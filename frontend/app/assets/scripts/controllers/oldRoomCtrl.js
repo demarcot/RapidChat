@@ -5,6 +5,10 @@ angular.module('coreApp')
     $scope.setOldRoom = function(){
       localStorage.setItem("oldRoom", $state.params.chatRoomId);
     };
+    $scope.roomName = null;
+    $scope.setRoomName = function(name){
+      $scope.roomName = name;
+    };
 
 
 
@@ -63,7 +67,7 @@ angular.module('coreApp')
 
         }
         $scope.chatRooms.push({"allowedChatRooms":$scope.allowedChatRooms});
-        
+
 
         });
       });
