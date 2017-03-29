@@ -37,18 +37,22 @@ angular.module('coreApp')
 
 
 angular.module('coreApp')
-.controller('modalCtrlInv', function ($scope, $state,$stateParams, ChatRoomService, UserService, $window){
+.controller('modalCtrlInv', function ($scope, $state,$stateParams, chatSocket, ChatRoomService, UserService, $window){
 
 // we could make a new controller to keep things separate
 
- $scope.inviteUser = function(chatroomId, userId){
+ $scope.inviteUser = function(chatroomId, invitedUser, author, chatRoom){
    $scope.inviteUserInfo = {
-     'chat_id': chatroomId,
-     'user_id': userId
+     '_id': chatroomId,
+     'username': invitedUser
    };
    // call the invite user function
+   ChatRoomService.inviteUser(inviteUserInfo).then(function(bool){
+     console.log(bool);
+   });
 
    //call the invite socket.io function
+    chatSocket.emit('inviteUser', author, invitedUser, chatroomId, chatRoom);
  };
 
  $scope.removeUser = function(chatroomId, userId){

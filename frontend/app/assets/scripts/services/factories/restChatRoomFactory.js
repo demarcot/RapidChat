@@ -15,6 +15,7 @@
         service.GetAllowedChatrooms = GetAllowedChatrooms;
         service.getById = getById;
         service.getPublicAndPrivate = getPublicAndPrivate;
+        service.inviteUser = inviteUser;
         // service.GetByUsername = GetByUsername;
         service.Create = Create;
         // service.Update = Update;
@@ -47,6 +48,9 @@
         }
         function getPublicAndPrivate(){
           return $http.get('/test/api/getPublicAndPrivate').then(handleSuccess, handleError);
+        }
+        function inviteUser(inviteUserInfo) {
+          return $http.post('/test/api/inviteUser', inviteUserInfo).then(handleSuccess, handleError);
         }
         //
         // function GetById(_id) {

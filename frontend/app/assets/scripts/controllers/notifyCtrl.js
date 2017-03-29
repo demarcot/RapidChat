@@ -18,6 +18,9 @@ angular.module('coreApp')
       $scope.newNotifications = false;
     }
   };
+  $scope.acceptInvite = function(){
+    //call the move user to accepted list re route to new chatroom
+  };
 
   $scope.$on('socket:notify', function(event, data){
 
@@ -43,12 +46,15 @@ angular.module('coreApp')
 
         }
         else {
-          
+
         }
       });
 
     });
 
+  });
+  $scope.$on('socket:inviteUser', function(event, data){
+    console.log(data);
   });
 
 
