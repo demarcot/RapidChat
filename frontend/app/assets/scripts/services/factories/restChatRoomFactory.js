@@ -62,7 +62,7 @@
         // }
 
         function Delete(_id) {
-             return $http.delete('/api/users/' + _id).then(handleSuccess, handleError);
+             return $http.delete('test/api/' + _id).then(handleSuccess, handleError);
          }
 
         // private functions

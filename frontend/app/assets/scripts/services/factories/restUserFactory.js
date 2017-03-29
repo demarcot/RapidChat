@@ -43,6 +43,7 @@
         }
 
         function Delete(_id) {
+      
             return $http.delete('/api/users/' + _id).then(handleSuccess, handleError);
         }
 

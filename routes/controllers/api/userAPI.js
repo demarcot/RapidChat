@@ -101,11 +101,12 @@ function updateUser(req, res) {
 }
 
 function deleteUser(req, res) {
-    var userId = req.user.sub;
-    if (req.params._id !== userId) {
-        // can only delete own account
-        return res.status(401).send('You can only delete your own account');
-    }
+    var userId = req.params._id;
+  
+    // if (req.params._id !== userId) {
+    //     // can only delete own account
+    //     return res.status(401).send('You can only delete your own accountbe an admin to delete an account');
+    // }
 
     userService.delete(userId)
         .then(function () {
