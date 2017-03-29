@@ -10,6 +10,7 @@ var service = {};
 
 service.getAll = getAll;
 service.getAllowedChatrooms = getAllowedChatrooms;
+service.getPublicAndPrivate = getPublicAndPrivate;
 service.getById = getById;
 service.notifyCheck = notifyCheck;
 service.create = create;
@@ -87,6 +88,25 @@ function getAllowedChatrooms(chatroomParam)
 		});
 
 	return deferred.promise;
+}
+
+function getPublicAndPrivate()
+{
+    var deferred = Q.defer();
+
+    db.chatrooms.find({"direct": false}, {"name": 1}, function (err, chatrooms)
+        {
+            if(err) deferred.reject(err);
+
+            if(chatrooms)
+            {
+                deferred.resolve(chatrooms);
+            }
+            else{
+                deferred.resolve();
+            }
+        });
+    return deferred.promise;
 }
 
 function notifyCheck(chatroomParam)

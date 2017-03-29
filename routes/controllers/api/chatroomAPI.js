@@ -6,6 +6,7 @@ var chatroomService = require('routes/services/chatroomAPIService');
 // routes
 router.get('/getAllChatrooms', getAllChatrooms);
 router.post('/getAllowedChatrooms', getAllowedChatrooms);
+router.get('/getPublicAndPrivate', getPublicAndPrivate);
 router.post('/notifyCheck', notifyCheck);
 router.post('/getById', getById);
 router.post('/createChatroom', createChatroom);
@@ -75,6 +76,22 @@ function getAllowedChatrooms(req, res)
 
 }
 
+function getPublicAndPrivate(req, res)
+{
+    chatroomService.getPublicAndPrivate()
+    .then(function (chatrooms)
+    {
+        if(chatrooms)
+            res.send(chatrooms);
+        else
+            res.sendStatus(404);
+    })
+    .catch(function(err)
+    {
+        res.status(400).send(err);
+    });
+}
+
 function notifyCheck(req, res)
 {
 	var chatroomParam = {"chatroomId": req.body._id, "username": req.body.username};
@@ -109,7 +126,7 @@ function createChatroom(req, res)
 
 function deleteChatroom(req, res)
 {
-	var chatroomParam = {'_id': req.body._id};
+	var chatroomParam = req.params._id;
 
     chatroomService.delete(chatroomParam)
         .then(function () {
@@ -171,7 +188,7 @@ function inviteUser(req, res)
 function moveToAccepted(req, res)
 {
 	var chatroomParam = {"_id": req.body._id, "username": req.body.username};
-	
+
 	chatroomService.moveToAccepted(chatroomParam)
 	.then(function (ret)
 	{
