@@ -149,7 +149,7 @@
                 </div>
                 <div class="modal-footer footer-style" ng-style="sideStyle">
                   <button type="button" class="btn btn-default alt2button-style" data-dismiss="modal">Close </button>
-                  <button type="button" class="btn btn-primary altbutton-style" ng-click="createChatroom(username.username)" ng-class="sideStyle" ng-disabled="chatRoomName == undefined || chatRoomNameLength === 0" >Create</button>
+                  <button type="button" class="btn btn-primary altbutton-style" ng-click="createChatroom(username.username)" ng-class="sideStyle" ng-disabled="chatRoomName == undefined || chatRoomNameLength === 0" data-dismiss="modal">Create</button>
                 </div>
               </div>
             </div>
@@ -164,10 +164,15 @@
                 <h4 class="modal-title" id="myModalLabel">{{roomName}}: Edit Users</h4>
             </div>
             <div class="modal-body body-style">
-              <form class="form-group" ng-submit="" method="post">
+              <!-- <form class="form-group" ng-submit="" method="post">
 
 
-              </form>
+              </form> -->
+              <div ng-repeat="users in allUsers">
+                {{users.username}}
+                <button type="button" name="button" class="btn btn-xs btn-success">+</button>
+                <button type="button" name="button" class="btn btn-xs btn-danger">-</button>
+              </div>
             </div>
             <div class="modal-footer footer-style" ng-style="sideStyle">
               <button type="button" class="btn btn-default alt2button-style" data-dismiss="modal">Close </button>

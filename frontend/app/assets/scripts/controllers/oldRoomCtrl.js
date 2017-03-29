@@ -1,6 +1,8 @@
 angular.module('coreApp')
 .controller('oldRoomCtrl', function ($scope, $state,$stateParams, ChatRoomService, UserService, $window){
-  $scope.chatRooms = [];
+  // $scope.chatRooms = [];
+  // $scope.test = function(){console.log("hello")};
+
 
     $scope.setOldRoom = function(){
       localStorage.setItem("oldRoom", $state.params.chatRoomId);
@@ -35,6 +37,8 @@ angular.module('coreApp')
     //This should grab all current direct messages
 
   $scope.callApi = function() {
+
+      $scope.chatRooms = [];
       UserService.GetAll().then(function(user){
         $scope.allUsers = user;
       });
