@@ -5,6 +5,9 @@ angular.module('coreApp')
   $scope.notifications = [];
   $scope.readNotifications = true;
   $scope.newNotifications = false;
+  $scope.clearNotifications = function(){
+    $scope.notifications = [];
+  };
   $scope.read = function(){
     if ($scope.readNotifications===true) {
 
@@ -45,16 +48,21 @@ angular.module('coreApp')
           )
 
         }
-        else {
 
-        }
       });
 
     });
 
   });
+
   $scope.$on('socket:inviteUser', function(event, data){
-    console.log(data);
+    $scope.invite = {
+      'message': data.payload,
+      'source': data.source,
+      '_id': data._id
+    };
+    $scope.invites.push($scope.invite);
+
   });
 
 
