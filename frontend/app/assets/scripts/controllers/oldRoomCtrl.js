@@ -8,8 +8,9 @@ angular.module('coreApp')
       localStorage.setItem("oldRoom", $state.params.chatRoomId);
     };
     $scope.roomName = null;
-    $scope.setRoomName = function(name){
+    $scope.setRoomName = function(name, _id){
       $scope.roomName = name;
+      $scope.roomId = _id;
     };
 
 

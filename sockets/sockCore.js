@@ -5,7 +5,7 @@ module.exports = function (io) {
 	  socket.join("updateRoom");
 
 
-    socket.on("inviteUser", function(author, invitedUser, chatroom, chatroomId){
+    socket.on("inviteUser", function(author, invitedUser, chatroomId, chatroom){
       io.sockets.to("updateRoom").emit("inviteUser", {
 
         payload: author +" Invited you to: " + chatroom,
@@ -29,14 +29,7 @@ module.exports = function (io) {
     socket.on("message", function(from, msg, chatRoom, name){
       //On message send, broadcast to all users that this chatroom has been updated. Frontend logic for who should update what.
       //TODO(Tom, Mike): send the hashed name of the chatroom for the clients to compare to so we don't leak private chatroom names
-      // socket.on("notify", function(author, chatroom, chatroomId){
-      //   io.sockets.to("updateRoom").emit("notify", {
-      //
-      //     payload: author +" sent a message to: " + chatroom,
-      //     _id: chatroomId,
-      //     source: "Server"
-      //   });
-      // });
+
 
 		  io.sockets.to("updateRoom").emit("notify", {
         _id:chatRoom,
