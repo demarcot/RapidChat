@@ -39,12 +39,8 @@ angular.module('coreApp')
 angular.module('coreApp')
 .controller('modalCtrlInv', function ($scope, $state,$stateParams, chatSocket, ChatRoomService, UserService, $window){
 
-// we could make a new controller to keep things separate
-$scope.initRoom = function(roomId){
-  //check pending users
-  //check accpeted users
-  // list rest of users
-};
+
+
 
  $scope.inviteUser = function(chatroomId, invitedUser, author, chatRoom){
    $scope.inviteUserInfo = {

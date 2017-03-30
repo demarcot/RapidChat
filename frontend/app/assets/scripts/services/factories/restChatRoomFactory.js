@@ -19,6 +19,7 @@
         // service.GetByUsername = GetByUsername;
         service.Create = Create;
         // service.Update = Update;
+        service.getUsers = getUsers;
         service.Delete = Delete;
         service.notifyCheck = notifyCheck;
 
@@ -51,6 +52,9 @@
         }
         function inviteUser(inviteUserInfo) {
           return $http.post('/test/api/inviteUser', inviteUserInfo).then(handleSuccess, handleError);
+        }
+        function getUsers(id){
+          return $http.post('/test/api/getUsers', id).then(handleSuccess, handleError);
         }
         //
         // function GetById(_id) {

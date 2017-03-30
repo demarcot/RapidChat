@@ -14,8 +14,8 @@ router.delete('/:_id', deleteChatroom);
 router.post('/getMessages', getMessages);
 router.post('/getUsers', getUsers);
 router.post('/insertMessage', insertMessage);
-router.post('moveToAccepted', moveToAccepted);
-router.post('removeFromAccepted', removeFromAccepted);
+router.post('/moveToAccepted', moveToAccepted);
+router.post('/removeFromAccepted', removeFromAccepted);
 router.post('/inviteUser', inviteUser);
 
 module.exports = router;
@@ -160,7 +160,7 @@ function getMessages(req, res)
 function getUsers(req, res)
 {
 	var chatroomParam = {"_id": req.body._id};
-	
+
 	chatroomService.getUsers(chatroomParam)
 	.then(function (users)
 	{

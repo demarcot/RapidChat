@@ -56,6 +56,17 @@ angular.module('coreApp')
   });
 }
   $scope.inviteCheck();
+  // we could make a new controller to keep things separate
+  $scope.initRoom = function(roomId){
+    //check pending users
+    //check accpeted users
+    $scope.checkRoom = {'_id':roomId};
+    ChatRoomService.getUsers($scope.checkRoom).then(function(roomInfo){
+      console.log(roomInfo);
+    });
+
+    // list rest of users
+  };
 
   $scope.$on('socket:inviteUser', function(event, data){
     //check if user is in pending
