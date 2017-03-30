@@ -61,6 +61,14 @@
 .pull-right{
   float: right;
 }
+.invite-button{
+  position: relative;
+  right: 0px;
+}
+.modal-scroll{
+  overflow-y: auto;
+  height: 300px;
+}
 
 /*Notification*/
 .notify-style{
@@ -490,7 +498,6 @@
   .com {
     font-size: 32px;
   }
-  .input-com {}
   .nav>li>a {
     padding: 10px 0px 10px 15px;
     color: #E9E9E9;

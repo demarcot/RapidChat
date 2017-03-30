@@ -175,14 +175,35 @@
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
               <h4 class="modal-title" id="myModalLabel">{{roomName}}: Edit Users</h4>
           </div>
-          <div class="modal-body body-style">
+          <div class="modal-body body-style modal-scroll">
             <!-- <form class="form-group" ng-submit="" method="post">
             </form> -->
-            <div ng-repeat="users in allUsers">
-              {{users.username}}
-              <button type="button" name="button" class="btn btn-xs btn-success" ng-click="inviteUser(roomId, users.username, username.username, roomName)">+</button>
-              <button type="button" name="button" class="btn btn-xs btn-danger">-</button>
-            </div>
+            <ul class="no-bullet">
+              <li>
+                <h4>Accepted Users</h4>
+                <div ng-repeat="users in allUsers">
+                  {{users.username}}
+                  <!-- <span class="pull-right"> -->
+                    <button type="button" name="button" class="btn btn-xs btn-danger">-</button>
+                  <!-- </span> -->
+                </div>
+              </li>
+              <li>
+                <h4>Pending Users</h4>
+                <div ng-repeat="users in allUsers">
+                  {{users.username}}
+                  <button type="button" name="button" class="btn btn-xs btn-success" ng-click="inviteUser(roomId, users.username, username.username, roomName)">+</button>
+                  <button type="button" name="button" class="btn btn-xs btn-danger">-</button>
+                </div>
+              </li>
+              <li>
+                <h4>Other Users</h4>
+                <div ng-repeat="users in allUsers">
+                  {{users.username}}
+                  <button type="button" name="button" class="btn btn-xs btn-success" ng-click="inviteUser(roomId, users.username, username.username, roomName)">+</button>
+                </div>
+              </li>
+            </ul>
           </div>
           <div class="modal-footer footer-style" ng-style="sideStyle">
             <button type="button" class="btn btn-default alt2button-style" data-dismiss="modal">Close </button>
