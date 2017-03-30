@@ -71,7 +71,7 @@
                 </li>
                 <ul id="chatrooms" class="in">
                   <li class="left-buffer" ng-repeat="room in chatRooms[0].publicChatRooms track by $index" ui-sref="chatRoomById({chatRoomId: room._id})" ng-click="setOldRoom()" ui-sref-active="active"><a>{{room.name}}</a></li>
-                  <li class="left-buffer" ng-repeat="room in chatRooms[1].allowedChatRooms track by $index" ui-sref="chatRoomById({chatRoomId: room._id})" ng-click="setOldRoom()" ng-show="room.direct === false" ui-sref-active="active"><a>{{room.name}}</a><i class="fa fa-lock pull-right right-buffer"></i><button class="btn btn-success btn-xs pull-right" data-toggle="modal" data-target="#invite" ng-click="setRoomName(room.name)">+</button></li>
+                  <li class="left-buffer" ng-repeat="room in chatRooms[1].allowedChatRooms track by $index" ui-sref="chatRoomById({chatRoomId: room._id})" ng-click="setOldRoom()" ng-show="room.direct === false" ui-sref-active="active"><a>{{room.name}}</a><i class="fa fa-lock pull-right right-buffer"></i><button class="btn btn-success btn-xs pull-right" data-toggle="modal" data-target="#invite" ng-click="setRoomName(room.name, room._id)">+</button></li>
                   <li data-toggle="modal" data-target="#createRoom">Create Room</li>
                 </ul>
                 <li data-toggle="collapse" data-target="#direct" class="not(collapsed)">
@@ -112,10 +112,17 @@
                       </div> -->
             </ul>
             <ul class="nav navbar-nav navbar-right">
-              <li ng-style="topStyle">
-                <a class=""><i class="fa fa-envelope fa-lg"></i></a>
+              <li>
+                <a class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope fa-lg"></i></a>
+
+                  <ul class="dropdown-menu notify-style" ng-style="topStyle" ng-show="newInvites">
+                    <li ng-repeat="invite in invites track by $index" ui-sref="chatRoomById({chatRoomId: invite._id})" ng-click="setOldRoom()" ui-sref-active="active"><a>{{invite.message}} Click here to accept!</a></li>
+                    <li class="divider"></li>
+                    <li id="note-footer" class="notify-button">Clear invites</li>
+                  </ul>
+
               </li>
-              <li ng-click="read()">
+              <li>
                 <a class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell fa-lg"></i></a>
                 <ul class="dropdown-menu notify-style" ng-style="topStyle" ng-show="newNotifications">
                   <li ng-repeat="note in notifications track by $index" ui-sref="chatRoomById({chatRoomId: note._id})" ng-click="setOldRoom()" ui-sref-active="active"><a>{{note.author}} in room {{note.chatroom}}</a></li>
@@ -149,9 +156,6 @@
           <div class="modal-body body-style">
             <form class="form-group" ng-submit="" method="post">
               <input type="text" name="Chatroom Name" value="" class="form-control input-chatroom" placeholder="Name the chat room here." ng-model="chatRoomName" ng-minlength="5" ng-maxlength="12" ng-required>
-              <!-- <div class="private-check">
-              <input type="checkbox"> Private</input>
-              </div> -->
               <input type="checkbox" name="isPrivate" ng-model="isPrivate">Click here for Private chatboxs {{isPrivate}}</input>
             </form>
           </div>
@@ -176,7 +180,7 @@
             </form> -->
             <div ng-repeat="users in allUsers">
               {{users.username}}
-              <button type="button" name="button" class="btn btn-xs btn-success" ng-click="inviteUser()">+</button>
+              <button type="button" name="button" class="btn btn-xs btn-success" ng-click="inviteUser(roomId, users.username, username.username, roomName)">+</button>
               <button type="button" name="button" class="btn btn-xs btn-danger">-</button>
             </div>
           </div>
