@@ -16,6 +16,7 @@ service.notifyCheck = notifyCheck;
 service.create = create;
 service.delete = _delete;
 service.getMessages = getMessages;
+service.getUsers = getUsers;
 service.insertMessage = insertMessage;
 service.inviteUser = inviteUser;
 service.moveToAccepted = moveToAccepted;
@@ -307,6 +308,23 @@ function getMessages(chatroomParam)
     );
     return deferred.promise;
     //db.yourcollectionname.find({$query: {}, $orderby: {$natural : -1}}).limit(yournumber)  <-- something like this to get last N elements?
+}
+
+function getUsers(chatroomParam)
+{
+	var deferred = Q.defer();
+	
+	db.chatrooms.findOne({"_id": chatroomParam._id}, {"acceptedUsers": 1, "pendingUsers": 1}, function (err, chatroom)
+		{
+			if (err) deferred.reject(err);
+			
+			if (chatroom)
+				deferred.resolve(chatroom);
+			else
+				deferred.resolve();
+		});
+	
+	return deferred.promise;
 }
 /*
 	Invite User(s)
