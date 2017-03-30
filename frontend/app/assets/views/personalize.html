@@ -20,21 +20,46 @@
         </div>
         <div class="form-group">
           <label for="topBarColor">Top Bar Color</label>
-          <input type="color" id="topBarColor" class="form-control input-message" ng-model="vm.user.colors.topBarColor"/>
+          <br />
+          <div class="input-group">
+            <input type="color" id="topBarColor" class="form-control input-message color-input" ng-model="vm.user.colors.topBarColor"/>
+            <span class="input-group-btn">
+              <button class="btn" target="topBarColor" onclick="topBarColor.value = '#F98F45'" ng-click="vm.user.colors.topBarColor = '#F98F45'">Default</button>
+            </span>
+          </div>
         </div>
         <div class="form-group">
           <label for="topBarHover">Top Bar Hover</label>
-          <input type="color" id="topBarHover" class="form-control input-message" ng-model="vm.user.colors.topBarHover"/>
+          <br />
+          <div class="input-group">
+            <input type="color" id="topBarHover" class="form-control input-message color-input" ng-model="vm.user.colors.topBarHover"/>
+            <span class="input-group-btn">
+              <button class="btn" target="topBarHover" onclick="topBarHover.value = '#C4421A'" ng-click="vm.user.colors.topBarHover = '#C4421A'">Default</button>
+            </span>
+          </div>
         </div>
         <div class="form-group">
           <label for="sideBarColor">Side Bar Color</label>
-          <input type="color" id="sideBarColor" class="form-control input-message" ng-model="vm.user.colors.sideBarColor"/>
+          <br />
+          <div class="input-group">
+            <input type="color" id="sideBarColor" class="form-control input-message color-input" ng-model="vm.user.colors.sideBarColor"/>
+            <span class="input-group-btn">
+              <button class="btn" target="sideBarColor" onclick="sideBarColor.value = '#0FCDA1'" ng-click="vm.user.colors.sideBarColor = '#0FCDA1'">Default</button>
+            </span>
+          </div>
         </div>
         <div class="form-group">
           <label for="sideBarHover">Side Bar Hover</label>
-          <input type="color" id="sideBarHover" class="form-control input-message" ng-model="vm.user.colors.sideBarHover"/>
+          <br />
+          <div class="input-group">
+            <input type="color" id="sideBarHover" class="form-control input-message color-input" ng-model="vm.user.colors.sideBarHover"/>
+            <span class="input-group-btn">
+              <button class="btn" target="sideBarHover" onclick="sideBarHover.value = '#12908E'" ng-click="vm.user.colors.sideBarHover = '#12908E'">Default</button>
+            </span>
+          </div>
         </div>
         <div class="form-group">
+          <br />
           <center>
             <button class="btn btn-primary save-button" ng-click="vm.saveUser()">Save</button>
           </center>

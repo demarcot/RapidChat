@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="assets\bower_components\bootstrap\dist\css\bootstrap.min.css">
     <link rel="stylesheet" href="assets/styles/Master.css">
     <link rel="stylesheet" href="assets\imgs\font-awesome-4.7.0\css\font-awesome.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Jura">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8">
     <title>RapidChat</title>
@@ -31,6 +31,9 @@
         .navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:hover, .navbar-default .navbar-nav>.open>a:focus{
           background-color: {{topHover}};
         }
+        .nav .navbar-nav .navbar-right>li>a:hover{
+          background-color: {{topHover}};
+        }
         .dropdown-menu>li>a:hover{
           background-color: {{topHover}};
         }
@@ -38,8 +41,9 @@
           background-color: {{sideHover}};
         }
       </style>
+      <div ng-controller="notifyCtrl">
       <!-- Side Menu -->
-      <div class="nav-side-menu" ng-style="sideStyle">
+    <div class="nav-side-menu" ng-style="sideStyle">
         <div class="brand" ng-style="sideStyle">
           <!-- <img src="assets\imgs\Rapid_Chat_Logo.dwkMaLMO_K5Manr_DMiHLmHiQRY" class="logo-style"> -->
           Rapid Chat
@@ -67,7 +71,7 @@
                 </li>
                 <ul id="chatrooms" class="in">
                   <li class="left-buffer" ng-repeat="room in chatRooms[0].publicChatRooms track by $index" ui-sref="chatRoomById({chatRoomId: room._id})" ng-click="setOldRoom()" ui-sref-active="active"><a>{{room.name}}</a></li>
-                  <li class="left-buffer" ng-repeat="room in chatRooms[1].allowedChatRooms track by $index" ui-sref="chatRoomById({chatRoomId: room._id})" ng-click="setOldRoom()" ng-show="room.direct === false" ui-sref-active="active"><a>{{room.name}}</a><button class="btn btn-success btn-xs" data-toggle="modal" data-target="#invite" ng-click="setRoomName(room.name)">+</button><i class="fa fa-lock pull-right"></i></li>
+                  <li class="left-buffer" ng-repeat="room in chatRooms[1].allowedChatRooms track by $index" ui-sref="chatRoomById({chatRoomId: room._id})" ng-click="setOldRoom()" ng-show="room.direct === false" ui-sref-active="active"><a>{{room.name}}</a><i class="fa fa-lock pull-right right-buffer"></i><button class="btn btn-success btn-xs pull-right" data-toggle="modal" data-target="#invite" ng-click="setRoomName(room.name)">+</button></li>
                   <li data-toggle="modal" data-target="#createRoom">Create Room</li>
                 </ul>
                 <li data-toggle="collapse" data-target="#direct" class="not(collapsed)">
@@ -81,17 +85,18 @@
                 <li data-toggle="collapse" data-target="#options" class="hod">
                     <a><i class="fa fa-cogs fa-lg left-buffer"></i> Options <span class="arrow"></span></a>
                 </li>
-                <ul id="options">
+                <ul id="options" class="in">
                   <li class="hod" ng-class="{active: activeTab === 'dashboard'}"><a ui-sref="dashboard" ng-click="setOldRoom()"><i class="fa fa-home fa-lg left-buffer"></i>Dashboard</a></li>
                   <li class="hod" ng-class="{active: activeTab === 'personalize'}"><a ui-sref="personalize" ng-click="setOldRoom()"><i class="fa fa-user fa-lg left-buffer"></i>Account</a></li>
                   <li class="hod" ng-class="{active: activeTab === 'admin'}"><a ui-sref="admin" ng-click="setOldRoom()"><i class="fa fa-user fa-lg left-buffer"></i>Admin</a></li>
-                  <li class="hod right-buffer" ><a><i class="fa fa-bell fa-lg"></i>Notifications</a></li>
-                  <li class="hod right-buffer"><a href="/login" target="_self"><i class="fa fa-sign-out fa-lg"></i>Logout</a></li>
+                  <li class="hod" ><a><i class="fa fa-bell fa-lg"></i>Notifications</a></li>
+                  <li class="hod"><a href="/login" target="_self"><i class="fa fa-sign-out fa-lg"></i>Logout</a></li>
                 </ul>
             </ul>
         </div>
       </div>
-      <div class="container-fluid" id="main">
+
+    <div class="container-fluid" id="main">
         <div>
           <!-- Top Navigation Bar -->
           <nav class="navbar navbar-default hom" ng-style="topStyle">
@@ -107,7 +112,10 @@
                       </div> -->
             </ul>
             <ul class="nav navbar-nav navbar-right">
-              <li ng-controller="notifyCtrl" ng-click="read()">
+              <li ng-style="topStyle">
+                <a class=""><i class="fa fa-envelope fa-lg"></i></a>
+              </li>
+              <li ng-click="read()">
                 <a class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell fa-lg"></i></a>
                 <ul class="dropdown-menu notify-style" ng-style="topStyle" ng-show="newNotifications">
                   <li ng-repeat="note in notifications track by $index" ui-sref="chatRoomById({chatRoomId: note._id})" ng-click="setOldRoom()" ui-sref-active="active"><a>{{note.author}} in room {{note.chatroom}}</a></li>
@@ -132,54 +140,53 @@
 
     <!-- Create Chat Room Modal -->
     <div ng-controller="modalCtrl" class="modal fade" id="createRoom" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-header header-style" ng-style="topStyle">
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Create Chat Room</h4>
-                </div>
-                <div class="modal-body body-style">
-                  <form class="form-group" ng-submit="" method="post">
-                    <input type="text" name="Chatroom Name" value="" class="form-control input-chatroom" placeholder="Name the chat room here." ng-model="chatRoomName" ng-minlength="5" ng-maxlength="12" ng-required>
-                    <!-- <div class="private-check">
-                    <input type="checkbox"> Private</input>
-                    </div> -->
-                    <input type="checkbox" name="isPrivate" ng-model="isPrivate">Click here for Private chatboxs {{isPrivate}}</input>
-                  </form>
-                </div>
-                <div class="modal-footer footer-style" ng-style="sideStyle">
-                  <button type="button" class="btn btn-default alt2button-style" data-dismiss="modal">Close </button>
-                  <button type="button" class="btn btn-primary altbutton-style" ng-click="createChatroom(username.username)" ng-class="sideStyle" ng-disabled="chatRoomName == undefined || chatRoomNameLength === 0" data-dismiss="modal">Create</button>
-                </div>
-              </div>
-            </div>
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header header-style" ng-style="topStyle">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Create Chat Room</h4>
           </div>
-
-          <!-- NOTE: THis is second modal for invite and change users for private chat room -->
-          <div ng-controller="modalCtrlInv" class="modal fade" id="invite" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header header-style" ng-style="topStyle">
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">{{roomName}}: Edit Users</h4>
-            </div>
-            <div class="modal-body body-style">
-              <!-- <form class="form-group" ng-submit="" method="post">
-
-
-              </form> -->
-              <div ng-repeat="users in allUsers">
-                {{users.username}}
-                <button type="button" name="button" class="btn btn-xs btn-success">+</button>
-                <button type="button" name="button" class="btn btn-xs btn-danger">-</button>
-              </div>
-            </div>
-            <div class="modal-footer footer-style" ng-style="sideStyle">
-              <button type="button" class="btn btn-default alt2button-style" data-dismiss="modal">Close </button>
-            </div>
+          <div class="modal-body body-style">
+            <form class="form-group" ng-submit="" method="post">
+              <input type="text" name="Chatroom Name" value="" class="form-control input-chatroom" placeholder="Name the chat room here." ng-model="chatRoomName" ng-minlength="5" ng-maxlength="12" ng-required>
+              <!-- <div class="private-check">
+              <input type="checkbox"> Private</input>
+              </div> -->
+              <input type="checkbox" name="isPrivate" ng-model="isPrivate">Click here for Private chatboxs {{isPrivate}}</input>
+            </form>
+          </div>
+          <div class="modal-footer footer-style" ng-style="sideStyle">
+            <button type="button" class="btn btn-default alt2button-style" data-dismiss="modal">Close </button>
+            <button type="button" class="btn btn-primary altbutton-style" ng-click="createChatroom(username.username)" ng-class="sideStyle" ng-disabled="chatRoomName == undefined || chatRoomNameLength === 0" data-dismiss="modal">Create</button>
           </div>
         </div>
       </div>
+    </div>
+
+    <!-- NOTE: THis is second modal for invite and change users for private chat room -->
+    <div ng-controller="modalCtrlInv" class="modal fade" id="invite" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header header-style" ng-style="topStyle">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="myModalLabel">{{roomName}}: Edit Users</h4>
+          </div>
+          <div class="modal-body body-style">
+            <!-- <form class="form-group" ng-submit="" method="post">
+            </form> -->
+            <div ng-repeat="users in allUsers">
+              {{users.username}}
+              <button type="button" name="button" class="btn btn-xs btn-success" ng-click="inviteUser()">+</button>
+              <button type="button" name="button" class="btn btn-xs btn-danger">-</button>
+            </div>
+          </div>
+          <div class="modal-footer footer-style" ng-style="sideStyle">
+            <button type="button" class="btn btn-default alt2button-style" data-dismiss="modal">Close </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- External JS Dependancies -->
     <script src="assets/bower_components/jquery/dist/jquery.min.js" charset="utf-8"></script>
     <script src="assets/bower_components/bootstrap/dist/js/bootstrap.min.js" charset="utf-8"></script>

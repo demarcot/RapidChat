@@ -83,6 +83,7 @@
   width: 50%;
   align-items: center;
   left: 25%;
+  font-size: 16px;
 }
 .save-button{
   background-color: #DDDDDD;
@@ -129,7 +130,21 @@
 .input-message				 {
       background-color : #E9E9E9;
       color						 : #161616;
-      font-size: 16px;
+      font-size        : 16px;
+}
+
+/*HTML5 Color Input*/
+.color-input{
+  width: 80%;
+  float: left;
+}
+.color-reset{
+  width: 20%;
+  height: 100%;
+  float: right;
+  position: relative;
+  top: 3px;
+  left: 5px;
 }
 
 /*Message Send Button Color*/
@@ -326,7 +341,7 @@
 /*Side Navigation Bar*/
 .nav-side-menu {
   overflow: auto;
-  font-family: 'Jura', sans-serif;
+  font-family: 'Roboto Condensed', sans-serif;
   font-size: 15px;
   font-weight: 200;
   background-color: #0FCDA1;
@@ -462,8 +477,12 @@
   .brand {
     text-align: left !important;
     font-size: 22px;
-    padding-left: 20px;
+    padding-left: 10px;
     line-height: 50px !important;
+  }
+  .chatroom-name{
+    width: 50%;
+    text-align: center;
   }
   .hom {
     display: none;
@@ -500,9 +519,13 @@
     height: auto;
     border-left: 0px;
   }
-  .brand{
-    text-align: center !important;
-    padding-left: 0px;
+  .scroll-admin{
+      width: 100%;
+      position: relative;
+  }
+  .admin-style{
+    width: 100%;
+    position: relative;
   }
 }
 /*Desktop Adjustments*/
@@ -535,12 +558,12 @@ body {
   padding: 0px;
   background-color : #E9E9E9;
   color						 : #161616;
-  font-family: 'Jura', sans-serif;
+  font-family: 'Roboto Condensed', sans-serif;
 }
 html {
   height: 100%;
   font-size: 16px;
-  font-family: 'Jura', sans-serif;
+  font-family: 'Roboto Condensed', sans-serif;
 }
 a {
   color: #12908E;
