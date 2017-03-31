@@ -40,6 +40,12 @@
         .altbutton-style:hover{
           background-color: {{sideHover}};
         }
+        .red{
+          background-color: red;
+        }
+        .blue{
+          background-color: blue;
+        }
       </style>
       <div ng-controller="notifyCtrl">
       <!-- Side Menu -->
@@ -122,7 +128,7 @@
                   </ul>
 
               </li>
-              <li>
+              <li data-ng-class="{'red':newNotifications}">
                 <a class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell fa-lg"></i></a>
                 <ul class="dropdown-menu notify-style" ng-style="topStyle" ng-show="newNotifications">
                   <li ng-repeat="note in notifications track by $index" ui-sref="chatRoomById({chatRoomId: note._id})" ng-click="setOldRoom()" ui-sref-active="active"><a>{{note.author}} in room {{note.chatroom}}</a></li>
