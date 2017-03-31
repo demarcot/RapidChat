@@ -42,9 +42,9 @@ angular.module('coreApp')
 
  $scope.removeUser = function(username, _id) {
    $scope.removeInfo = {'username':username, '_id': _id};
-   ChatRoomService.removeFromAccepted($scope.removeInfo).then(bool){
+   ChatRoomService.removeFromAccepted($scope.removeInfo).then(function(bool){
      console.log(bool);
-   }
+   });
 
  };
 

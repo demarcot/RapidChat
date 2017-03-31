@@ -127,7 +127,7 @@
                 <ul class="dropdown-menu notify-style" ng-style="topStyle" ng-show="newNotifications">
                   <li ng-repeat="note in notifications track by $index" ui-sref="chatRoomById({chatRoomId: note._id})" ng-click="setOldRoom()" ui-sref-active="active"><a>{{note.author}} in room {{note.chatroom}}</a></li>
                   <li class="divider"></li>
-                  <li id="note-footer" class="notify-button">Clear Notifications</li>
+                  <li id="note-footer" class="notify-button" ng-click="clearNotifications()">Clear Notifications</li>
                 </ul>
               </li>
               <li class="right-buffer"><a href="/login" target="_self"><i class="fa fa-sign-out fa-lg"></i>Logout</a></li>
