@@ -15,7 +15,7 @@ angular.module('coreApp')
   $scope.acceptInvite = function(username, _id){
     //call the move user to accepted list re route to new chatroom
     $scope.moveInfo = {'_id':_id, 'username': username};
-    ChatRoomService.moveToAccepted().then(function(bool){
+    ChatRoomService.moveToAccepted($scope.moveInfo).then(function(bool){
 
     });
   };
@@ -70,12 +70,9 @@ angular.module('coreApp')
 
       $scope.acceptedUsers = roomInfo.acceptedUsers;
       $scope.pendingUsers = roomInfo.pendingUsers;
-      console.log($scope.acceptedUsers);
-      console.log($scope.pendingUsers);
       UserService.GetAll().then(function(users){
 
         for (var i = 0; i < users.length; i++) {
-            console.log(users[i].username === $scope.acceptedUsers[0]);
             if(users[i].username === $scope.acceptedUsers[0] || users[i].username === $scope.pendingUsers ){
               users.splice(i, 1);
             }

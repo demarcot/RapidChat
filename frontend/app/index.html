@@ -122,7 +122,7 @@
                 <a class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope fa-lg"></i></a>
 
                   <ul class="dropdown-menu notify-style" ng-style="topStyle" ng-show="newInvites">
-                    <li ng-repeat="invite in invites track by $index" ui-sref="chatRoomById({chatRoomId: invite._id})" ng-click="setOldRoom();acceptInvite(vm.user.username, invite._id)" ui-sref-active="active"><a>{{invite.message}} Click here to accept!</a></li>
+                    <li ng-repeat="invite in invites track by $index" ui-sref="chatRoomById({chatRoomId: invite._id})" ng-click="setOldRoom();acceptInvite(username.username, invite._id)" ui-sref-active="active"><a>{{invite.message}} Click here to accept!</a></li>
                     <li class="divider"></li>
                     <li id="note-footer" class="notify-button">Clear invites</li>
                   </ul>
