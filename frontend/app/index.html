@@ -116,7 +116,7 @@
                 <a class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope fa-lg"></i></a>
 
                   <ul class="dropdown-menu notify-style" ng-style="topStyle" ng-show="newInvites">
-                    <li ng-repeat="invite in invites track by $index" ui-sref="chatRoomById({chatRoomId: invite._id})" ng-click="setOldRoom()" ui-sref-active="active"><a>{{invite.message}} Click here to accept!</a></li>
+                    <li ng-repeat="invite in invites track by $index" ui-sref="chatRoomById({chatRoomId: invite._id})" ng-click="setOldRoom();acceptInvite(vm.user.username, invite._id)" ui-sref-active="active"><a>{{invite.message}} Click here to accept!</a></li>
                     <li class="divider"></li>
                     <li id="note-footer" class="notify-button">Clear invites</li>
                   </ul>
@@ -181,8 +181,8 @@
             <ul class="no-bullet">
               <li>
                 <h4>Accepted Users</h4>
-                <div ng-repeat="users in allUsers">
-                  {{users.username}}
+                <div ng-repeat="users in acceptedUsers">
+                  {{users}}
                   <!-- <span class="pull-right"> -->
                     <button type="button" name="button" class="btn btn-xs btn-danger">-</button>
                   <!-- </span> -->
@@ -190,13 +190,13 @@
               </li>
               <li>
                 <h4>Pending Users</h4>
-                <div ng-repeat="users in allUsers">
+                <div ng-repeat="users in pendingUsers">
                   {{users.username}}
                 </div>
               </li>
               <li>
                 <h4>Other Users</h4>
-                <div ng-repeat="users in allUsers">
+                <div ng-repeat="users in restOfUsers">
                   {{users.username}}
                   <button type="button" name="button" class="btn btn-xs btn-success" ng-click="inviteUser(roomId, users.username, username.username, roomName)">+</button>
                 </div>
