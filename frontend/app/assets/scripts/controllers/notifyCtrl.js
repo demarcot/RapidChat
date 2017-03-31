@@ -12,8 +12,12 @@ angular.module('coreApp')
     $scope.newNotifications = false;
   };
 
-  $scope.acceptInvite = function(){
+  $scope.acceptInvite = function(username, _id){
     //call the move user to accepted list re route to new chatroom
+    $scope.moveInfo = {'_id':_id, 'username': username};
+    ChatRoomService.moveToAccepted().then(function(bool){
+
+    });
   };
 
   $scope.$on('socket:notify', function(event, data){
@@ -61,8 +65,25 @@ angular.module('coreApp')
     //check pending users
     //check accpeted users
     $scope.checkRoom = {'_id':roomId};
+
     ChatRoomService.getUsers($scope.checkRoom).then(function(roomInfo){
-      console.log(roomInfo);
+
+      $scope.acceptedUsers = roomInfo.acceptedUsers;
+      $scope.pendingUsers = roomInfo.pendingUsers;
+      console.log($scope.acceptedUsers);
+      console.log($scope.pendingUsers);
+      UserService.GetAll().then(function(users){
+
+        for (var i = 0; i < users.length; i++) {
+            console.log(users[i].username === $scope.acceptedUsers[0]);
+            if(users[i].username === $scope.acceptedUsers[0] || users[i].username === $scope.pendingUsers ){
+              users.splice(i, 1);
+            }
+        }
+        $scope.restOfUsers = users;
+
+
+      });
     });
 
     // list rest of users

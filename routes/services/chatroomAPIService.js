@@ -313,17 +313,17 @@ function getMessages(chatroomParam)
 function getUsers(chatroomParam)
 {
 	var deferred = Q.defer();
-	
-	db.chatrooms.findOne({"_id": chatroomParam._id}, {"acceptedUsers": 1, "pendingUsers": 1}, function (err, chatroom)
+
+	db.chatrooms.findOne({"_id": mongo.ObjectId(chatroomParam._id)}, {"acceptedUsers": 1, "pendingUsers": 1}, function (err, chatroom)
 		{
 			if (err) deferred.reject(err);
-			
+
 			if (chatroom)
 				deferred.resolve(chatroom);
 			else
 				deferred.resolve();
 		});
-	
+
 	return deferred.promise;
 }
 /*
