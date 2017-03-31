@@ -70,15 +70,18 @@ angular.module('coreApp')
 
       $scope.acceptedUsers = roomInfo.acceptedUsers;
       $scope.pendingUsers = roomInfo.pendingUsers;
+      console.log(roomInfo);
       UserService.GetAll().then(function(users){
 
         for (var i = 0; i < users.length; i++) {
-            if(users[i].username === $scope.acceptedUsers[0] || users[i].username === $scope.pendingUsers ){
-              users.splice(i, 1);
+
+            if($scope.acceptedUsers.includes(users[i].username) || $scope.pendingUsers.includes(users[i].username) ){
+              console.log(users.splice(i, 1));
+              console.log("1", ($scope.acceptedUsers.includes(users[i].username) || $scope.pendingUsers.includes(users[i].username)));
             }
         }
         $scope.restOfUsers = users;
-
+        console.log("2", users);
 
       });
     });
@@ -99,6 +102,5 @@ angular.module('coreApp')
 
 
   });
-
 
 });
