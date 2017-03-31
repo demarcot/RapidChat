@@ -154,17 +154,19 @@ function moveToAccepted(chatroomParam)
 {
 	var deferred = Q.defer();
 	var newPendingUsers;
-	db.chatrooms.findOne({"_id": chatroomParam._id, "pendingUsers": chatroomParam.username}, {"pendingUsers":1, "acceptedUsers":1}, function(err, doc)
+	db.chatrooms.findOne({"_id": mongo.ObjectId(chatroomParam._id), "pendingUsers": chatroomParam.username}, {"pendingUsers":1, "acceptedUsers":1}, function(err, doc)
 		{
 			if(err) deferred.reject(err);
 
-			if(doc.length > 0)
+			if(doc)
 			{
-				newPendingUsers = doc.pendingUsers.splice(indexOf(chatroomParam.username), 1);
-				db.chatrooms.update({"_id": chatroomParam._id}, {"pendingUsers": newPendingUsers, $push: {'acceptedUsers': chatroomParam.username}}, function(err, docs)
+				doc.pendingUsers.splice(doc.pendingUsers.indexOf(chatroomParam.username), 1);
+				newPendingUsers = doc.pendingUsers;
+				
+				db.chatrooms.update({"_id": mongo.ObjectId(chatroomParam._id)}, {$push: {'acceptedUsers': chatroomParam.username}, $set: {"pendingUsers": newPendingUsers}}, function (err, doc)
 					{
 						if(err) deferred.reject(err);
-
+						
 						deferred.resolve(true);
 					});
 			}
@@ -218,13 +220,11 @@ function removeFromAccepted(chatroomParam)
 function create(chatroomParam) {
     var deferred = Q.defer();
     var directCheck;
-      console.log("chat param 1", chatroomParam);
   db.chatrooms.find({"direct":true, "acceptedUsers": { "$size" : 2, "$all": chatroomParam.acceptedUsers }}, {"_id":1}, function(err, chatrooms)
     {
       if (err) deferred.reject(err);
       if(chatrooms.length > 0 && chatroomParam.direct == true)
       {
-        console.log("I SHOHULDNT BE HERE");
         directCheck = chatrooms[0]._id;
         if(directCheck){
           deferred.resolve(directCheck);
@@ -232,8 +232,6 @@ function create(chatroomParam) {
         }
       }
         else  {
-          console.log("chat param", chatroomParam);
-          console.log("GOOD THINGS HAPPENING");
         db.chatrooms.insert(
           {
             'name': chatroomParam.name,
