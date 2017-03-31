@@ -16,6 +16,8 @@
         service.getById = getById;
         service.getPublicAndPrivate = getPublicAndPrivate;
         service.inviteUser = inviteUser;
+        service.moveToAccepted = moveToAccepted;
+        service.removeFromAccepted = removeFromAccepted;
         // service.GetByUsername = GetByUsername;
         service.Create = Create;
         // service.Update = Update;
@@ -31,6 +33,12 @@
         //
         function GetAll() {
             return $http.get('/test/api/getAllChatrooms').then(handleSuccess, handleError);
+        }
+        function moveToAccepted(info) {
+          return $http.post('/test/api/moveToAccepted', info).then(handleSuccess, handleError);
+        }
+        function removeFromAccepted(){
+          return $http.post('/test/api/removeFromAccepted', info).then(handleSuccess, handleError);
         }
         function GetAllowedChatrooms(username) {
             return $http.post('/test/api/getAllowedChatrooms', username).then(handleSuccess, handleError);

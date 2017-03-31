@@ -184,7 +184,7 @@
                 <div ng-repeat="users in acceptedUsers">
                   {{users}}
                   <!-- <span class="pull-right"> -->
-                    <button type="button" name="button" class="btn btn-xs btn-danger">-</button>
+                    <button type="button" name="button" class="btn btn-xs btn-danger" ng-click="removeUser(users, roomId)">-</button>
                   <!-- </span> -->
                 </div>
               </li>
