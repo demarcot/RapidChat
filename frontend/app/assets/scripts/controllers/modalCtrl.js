@@ -54,7 +54,7 @@ angular.module('coreApp')
      '_id': chatroomId,
      'username': invitedUser
    };
-   
+
    // call the invite user function
    ChatRoomService.inviteUser($scope.inviteUserInfo).then(function(bool){
      console.log(bool);
@@ -64,13 +64,15 @@ angular.module('coreApp')
     chatSocket.emit('inviteUser', author, invitedUser, chatroomId, chatRoom);
  };
 
- $scope.removeUser = function(chatroomId, userId){
+ $scope.removeUser = function(chatroomId, username){
    $scope.removeUserInfo = {
-     'chat_id': chatroomId,
-     'user_id': userId
+     '_id': chatroomId,
+     'username': username
    };
    // call the invite user function
-
+   ChatRoomService.removeFromAccepted($scope.removeUserInfo).then(function(bool){
+     console.log(bool);
+   })
    //call the invite socket.io function
  };
 

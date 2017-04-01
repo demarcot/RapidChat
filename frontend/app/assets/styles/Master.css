@@ -362,7 +362,7 @@
 }
 .nav-side-menu .brand {
   background-color: #0FCDA1;
-  line-height: 50px;
+  line-height: 50px !important;
   display: block;
   text-align: center;
   font-size: 24px;
@@ -474,7 +474,7 @@
     cursor: pointer;
     position: absolute;
     right: 10px;
-    top: 10px;
+    top: 7px;
     z-index: 10 !important;
     padding: 3px;
     background-color: #12908E;
@@ -482,15 +482,16 @@
     width: 40px;
     text-align: center;
   }
-  .brand {
-    text-align: left !important;
-    font-size: 22px;
-    padding-left: 10px;
-    line-height: 50px !important;
+  .mobile-brand {
+    position: relative;
+    float: left;
+    width: 30%;
   }
-  .chatroom-name{
-    width: 50%;
-    text-align: center;
+  .mobile-room{
+    position: relative;
+    width: 40%;
+    left: calc(30%);
+    right: calc(30%);
   }
   .hom {
     display: none;
@@ -504,7 +505,7 @@
   }
   .scroll {
     position    : absolute;
-    max-height  : initial;
+    max-height  : calc(100% - 100px);
     width       : 100%;
     border-left : 0px solid #FFF;
   }
@@ -518,13 +519,20 @@
     position: relative;
     width: 100%;
     height: auto;
+    max-height: 500px;
     border-right: 0px;
+    bottom: 0px;
+    left: 0px;
+
   }
   .right-style{
     position: relative;
     width: 100%;
     height: auto;
+    max-height: 500px;
     border-left: 0px;
+    bottom: 0px;
+    right: 0px;
   }
   .scroll-admin{
       width: 100%;
@@ -534,6 +542,7 @@
     width: 100%;
     position: relative;
   }
+  .chat
 }
 /*Desktop Adjustments*/
 @media (min-width: 1000px) {
@@ -551,6 +560,7 @@
     border-left      : 1px solid #FFF;
     bottom: 0px;
   }
+
   #main {
   	width:calc(100% - 200px);
     position: fixed;

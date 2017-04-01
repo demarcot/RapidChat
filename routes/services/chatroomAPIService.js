@@ -21,6 +21,7 @@ service.insertMessage = insertMessage;
 service.inviteUser = inviteUser;
 service.moveToAccepted = moveToAccepted;
 service.removeFromAccepted = removeFromAccepted;
+service.checkPending = checkPending;
 
 module.exports = service;
 
@@ -162,11 +163,11 @@ function moveToAccepted(chatroomParam)
 			{
 				doc.pendingUsers.splice(doc.pendingUsers.indexOf(chatroomParam.username), 1);
 				newPendingUsers = doc.pendingUsers;
-				
+
 				db.chatrooms.update({"_id": mongo.ObjectId(chatroomParam._id)}, {$push: {'acceptedUsers': chatroomParam.username}, $set: {"pendingUsers": newPendingUsers}}, function (err, doc)
 					{
 						if(err) deferred.reject(err);
-						
+
 						deferred.resolve(true);
 					});
 			}
@@ -179,19 +180,43 @@ function moveToAccepted(chatroomParam)
 	return deferred.promise;
 }
 
-function removeFromAccepted(chatroomParam)
+function checkPending(chatroomParam)
 {
     var deferred = Q.defer();
     var newPendingUsers;
-    db.chatrooms.findOne({"_id": chatroomParam._id}, {"acceptedUsers":1}, function(err, doc)
+    console.log("username: ", chatroomParam.username)
+    db.chatrooms.find({"pendingUsers": chatroomParam.username}, {"name": 1}, function(err, docs)
+        {
+            if(err) deferred.reject(err);
+            if(docs.length > 0)
+            {
+                deferred.resolve(docs);
+            }
+            else
+            {
+                deferred.resolve();
+            }
+        });
+
+    return deferred.promise;
+}
+
+function removeFromAccepted(chatroomParam)
+{
+    var deferred = Q.defer();
+    var newAcceptedUsers;
+    db.chatrooms.findOne({"_id": mongo.ObjectId(chatroomParam._id)}, {"acceptedUsers":1}, function(err, doc)
         {
             if(err) deferred.reject(err);
 
-            if(doc.length > 0)
+            if(doc)
             {
-                newAcceptedUsers = doc.acceptedUsers.splice(indexOf(chatroomParam.username), 1);
-                db.chatrooms.update({"_id": chatroomParam._id}, {"acceptedUsers": newAcceptedUsers}, function(err, docs)
+                console.log("API service", chatroomParam.username);
+                doc.acceptedUsers.splice(doc.acceptedUsers.indexOf(chatroomParam.username), 1);
+                newAcceptedUsers = doc.acceptedUsers;
+                db.chatrooms.update({"_id": mongo.ObjectId(chatroomParam._id)}, {$set: {"acceptedUsers": newAcceptedUsers}}, function(err, docs)
                     {
+                        console.log("inside function",chatroomParam.username);
                         if(err) deferred.reject(err);
 
                         deferred.resolve(true);

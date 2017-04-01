@@ -40,11 +40,11 @@
         .altbutton-style:hover{
           background-color: {{sideHover}};
         }
-        .red{
-          background-color: red;
+        .notify{
+          background-color: white;
         }
-        .blue{
-          background-color: blue;
+        .invite{
+          background-color: white;
         }
       </style>
       <div ng-controller="notifyCtrl">
@@ -52,7 +52,8 @@
     <div class="nav-side-menu" ng-style="sideStyle">
         <div class="brand" ng-style="sideStyle">
           <!-- <img src="assets\imgs\Rapid_Chat_Logo.dwkMaLMO_K5Manr_DMiHLmHiQRY" class="logo-style"> -->
-          Rapid Chat
+          <div class="hom">Rapid Chat</div>
+          <div class="hod"><span class="mobile-brand"></span>Rapid Chat<span class="mobile-room">{{currentChatRoom}}!</span></div>
         </div>
         <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
         <div class="menu-list" ng-style="sideStyle">
@@ -92,11 +93,12 @@
                     <a><i class="fa fa-cogs fa-lg left-buffer"></i> Options <span class="arrow"></span></a>
                 </li>
                 <ul id="options" class="in">
-                  <li class="hod" ng-class="{active: activeTab === 'dashboard'}"><a ui-sref="dashboard" ng-click="setOldRoom()"><i class="fa fa-home fa-lg left-buffer"></i>Dashboard</a></li>
-                  <li class="hod" ng-class="{active: activeTab === 'personalize'}"><a ui-sref="personalize" ng-click="setOldRoom()"><i class="fa fa-user fa-lg left-buffer"></i>Account</a></li>
-                  <li class="hod" ng-class="{active: activeTab === 'admin'}"><a ui-sref="admin" ng-click="setOldRoom()"><i class="fa fa-user fa-lg left-buffer"></i>Admin</a></li>
-                  <li class="hod" ><a><i class="fa fa-bell fa-lg"></i>Notifications</a></li>
-                  <li class="hod"><a href="/login" target="_self"><i class="fa fa-sign-out fa-lg"></i>Logout</a></li>
+                  <li class="hod" ng-class="{active: activeTab === 'dashboard'}" ui-sref="dashboard" ng-click="setOldRoom()"><a><i class="fa fa-home fa-lg left-buffer"></i>Dashboard</a></li>
+                  <li class="hod" ng-class="{active: activeTab === 'personalize'}" ui-sref="personalize" ng-click="setOldRoom()"><a><i class="fa fa-user fa-lg left-buffer"></i>Account</a></li>
+                  <li class="hod" ng-class="{active: activeTab === 'admin'}" ui-sref="admin" ng-click="setOldRoom()"><a><i class="fa fa-user fa-lg left-buffer"></i>Admin</a></li>
+                  <li class="hod" data-ng-class="{'notify':newNotifications}"><a><i class="fa fa-bell fa-lg"></i>Notifications</a></li>
+                  <li class="hod" data-ng-class="{'invite':newInvites}"><a><i class="fa fa-envelope fa-lg"></i>&nbsp;Invitations</a></li>
+                  <a href="/login" target="_self" style="color: #161616"><li class="hod" ><i class="fa fa-sign-out fa-lg"></i>Logout</li></a>
                 </ul>
             </ul>
         </div>
@@ -118,7 +120,7 @@
                       </div> -->
             </ul>
             <ul class="nav navbar-nav navbar-right">
-              <li>
+              <li data-ng-class="{'invite':newInvites}">
                 <a class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope fa-lg"></i></a>
 
                   <ul class="dropdown-menu notify-style" ng-style="topStyle" ng-show="newInvites">
@@ -128,7 +130,7 @@
                   </ul>
 
               </li>
-              <li data-ng-class="{'red':newNotifications}">
+              <li data-ng-class="{'notify':newNotifications}">
                 <a class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell fa-lg"></i></a>
                 <ul class="dropdown-menu notify-style" ng-style="topStyle" ng-show="newNotifications">
                   <li ng-repeat="note in notifications track by $index" ui-sref="chatRoomById({chatRoomId: note._id})" ng-click="setOldRoom()" ui-sref-active="active"><a>{{note.author}} in room {{note.chatroom}}</a></li>
@@ -190,7 +192,7 @@
                 <div ng-repeat="users in acceptedUsers track by $index">
                   {{users}}
                   <!-- <span class="pull-right"> -->
-                    <button type="button" name="button" class="btn btn-xs btn-danger" ng-click="removeUser(users, roomId)">-</button>
+                    <button type="button" name="button" class="btn btn-xs btn-danger pull-right" ng-click="removeUser(roomId, users);initRoom(roomId)">-</button>
                   <!-- </span> -->
                 </div>
               </li>
@@ -204,7 +206,7 @@
                 <h4>Other Users</h4>
                 <div ng-repeat="users in restOfUsers track by $index">
                   {{users.username}}
-                  <button type="button" name="button" class="btn btn-xs btn-success" ng-click="inviteUser(roomId, users.username, username.username, roomName);initRoom(roomId)">+</button>
+                  <button type="button" name="button" class="btn btn-xs btn-success pull-right" ng-click="inviteUser(roomId, users.username, username.username, roomName);initRoom(roomId)">+</button>
                 </div>
               </li>
             </ul>

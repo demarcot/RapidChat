@@ -17,6 +17,7 @@ router.post('/insertMessage', insertMessage);
 router.post('/moveToAccepted', moveToAccepted);
 router.post('/removeFromAccepted', removeFromAccepted);
 router.post('/inviteUser', inviteUser);
+router.post('/checkPending', checkPending);
 
 module.exports = router;
 
@@ -223,14 +224,32 @@ function moveToAccepted(req, res)
 function removeFromAccepted(req, res)
 {
 	var chatroomParam = {"_id": req.body._id, "username": req.body.username};
-
+	console.log("API", req.body.username);
 	chatroomService.removeFromAccepted(chatroomParam)
 	.then(function (ret)
 	{
-		res.sendStatus(ret);
+		res.send(ret);
 	})
 	.catch(function(err)
 	{
 		res.status(400).send(err);
 	});
+}
+
+function checkPending(req, res)
+{
+    var chatroomParam = {'username': req.body.username};
+
+    chatroomService.checkPending(chatroomParam)
+    .then(function(rooms)
+    {
+        if(rooms)
+            res.send(rooms);
+        else
+            res.send(false);
+    })
+    .catch(function (err)
+    {
+        res.status(400).send(err);
+    });
 }
