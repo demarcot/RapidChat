@@ -78,11 +78,11 @@ angular.module('coreApp')
           if ($state.params.chatRoomId != undefined) {
             var temp = {'_id': $state.params.chatRoomId};
             ChatRoomService.getById(temp).then(function(room){
-              $scope.currentChatRoom = room[0].name;
+              $scope.currentChatRoomName = room[0].name;
             })
           }
           else {
-            $scope.currentChatRoom = null;
+            $scope.currentChatRoomName = null;
           }
         });
   $scope.inviteCheck = function()

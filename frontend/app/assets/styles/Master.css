@@ -354,10 +354,8 @@
   text-shadow: 1px 1px rgba(255,255,255,.5);
 }
 .nav-side-menu .brand {
-  line-height: 50px !important;
   display: block;
   text-align: center;
-  font-size: 24px;
 }
 .nav-side-menu .toggle-btn {
   display: none;
