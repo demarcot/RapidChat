@@ -9,6 +9,7 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8">
+    <meta name="theme-color" content="#ff6600" />
     <title>RapidChat</title>
   </head>
   <body>
@@ -51,9 +52,8 @@
       <!-- Side Menu -->
     <div class="nav-side-menu" ng-style="sideStyle">
         <div class="brand" ng-style="sideStyle">
-          <!-- <img src="assets\imgs\Rapid_Chat_Logo.dwkMaLMO_K5Manr_DMiHLmHiQRY" class="logo-style"> -->
           <div class="hom">Rapid Chat</div>
-          <div class="hod"><span class="mobile-brand"></span>Rapid Chat<span class="mobile-room">{{currentChatRoom}}!</span></div>
+          <div class="hod"><img src="assets\imgs\Logo.png" class="logo-style hod"/><span class="mobile-room">{{currentChatRoom}}</span></div>
         </div>
         <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
         <div class="menu-list" ng-style="sideStyle">
