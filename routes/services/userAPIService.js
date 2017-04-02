@@ -115,7 +115,7 @@ function create(userParam) {
     function createUser() {
         // set user object to userParam without the cleartext password
         var user = _.omit(userParam, 'password');
-        user.colors={'topBarColor':"#F98F45",'topBarHover':"#C4421A",'sideBarColor':"#0FCDA1",'sideBarHover':"#12908E",'textColor':"#161616"};
+        user.colors={'topBarColor':"#666a86",'topBarHover':"#565a76",'sideBarColor':"#95b8d1",'sideBarHover':"#85a8c1"};
 
         // add hashed password to user object
         user.hash = bcrypt.hashSync(userParam.password, 10);
