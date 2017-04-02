@@ -29,8 +29,10 @@ angular.module('coreApp')
       };
       ChatRoomService.Create($scope.newDirectMessage).then(function(chatroomId) {
         $state.go("chatRoomById", {chatRoomId: chatroomId});
+        $scope.callApi();
 
-        $window.location.reload();
+
+        //$window.location.reload();
       });
     };
 

@@ -3,6 +3,7 @@ angular.module('coreApp')
 {
 	var noteButton = angular.element(document.querySelector('#note-footer'));
 	noteButton.removeClass('navbar-default navbar-nav :hover');
+	$scope.selectedIndex;
 	$scope.notifications = [];
 	//$scope.invites = [];
 	$scope.readNotifications = true;
@@ -14,12 +15,28 @@ angular.module('coreApp')
 		$scope.newNotifications = false;
 	};
 
+	$scope.removeUser = function(chatroomId, username){
+		$scope.removed = true;
+    $scope.removeUserInfo = {
+      '_id': chatroomId,
+      'username': username
+    };
+		console.log($scope.removeUserInfo);
+    // call the invite user function
+    ChatRoomService.removeFromAccepted($scope.removeUserInfo).then(function(bool){
+			$scope.initRoom($scope.removeUserInfo._id);
+
+    });
+    //call the invite socket.io function
+  };
+
 	$scope.acceptInvite = function(username, _id)
 	{
 		//call the move user to accepted list re route to new chatroom
 		$scope.moveInfo = {'_id':_id, 'username': username};
-		ChatRoomService.moveToAccepted($scope.moveInfo).then(function(bool)
-		{});
+		ChatRoomService.moveToAccepted($scope.moveInfo).then(function(bool){
+			console.log(bool);
+		});
 	};
 
 	$scope.$on('socket:notify', function(event, data)
@@ -109,11 +126,10 @@ angular.module('coreApp')
 			$scope.pendingUsers = roomInfo.pendingUsers;
 			UserService.GetAll().then(function(users)
 			{
-
 				var tempUsrArr = users.slice();
 				for (user in users)
 				{
-					if($scope.acceptedUsers.includes(users[user].username) || $scope.pendingUsers.includes(users[user].username) )
+					if($scope.acceptedUsers.includes(users[user].username) || $scope.pendingUsers.includes(users[user].username))
 					{
 						tempUsrArr.splice(tempUsrArr.indexOf(users[user]), 1);
 					}

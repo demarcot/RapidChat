@@ -40,13 +40,7 @@ angular.module('coreApp')
 .controller('modalCtrlInv', function ($scope, $state,$stateParams, chatSocket, ChatRoomService, UserService, $window){
 
 
- $scope.removeUser = function(username, _id) {
-   $scope.removeInfo = {'username':username, '_id': _id};
-   ChatRoomService.removeFromAccepted($scope.removeInfo).then(function(bool){
-     console.log(bool);
-   });
 
- };
 
 
  $scope.inviteUser = function(chatroomId, invitedUser, author, chatRoom){
@@ -64,16 +58,5 @@ angular.module('coreApp')
     chatSocket.emit('inviteUser', author, invitedUser, chatroomId, chatRoom);
  };
 
- $scope.removeUser = function(chatroomId, username){
-   $scope.removeUserInfo = {
-     '_id': chatroomId,
-     'username': username
-   };
-   // call the invite user function
-   ChatRoomService.removeFromAccepted($scope.removeUserInfo).then(function(bool){
-     console.log(bool);
-   })
-   //call the invite socket.io function
- };
 
 });

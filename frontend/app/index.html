@@ -192,7 +192,7 @@
                 <div ng-repeat="users in acceptedUsers track by $index">
                   {{users}}
                   <!-- <span class="pull-right"> -->
-                    <button type="button" name="button" class="btn btn-xs btn-danger pull-right" ng-click="removeUser(roomId, users);initRoom(roomId)">-</button>
+                    <button type="button" name="button" class="btn btn-xs btn-danger pull-right" ng-click="removeUser(roomId, users)">-</button>
                   <!-- </span> -->
                 </div>
               </li>
@@ -253,5 +253,6 @@
     <script src="assets/scripts/controllers/notifyCtrl.js" charset="utf-8"></script>
     <!-- <script src="assets\scripts\services\factories\restFactory.js" charset="utf-8"></script> -->
   </div>
+</div>
   </body>
 </html>
