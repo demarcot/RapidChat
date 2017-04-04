@@ -5,19 +5,24 @@
     <title>Login</title>
     <link rel="stylesheet" href="\frontend\app\assets\styles\Master.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Jura">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style type="text/css">
         html{
           height: 100%;
           width: 100%;
-          font-family: 'Jura', sans-serif;
+          font-family: 'Roboto Condensed', sans-serif;
+          overflow: auto;
         }
         body {
             padding-top: 100px;
-            height: 100%;
+            height: auto;
             width: 100%;
-            font-family: 'Jura', sans-serif;
+            font-family: 'Roboto Condensed', sans-serif;
+            overflow: auto;
+        }
+        .scrollable{
+          position: inherit;
         }
         .image{
           position: fixed;
@@ -35,8 +40,8 @@
             margin: auto;
         }
         .login-style{
-
-            position: fixed;
+            position: sticky;
+            z-index: 999;
             height: 100%;
             width: 100%;
             padding-left: 25%;

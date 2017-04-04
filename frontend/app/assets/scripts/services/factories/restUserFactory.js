@@ -15,6 +15,7 @@
         service.Create = Create;
         service.Update = Update;
         service.Delete = Delete;
+        // service.isAdmin = isAdmin;
 
         return service;
 
@@ -43,7 +44,7 @@
         }
 
         function Delete(_id) {
-      
+
             return $http.delete('/api/users/' + _id).then(handleSuccess, handleError);
         }
 

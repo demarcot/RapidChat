@@ -51,7 +51,7 @@ function getAll() {
 function getById(chatroomParam) {
     var deferred = Q.defer();
 
-    db.chatrooms.find({"_id":mongo.ObjectId(chatroomParam._id)}, {"name":1}, function (err, chatrooms)
+    db.chatrooms.find({"_id":mongo.ObjectId(chatroomParam._id)}, {"name":1, "private":1, "direct":1}, function (err, chatrooms)
     {
         if (err) deferred.reject(err);
 

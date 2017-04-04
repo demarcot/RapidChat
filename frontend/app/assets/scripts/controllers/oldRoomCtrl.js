@@ -2,7 +2,7 @@ angular.module('coreApp')
 .controller('oldRoomCtrl', function ($scope, $state,$stateParams, ChatRoomService, UserService, $window){
   // $scope.chatRooms = [];
   // $scope.test = function(){console.log("hello")};
-
+    $scope.adminCheck = false;
 
     $scope.setOldRoom = function(){
       localStorage.setItem("oldRoom", $state.params.chatRoomId);
@@ -14,6 +14,9 @@ angular.module('coreApp')
     };
 
 
+    // $scope.isAdmin = function(){
+    //
+    // }
 
     //THis creates a Direct Message
     $scope.createDirectMessage = function(invokingUser, invitedUser){
@@ -61,6 +64,7 @@ angular.module('coreApp')
       $scope.sideHover = user.colors.sideBarHover;
       $scope.topStyle = {"background-color": user.colors.topBarColor};
       $scope.topHover = user.colors.topBarHover;
+      $scope.frameColor = user.colors.sideBarColor;
 
 
 

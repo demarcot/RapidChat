@@ -1,18 +1,24 @@
 angular.module('coreApp')
 .controller('notifyCtrl', function ($scope, chatSocket, nickName, UserService, $state, ChatRoomService, $rootScope)
 {
-	var noteButton = angular.element(document.querySelector('#note-footer'));
-	noteButton.removeClass('navbar-default navbar-nav :hover');
 	$scope.selectedIndex;
 	$scope.notifications = [];
 	//$scope.invites = [];
 	$scope.readNotifications = true;
 	$scope.newNotifications = false;
 	$scope.newInvites = false;
+	$scope.currentPrivateCheck = false;
+	$scope.currentDirectCheck = false;
 	$scope.clearNotifications = function()
 	{
 		$scope.notifications = [];
 		$scope.newNotifications = false;
+	};
+
+	$scope.clearInvites = function()
+	{
+		$scope.invites = [];
+		$scope.newInvites = false;
 	};
 
 	$scope.removeUser = function(chatroomId, username){
@@ -76,13 +82,18 @@ angular.module('coreApp')
             return $state.params.chatRoomId;
         }, function (newParams, oldParams) {
           if ($state.params.chatRoomId != undefined) {
-            var temp = {'_id': $state.params.chatRoomId};
-            ChatRoomService.getById(temp).then(function(room){
+            $scope.currentChatRoomId = {'_id': $state.params.chatRoomId};
+            ChatRoomService.getById($scope.currentChatRoomId).then(function(room){
               $scope.currentChatRoomName = room[0].name;
+							$scope.currentPrivateCheck = room[0].private;
+							$scope.currentDirectCheck = room[0].direct;
+
             })
           }
           else {
             $scope.currentChatRoomName = null;
+						$scope.currentPrivateCheck = false;
+						$scope.currentDirectCheck = false;
           }
         });
   $scope.inviteCheck = function()
