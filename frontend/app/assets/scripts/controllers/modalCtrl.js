@@ -43,20 +43,7 @@ angular.module('coreApp')
 
 
 
- $scope.inviteUser = function(chatroomId, invitedUser, author, chatRoom){
-   $scope.inviteUserInfo = {
-     '_id': chatroomId,
-     'username': invitedUser
-   };
 
-   // call the invite user function
-   ChatRoomService.inviteUser($scope.inviteUserInfo).then(function(bool){
-     console.log(bool);
-   });
-
-   //call the invite socket.io function
-    chatSocket.emit('inviteUser', author, invitedUser, chatroomId, chatRoom);
- };
 
 
 });

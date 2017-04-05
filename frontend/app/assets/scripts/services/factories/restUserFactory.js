@@ -40,7 +40,7 @@
         }
 
         function isAdmin() {
-            return $http.get('/api/isAdmin').then(handleSuccess, handleError);
+            return $http.get('/api/users/isAdmin').then(handleSuccess, handleError);
         }
 
         function Update(user) {

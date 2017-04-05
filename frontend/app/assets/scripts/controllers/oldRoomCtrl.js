@@ -15,8 +15,8 @@ angular.module('coreApp')
 
 
     $scope.isAdmin = function(){
-        UserService.isAdmin().then(function(bool){
-            $scope.adminCheck = bool;
+        UserService.isAdmin().then(function(admin){
+            $scope.adminCheck = admin.isAdmin;
         })
 
 

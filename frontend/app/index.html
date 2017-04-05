@@ -92,7 +92,7 @@
                     </a>
                   </li>
                   <ul id="notificationsm" class="in collapse" ng-show="newNotifications">
-                    <li class="hod" ng-repeat="note in notifications track by $index" ui-sref="chatRoomById({chatRoomId: note._id})" ng-click="setOldRoom()" ui-sref-active="active"><a>{{note.author}} in room {{note.chatroom}}</a></li>
+                    <li class="hod" ng-repeat="note in notifications track by $index" ui-sref="chatRoomById({chatRoomId: note._id})" ng-click="setOldRoom();" ui-sref-active="active"><a>{{note.author}} in room {{note.chatroom}}</a></li>
                   </ul>
                   <!-- <li class="hod" data-ng-class="{'invite':newInvites}"><a><i class="fa fa-envelope fa-lg"></i>&nbsp;Invitations</a></li> -->
                   <li data-toggle="collapse" data-target="#invitationsm" class="collapsed hod" data-ng-class="{'pulse-button':newInvites}">
@@ -101,7 +101,7 @@
                     </a>
                   </li>
                   <ul id="invitationsm" class="in collapse" ng-show="newInvites">
-                    <li class="hod" ng-repeat="invite in invites track by $index" ui-sref="chatRoomById({chatRoomId: invite._id})" ng-click="setOldRoom();acceptInvite(username.username, invite._id)" ui-sref-active="active"><a>{{invite.message}} Click here to accept!</a></li>
+                    <li class="hod" ng-repeat="invite in invites track by $index" ui-sref="chatRoomById({chatRoomId: invite._id})" ng-click="setOldRoom();acceptInvite(username.username, invite._id);eraseInvite($index)" ui-sref-active="active"><a>{{invite.message}} Click here to accept!</a></li>
                   </ul>
                   <a href="/login" target="_self" style="color: #161616"><li class="hod" ><i class="fa fa-sign-out fa-lg"></i>Logout</li></a>
                 </ul>
@@ -129,7 +129,7 @@
                 <a class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope fa-lg"></i></a>
 
                   <ul class="dropdown-menu notify-style" ng-style="topStyle" ng-show="newInvites">
-                    <li ng-repeat="invite in invites track by $index" ui-sref="chatRoomById({chatRoomId: invite._id})" ng-click="setOldRoom();acceptInvite(username.username, invite._id)" ui-sref-active="active"><a>{{invite.message}} Click here to accept!</a></li>
+                    <li ng-repeat="invite in invites track by $index" ui-sref="chatRoomById({chatRoomId: invite._id})" ng-click="setOldRoom();acceptInvite(username.username, invite._id);eraseInvite($index)" ui-sref-active="active"><a>{{invite.message}} Click here to accept!</a></li>
                     <li class="divider"></li>
                     <li id="note-footer" class="notify-button" ng-click="clearInvites()">Clear invites</li>
                   </ul>
@@ -211,7 +211,7 @@
                 <h4>Other Users</h4>
                 <div ng-repeat="users in restOfUsers track by $index" class="modal-padding">
                   {{users.username}}
-                  <button type="button" name="button" class="btn btn-xs btn-success pull-right" ng-click="inviteUser(roomId, users.username, username.username, roomName);initRoom(roomId)">+</button>
+                  <button type="button" name="button" class="btn btn-xs btn-success pull-right" ng-click="inviteUser(roomId, users.username, username.username, roomName)">+</button>
                 </div>
               </li>
             </ul>

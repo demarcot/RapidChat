@@ -21,6 +21,15 @@ angular.module('coreApp')
 		$scope.newInvites = false;
 	};
 
+	$scope.eraseInvite = function(index)
+	{
+        $scope.invites.splice(index, 1);
+				if ($scope.invites.length == 0)
+				{
+        	$scope.newInvites = false;
+    		}
+  };
+
 	$scope.removeUser = function(chatroomId, username){
 		$scope.removed = true;
     $scope.removeUserInfo = {
@@ -34,6 +43,22 @@ angular.module('coreApp')
 
     });
     //call the invite socket.io function
+  };
+
+	$scope.inviteUser = function(chatroomId, invitedUser, author, chatRoom){
+    $scope.inviteUserInfo = {
+      '_id': chatroomId,
+      'username': invitedUser
+    };
+
+    // call the invite user function
+    ChatRoomService.inviteUser($scope.inviteUserInfo).then(function(bool){
+      console.log(bool);
+    });
+
+    //call the invite socket.io function
+     chatSocket.emit('inviteUser', author, invitedUser, chatroomId, chatRoom);
+		 $scope.initRoom($scope.inviteUserInfo._id);
   };
 
 	$scope.acceptInvite = function(username, _id)
