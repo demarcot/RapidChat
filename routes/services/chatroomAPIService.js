@@ -356,21 +356,31 @@ function getUsers(chatroomParam)
 */
 function inviteUser(chatroomParam)
 {
-	var deferred = Q.defer();
+    var deferred = Q.defer();
 
-	//Instead of inserting username, find userId and insert that?
-	db.chatrooms.update
-	(
-		{_id: mongo.ObjectId(chatroomParam._id)},
-		{$push: {'pendingUsers': chatroomParam.username}},
-		function (err, doc)
-		{
-			if(err) deferred.reject(err);
-			deferred.resolve();
-		}
-	);
+    //Instead of inserting username, find userId and insert that?
+    db.chatroom.find({"id": mongo.ObjectId(chatroomParam._id), "pendingUsers": chatroomParam.username}, {"name":1}, function(err, docs)
+        {
+            if(docs.length > 0)
+            {
+                deferred.resolve();
+            }
+            else
+            {
+                db.chatrooms.update
+                (
+                    {_id: mongo.ObjectId(chatroomParam._id)},
+                    {$push: {'pendingUsers': chatroomParam.username}},
+                    function (err, doc)
+                    {
+                        if(err) deferred.reject(err);
+                        deferred.resolve();
+                    }
+                );
+            }
+        });
 
-	return deferred.promise;
+    return deferred.promise;
 }
 
 function _delete(chatroomParam) {

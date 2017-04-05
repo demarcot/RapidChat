@@ -81,10 +81,12 @@ function getIsAdmin(_id) {
     var deferred = Q.defer();
 
     db.users.findOne({_id: mongo.ObjectId(_id)}, {isAdmin:1}, function (err, user) {
+                  console.log(user);
         if (err) deferred.reject(err);
 
         if (user) {
             // return user (without hashed password)
+
             deferred.resolve(user);
         } else {
             // user not found
@@ -116,17 +118,33 @@ function create(userParam) {
         // set user object to userParam without the cleartext password
         var user = _.omit(userParam, 'password');
         user.colors={'topBarColor':"#666a86",'topBarHover':"#565a76",'sideBarColor':"#95b8d1",'sideBarHover':"#85a8c1"};
-
         // add hashed password to user object
         user.hash = bcrypt.hashSync(userParam.password, 10);
+        db.users.find({}, {}, function(err, docs)
+        {
+            if(docs.length > 0)
+            {
+                user.isAdmin = false;
+                db.users.insert(
+                user,
+                function (err, doc) {
+                    if (err) deferred.reject(err);
 
-        db.users.insert(
-            user,
-            function (err, doc) {
-                if (err) deferred.reject(err);
+                    deferred.resolve();
+                });
+            }
+            else
+            {
+                user.isAdmin = true;
+                db.users.insert(
+                user,
+                function (err, doc) {
+                    if (err) deferred.reject(err);
 
-                deferred.resolve();
-            });
+                    deferred.resolve();
+                });
+            }
+        });
     }
 
     return deferred.promise;

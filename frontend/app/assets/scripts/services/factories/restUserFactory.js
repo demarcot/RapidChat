@@ -15,7 +15,7 @@
         service.Create = Create;
         service.Update = Update;
         service.Delete = Delete;
-        // service.isAdmin = isAdmin;
+        service.isAdmin = isAdmin;
 
         return service;
 
@@ -37,6 +37,10 @@
 
         function Create(user) {
             return $http.post('/api/users', user).then(handleSuccess, handleError);
+        }
+
+        function isAdmin() {
+            return $http.get('/api/isAdmin').then(handleSuccess, handleError);
         }
 
         function Update(user) {

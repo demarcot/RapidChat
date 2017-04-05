@@ -2,7 +2,7 @@ angular.module('coreApp')
 .controller('oldRoomCtrl', function ($scope, $state,$stateParams, ChatRoomService, UserService, $window){
   // $scope.chatRooms = [];
   // $scope.test = function(){console.log("hello")};
-    $scope.adminCheck = false;
+
 
     $scope.setOldRoom = function(){
       localStorage.setItem("oldRoom", $state.params.chatRoomId);
@@ -14,10 +14,14 @@ angular.module('coreApp')
     };
 
 
-    // $scope.isAdmin = function(){
-    //
-    // }
+    $scope.isAdmin = function(){
+        UserService.isAdmin().then(function(bool){
+            $scope.adminCheck = bool;
+        })
 
+
+    }
+    $scope.isAdmin();
     //THis creates a Direct Message
     $scope.createDirectMessage = function(invokingUser, invitedUser){
 

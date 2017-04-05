@@ -75,6 +75,7 @@ function getIsAdmin(req, res) {
         .then(function (user) {
             if (user) {
                 res.send(user);
+                console.log("This is user", user);
             } else {
                 res.sendStatus(404);
             }
@@ -102,7 +103,7 @@ function updateUser(req, res) {
 
 function deleteUser(req, res) {
     var userId = req.params._id;
-  
+
     // if (req.params._id !== userId) {
     //     // can only delete own account
     //     return res.status(401).send('You can only delete your own accountbe an admin to delete an account');
