@@ -197,7 +197,7 @@
                 <div ng-repeat="users in acceptedUsers track by $index" class="modal-padding">
                   {{users}}
                   <!-- <span class="pull-right"> -->
-                    <button type="button" name="button" class="btn btn-xs btn-danger pull-right" ng-click="removeUser(roomId, users)">-</button>
+                    <button type="button" name="button" class="btn btn-xs btn-danger pull-right" ng-click="removeUser(roomId, users);moveUser($index,'remove')">-</button>
                   <!-- </span> -->
                 </div>
               </li>
@@ -211,7 +211,7 @@
                 <h4>Other Users</h4>
                 <div ng-repeat="users in restOfUsers track by $index" class="modal-padding">
                   {{users.username}}
-                  <button type="button" name="button" class="btn btn-xs btn-success pull-right" ng-click="inviteUser(roomId, users.username, username.username, roomName)">+</button>
+                  <button type="button" name="button" class="btn btn-xs btn-success pull-right" ng-click="inviteUser(roomId, users.username, username.username, roomName);moveUser($index,'add')">+</button>
                 </div>
               </li>
             </ul>

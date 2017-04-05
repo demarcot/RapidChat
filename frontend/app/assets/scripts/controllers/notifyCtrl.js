@@ -39,7 +39,7 @@ angular.module('coreApp')
 		console.log($scope.removeUserInfo);
     // call the invite user function
     ChatRoomService.removeFromAccepted($scope.removeUserInfo).then(function(bool){
-			$scope.initRoom($scope.removeUserInfo._id);
+			
 
     });
     //call the invite socket.io function
@@ -58,7 +58,7 @@ angular.module('coreApp')
 
     //call the invite socket.io function
      chatSocket.emit('inviteUser', author, invitedUser, chatroomId, chatRoom);
-		 $scope.initRoom($scope.inviteUserInfo._id);
+		 //$scope.initRoom($scope.inviteUserInfo._id);
   };
 
 	$scope.acceptInvite = function(username, _id)
@@ -150,6 +150,26 @@ angular.module('coreApp')
 
 	$scope.inviteCheck();
 	// we could make a new controller to keep things separate
+
+	$scope.moveUser = function(index,type){
+
+
+		switch (type) {
+			case 'remove':
+				$scope.acceptedUsers.splice(index,1)
+				break;
+			case 'add':
+			var user = $scope.restOfUsers[index];
+			$scope.restOfUsers.splice(index,1)
+			$scope.pendingUsers.push(user.username);
+				break;
+
+
+		}
+
+	}
+
+
 	$scope.initRoom = function(roomId)
 	{
 		//check pending users
@@ -160,6 +180,9 @@ angular.module('coreApp')
 			$scope.acceptedUsers = roomInfo.acceptedUsers;
       console.log($scope.acceptedUsers);
 			$scope.pendingUsers = roomInfo.pendingUsers;
+			console.log("pending",$scope.pendingUsers);
+			console.log(roomInfo);
+
 			UserService.GetAll().then(function(users)
 			{
 				var tempUsrArr = users.slice();
