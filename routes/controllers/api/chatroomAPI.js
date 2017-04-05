@@ -213,10 +213,11 @@ function moveToAccepted(req, res)
 	chatroomService.moveToAccepted(chatroomParam)
 	.then(function (ret)
 	{
-		res.sendStatus(ret);
+		res.send(ret);
 	})
 	.catch(function(err)
 	{
+		console.log("Move to accepted error: ", err);
 		res.status(400).send(err);
 	});
 }

@@ -184,7 +184,6 @@ function checkPending(chatroomParam)
 {
     var deferred = Q.defer();
     var newPendingUsers;
-    console.log("username: ", chatroomParam.username)
     db.chatrooms.find({"pendingUsers": chatroomParam.username}, {"name": 1}, function(err, docs)
         {
             if(err) deferred.reject(err);
@@ -211,12 +210,10 @@ function removeFromAccepted(chatroomParam)
 
             if(doc)
             {
-                console.log("API service", chatroomParam.username);
                 doc.acceptedUsers.splice(doc.acceptedUsers.indexOf(chatroomParam.username), 1);
                 newAcceptedUsers = doc.acceptedUsers;
                 db.chatrooms.update({"_id": mongo.ObjectId(chatroomParam._id)}, {$set: {"acceptedUsers": newAcceptedUsers}}, function(err, docs)
                     {
-                        console.log("inside function",chatroomParam.username);
                         if(err) deferred.reject(err);
 
                         deferred.resolve(true);
@@ -359,7 +356,7 @@ function inviteUser(chatroomParam)
     var deferred = Q.defer();
 
     //Instead of inserting username, find userId and insert that?
-    db.chatroom.find({"id": mongo.ObjectId(chatroomParam._id), "pendingUsers": chatroomParam.username}, {"name":1}, function(err, docs)
+    db.chatrooms.find({"_id": mongo.ObjectId(chatroomParam._id), "pendingUsers": chatroomParam.username}, {"name":1}, function(err, docs)
         {
             if(docs.length > 0)
             {

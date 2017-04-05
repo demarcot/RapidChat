@@ -77,7 +77,8 @@ function getIsAdmin(req, res) {
                 res.send(user);
                 console.log("This is user", user);
             } else {
-                res.sendStatus(404);
+				
+                res.send(false);
             }
         })
         .catch(function (err) {
