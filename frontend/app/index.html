@@ -103,7 +103,7 @@
                   <ul id="invitationsm" class="in collapse" ng-show="newInvites">
                     <li class="hod" ng-repeat="invite in invites track by $index" ui-sref="chatRoomById({chatRoomId: invite._id})" ng-click="setOldRoom();acceptInvite(username.username, invite._id);eraseInvite($index)" ui-sref-active="active"><a>{{invite.message}} Click here to accept!</a></li>
                   </ul>
-                  <a href="/login" target="_self" style="color: #161616"><li class="hod" ><i class="fa fa-sign-out fa-lg"></i>Logout</li></a>
+                  <li class="hod"  onclick="location.href='/login'" ><a target="_self" style="color: #161616"><i class="fa fa-sign-out fa-lg"></i>Logout</a></li>
                 </ul>
             </ul>
         </div>
@@ -174,7 +174,7 @@
           </div>
           <div class="modal-footer footer-style" ng-style="sideStyle">
             <button type="button" class="btn btn-default alt2button-style" data-dismiss="modal">Close </button>
-            <button type="button" class="btn btn-primary altbutton-style" ng-click="createChatroom(username.username)" ng-class="sideStyle" ng-disabled="chatRoomName == undefined || chatRoomNameLength === 0" data-dismiss="modal">Create</button>
+            <button type="button" class="btn btn-primary altbutton-style" ng-click="createChatroom(username.username); callApi()" ng-class="sideStyle" ng-disabled="chatRoomName == undefined || chatRoomNameLength === 0" data-dismiss="modal">Create</button>
           </div>
         </div>
       </div>
@@ -224,6 +224,7 @@
     </div>
 
     <!-- External JS Dependancies -->
+    <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
     <script src="assets/bower_components/jquery/dist/jquery.min.js" charset="utf-8"></script>
     <script>
         $(document).ready(function(){
@@ -268,6 +269,7 @@
     <script src="assets/scripts/services/messageFormatter.js"></script>
     <script src="assets/scripts/directives/chatBox.js"></script>
     <script src="assets/scripts/controllers/notifyCtrl.js" charset="utf-8"></script>
+    <script>if (window.module) module = window.module;</script>
     <!-- <script src="assets\scripts\services\factories\restFactory.js" charset="utf-8"></script> -->
       </div>
     </div>

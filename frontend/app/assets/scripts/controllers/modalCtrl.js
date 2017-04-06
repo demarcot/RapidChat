@@ -29,7 +29,7 @@ angular.module('coreApp')
 
       $state.go("chatRoomById", {chatRoomId: chatroomId},{reload:true});
 
-      $window.location.reload();
+      //$window.location.reload();
     });
   };
 
