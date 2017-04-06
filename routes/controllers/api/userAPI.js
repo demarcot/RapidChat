@@ -7,6 +7,8 @@ var userService = require('routes/services/userAPIService');
 router.post('/authenticate', authenticateUser);
 router.post('/register', registerUser);
 router.get('/current', getCurrentUser);
+router.get('/isAdmin', getIsAdmin);
+router.get('/all', getAllUsers);
 router.put('/:_id', updateUser);
 router.delete('/:_id', deleteUser);
 
@@ -17,7 +19,6 @@ function authenticateUser(req, res) {
         .then(function (token) {
             if (token) {
                 // authentication successful
-                console.log("token: ",token);
                 res.send({ token: token });
             } else {
                 // authentication failed
@@ -53,6 +54,38 @@ function getCurrentUser(req, res) {
         });
 }
 
+function getAllUsers(req, res)
+{
+	userService.getAll()
+	.then(function(users)
+	{
+		if(users)
+			res.send(users);
+		else
+			res.sendStatus(404);
+	})
+	.catch(function(err)
+	{
+		res.status(400).send(err);
+	});
+}
+
+function getIsAdmin(req, res) {
+    userService.getIsAdmin(req.user.sub)
+        .then(function (user) {
+            if (user) {
+                res.send(user);
+                console.log("This is user", user);
+            } else {
+				
+                res.send(false);
+            }
+        })
+        .catch(function (err) {
+            res.status(400).send(err);
+        });
+}
+
 function updateUser(req, res) {
     var userId = req.user.sub;
     if (req.params._id !== userId) {
@@ -70,11 +103,12 @@ function updateUser(req, res) {
 }
 
 function deleteUser(req, res) {
-    var userId = req.user.sub;
-    if (req.params._id !== userId) {
-        // can only delete own account
-        return res.status(401).send('You can only delete your own account');
-    }
+    var userId = req.params._id;
+
+    // if (req.params._id !== userId) {
+    //     // can only delete own account
+    //     return res.status(401).send('You can only delete your own accountbe an admin to delete an account');
+    // }
 
     userService.delete(userId)
         .then(function () {

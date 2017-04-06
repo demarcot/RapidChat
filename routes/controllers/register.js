@@ -23,7 +23,9 @@ router.post('/', function (req, res) {
                 error: response.body,
                 firstName: req.body.firstName,
                 lastName: req.body.lastName,
-                username: req.body.username
+                username: req.body.username,
+                colors: {'topBarColor':"#F98F45",'topBarHover':"#C4421A",'sideBarColor':"#0FCDA1",'sideBarHover':"#12908E",'textColor':"#161616"}
+
             });
         }
 
@@ -33,4 +35,4 @@ router.post('/', function (req, res) {
     });
 });
 
-module.exports = router; 
+module.exports = router;

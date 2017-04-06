@@ -9,12 +9,23 @@
         var service = {};
 
         // service.GetCurrent = GetCurrent;
-        // service.GetAll = GetAll;
-        // service.GetById = GetById;
+        service.GetAll = GetAll;
+        service.InsertMessage = InsertMessage;
+        service.GetMessages = GetMessages;
+        service.GetAllowedChatrooms = GetAllowedChatrooms;
+        service.getById = getById;
+        service.getPublicAndPrivate = getPublicAndPrivate;
+        service.inviteUser = inviteUser;
+        service.moveToAccepted = moveToAccepted;
+        service.removeFromAccepted = removeFromAccepted;
         // service.GetByUsername = GetByUsername;
         service.Create = Create;
         // service.Update = Update;
-        // service.Delete = Delete;
+        service.getUsers = getUsers;
+        service.Delete = Delete;
+        service.notifyCheck = notifyCheck;
+        service.checkPending = checkPending;
+
 
         return service;
 
@@ -22,9 +33,42 @@
         //     return $http.get('/api/users/current').then(handleSuccess, handleError);
         // }
         //
-        // function GetAll() {
-        //     return $http.get('/api/users').then(handleSuccess, handleError);
-        // }
+        function checkPending(info) {
+          return $http.post('/test/api/checkPending', info).then(handleSuccess, handleError);
+       }
+        function GetAll() {
+            return $http.get('/test/api/getAllChatrooms').then(handleSuccess, handleError);
+        }
+        function moveToAccepted(info) {
+          return $http.post('/test/api/moveToAccepted', info).then(handleSuccess, handleError);
+        }
+        function removeFromAccepted(info){
+          return $http.post('/test/api/removeFromAccepted', info).then(handleSuccess, handleError);
+        }
+        function GetAllowedChatrooms(username) {
+            return $http.post('/test/api/getAllowedChatrooms', username).then(handleSuccess, handleError);
+        }
+        function InsertMessage(message) {
+            return $http.post('/test/api/insertMessage', message).then(handleSuccess, handleError);
+        }
+        function GetMessages(chatRoom) {
+            return $http.post('/test/api/getMessages', chatRoom).then(handleSuccess, handleError);
+        }
+        function getById(chatRoomId) {
+            return $http.post('/test/api/getById', chatRoomId).then(handleSuccess, handleError);
+        }
+        function notifyCheck(chatRoomInfo) {
+            return $http.post('/test/api/notifyCheck', chatRoomInfo).then(handleSuccess, handleError);
+        }
+        function getPublicAndPrivate(){
+          return $http.get('/test/api/getPublicAndPrivate').then(handleSuccess, handleError);
+        }
+        function inviteUser(inviteUserInfo) {
+          return $http.post('/test/api/inviteUser', inviteUserInfo).then(handleSuccess, handleError);
+        }
+        function getUsers(id){
+          return $http.post('/test/api/getUsers', id).then(handleSuccess, handleError);
+        }
         //
         // function GetById(_id) {
         //     return $http.get('/api/users/' + _id).then(handleSuccess, handleError);
@@ -42,9 +86,9 @@
         //     return $http.put('/api/users/' + user._id, user).then(handleSuccess, handleError);
         // }
 
-        // function Delete(_id) {
-        //     return $http.delete('/api/users/' + _id).then(handleSuccess, handleError);
-        // }
+        function Delete(_id) {
+             return $http.delete('/test/api/' + _id).then(handleSuccess, handleError);
+         }
 
         // private functions
 
