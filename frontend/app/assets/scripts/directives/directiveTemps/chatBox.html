@@ -6,17 +6,22 @@
           <li  ng-repeat="message in messageTest track by $index" >
               <div>
                   <div>
-                    <identicon username='message.author' size='40' />
-                      <strong class="primary-font">{{message.author}}</strong> <small class="pull-right text-muted">
-                          <span class="glyphicon glyphicon-time"></span> {{message.timestamp | date:'MM/dd/yyyy @ h:mma'}}</small>
+                    <identicon username='message.data.author' size='40' />
+                      <strong class="primary-font">{{message.data.author}}</strong> <small class="pull-right text-muted">
+                          <span class="glyphicon glyphicon-time"></span> {{message.data.timestamp | date:'MM/dd/yyyy @ h:mma'}}</small>
                   </div>
                   <div>
                     <!-- <img width=420 height=420 src="data:image/png;base64,' + {{identicon}} + '"> -->
 
                   </div>
                   <p class="p-wrap">
-                      {{message.messageContent}}
+                    {{message.data.messageContent}}
                   </p>
+                  <p ng-show="message.data.gif" class="p-wrap">
+                    <br>
+                    <img ng-show="message.data.gif" src="{{message.data.url}}" alt="gifyImage">
+                  </p>
+
               </div>
           </li>
         </ul>

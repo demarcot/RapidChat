@@ -26,10 +26,22 @@ module.exports = function (io) {
         }
     });
 
-    socket.on("message", function(from, msg, chatRoom, name){
-      //On message send, broadcast to all users that this chatroom has been updated. Frontend logic for who should update what.
-      //TODO(Tom, Mike): send the hashed name of the chatroom for the clients to compare to so we don't leak private chatroom names
+    socket.on('gif', function(from, msg, chatRoom, name, url){
+      console.log("url", url);
 
+		  io.sockets.to("updateRoom").emit("notify", {
+        _id:chatRoom,
+        chatRoom: name,
+        source: from
+      });
+      io.sockets.to(chatRoom).emit("gify", {
+        payload: from + ": " + " Powered by gify!",
+        source: "Gifybot",
+        url: url
+      });
+    });
+
+    socket.on("message", function(from, msg, chatRoom, name){
 
 		  io.sockets.to("updateRoom").emit("notify", {
         _id:chatRoom,
