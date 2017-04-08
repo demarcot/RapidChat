@@ -22,7 +22,7 @@ app.use(session({ secret: config.secret, resave: false, saveUninitialized: true 
 
 app.use(express.static(__dirname + '/public'));
 //server.listen(3000);
-server.listen(3000, function () {
+server.listen(80, function () {
     console.log('Server listening at http://' + server.address().address + ':' + server.address().port);
 });
 app.use(bodyParser.urlencoded());
