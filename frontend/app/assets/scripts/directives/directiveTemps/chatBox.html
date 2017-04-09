@@ -1,26 +1,33 @@
 <div>
   <div class="panel panel-default">
     <div>
-      <div class="panel-body scroll" scroll-glue="glued">
+      <div id="#testScroll" class="panel-body scroll" scroll-glue-bottom>
         <ul class="no-bullet">
           <li  ng-repeat="message in messageTest track by $index" >
               <div>
-                  <div>
+                  <div ng-hide="message.isLink && message.data.gif">
                     <identicon username='message.data.author' size='40' />
                       <strong class="primary-font">{{message.data.author}}</strong> <small class="pull-right text-muted">
                           <span class="glyphicon glyphicon-time"></span> {{message.data.timestamp | date:'MM/dd/yyyy @ h:mma'}}</small>
                   </div>
-                  <div>
+                  <div ng-show="message.isLink && message.data.gif">
                     <!-- <img width=420 height=420 src="data:image/png;base64,' + {{identicon}} + '"> -->
+                    <img src="assets/imgs/gifyIcon.PNG" width=40 height=50 alt="">
+                    <a href="https://giphy.com"><strong class="primary-font">{{message.data.author}} Powered by Giphy!</strong> <small class="pull-right text-muted"></a>
+                        <span class="glyphicon glyphicon-time"></span> {{message.data.timestamp | date:'MM/dd/yyyy @ h:mma'}}</small>
 
                   </div>
-                  <p class="p-wrap">
+                  <p class="p-wrap" ng-hide="message.isLink || message.data.gif">
                     {{message.data.messageContent}}
                   </p>
-                  <p ng-show="message.data.gif" class="p-wrap">
+                  <p class="p-wrap" ng-show="message.data.gif">
                     <br>
-                    <img ng-show="message.data.gif" src="{{message.data.url}}" alt="gifyImage">
+                    <img ng-show="message.data.gif" ng-src="{{message.data.url}}" alt="gifyImage">
                   </p>
+                  <p class="p-wrap" ng-show="message.isLink && !message.data.gif">
+                    <a href="{{message.data.messageContent}}">{{message.data.messageContent}}</a>
+                  </p>
+
 
               </div>
           </li>

@@ -35,8 +35,8 @@ module.exports = function (io) {
         source: from
       });
       io.sockets.to(chatRoom).emit("gify", {
-        payload: from + ": " + " Powered by gify!",
-        source: "Gifybot",
+        payload: from + ": " + " Powered by Giphy!",
+        source: "Giphybot",
         url: url
       });
     });

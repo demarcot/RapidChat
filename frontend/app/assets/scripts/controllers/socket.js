@@ -2,6 +2,7 @@ angular.module('coreApp')
 .controller('SocketCtrl', function ($log, $scope, chatSocket, messageFormatter, nickName, UserService, $state, ChatRoomService) {
 
 
+
 // NOTE: Estabish variables
   $scope.chatRoom = $state.params.chatRoomId;
   $scope.chatRoomId = {'_id': $state.params.chatRoomId }
@@ -49,7 +50,10 @@ angular.module('coreApp')
 
           $scope.gifyUrl = gifyResponse.data.image_original_url;
           console.log($scope.gifyUrl);
-          chatSocket.emit('gif', nickName, $scope.message, $scope.chatRoom, $scope.chatRoomName, $scope.gifyUrl);
+          setTimeout(function () {
+            chatSocket.emit('gif', nickName, $scope.message, $scope.chatRoom, $scope.chatRoomName, $scope.gifyUrl);
+          }, 1);
+
           $scope.encapMessge = {
               "_id":$scope.chatRoom,
               "username":nickName,
@@ -92,7 +96,7 @@ angular.module('coreApp')
     $scope.$apply(function() {
 
       $scope.messageLog = $scope.messageLog + messageFormatter(new Date(), data.source, data.payload);
-      $scope.messageTest.push({'data':{timestamp: new Date(), author: data.source, messageContent: data.payload, url:data.url, gif: false}, 'isLink':true});
+      $scope.messageTest.push({'data':{timestamp: new Date(), author: data.source, messageContent: data.payload, url:data.url, gif: false}, 'isLink':false});
     });
   });
 
