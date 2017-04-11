@@ -3,19 +3,21 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "cookie-parser": "~1.0.1",
+    "bcryptjs": "^2.4.0",
     "body-parser": "~1.0.0",
+    "cookie-parser": "~1.0.1",
+    "ejs": "2.5.5",
     "express": "~4.13.4",
-    "socket.io":"0.9.16",
-    "mongodb":"^2.2.21",
-    "request":"^2.79.0",
-    "q":"^1.4.1",
-    "bcryptjs":"^2.4.0",
-    "jsonwebtoken":"^7.2.1",
-    "lodash":"^4.17.4",
     "express-jwt": "^5.1.0",
-    "rootpath":"0.1.2",
-    "express-session":"1.15.0",
-    "mongojs":"2.4.0",
-    "ejs":"2.5.5"
-  }}
+    "express-session": "1.15.0",
+    "identicon.js": "^2.1.0",
+    "jsonwebtoken": "^7.2.1",
+    "lodash": "^4.17.4",
+    "mongodb": "^2.2.21",
+    "mongojs": "2.4.0",
+    "q": "^1.4.1",
+    "request": "^2.79.0",
+    "rootpath": "0.1.2",
+    "socket.io": "0.9.16"
+  }
+}

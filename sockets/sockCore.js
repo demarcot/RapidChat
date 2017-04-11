@@ -1,68 +1,61 @@
 module.exports = function (io) {
   'use strict';
   io.sockets.on('connection', function (socket) {
+	  //This is a logical room. Use for alerts...
+	  socket.join("updateRoom");
 
-    socket.on("currentRoom", function(username, chatRoom, oldRoom) {
-      socket.leave(oldRoom);
-      socket.join(chatRoom);
-      io.sockets.to(chatRoom).emit("broadcast", {
-        payload: "User connected " + username +" to " + chatRoom,
+
+    socket.on("inviteUser", function(author, invitedUser, chatroomId, chatroom){
+      io.sockets.to("updateRoom").emit("inviteUser", {
+
+        payload: author +" Invited you to: " + chatroom,
+        invitedUser: invitedUser,
+        _id: chatroomId,
         source: "Server"
       });
-      console.log("User:", username);
-      console.log("Chat Room", chatRoom);
-      console.log("Old Room", oldRoom)
     });
 
-    socket.on("message", function(from, msg, chatRoom){
+    socket.on("currentRoom", function(username, chatRoom, oldRoom, name) {
+      socket.leave(oldRoom);
+      socket.join(chatRoom);
+        if (name != undefined) {
+          io.sockets.to(chatRoom).emit("broadcast", {
+            payload: "Connected " + username +" to " + name,
+            source: "Server"
+          });
+        }
+    });
+
+    socket.on('gif', function(from, msg, chatRoom, name, url){
+      console.log("url", url);
+
+		  io.sockets.to("updateRoom").emit("notify", {
+        _id:chatRoom,
+        chatRoom: name,
+        source: from
+      });
+      io.sockets.to(chatRoom).emit("gify", {
+        payload: from + ": " + " Powered by Giphy!",
+        source: "Giphybot",
+        url: url
+      });
+    });
+
+    socket.on("message", function(from, msg, chatRoom, name){
+
+		  io.sockets.to("updateRoom").emit("notify", {
+        _id:chatRoom,
+        chatRoom: name,
+        source: from
+      });
       io.sockets.to(chatRoom).emit("broadcast", {
         payload: msg,
         source: from
       });
     });
 
-    //socket.on
+
 
    });
 
 };
-
-
-
-      // console.log('recieved messagee from', from, 'msg', JSON.stringify(msg));
-      //
-      // console.log('broadcasting message');
-      // console.log('payload is', msg);
-
-      // io.sockets.on('connection', function (socket) {
-      //   socket.join('justin bieber fans');
-      //   socket.broadcast.to('justin bieber fans').emit('new fan');
-      //   io.sockets.in('rammstein fans').emit('new non-fan');
-      // });
-      // socket.join('testRoom1');
-      // socket.broadcast.to('testRoom1').emit({
-      //   room:'testRoom1'
-      // });
-      // io.sockets.emit('broadcast', {
-      //   payload: msg,
-      //   source: from
-      // });
-      // console.log('broadcast complete');
-
-
-      // io.on('connection', function (socket) {
-      //   socket.broadcast.emit('user connected');
-      //
-      //
-      //   socket.on('message', function (from, msg, room) {
-      //     //So what im thinking this needs to be is an if statement that
-      //
-      //     socket.broadcast.to(room.ChatroomName).emit({
-      //       payload: msg,
-      //       source: from
-      //     })
-      //
-      //
-      //
-      //   });
-      // });

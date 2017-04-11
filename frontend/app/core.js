@@ -2,22 +2,22 @@
     'use strict';
 
     angular
-        .module('coreApp', ['ui.router', 'ngCookies', 'ngResource', 'ngSanitize', 'btford.socket-io'])
-        .value('nickName', '**IMPLEMENT_THIS_PART**')
+        .module('coreApp', ['ui.router', 'ngCookies', 'ngResource', 'ngSanitize', 'btford.socket-io', 'luegg.directives', 'ui.identicon'])
+        .value('nickName', 'Nick_name')
         .config(config)
         .run(run);
 
     function config($stateProvider, $urlRouterProvider) {
         // default route
-        $urlRouterProvider.otherwise("/");
+        $urlRouterProvider.otherwise("/dashboard");
 
         $stateProvider
-            .state('chatLayout', {
-                url: '/',
+            .state('dashboard', {
+                url: '/dashboard',
                 templateUrl: 'assets/views/chatLayout.html',
                 controller: 'chatLayoutCtrl',
                 controllerAs: 'vm',
-                data: { activeTab: 'home' }
+                data: { activeTab: 'dashboard' }
             })
             .state('personalize', {
                 url: '/personalize',
@@ -26,11 +26,18 @@
                 controllerAs: 'vm',
                 data: { activeTab: 'personalize' }
             })
-            .state('secretchat', {
+            .state('secretChat', {
                 url: '/secretChat',
                 templateUrl: 'assets/views/testChat.html',
-                data: { activeTab: 'secretchat' }
-               })
+                data: { activeTab: 'secretChat' }
+              })
+              .state('admin',{
+                url:'/admin',
+                templateUrl:'assets/views/admin.html',
+                controller:'adminCtrl',
+                controllerAs:'vm',
+                data:{activeTab:'admin'}
+              })
             .state('chatRoomById',{
               url: '/chatRoom/:chatRoomId',
               templateUrl:'assets/views/testChat.html',
@@ -38,15 +45,45 @@
             });
     }
 
-    function run($http, $rootScope, $window) {
+    function run($http, $rootScope, $window, UserService, $state) {
         // add JWT token as default auth header
         $http.defaults.headers.common['Authorization'] = 'Bearer ' + $window.jwtToken;
-        console.log($window.jwtToken);
+
 
         // update active tab on state change
         $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
             $rootScope.activeTab = toState.data.activeTab;
+            $rootScope.params = toParams;
         });
+
+ $rootScope.$on('$stateChangeStart', function (event, toState, toStateParams, fromState, fromStateParams) {
+console.log(toState);
+        var accessDenied = function(){
+            event.preventDefault();
+
+            //do whatever neccessary
+            alert("UNAUTHORIZED_ACCESS");
+            $state.go("dashboard");
+            //
+            //                                };
+            //
+
+
+    }
+        if(toState.name ==='admin'){
+                UserService.isAdmin().then(function(admin){
+                        var adminCheck = admin.isAdmin;
+                        if(adminCheck != true){
+                        accessDenied();
+			console.log("NOT AUTH");
+                        }
+                        else{
+                        }
+                })
+        }
+
+  });
+
     }
 
     // manually bootstrap angular after the JWT token is retrieved from the server
