@@ -94,7 +94,7 @@
                     </a>
                   </li>
                   <ul id="notificationsm" class="in collapse" ng-show="newNotifications">
-                    <li class="hod" ng-repeat="note in notifications track by $index" ui-sref="chatRoomById({chatRoomId: note._id})" ng-click="setOldRoom();" ui-sref-active="active"><a>{{note.author}} in room {{note.chatroom}}</a></li>
+                    <li class="hod" ng-repeat="note in notifications track by $index" ui-sref="chatRoomById({chatRoomId: note._id})" ng-click="setOldRoom();eraseNotification($index)" ui-sref-active="active"><a>{{note.author}} in room {{note.chatroom}}</a></li>
                   </ul>
                   <!-- <li class="hod" data-ng-class="{'invite':newInvites}"><a><i class="fa fa-envelope fa-lg"></i>&nbsp;Invitations</a></li> -->
                   <li data-toggle="collapse" data-target="#invitationsm" class="collapsed hod" data-ng-class="{'pulse-button':newInvites}">
@@ -140,7 +140,7 @@
               <li data-ng-class="{'pulse-button':newNotifications}">
                 <a class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell fa-lg"></i></a>
                 <ul class="dropdown-menu notify-style" ng-style="topStyle" ng-show="newNotifications">
-                  <li ng-repeat="note in notifications track by $index" ui-sref="chatRoomById({chatRoomId: note._id})" ng-click="setOldRoom()" ui-sref-active="active"><a>{{note.author}} in room {{note.chatroom}}</a></li>
+                  <li ng-repeat="note in notifications track by $index" ui-sref="chatRoomById({chatRoomId: note._id})" ng-click="setOldRoom();eraseNotification($index)" ui-sref-active="active"><a>{{note.author}} in room {{note.chatroom}}</a></li>
                   <li class="divider"></li>
                   <li id="note-footer" class="notify-button" ng-click="clearNotifications()">Clear Notifications</li>
                 </ul>
@@ -170,8 +170,11 @@
           </div>
           <div class="modal-body body-style">
             <form class="form-group" ng-submit="" method="post">
-              <input type="text" name="Chatroom Name" value="" class="form-control input-chatroom" placeholder="Name the chat room here." ng-model="chatRoomName" ng-minlength="5" ng-maxlength="12" ng-required>
-              <input type="checkbox" name="isPrivate" ng-model="isPrivate">Click here for Private chatboxs {{isPrivate}}</input>
+		<div class="input-group">
+              <input type="text" name="Chatroom Name" value="" class="form-control input-chatroom" placeholder="Name the chat room here." ng-model="chatRoomName" ng-minlength="5" ng-maxlength="25" ng-required>
+		<span class="input-group-addon"><i ng-show="isPrivate" class="fa fa-lock"></i> <i ng-show="!isPrivate" class="fa fa-unlock"></i></span>
+		</div>
+              <input type="checkbox" name="isPrivate" ng-model="isPrivate">Click here for Private Chatroom</input>
             </form>
           </div>
           <div class="modal-footer footer-style" ng-style="sideStyle">

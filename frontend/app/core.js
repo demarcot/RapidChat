@@ -45,7 +45,7 @@
             });
     }
 
-    function run($http, $rootScope, $window) {
+    function run($http, $rootScope, $window, UserService, $state) {
         // add JWT token as default auth header
         $http.defaults.headers.common['Authorization'] = 'Bearer ' + $window.jwtToken;
 
@@ -55,6 +55,35 @@
             $rootScope.activeTab = toState.data.activeTab;
             $rootScope.params = toParams;
         });
+
+ $rootScope.$on('$stateChangeStart', function (event, toState, toStateParams, fromState, fromStateParams) {
+console.log(toState);
+        var accessDenied = function(){
+            event.preventDefault();
+
+            //do whatever neccessary
+            alert("UNAUTHORIZED_ACCESS");
+            $state.go("dashboard");
+            //
+            //                                };
+            //
+
+
+    }
+        if(toState.name ==='admin'){
+                UserService.isAdmin().then(function(admin){
+                        var adminCheck = admin.isAdmin;
+                        if(adminCheck != true){
+                        accessDenied();
+			console.log("NOT AUTH");
+                        }
+                        else{
+                        }
+                })
+        }
+
+  });
+
     }
 
     // manually bootstrap angular after the JWT token is retrieved from the server

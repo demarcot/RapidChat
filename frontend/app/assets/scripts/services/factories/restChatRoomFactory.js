@@ -25,6 +25,7 @@
         service.Delete = Delete;
         service.notifyCheck = notifyCheck;
         service.checkPending = checkPending;
+        service.gifyUrl = gifyUrl;
 
 
         return service;
@@ -33,6 +34,29 @@
         //     return $http.get('/api/users/current').then(handleSuccess, handleError);
         // }
         //
+        function gifyUrl(search){
+
+          var deferred = $q.defer();
+          if (search != null) {
+            function reqListener () {
+              deferred.resolve(this.response);
+            }
+            var url = 'http://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=' + search;
+            var oReq = new XMLHttpRequest();
+            oReq.addEventListener("load", reqListener);
+            oReq.responseType = 'json';
+            oReq.open("GET", url);
+            oReq.send(null);
+
+          }
+          else {
+            console.log("Failed on send");
+            deferred.reject(search);
+          }
+          return deferred.promise;
+
+          }
+
         function checkPending(info) {
           return $http.post('/test/api/checkPending', info).then(handleSuccess, handleError);
        }

@@ -29,6 +29,14 @@ angular.module('coreApp')
         	$scope.newInvites = false;
     		}
   };
+	$scope.eraseNotification = function(index)
+	{
+				$scope.notifications.splice(index, 1);
+				if ($scope.notifications.length == 0)
+				{
+					$scope.newNotifications = false;
+				}
+	};
 
 	$scope.removeUser = function(chatroomId, username){
 		$scope.removed = true;

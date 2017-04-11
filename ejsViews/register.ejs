@@ -1,6 +1,13 @@
 <%- include('temps/header') %>
 <div class="image">
 </div>
+<div class="jumbotron" style="background-color: #748492;
+    max-width: 50%;
+    position: relative;
+    left: 25%;
+    border-radius:10px;
+    border-style: double;
+    ">
 <div class="form-container login-style scrollable">
     <h2>Register</h2>
     <% if(locals.error) { %>
@@ -28,5 +35,6 @@
             <a href="/login" class="btn btn-link link-color">Cancel</a>
         </div>
     </form>
+</div>
 </div>
 <%- include('temps/footer') %>
