@@ -102,6 +102,11 @@ Execute
  $ bower install
 ```
 
+Install angular scroll glue
+
+```
+ > bower install angular-scroll-glue
+```
 
 * Windows
 
@@ -180,6 +185,12 @@ Execute
 
 ```
  > bower install
+```
+
+Install angular scroll glue
+
+```
+ > bower install angular-scroll-glue
 ```
 
 ## Operating Instructions
