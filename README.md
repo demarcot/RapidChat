@@ -105,7 +105,7 @@ Execute
 Install angular scroll glue
 
 ```
- > bower install angular-scroll-glue
+ $ bower install angular-scroll-glue
 ```
 
 * Windows
