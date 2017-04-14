@@ -215,6 +215,9 @@ To stop server
 forever stop all
 ```
 
+## Buying a Rapid Chat Box
+contact Mike at mwithington1995@gmail.com to inquire about ordering a Rapid Chat Box 
+
 ## Components
 - [Mongo DB](https://www.mongodb.com/) - Database
 - [Express JS](https://expressjs.com/) - Node.js network app framework
