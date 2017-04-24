@@ -37,8 +37,8 @@
         // }
         'use strict';
 
-        var isChannelReady = true;
-        var isInitiator = true;
+        var isChannelReady = false;
+        var isInitiator = false;
         var isStarted = false;
         var localStream;
         var pc;
