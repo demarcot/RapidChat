@@ -83,15 +83,16 @@ module.exports = function (io) {
       log('Client ID ' + socket.id + ' created room ' + room);
       socket.emit('created', room, socket.id);
 
-    } else if (numClients === 2) {
+    } else {
       log('Client ID ' + socket.id + ' joined room ' + room);
       io.sockets.in(room).emit('join', room);
       socket.join(room);
       socket.emit('joined', room, socket.id);
       io.sockets.in(room).emit('ready');
-    } else { // max two clients
-      socket.emit('full', room);
     }
+    //else { // max two clients
+    //   socket.emit('full', room);
+    // }
   });
 
   socket.on('ipaddr', function() {
