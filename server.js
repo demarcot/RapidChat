@@ -1,6 +1,7 @@
 require('rootpath')();
 var express = require('express'),
     http = require('http'),
+    https = require('https'),
     app = express(),
     server = http.createServer(app),
     io = require('socket.io'),
@@ -22,7 +23,7 @@ app.use(session({ secret: config.secret, resave: false, saveUninitialized: true 
 
 app.use(express.static(__dirname + '/public'));
 //server.listen(3000);
-server.listen(8080, function () {
+server.listen(8443, function () {
     console.log('Server listening at http://' + server.address().address + ':' + server.address().port);
 });
 app.use(bodyParser.urlencoded());
