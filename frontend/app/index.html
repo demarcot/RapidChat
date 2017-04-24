@@ -118,6 +118,7 @@
             <ul class="nav navbar-nav right-buffer">
               <li ng-class="{active: activeTab === 'dashboard'}"><a ui-sref="dashboard" ng-click="setOldRoom()">Dashboard</a></li>
               <li ng-class="{active: activeTab === 'personalize'}"><a ui-sref="personalize" ng-click="setOldRoom()">Account</a></li>
+              <li ng-class="{active: activeTab === 'video'}"><a ui-sref="video" ng-click="setOldRoom()">Video Chat Test </a></li>
               <li ng-class="{active: activeTab === 'admin'}"><a ui-sref="admin" ng-click="setOldRoom()" ng-show="adminCheck">Admin</a></li>
 
               <!-- <li><a><i class="fa fa-comments fa-lg"></i> {{}}</a></li> -->
@@ -260,6 +261,8 @@
     <script src="assets/imgs/angular-identicon/dist/angular-identicon.js"></script>
 
     <!-- these are all of our files dont forget all script tags must come in the body and load core.js FIRST then all other modules -->
+
+    <script src="assets/lib/adapter.js"></script>
     <script src="core.js" charset="utf-8"></script>
     <script src="assets/scripts/services/factories/restUserFactory.js" charset="utf-8"></script>
     <script src="assets/scripts/services/factories/restChatRoomFactory.js" charset="utf-8"></script>
@@ -274,6 +277,7 @@
     <script src="assets/scripts/services/messageFormatter.js"></script>
     <script src="assets/scripts/directives/chatBox.js"></script>
     <script src="assets/scripts/controllers/notifyCtrl.js" charset="utf-8"></script>
+    <script src="assets/scripts/videoTest.js" charset="utf-8"></script>
     <script>if (window.module) module = window.module;</script>
     <!-- <script src="assets\scripts\services\factories\restFactory.js" charset="utf-8"></script> -->
       </div>

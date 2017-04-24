@@ -26,6 +26,13 @@
                 controllerAs: 'vm',
                 data: { activeTab: 'personalize' }
             })
+            .state('video', {
+                url: '/video',
+                controller: 'videoCtrl',
+                controllerAs: 'vm',
+                templateUrl: 'assets/views/videoChat.html',
+                data: { activeTab: 'video' }
+            })
             .state('secretChat', {
                 url: '/secretChat',
                 templateUrl: 'assets/views/testChat.html',

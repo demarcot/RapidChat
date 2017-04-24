@@ -25,6 +25,10 @@
 .right-buffer {
   padding-right: 10px;
 }
+video {
+  max-width: 100%;
+  width: 320px;
+}
 .bottom-of-page{bottom:0px}
 .full-height{height: 100%}
 .chat-background{
