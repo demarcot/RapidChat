@@ -49,7 +49,7 @@
           'iceServers': [{
             'urls': 'stun:stun.l.google.com:19302'
           },
-          {'url':'turn:turn@52.90.171.126' , 'credential':'server'}
+          {'urls':'turn:turn@52.90.171.126' , 'credential':'server'}
         ]
         };
 
