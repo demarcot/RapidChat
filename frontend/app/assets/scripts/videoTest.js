@@ -48,7 +48,9 @@
         var pcConfig = {
           'iceServers': [{
             'urls': 'stun:stun.l.google.com:19302'
-          }]
+          },
+          {'url':'turn:turn@52.90.171.126' , 'credential':'server'}
+        ]
         };
 
         // Set up audio and video regardless of what devices are present.
@@ -156,11 +158,11 @@
 
         console.log('Getting user media with constraints', constraints);
 
-        // if (location.hostname !== 'localhost') {
-        //   requestTurn(
-        //     'https://computeengineondemand.appspot.com/turn?username=41784574&key=4080218913'
-        //   );
-        // }
+        if (location.hostname !== 'localhost') {
+          requestTurn(
+            'https://computeengineondemand.appspot.com/turn?username=41784574&key=4080218913'
+          );
+        }
 
         function maybeStart() {
           console.log('>>>>>>> maybeStart() ', isStarted, localStream, isChannelReady);
@@ -249,12 +251,14 @@
           var turnExists = false;
           for (var i in pcConfig.iceServers) {
             if (pcConfig.iceServers[i].url.substr(0, 5) === 'turn:') {
+              console.log("Working");
               turnExists = true;
               turnReady = true;
               break;
             }
           }
           if (!turnExists) {
+            console.log("Not working");
             console.log('Getting TURN server from ', turnURL);
             // No TURN server. Get one from computeengineondemand.appspot.com:
             var xhr = new XMLHttpRequest();
