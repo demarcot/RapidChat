@@ -214,3 +214,296 @@ Kyle Master CSS Code
 
       <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
       <!-- NOTE: end of angular material includes -->
+
+
+
+
+
+    note index file
+
+    <!DOCTYPE html>
+    <html ng-controller="oldRoomCtrl">
+      <head>
+        <!--<link rel="stylesheet" href="/css/master.css"> -->
+        <!--External Css Dependancies -->
+        <link rel="stylesheet" href="assets\bower_components\bootstrap\dist\css\bootstrap.min.css">
+        <link rel="stylesheet" href="assets/styles/Master.css">
+        <link rel="stylesheet" href="assets\imgs\font-awesome-4.7.0\css\font-awesome.min.css">
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="utf-8">
+        <meta name="theme-color" content="{{frameColor}}" />
+        <link rel="icon" type="image/png" href="assets/imgs/transIcon.PNG" sizes="16x16">
+        <link rel="icon" type="image/png" href="assets/imgs/transIcon.PNG" sizes="32x32">
+        <title>RapidChat</title>
+      </head>
+      <body>
+        <header>
+        </header>
+        <div>
+          <style>
+            .nav-side-menu li:hover{
+              background-color: {{sideHover}};
+            }
+            .nav-side-menu ul .active, .nav-side-menu li .active{
+              background-color: {{sideHover}};
+            }
+            .navbar-default .navbar-nav>li>a:hover{
+              background-color: {{topHover}};
+            }
+            .navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:hover, .navbar-default .navbar-nav>.active>a:focus{
+              background-color: {{topHover}};
+            }
+            .navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:hover, .navbar-default .navbar-nav>.open>a:focus{
+              background-color: {{topHover}};
+            }
+            .nav .navbar-nav .navbar-right>li>a:hover{
+              background-color: {{topHover}};
+            }
+            .dropdown-menu>li>a:hover{
+              background-color: {{topHover}};
+            }
+            .altbutton-style:hover{
+              background-color: {{sideHover}};
+            }
+            .notify{
+              background-color: white;
+            }
+            .invite{
+              background-color: white;
+            }
+          </style>
+          <div ng-controller="notifyCtrl">
+          <!-- Side Menu -->
+        <div class="nav-side-menu" ng-style="sideStyle">
+            <div class="brand" ng-style="sideStyle">
+              <div class="hom"><img src="assets/imgs/transLogo.PNG" class="hom" ui-sref="dashboard"/></div>
+              <div class="hod"><img src="assets/imgs/transIcon.PNG" class="logo-style hod" ui-sref="dashboard"/><span class="mobile-room">{{currentChatRoomName}}
+                <i class="fa fa-lock pull-right right-buffer" ng-show="currentPrivateCheck && !currentDirectCheck"></i>
+                <i class="fa fa-cog pull-right" data-toggle="modal" data-target="#invite" ng-click="setRoomName(currentChatRoomName, currentChatRoomId._id);initRoom(currentChatRoomId._id)" ng-show="currentPrivateCheck && !currentDirectCheck"></i></span></div>
+            </div>
+            <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content" ></i>
+            <div class="menu-list" ng-style="sideStyle">
+                <ul id="menu-content" class="menu-content collapse out">
+                    <li data-toggle="collapse" data-target="#chatrooms" class="not(collapsed) ">
+                        <a>
+                          <i class="fa fa-globe fa-lg left-buffer"></i> Chat Rooms <span class="arrow"></span>
+                        </a>
+                    </li>
+                    <ul id="chatrooms" class="in collapse">
+                      <li class="left-buffer" ng-repeat="room in chatRooms[0].publicChatRooms track by $index" ui-sref="chatRoomById({chatRoomId: room._id})" ng-click="setOldRoom()" ui-sref-active="active"><a>{{room.name}}</a></li>
+                      <li class="left-buffer" ng-repeat="room in chatRooms[1].allowedChatRooms track by $index" ui-sref="chatRoomById({chatRoomId: room._id})" ng-click="setOldRoom()" ng-show="room.direct === false" ui-sref-active="active"><a>{{room.name}}</a><i class="fa fa-lock pull-right right-buffer"></i><i class="fa fa-cog pull-right" data-toggle="modal" data-target="#invite" ng-click="setRoomName(room.name, room._id);initRoom(room._id)"></i></li>
+                      <li data-toggle="modal" data-target="#createRoom">Create Room</li>
+                    </ul>
+                    <li data-toggle="collapse" data-target="#direct" class="not(collapsed)">
+                        <a>
+                            <i class="fa fa-users fa-lg left-buffer"></i> Direct Messages <span class="arrow"></span>
+                        </a>
+                    </li>
+                    <ul id="direct" class="in collapse">
+                        <li ng-repeat="room in chatRooms[1].allowedChatRooms track by $index" ui-sref="chatRoomById({chatRoomId: room._id})" ng-click="setOldRoom()" ng-show="room.direct === true" ui-sref-active="active"><identicon username='room.acceptedUsers[0]' size='16'></identicon>&nbsp;&nbsp;{{room.acceptedUsers[0]}}</li>
+                    </ul>
+                    <li data-toggle="collapse" data-target="#options" class="hod not(collapsed)">
+                        <a><i class="fa fa-cogs fa-lg left-buffer"></i> Options <span class="arrow"></span></a>
+                    </li>
+                    <ul id="options" class="in collapse">
+                      <li class="hod" ng-class="{active: activeTab === 'dashboard'}" ui-sref="dashboard" ng-click="setOldRoom()"><a><i class="fa fa-home fa-lg left-buffer"></i>Dashboard</a></li>
+                      <li class="hod" ng-class="{active: activeTab === 'personalize'}" ui-sref="personalize" ng-click="setOldRoom()"><a><i class="fa fa-user fa-lg left-buffer"></i>Account</a></li>
+                      <li class="hod" ng-class="{active: activeTab === 'admin'}" ui-sref="admin" ng-click="setOldRoom()" ng-show="adminCheck"><a><i class="fa fa-user fa-lg left-buffer"></i>Admin</a></li>
+                      <!-- <li class="hod" data-ng-class="{'notify':newNotifications}"><a><i class="fa fa-bell fa-lg"></i>Notifications</a></li> -->
+                      <li data-toggle="collapse" data-target="#notificationsm" class="collapsed hod" data-ng-class="{'pulse-button':newNotifications}">
+                        <a>
+                          <i class="fa fa-bell fa-lg"></i>Notifications<span class="arrow" ng-show="newNotifications"></span><span ng-show="newNotifications" ng-click="clearNotifications()" class="pull-right">x</span>
+                        </a>
+                      </li>
+                      <ul id="notificationsm" class="in collapse" ng-show="newNotifications">
+                        <li class="hod" ng-repeat="note in notifications track by $index" ui-sref="chatRoomById({chatRoomId: note._id})" ng-click="setOldRoom();eraseNotification($index)" ui-sref-active="active"><a>{{note.author}} in room {{note.chatroom}}</a></li>
+                      </ul>
+                      <!-- <li class="hod" data-ng-class="{'invite':newInvites}"><a><i class="fa fa-envelope fa-lg"></i>&nbsp;Invitations</a></li> -->
+                      <li data-toggle="collapse" data-target="#invitationsm" class="collapsed hod" data-ng-class="{'pulse-button':newInvites}">
+                        <a>
+                          <i class="fa fa-envelope fa-lg"></i>Invitations<span class="arrow" ng-show="newInvites"></span><span ng-show="newInvites" ng-click="clearInvites()" class="pull-right">x</span>
+                        </a>
+                      </li>
+                      <ul id="invitationsm" class="in collapse" ng-show="newInvites">
+                        <li class="hod" ng-repeat="invite in invites track by $index" ui-sref="chatRoomById({chatRoomId: invite._id})" ng-click="setOldRoom();acceptInvite(username.username, invite._id);eraseInvite($index)" ui-sref-active="active"><a>{{invite.message}} Click here to accept!</a></li>
+                      </ul>
+                      <li class="hod"  onclick="location.href='/login'" ><a target="_self" style="color: #161616"><i class="fa fa-sign-out fa-lg"></i>Logout</a></li>
+                    </ul>
+                </ul>
+            </div>
+          </div>
+
+        <div class="container-fluid" id="main">
+            <div>
+              <!-- Top Navigation Bar -->
+              <nav class="navbar navbar-default hom" ng-style="topStyle">
+                <ul class="nav navbar-nav right-buffer">
+                  <li ng-class="{active: activeTab === 'dashboard'}"><a ui-sref="dashboard" ng-click="setOldRoom()">Dashboard</a></li>
+                  <li ng-class="{active: activeTab === 'personalize'}"><a ui-sref="personalize" ng-click="setOldRoom()">Account</a></li>
+                  <li ng-class="{active: activeTab === 'video'}"><a ui-sref="video" ng-click="setOldRoom()">Video Chat Test </a></li>
+                  <li ng-class="{active: activeTab === 'admin'}"><a ui-sref="admin" ng-click="setOldRoom()" ng-show="adminCheck">Admin</a></li>
+
+                  <!-- <li><a><i class="fa fa-comments fa-lg"></i> {{}}</a></li> -->
+                          <!-- <div class="input-group input-group-sm">
+                            <input type="text" class="form-control" placeholder="Search.." aria-describedby="searchbar-addon">
+                            <span class="input-group-addon" id="searchbar-addon"><i class="fa fa-search fa-lg"></i></span>
+                          </div> -->
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                  <li data-ng-class="{'pulse-button':newInvites}">
+                    <a class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope fa-lg"></i></a>
+
+                      <ul class="dropdown-menu notify-style" ng-style="topStyle" ng-show="newInvites">
+                        <li ng-repeat="invite in invites track by $index" ui-sref="chatRoomById({chatRoomId: invite._id})" ng-click="setOldRoom();acceptInvite(username.username, invite._id);eraseInvite($index)" ui-sref-active="active"><a>{{invite.message}} Click here to accept!</a></li>
+                        <li class="divider"></li>
+                        <li id="note-footer" class="notify-button" ng-click="clearInvites()">Clear invites</li>
+                      </ul>
+
+                  </li>
+                  <li data-ng-class="{'pulse-button':newNotifications}">
+                    <a class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell fa-lg"></i></a>
+                    <ul class="dropdown-menu notify-style" ng-style="topStyle" ng-show="newNotifications">
+                      <li ng-repeat="note in notifications track by $index" ui-sref="chatRoomById({chatRoomId: note._id})" ng-click="setOldRoom();eraseNotification($index)" ui-sref-active="active"><a>{{note.author}} in room {{note.chatroom}}</a></li>
+                      <li class="divider"></li>
+                      <li id="note-footer" class="notify-button" ng-click="clearNotifications()">Clear Notifications</li>
+                    </ul>
+                  </li>
+                  <li class="right-buffer"><a href="/login" target="_self"><i class="fa fa-sign-out fa-lg"></i>Logout</a></li>
+                </ul>
+              </nav>
+
+              <div class="flash-message" ng-if="flash">
+                <div class="{{'alert alert-' + flash.type}}" ng-bind="flash.message"></div>
+              </div>
+
+            </div>
+            <!-- UI Body -->
+            <div>
+              <div ui-view></div>
+            </div>
+        </div>
+
+        <!-- Create Chat Room Modal -->
+        <div ng-controller="modalCtrl" class="modal fade" id="createRoom" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header header-style" ng-style="topStyle">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Create Chat Room</h4>
+              </div>
+              <div class="modal-body body-style">
+                <form class="form-group" ng-submit="" method="post">
+    		<div class="input-group">
+                  <input type="text" name="Chatroom Name" value="" class="form-control input-chatroom" placeholder="Name the chat room here." ng-model="chatRoomName" ng-minlength="5" ng-maxlength="25" ng-required>
+    		<span class="input-group-addon"><i ng-show="isPrivate" class="fa fa-lock"></i> <i ng-show="!isPrivate" class="fa fa-unlock"></i></span>
+    		</div>
+                  <input type="checkbox" name="isPrivate" ng-model="isPrivate">Click here for Private Chatroom</input>
+                </form>
+              </div>
+              <div class="modal-footer footer-style" ng-style="sideStyle">
+                <button type="button" class="btn btn-default alt2button-style" data-dismiss="modal">Close </button>
+                <button type="button" class="btn btn-primary altbutton-style" ng-click="createChatroom(username.username); callApi()" ng-class="sideStyle" ng-disabled="chatRoomName == undefined || chatRoomNameLength === 0" data-dismiss="modal">Create</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- NOTE: THis is second modal for invite and change users for private chat room -->
+        <div ng-controller="modalCtrlInv" class="modal fade" id="invite" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header header-style" ng-style="topStyle">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <h4 class="modal-title" id="myModalLabel">{{roomName}}: Edit Users</h4>
+              </div>
+              <div class="modal-body body-style modal-scroll">
+                <!-- <form class="form-group" ng-submit="" method="post">
+                </form> -->
+                <ul class="no-bullet">
+                  <li>
+                    <h4>Accepted Users</h4>
+                    <div ng-repeat="users in acceptedUsers track by $index" class="modal-padding">
+                      {{users}}
+                      <!-- <span class="pull-right"> -->
+                        <button type="button" name="button" class="btn btn-xs btn-danger pull-right" ng-click="removeUser(roomId, users);moveUser($index,'remove')">-</button>
+                      <!-- </span> -->
+                    </div>
+                  </li>
+                  <li>
+                    <h4>Pending Users</h4>
+                    <div ng-repeat="users in pendingUsers track by $index">
+                      {{users}}
+                    </div>
+                  </li>
+                  <li>
+                    <h4>Other Users</h4>
+                    <div ng-repeat="users in restOfUsers track by $index" class="modal-padding">
+                      {{users.username}}
+                      <button type="button" name="button" class="btn btn-xs btn-success pull-right" ng-click="inviteUser(roomId, users.username, username.username, roomName);moveUser($index,'add')">+</button>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+              <div class="modal-footer footer-style" ng-style="sideStyle">
+                <button type="button" class="btn btn-default alt2button-style" data-dismiss="modal">Close </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- External JS Dependancies -->
+        <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+        <script src="assets/bower_components/jquery/dist/jquery.min.js" charset="utf-8"></script>
+        <script>
+            $(document).ready(function(){
+                if ($(window).width() <= 999) {
+                    $("#chatrooms").removeClass("in");
+                    $("#direct").removeClass("in");
+                    $("#options").removeClass("in");
+                    $("#notificationsm").removeClass("in");
+                    $("#invitationsm").removeClass("in");
+
+                }
+            });
+        </script>
+        <script src="assets/bower_components/bootstrap/dist/js/bootstrap.min.js" charset="utf-8"></script>
+        <script src="assets/bower_components/angular/angular.min.js" charset="utf-8"></script>
+    		<script src="assets/bower_components/angular-ui-router/release/angular-ui-router.min.js" charset="utf-8"></script>
+        <script src="assets/bower_components/angular-cookies/angular-cookies.js"></script>
+        <script src="assets/bower_components/es5-shim/es5-shim.js"></script>
+        <script src="assets/bower_components/json3/lib/json3.min.js"></script>
+        <script src="assets/bower_components/angular-resource/angular-resource.js"></script>
+        <script src="assets/bower_components/angular-sanitize/angular-sanitize.js"></script>
+        <script src="assets/bower_components/angular-route/angular-route.js"></script>
+        <script src="assets/bower_components/socket.io-client/dist/socket.io.js"></script>
+        <script src="assets/bower_components/angular-socket-io/socket.js"></script>
+        <script src="assets/bower_components/angular-scroll-glue/src/scrollglue.js" charset="utf-8"></script>
+        <script src="assets/imgs/identicon.js/pnglib.js"></script>
+        <script src="assets/imgs/identicon.js/identicon.js"></script>
+        <script src="assets/imgs/angular-identicon/dist/angular-identicon.js"></script>
+
+        <!-- these are all of our files dont forget all script tags must come in the body and load core.js FIRST then all other modules -->
+
+        <script src="assets/lib/adapter.js"></script>
+        <script src="core.js" charset="utf-8"></script>
+        <script src="assets/scripts/services/factories/restUserFactory.js" charset="utf-8"></script>
+        <script src="assets/scripts/services/factories/restChatRoomFactory.js" charset="utf-8"></script>
+        <script src="assets/scripts/controllers/adminCtrl.js" charset="utf-8"></script>
+        <script src="assets/scripts/services/flashService.js" charset="utf-8"></script>
+    		<script src="assets/scripts/controllers/chatLayoutCtrl.js" charset="utf-8"></script>
+        <script src="assets/scripts/controllers/personalizeCtrl.js" charset="utf-8"></script>
+        <script src="assets/scripts/controllers/socket.js"></script>
+        <script src="assets/scripts/controllers/oldRoomCtrl.js"></script>
+        <script src="assets/scripts/controllers/modalCtrl.js"></script>
+        <script src="assets/scripts/services/socket.js"></script>
+        <script src="assets/scripts/services/messageFormatter.js"></script>
+        <script src="assets/scripts/directives/chatBox.js"></script>
+        <script src="assets/scripts/controllers/notifyCtrl.js" charset="utf-8"></script>
+        <script src="assets/scripts/videoTest.js" charset="utf-8"></script>
+        <script>if (window.module) module = window.module;</script>
+        <!-- <script src="assets\scripts\services\factories\restFactory.js" charset="utf-8"></script> -->
+          </div>
+        </div>
+      </body>
+    </html>
