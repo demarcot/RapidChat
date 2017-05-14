@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html ng-controller="oldRoomCtrl">
   <head>
-    <!--<link rel="stylesheet" href="/css/master.css"> -->
     <!--External Css Dependancies -->
-    <link rel="stylesheet" href="assets\bower_components\bootstrap\dist\css\bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="assets\bower_components\bootstrap\dist\css\bootstrap.min.css">
     <link rel="stylesheet" href="assets/styles/Master.css">
-    <link rel="stylesheet" href="assets\imgs\font-awesome-4.7.0\css\font-awesome.min.css">
+    <link rel="stylesheet" href="assets\imgs\font-awesome-4.7.0\css\font-awesome.min.css"> -->
     <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8">
@@ -16,78 +15,82 @@
 
     <title>RapidChat</title>
   </head>
-  <body layout="horizontal" ng-cloak>
-  
-      <div ng-controller="DemoCtrl as demo" layout="column" ng-cloak>
-
-    <div ng-controller="AppCtrl">
-        <section layout="row" flex="">
-
-      <md-sidenav class="md-sidenav-left" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" md-whiteframe="4">
-
+  <body ng-cloak layout="row">
+    <div ng-controller="AppCtrl" flex layout="row">
+     <md-sidenav class="md-sidenav-left" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" md-whiteframe="4">
         <md-toolbar class="md-theme-indigo">
-          <h1 class="md-toolbar-tools">Sidenav Left</h1>
+           <h1 class="md-toolbar-tools">Sidenav Left</h1>
         </md-toolbar>
         <md-content layout-padding="" ng-controller="LeftCtrl">
-          <md-button ng-click="close()" class="md-primary" hide-gt-md="">
-            Close Sidenav Left
-          </md-button>
-          <p hide="" show-gt-md="">
-            This sidenav is locked open on your device. To go back to the default behavior,
-            narrow your display.
-          </p>
+           <md-button ng-click="close()" class="md-primary" hide-gt-md="">
+              Close Sidenav Left
+           </md-button>
+           <p hide="" show-gt-md="">
+              This sidenav is locked open on your device. To go back to the default behavior,
+              narrow your display.
+           </p>
         </md-content>
+     </md-sidenav>
 
-      </md-sidenav>
+     <md-content  layout="column" flex>
+       <md-toolbar class="md-hue-2" layout-align="start start">
+       <div class="md-toolbar-tools" >
+         <md-button class="md-icon-button" aria-label="Settings" ng-disabled="true">
+           <md-icon md-svg-icon="img/icons/menu.svg"></md-icon>
+         </md-button>
 
-      <md-content flex="" layout-padding="">
+         <h2 flex md-truncate>Toolbar with Disabled/Enabled Icon Buttons</h2>
 
-        <div layout="column" layout-align="top center">
-          <p>
-          The left sidenav will 'lock open' on a medium (=960px wide) device.
-          </p>
-          <p>
-          The right sidenav will focus on a specific child element.
-          </p>
+         <md-button class="md-icon-button" aria-label="Favorite">
+           <md-icon md-svg-icon="img/icons/favorite.svg" style="color: greenyellow;"></md-icon>
+         </md-button>
 
-          <div>
-            <md-button ng-click="toggleLeft()" class="md-primary" hide-gt-md="">
-              Toggle left
-            </md-button>
-          </div>
-
-          <div>
-            <md-button ng-click="toggleRight()" ng-hide="isOpenRight()" class="md-primary">
-              Toggle right
-            </md-button>
-          </div>
-        </div>
-
-        <div flex=""></div>
-
-      </md-content>
-
-      <md-sidenav class="md-sidenav-right md-whiteframe-4dp" md-component-id="right">
-
+         <md-button class="md-icon-button" aria-label="More">
+           <md-icon md-svg-icon="img/icons/more_vert.svg"></md-icon>
+         </md-button>
+       </div>
+     </md-toolbar>
+        <div layout-padding>
+           <!-- <p>
+              The left sidenav will 'lock open' on a medium (=960px wide) device.
+           </p>
+           <p>
+              The right sidenav will focus on a specific child element.
+           </p>
+           <div>
+              <md-button ng-click="toggleLeft()" class="md-primary" hide-gt-md="">
+                 Toggle left
+              </md-button>
+           </div>
+           <div>
+              <md-button ng-click="toggleRight()" ng-hide="isOpenRight()" class="md-primary">
+                 Toggle right
+              </md-button>
+           </div>
+        </div> -->
+        <!-- <div flex=""> this is content </div> -->
+        <ui-view></ui-view>
+      </div>
+     </md-content>
+     <md-sidenav class="md-sidenav-right md-whiteframe-4dp" md-component-id="right">
         <md-toolbar class="md-theme-light">
-          <h1 class="md-toolbar-tools">Sidenav Right</h1>
+           <h1 class="md-toolbar-tools">Sidenav Right</h1>
         </md-toolbar>
         <md-content ng-controller="RightCtrl" layout-padding="">
-          <form>
-            <md-input-container>
-              <label for="testInput">Test input</label>
-              <input type="text" id="testInput" ng-model="data" md-autofocus="">
-            </md-input-container>
-          </form>
-          <md-button ng-click="close()" class="md-primary">
-            Close Sidenav Right
-          </md-button>
+           <form>
+              <md-input-container>
+                 <label for="testInput">Test input</label>
+                 <input type="text" id="testInput" ng-model="data" md-autofocus="">
+              </md-input-container>
+           </form>
+           <md-button ng-click="close()" class="md-primary">
+              Close Sidenav Right
+           </md-button>
         </md-content>
+     </md-sidenav>
+   </div>
 
-      </md-sidenav>
-
-    </section>
-     </div>
+     <!-- <div ng-controller="DemoCtrl as demo" ng-cloak>
 
     <md-content class="md-padding" layout="column">
       <div class="lock-size" layout="row" layout-align="center center">
@@ -114,11 +117,15 @@
       </div>
 
     </md-content>
-</div>
+</div> -->
+
+
+
+
     <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
     <script src="assets/bower_components/jquery/dist/jquery.min.js" charset="utf-8"></script>
 
-    <script src="assets/bower_components/bootstrap/dist/js/bootstrap.min.js" charset="utf-8"></script>
+    <!-- <script src="assets/bower_components/bootstrap/dist/js/bootstrap.min.js" charset="utf-8"></script> -->
     <script src="assets/bower_components/angular/angular.min.js" charset="utf-8"></script>
 		<script src="assets/bower_components/angular-ui-router/release/angular-ui-router.min.js" charset="utf-8"></script>
     <script src="assets/bower_components/angular-cookies/angular-cookies.js"></script>

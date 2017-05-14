@@ -507,3 +507,128 @@ Kyle Master CSS Code
         </div>
       </body>
     </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <div ng-controller="AppCtrl">
+          <section >
+
+            <md-sidenav class="md-sidenav-left" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" md-whiteframe="4">
+
+              <md-toolbar class="md-theme-indigo">
+                <h1 class="md-toolbar-tools">Sidenav Left</h1>
+              </md-toolbar>
+              <md-content layout-padding="" ng-controller="LeftCtrl">
+                <md-button ng-click="close()" class="md-primary" hide-gt-md="">
+                  Close Sidenav Left
+                </md-button>
+                <p hide="" show-gt-md="">
+                  This sidenav is locked open on your device. To go back to the default behavior,
+                  narrow your display.
+                </p>
+              </md-content>
+
+            </md-sidenav>
+
+          <md-content>
+
+            <div >
+              <p>
+              The left sidenav will 'lock open' on a medium (=960px wide) device.
+              </p>
+              <p>
+              The right sidenav will focus on a specific child element.
+              </p>
+
+              <div>
+                <md-button ng-click="toggleLeft()" class="md-primary" hide-gt-md="">
+                  Toggle left
+                </md-button>
+              </div>
+
+              <div>
+                <md-button ng-click="toggleRight()" ng-hide="isOpenRight()" class="md-primary">
+                  Toggle right
+                </md-button>
+              </div>
+            </div>
+
+            <!-- <div flex=""> this is content </div> -->
+
+          </md-content>
+
+          <md-sidenav class="md-sidenav-right md-whiteframe-4dp" md-component-id="right">
+
+            <md-toolbar class="md-theme-light">
+              <h1 class="md-toolbar-tools">Sidenav Right</h1>
+            </md-toolbar>
+            <md-content ng-controller="RightCtrl" layout-padding="">
+              <form>
+                <md-input-container>
+                  <label for="testInput">Test input</label>
+                  <input type="text" id="testInput" ng-model="data" md-autofocus="">
+                </md-input-container>
+              </form>
+              <md-button ng-click="close()" class="md-primary">
+                Close Sidenav Right
+              </md-button>
+            </md-content>
+
+          </md-sidenav>
+
+        </section>
+         </div>
+         <div ng-controller="DemoCtrl as demo" ng-cloak>
+
+        <!-- <md-content class="md-padding" layout="column">
+          <div class="lock-size" layout="row" layout-align="center center">
+            <md-fab-speed-dial md-open="demo.isOpen" md-direction="{{demo.selectedDirection}}"
+            ng-class="demo.selectedMode">
+            <md-fab-trigger>
+              <md-button aria-label="menu" class="md-fab md-warn">
+                <md-icon md-svg-src="img/icons/menu.svg"></md-icon>
+              </md-button>
+            </md-fab-trigger>
+
+            <md-fab-actions>
+              <md-button aria-label="Twitter" class="md-fab md-raised md-mini">
+                <md-icon md-svg-src="img/icons/twitter.svg" aria-label="Twitter"></md-icon>
+              </md-button>
+              <md-button aria-label="Facebook" class="md-fab md-raised md-mini">
+                <md-icon md-svg-src="img/icons/facebook.svg" aria-label="Facebook"></md-icon>
+              </md-button>
+              <md-button aria-label="Google Hangout" class="md-fab md-raised md-mini">
+                <md-icon md-svg-src="img/icons/hangout.svg" aria-label="Google Hangout"></md-icon>
+              </md-button>
+            </md-fab-actions>
+            </md-fab-speed-dial>
+          </div>
+
+        </md-content> -->
+    </div>
