@@ -50,7 +50,7 @@
          </md-button>
        </div>
      </md-toolbar>
-        <div layout-padding>
+        <div flex layout="column">
            <!-- <p>
               The left sidenav will 'lock open' on a medium (=960px wide) device.
            </p>
@@ -69,7 +69,7 @@
            </div>
         </div> -->
         <!-- <div flex=""> this is content </div> -->
-        <ui-view></ui-view>
+        <ui-view flex layout="column"></ui-view>
       </div>
      </md-content>
      <md-sidenav class="md-sidenav-right md-whiteframe-4dp" md-component-id="right">

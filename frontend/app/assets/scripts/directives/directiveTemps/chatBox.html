@@ -44,3 +44,8 @@
     </div>
   </div>
 </div>
+
+<md-input-container flex layout="column">
+  <label>Message</label>
+  <input type="text" ng-max='500' ng-model='message' focus ng-keypress="myFunct($event)">
+</md-input-container>
