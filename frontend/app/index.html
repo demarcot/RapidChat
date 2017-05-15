@@ -39,7 +39,7 @@
            <p hide="" show-gt-md="">
              <li class="left-buffer" ng-repeat="room in chatRooms[0].publicChatRooms track by $index" ui-sref="chatRoomById({chatRoomId: room._id})" ng-click="setOldRoom()" ui-sref-active="active"><a>{{room.name}}</a></li>
              <li class="left-buffer" ng-repeat="room in chatRooms[1].allowedChatRooms track by $index" ui-sref="chatRoomById({chatRoomId: room._id})" ng-click="setOldRoom()" ng-show="room.direct === false" ui-sref-active="active"><a>{{room.name}}</a><i class="fa fa-lock pull-right right-buffer"></i><i class="fa fa-cog pull-right" data-toggle="modal" data-target="#invite" ng-click="setRoomName(room.name, room._id);initRoom(room._id)"></i></li>
-             
+
            </p>
         </md-content>
      </md-sidenav>
@@ -57,9 +57,25 @@
            <md-icon md-svg-icon="img/icons/favorite.svg" style="color: greenyellow;"></md-icon>
          </md-button>
 
-         <md-button class="md-icon-button" aria-label="More">
+      <md-menu>
+         <md-button class="md-icon-button" aria-label="More" ng-click="ctrl.openMenu()">
            <md-icon md-svg-icon="img/icons/more_vert.svg"></md-icon>
          </md-button>
+      <md-menu-content width="4">
+        <md-menu-item>
+          <md-button>
+            <md-icon md-svg-icon="call:dialpad" md-menu-align-target></md-icon>
+            Redial
+          </md-button>
+        </md-menu-item>
+        <md-menu-item>
+          <md-button disabled="disabled" ng-click="">
+            <md-icon md-svg-icon="call:voicemail"></md-icon>
+            Check voicemail
+          </md-button>
+        </md-menu-item>
+      </md-menu-content>
+    </md-menu>
        </div>
      </md-toolbar>
         <div flex layout="column">
