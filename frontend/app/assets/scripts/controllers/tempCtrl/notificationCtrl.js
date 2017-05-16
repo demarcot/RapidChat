@@ -6,8 +6,7 @@
         .module('coreApp')
         .controller('initCtrl', Controller);
 
-    function Controller($window, UserService, ChatRoomService, FlashService, chatSocket, $scope) {
-      $scope.readNotifications = true;
+    function Controller($window, UserService, ChatRoomService, FlashService, chatSocket, $scope, $state) {
     	$scope.newNotifications = false;
     	$scope.newInvites = false;
     	$scope.currentPrivateCheck = false;

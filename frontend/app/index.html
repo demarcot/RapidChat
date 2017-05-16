@@ -26,7 +26,9 @@
             max-width: 400px !important;
         }
   </style>
-  <body ng-cloak layout="row">
+  <body ng-cloak layout="row" ng-controller="initCtrl as init">
+    <div layout="row" flex ng-controller="chatRoomCtrl as roomCtrl">
+
     <div ng-controller="AppCtrl" flex layout="row">
      <md-sidenav class="md-sidenav-left" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" md-whiteframe="4">
         <md-toolbar class="md-theme-indigo">
@@ -146,6 +148,7 @@
 
     </md-content>
 </div> -->
+    </div>
 
 
 
@@ -184,15 +187,19 @@
     <script src="assets/scripts/controllers/demoCtrl.js" charset="utf-8"></script>
     <script src="assets/scripts/controllers/adminCtrl.js" charset="utf-8"></script>
     <script src="assets/scripts/services/flashService.js" charset="utf-8"></script>
-		<script src="assets/scripts/controllers/chatLayoutCtrl.js" charset="utf-8"></script>
     <script src="assets/scripts/controllers/personalizeCtrl.js" charset="utf-8"></script>
     <script src="assets/scripts/controllers/socket.js"></script>
-    <script src="assets/scripts/controllers/oldRoomCtrl.js"></script>
-    <script src="assets/scripts/controllers/modalCtrl.js"></script>
+    <script src="assets/scripts/controllers/chatLayoutCtrl.js"></script>
+    <script src="assets/scripts/controllers/tempCtrl/chatRoomCtrl.js"></script>
+    <script src="assets/scripts/controllers/tempCtrl/oldRoomCtrl.js"></script>
+    <script src="assets/scripts/controllers/tempCtrl/initCtrl.js"></script>
+    <script src="assets/scripts/controllers/tempCtrl/notificationCtrl.js"></script>
     <script src="assets/scripts/services/socket.js"></script>
     <script src="assets/scripts/services/messageFormatter.js"></script>
     <script src="assets/scripts/directives/chatBox.js"></script>
-    <script src="assets/scripts/controllers/notifyCtrl.js" charset="utf-8"></script>
+    <!-- <script src="assets/scripts/controllers/notifyCtrl.js" charset="utf-8"></script> -->
+    <!-- <script src="assets/scripts/controllers/oldRoomCtrl.js"></script>
+    <script src="assets/scripts/controllers/modalCtrl.js"></script> -->
     <script src="assets/scripts/videoTest.js" charset="utf-8"></script>
     <script>if (window.module) module = window.module;</script>
     <!-- <script src="assets\scripts\services\factories\restFactory.js" charset="utf-8"></script> -->

@@ -26,7 +26,7 @@
           };
 
 
-            vm.callApi();
+            callApi();
 
       }
 
