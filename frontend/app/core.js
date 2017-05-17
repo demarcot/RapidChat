@@ -7,9 +7,13 @@
         .config(config)
         .run(run);
 
-    function config($stateProvider, $urlRouterProvider) {
+    function config($stateProvider, $urlRouterProvider, $mdIconProvider) {
         // default route
         $urlRouterProvider.otherwise("/dashboard");
+
+        $mdIconProvider
+      .iconSet("call", 'img/icons/sets/communication-icons.svg', 24)
+      .iconSet("social", 'img/icons/sets/social-icons.svg', 24);
 
         $stateProvider
             .state('dashboard', {
