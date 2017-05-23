@@ -1,6 +1,6 @@
 <div layout="row">
   <md-list flex layout="column" class="make-scrollable" scroll-glue-bottom>
-   <md-subheader class="md-no-sticky">Chat room: </md-subheader>
+   <!-- <md-subheader class="md-no-sticky">Chat room: </md-subheader> -->
    <md-list-item class="md-3-line"  ng-repeat="message in messageTest track by $index" ng-click="null">
      <identicon username='message.data.author' size='40' class="md-avatar"/>
      <div class="md-list-item-text" layout="column">
@@ -32,7 +32,9 @@
   </md-list-item>
   </md-list>
 </div>
-<md-input-container flex layout="row">
-  <label>Message</label>
-  <input type="text" ng-max='500' ng-model='message' focus ng-keypress="myFunct($event)">
-</md-input-container>
+<div layout="row">
+  <md-input-container flex layout="column">
+    <label>Message</label>
+    <input type="text" ng-max='500' ng-model='message' focus ng-keypress="myFunct($event)">
+  </md-input-container>
+</div>

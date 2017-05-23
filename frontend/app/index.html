@@ -30,7 +30,7 @@
     <div layout="row" flex ng-controller="chatRoomCtrl as roomCtrl">
 
     <div ng-controller="AppCtrl as mdCtrl" flex layout="row">
-     <md-sidenav class="md-sidenav-left" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" md-whiteframe="4">
+      <md-sidenav class="md-sidenav-left" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" md-whiteframe="4">
         <md-toolbar class="md-theme-indigo">
            <h1 class="md-toolbar-tools">Chats Or Logo</h1>
         </md-toolbar>
@@ -38,13 +38,17 @@
            <md-button ng-click="close()" class="md-primary" hide-gt-md="">
               Close Sidenav Left
            </md-button>
-           <p hide="" show-gt-md="">
-             <li class="left-buffer" ng-repeat="room in roomCtrl.chatRooms[0].publicChatRooms track by $index" ui-sref="chatRoomById({chatRoomId: room._id})" ng-click="setOldRoom()" ui-sref-active="active"><a>{{room.name}}</a></li>
-             <li class="left-buffer" ng-repeat="room in roomCtrl.chatRooms[1].allowedChatRooms track by $index" ui-sref="chatRoomById({chatRoomId: room._id})" ng-click="setOldRoom()" ng-show="room.direct === false" ui-sref-active="active"><a>{{room.name}}</a><i class="fa fa-lock pull-right right-buffer"></i><i class="fa fa-cog pull-right" data-toggle="modal" data-target="#invite" ng-click="setRoomName(room.name, room._id);initRoom(room._id)"></i></li>
+           <!-- <p hide="" show-gt-md=""> -->
+             <h5 style="margin:0px">Public Chat Rooms</h5>
+             <li style="list-style:none" ng-repeat="room in roomCtrl.chatRooms[0].publicChatRooms track by $index" ui-sref="chatRoomById({chatRoomId: room._id})" ng-click="setOldRoom()" ui-sref-active="active"><a>{{room.name}}</a></li>
+             <h5 style="margin:0px">Private Chat Rooms</h5>
+             <li style="list-style:none" ng-repeat="room in roomCtrl.chatRooms[1].allowedChatRooms track by $index" ui-sref="chatRoomById({chatRoomId: room._id})" ng-click="setOldRoom()" ng-show="room.direct === false" ui-sref-active="active"><a>{{room.name}}</a><i class="fa fa-lock pull-right right-buffer"></i><i class="fa fa-cog pull-right" data-toggle="modal" data-target="#invite" ng-click="setRoomName(room.name, room._id);initRoom(room._id)"></i></li>
+             <h5 style="margin:0px">Direct Messages</h5>
+             <li style="list-style:none" ng-repeat="room in chatRooms[1].allowedChatRooms track by $index" ui-sref="chatRoomById({chatRoomId: room._id})" ng-click="setOldRoom()" ng-show="room.direct === true" ui-sref-active="active"><identicon username='room.acceptedUsers[0]' size='16'></identicon>&nbsp;&nbsp;{{room.acceptedUsers[0]}}</li>
 
-           </p>
+           <!-- </p> -->
         </md-content>
-     </md-sidenav>
+      </md-sidenav>
 
      <md-content  layout="column" flex>
        <md-toolbar class="md-hue-2" layout-align="start start">
@@ -52,32 +56,33 @@
          <md-button class="md-icon-button" aria-label="Settings" ng-disabled="true">
            <md-icon md-svg-icon="img/icons/menu.svg"></md-icon>
          </md-button>
+         <!-- <h2 flex md-truncate>Toolbar with Disabled/Enabled Icon Buttons</h2> -->
 
-         <h2 flex md-truncate>Toolbar with Disabled/Enabled Icon Buttons</h2>
+         <md-button ng-class="{active: activeTab === 'dashboard'}"><a ui-sref="dashboard" ng-click="setOldRoom()">Dashboard</a></md-button>
+         <md-button ng-class="{active: activeTab === 'personalize'}"><a ui-sref="personalize" ng-click="setOldRoom()">Account</a></md-button>
+         <md-button ng-class="{active: activeTab === 'video'}"><a ui-sref="video" ng-click="setOldRoom()">Video Chat Test </a></md-button>
+         <md-button ng-class="{active: activeTab === 'admin'}"><a ui-sref="admin" ng-click="setOldRoom()" ng-show="adminCheck">Admin</a></md-button>
+         <md-button>Re-size</md-button>
 
-         <md-button class="md-icon-button" aria-label="Favorite">
-           <md-icon md-svg-icon="img/icons/favorite.svg" style="color: greenyellow;"></md-icon>
-         </md-button>
-
-      <md-menu>
-         <md-button class="md-icon-button" aria-label="More" ng-click="mdCtrl.openMenu($mdOpenMenu, $event)">
-           <md-icon md-menu-origin md-svg-icon="img/icons/more_vert.svg"></md-icon>
-         </md-button>
-      <md-menu-content width="4">
-        <md-menu-item>
-          <md-button>
-            <md-icon md-svg-icon="call:dialpad" md-menu-align-target></md-icon>
-            Redial
-          </md-button>
-        </md-menu-item>
-        <md-menu-item>
-          <md-button disabled="disabled" ng-click="">
-            <md-icon md-svg-icon="call:voicemail"></md-icon>
-            Check voicemail
-          </md-button>
-        </md-menu-item>
-      </md-menu-content>
-    </md-menu>
+         <md-menu>
+           <md-button class="md-icon-button" aria-label="More" ng-click="mdCtrl.openMenu($mdOpenMenu, $event)">
+             <md-icon md-menu-origin md-svg-icon="img/icons/more_vert.svg"></md-icon>
+           </md-button>
+           <md-menu-content width="3">
+             <md-menu-item>
+               <md-button>
+                 <md-icon md-svg-icon="call:contact-phone" md-menu-align-target></md-icon>
+                 Video Call
+               </md-button>
+             </md-menu-item>
+             <md-menu-item>
+               <md-button>
+                 <md-icon md-svg-icon="call:call"></md-icon>
+                 Voice Call
+               </md-button>
+             </md-menu-item>
+           </md-menu-content>
+         </md-menu>
        </div>
      </md-toolbar>
         <div flex layout="column">
