@@ -53,16 +53,11 @@
      <md-content  layout="column" flex>
        <md-toolbar class="md-hue-2" layout-align="start start">
        <div class="md-toolbar-tools" >
-         <md-button class="md-icon-button" aria-label="Settings" ng-disabled="true">
+         <md-button class="md-icon-button" aria-label="Settings"  ng-click="toggleLeft()">
            <md-icon md-svg-icon="img/icons/menu.svg"></md-icon>
          </md-button>
          <!-- <h2 flex md-truncate>Toolbar with Disabled/Enabled Icon Buttons</h2> -->
-
-         <md-button ng-class="{active: activeTab === 'dashboard'}"><a ui-sref="dashboard" ng-click="setOldRoom()">Dashboard</a></md-button>
-         <md-button ng-class="{active: activeTab === 'personalize'}"><a ui-sref="personalize" ng-click="setOldRoom()">Account</a></md-button>
-         <md-button ng-class="{active: activeTab === 'video'}"><a ui-sref="video" ng-click="setOldRoom()">Video Chat Test </a></md-button>
-         <md-button ng-class="{active: activeTab === 'admin'}"><a ui-sref="admin" ng-click="setOldRoom()" ng-show="adminCheck">Admin</a></md-button>
-         <md-button>Re-size</md-button>
+        <md-button>Re-size</md-button>
 
          <md-menu>
            <md-button class="md-icon-button" aria-label="More" ng-click="mdCtrl.openMenu($mdOpenMenu, $event)">
@@ -85,6 +80,12 @@
          </md-menu>
        </div>
      </md-toolbar>
+     <md-tabs md-stretch-tabs md-selected-index="selectedIndex">
+        <md-tab label="Dashboard" ng-class="{active: activeTab === 'dashboard'}" ui-sref="dashboard"  ng-click="setOldRoom()"></md-tab>
+        <md-tab label="Account"ng-class="{active: activeTab === 'personalize'}"ui-sref="personalize" ng-click="setOldRoom()"></md-tab>
+        <md-tab label="Video Chat" ng-class="{active: activeTab === 'video'}" ui-sref="video" ng-click="setOldRoom()"></md-tab>
+        <!-- <md-tab label="Admin" ng-class="{active: activeTab === 'admin'}" ui-sref="admin" ng-click="setOldRoom()" ng-show=false></md-tab> -->
+    </md-tabs>
         <div flex layout="column">
            <!-- <p>
               The left sidenav will 'lock open' on a medium (=960px wide) device.
