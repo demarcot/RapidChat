@@ -6,6 +6,34 @@
         .controller('videoCtrl', Controller);
         function Controller($window, UserService, ChatRoomService, FlashService, chatSocket) {
 
+		var connection = new RTCMultiConnection();
+
+		// this line is VERY_important
+		connection.socketURL = 'https://rtcmulticonnection.herokuapp.com:443/';
+
+		// if you want audio+video conferencing
+		connection.session = {
+			audio: true,
+			video: true
+		};
+
+		connection.onstream = function(event) {
+			var isInitiator = connection.isInitiator;
+
+			if (isInitiator === true && event.type === 'local') {
+				// initiator's own stream
+				alert('you are initiator');
+			}
+
+			if (isInitiator === true && event.type === 'remote') {
+				// initiator recieved stream from someone else
+				alert('dear initiator, you just receive a remote stream');
+			}
+
+			document.body.appendChild(event.mediaElement);
+		};
+
+		connection.openOrJoin('your-room-id');
         //   navigator.getUserMedia = navigator.getUserMedia ||
         //       navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
         //
@@ -35,6 +63,8 @@
         //   navigator.getUserMedia(constraints, successCallback, errorCallback);
         //
         // }
+
+		/*
         'use strict';
 
         var isChannelReady = false;
@@ -385,5 +415,6 @@
           sdpLines[mLineIndex] = mLineElements.join(' ');
           return sdpLines;
         }
+		*/
       }
       })();

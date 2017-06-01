@@ -1,4 +1,4 @@
-<div class="container-fluid left-style">
+<!-- <div class="container-fluid left-style">
   <div class="col-xs-12">
    Users
   </div>
@@ -15,4 +15,27 @@
   </div>
     <div class="link-style col-sm-12" ng-repeat="room in chatRooms[1].allowedChatRooms track by $index" ng-show="room.direct === false"><a ui-sref="chatRoomById({chatRoomId: room._id})" ng-click="setOldRoom()"><i class="fa fa-comments-o fa-lg"></i>&nbsp;{{room.name}}</a></div>
     <div class="link-style col-sm-12"><a data-toggle="modal" data-target="#createRoom"><i class="fa fa-comments-o fa-lg"></i>&nbsp;Create A New Chat Room</a></div>
+</div> -->
+<div layout="row">
+  <div flex layout-padding>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Users</h2>
+      </div>
+    </md-toolbar>
+    <div layout="column">
+      <div flex ng-repeat="user in allUsers" ng-hide="user.username===vm.user.username"><identicon username='user.username' size='40'></identicon><br /><a ng-click="setOldRoom(); createDirectMessage(vm.user.username, user.username)">{{user.username}}</a></div>
+    </div>
+  </div>
+
+  <div flex layout-padding>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Chatrooms</h2>
+      </div>
+    </md-toolbar>
+    <div layout="column">
+      <div flex ng-repeat="room in chatRooms[0].publicChatRooms track by $index" ><a ui-sref="chatRoomById({chatRoomId: room._id})" ng-click="setOldRoom()"><i class="fa fa-comments-o fa-lg"></i>&nbsp;{{room.name}}</a></div>
+    </div>
+  </div>
 </div>

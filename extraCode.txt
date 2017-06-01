@@ -627,3 +627,50 @@ Kyle Master CSS Code
         </div>
       </div>
     </div>
+
+
+
+
+
+
+
+
+
+
+
+LOG IN EJS -------------------------------------------------------------------------------------------------------------------
+
+<div class="image">
+</div>
+<div class="jumbotron" style="background-color: #748492;
+    max-width: 50%;
+    position: relative;
+    left: 25%;
+    border-radius:10px;
+    border-style: double;
+    ">
+<div class="form-container login-style scrollable">
+    <h2>Rapid Chat Login</h2>
+    <% if(locals.error) { %>
+        <div class="alert alert-danger"><%= error %></div>
+    <% } %>
+    <% if(locals.success) { %>
+        <div class="alert alert-success"><%= success %></div>
+    <% } %>
+    <form method="post">
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" name="username" id="username" value="<%= locals.username || '' %>" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" class="form-control" />
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-success">Login</button>
+            <a class="btn btn-link link-color" href="/register">Register</a>
+        </div>
+    </form>
+</div></div>
+
+----------------------------------------------------------------------------------------------------------------------------------
