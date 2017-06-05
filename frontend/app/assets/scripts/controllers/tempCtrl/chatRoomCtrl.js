@@ -5,7 +5,7 @@
          .module('coreApp')
          .controller('chatRoomCtrl', Controller);
 
-     function Controller($window, UserService, ChatRoomService, FlashService, $state, $scope) {
+     function Controller($window, UserService, ChatRoomService, FlashService, $state, $scope, $mdDialog) {
          var vm = this;
          vm.isPrivate = false;
          vm.newChatRoom = null;
@@ -25,6 +25,8 @@
          vm.inviteUser = inviteUser; //line 128~ Params: ()
          vm.acceptInvite = acceptInvite; //line 144~ Params: ()
          vm.initRoom = initRoom; //line 157~ Params: ()
+         vm.showCreate = showCreate;
+         vm.closeCreate = closeCreate;
 
          var init = function() {
 
@@ -62,12 +64,30 @@
            };
            init();
 
+          //  chatroom dialog function
+          function showCreate(ev){
+            $mdDialog.show({
+              templateUrl:'/frontend/app/assets/templates/ChatroomDialogTemp.html',
+              parent: angular.element(document.body),
+              targetEvent: ev,
+              clickOutsideToClose:true,
+            })
+            .then(function(answer){
+              $scope.status = 'Modal closed';
+            }, function(){
+              $scope.status = 'Dialog cancelled';
+            });
+          };
+
+          function closeCreate(ev){
+            $mdDialog.hide({
+              targetEvent: ev,
+            });
+          }
 
 
-
-
-
-          var createChatroom = function(user) {
+          function createChatroom(user) {
+            console.log("CREATING ROOM");
             if (vm.isPrivate === true) {
               vm.newChatRoom = {
                 "name":vm.chatRoomName,
@@ -88,7 +108,7 @@
               };
 
             }
-
+            console.log("Create");
 
             ChatRoomService.Create(vm.newChatRoom).then(function(chatroomId) {
 
@@ -96,7 +116,7 @@
             });
           };
 
-          var createDirectMessage = function(invokingUser, invitedUser){
+          function createDirectMessage(invokingUser, invitedUser) {
 
 
 
