@@ -87,7 +87,7 @@
 
 
           function createChatroom(user) {
-            console.log("CREATING ROOM");
+            console.log("User: ", user);
             if (vm.isPrivate === true) {
               vm.newChatRoom = {
                 "name":vm.chatRoomName,
@@ -108,7 +108,6 @@
               };
 
             }
-            console.log("Create");
 
             ChatRoomService.Create(vm.newChatRoom).then(function(chatroomId) {
 

@@ -1,63 +1,26 @@
-<div class="scroll-account">
 <center><h1>My Account</h1></center>
-<div class="form-container account-info">
+<div class="form-container" layout="column" layout-align="center center">
     <form method="post">
-        <div class="form-group">
+        <md-input-container>
             <label for="firstName">First name</label>
             <input type="text" id="firstName" class="form-control input-message" ng-model="vm.user.firstName" required />
-        </div>
-        <div class="form-group">
+        </md-input-container>
+        <br />
+        <md-input-container>
             <label for="lastName">Last name</label>
             <input type="text" id="lastName" class="form-control input-message" ng-model="vm.user.lastName" required />
-        </div>
-        <div class="form-group">
+        </md-input-container>
+        <br />
+        <md-input-container>
             <label for="username">Username</label>
             <input type="text" id="username" class="form-control input-message" ng-model="vm.user.username" required />
-        </div>
-        <div class="form-group">
+        </md-input-container>
+        <br />
+        <md-input-container>
             <label for="password">Password</label>
             <input type="password" id="password" class="form-control input-message" ng-model="vm.user.password" />
-        </div>
-        <div class="form-group">
-          <label for="topBarColor">Top Bar Color</label>
-          <br />
-          <div class="input-group">
-            <input type="color" id="topBarColor" class="form-control input-message color-input" ng-model="vm.user.colors.topBarColor"/>
-            <span class="input-group-btn">
-              <button class="btn" target="topBarColor" onclick="topBarColor.value = '#2C1B33'" ng-click="vm.user.colors.topBarColor = '#2C1B33'">Default</button>
-            </span>
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="topBarHover">Top Bar Hover</label>
-          <br />
-          <div class="input-group">
-            <input type="color" id="topBarHover" class="form-control input-message color-input" ng-model="vm.user.colors.topBarHover"/>
-            <span class="input-group-btn">
-              <button class="btn" target="topBarHover" onclick="topBarHover.value = '#99AAB1'" ng-click="vm.user.colors.topBarHover = '#99AAB1'">Default</button>
-            </span>
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="sideBarColor">Side Bar Color</label>
-          <br />
-          <div class="input-group">
-            <input type="color" id="sideBarColor" class="form-control input-message color-input" ng-model="vm.user.colors.sideBarColor"/>
-            <span class="input-group-btn">
-              <button class="btn" target="sideBarColor" onclick="sideBarColor.value = '#95B8D1'" ng-click="vm.user.colors.sideBarColor = '#95B8D1'">Default</button>
-            </span>
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="sideBarHover">Side Bar Hover</label>
-          <br />
-          <div class="input-group">
-            <input type="color" id="sideBarHover" class="form-control input-message color-input" ng-model="vm.user.colors.sideBarHover"/>
-            <span class="input-group-btn">
-              <button class="btn" target="sideBarHover" onclick="sideBarHover.value = '#23272A'" ng-click="vm.user.colors.sideBarHover = '#23272A'">Default</button>
-            </span>
-          </div>
-        </div>
+        </md-input-container>
+        <br />
         <div class="form-group">
           <br />
           <center>
@@ -66,5 +29,4 @@
 <!--     make cancel boyon <button class="btn btn-danger" ng-click="vm.deleteUser()">Delete</button> -->
         </div>
     </form>
-</div>
 </div>
