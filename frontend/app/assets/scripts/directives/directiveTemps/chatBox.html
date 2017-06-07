@@ -1,10 +1,26 @@
-<!-- <div flex="67" layout="column" ng-hide="">
-   Video will go here
-  TEST
-</div> -->
+<!-- Chat Room UI -->
 
-<div layout="column">
+<div flex="67" layout="column" ng-hide="" style="height:100%; width:67%; position:absolute; background-color:black; color:white;">
   <div layout="row">
+    <div class="" style="width:50%; background-color:red;">
+      1
+    </div>
+    <div class="" style="width:50%; background-color:green;">
+      2
+    </div>
+  </div>
+  <div layout="row">
+    <div class="" style="width:50%; background-color:blue;">
+      3
+    </div>
+    <div class="" style="width:50%; background-color:yellow;">
+      4
+    </div>
+  </div>
+</div>
+
+<div flex layout="column">
+  <div layout="row" style="height:80%; width:33%; position:absolute; right:0;">
     <md-list flex layout="column" class="make-scrollable" scroll-glue-bottom>
      <!-- <md-subheader class="md-no-sticky">Chat room: </md-subheader> -->
      <md-list-item class="md-3-line"  ng-repeat="message in messageTest track by $index" ng-click="null">
@@ -38,7 +54,7 @@
     </md-list-item>
     </md-list>
   </div>
-  <div layout="row">
+  <div layout="row" style="height:20%; width:33%; position:absolute; bottom:0; right:0;">
     <md-input-container flex layout="column" layout-padding layout-align="center end">
       <label>Message</label>
       <input type="text" ng-max='500' ng-model='message' focus ng-keypress="myFunct($event)">

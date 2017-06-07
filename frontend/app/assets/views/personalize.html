@@ -21,12 +21,9 @@
             <input type="password" id="password" class="form-control input-message" ng-model="vm.user.password" />
         </md-input-container>
         <br />
-        <div class="form-group">
-          <br />
-          <center>
-            <button class="btn btn-primary save-button" ng-click="vm.saveUser()">Save</button>
-          </center>
+        <center>
+          <md-button class="md-raised" ng-click="vm.saveUser()">Save</md-button>
+        </center>
 <!--     make cancel boyon <button class="btn btn-danger" ng-click="vm.deleteUser()">Delete</button> -->
-        </div>
     </form>
 </div>
