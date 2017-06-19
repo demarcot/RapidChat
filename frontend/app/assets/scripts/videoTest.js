@@ -20,17 +20,25 @@
 		connection.onstream = function(event) {
 			var isInitiator = connection.isInitiator;
 
-			if (isInitiator === true && event.type === 'local') {
-				// initiator's own stream
-				alert('you are initiator');
-			}
+      if (event.type === 'local') {
+                // initiator's own stream
+                //alert('you are initiator');
+                var loc = document.getElementById("localBoi");
+                if(loc == null)
+                    console.log("WTF buddyboi");
+                loc.appendChild(event.mediaElement);
+            }
 
-			if (isInitiator === true && event.type === 'remote') {
-				// initiator recieved stream from someone else
-				alert('dear initiator, you just receive a remote stream');
-			}
+            if (event.type === 'remote') {
+                // initiator recieved stream from someone else
+                //alert('dear initiator, you just receive a remote stream');
+                var rem = document.getElementById("remoteBoi");
+                if(rem == null)
+                    console.log("WTF buddyboi");
+                rem.appendChild(event.mediaElement);
+            }
 
-			document.body.appendChild(event.mediaElement);
+			// document.body.appendChild(event.mediaElement);
 		};
 
 		connection.openOrJoin('your-room-id');
