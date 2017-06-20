@@ -9,7 +9,7 @@
 		var connection = new RTCMultiConnection();
 
 		// this line is VERY_important
-		connection.socketURL = 'https://rtcmulticonnection.herokuapp.com:443/';
+		connection.socketURL = 'http://52.90.171.126:9443/';
 
 		// if you want audio+video conferencing
 		connection.session = {
