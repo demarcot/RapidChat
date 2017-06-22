@@ -15,7 +15,7 @@
 			$scope.connection = new RTCMultiConnection();
 			$scope.autoCloseEntireSession = true;
 		}
-		
+
 		//$scope.connection = new RTCMultiConnection();
 		//var connection = new RTCMultiConnection();
 
@@ -23,9 +23,9 @@
 		{
 			//TODO(Tom): Replace 'your-room-id' with the current chatroomID and _Video
 			// Ex. myCoolChatroom#5134_Video
-			$scope.connection.openOrJoin('yourMom1');
+			$scope.connection.openOrJoin($scope.videoRoomName);
 		}
-		
+
 		$scope.leaveVideo = function()
 		{
 			console.log("Leaving video...");
@@ -33,12 +33,12 @@
 			$scope.connection.close();
 			//$scope.connection.disconnect();
 		}
-		
+
 		$scope.getPartyPeople = function()
 		{
 			console.log("Participants: ", $scope.connection.getAllParticipants());
 		}
-		
+
 		$scope.connectionInfo = function()
 		{
 			console.log("Connection: ", $scope.connection);
@@ -71,7 +71,7 @@
 						console.log("Unable to locate local video container...");
 						return;
 					}
-					
+
 					if(document.getElementById(event.streamid)) return;
 
 					event.mediaElement.id = event.streamid;
@@ -88,7 +88,7 @@
 						console.log("Unable to locate remote video container...");
 						return;
 					}
-					
+
 					if(document.getElementById(event.streamid)) return;
 
 					event.mediaElement.id = event.streamid;
@@ -96,10 +96,9 @@
 				}
 			};
 		}
-		
+
 		$scope.initConnection();
-		$scope.connectVideo();
-		
+
 
 		/*
 		// this line is VERY_important
