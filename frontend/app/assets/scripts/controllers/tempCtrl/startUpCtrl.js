@@ -1,9 +1,5 @@
 (function () {
-    'use strict';
-
-    angular
-        .module('coreApp')
-        .controller('initCtrl', Controller);
+    angular.module('coreApp').controller('startUpCtrl', Controller);
 
     function Controller($scope, $window, UserService, ChatRoomService, FlashService) {
         var vm = this
@@ -11,6 +7,8 @@
         vm.allUsers = null;
         vm.username = null;
         vm.callApi = callApi;
+        vm.initConnection = initConnection;
+        console.log("hello");
         function callApi() {
 
             vm.chatRooms = [];
@@ -24,8 +22,6 @@
             });
 
           };
-
-
             callApi();
             if($scope.connection == null)
         		{
@@ -62,8 +58,9 @@
         			console.log("Connection: ", $scope.connection);
         		}
 
-        		$scope.initConnection = function ()
+        		function initConnection()
         		{
+              console.log("init connection'");
         			// this line is VERY_important
         			//connection.socketURL = 'https://52.90.171.126:9443/';
         			$scope.connection.socketURL = 'https://rtcmulticonnection.herokuapp.com:443/';
@@ -115,7 +112,7 @@
         			};
         		}
 
-        		$scope.initConnection();
+        		initConnection();
 
 
 
