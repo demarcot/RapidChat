@@ -8,7 +8,6 @@
         vm.username = null;
         vm.callApi = callApi;
         vm.initConnection = initConnection;
-        console.log("hello");
         function callApi() {
 
             vm.chatRooms = [];
@@ -33,11 +32,11 @@
         		//$scope.connection = new RTCMultiConnection();
         		//var connection = new RTCMultiConnection();
 
-        		$scope.connectVideo = function ()
+        		$scope.connectVideo = function (roomId)
         		{
         			//TODO(Tom): Replace 'your-room-id' with the current chatroomID and _Video
         			// Ex. myCoolChatroom#5134_Video
-        			$scope.connection.openOrJoin($scope.videoRoomName);
+        			$scope.connection.openOrJoin(roomId + '_video');
         		}
 
         		$scope.leaveVideo = function()
