@@ -16,15 +16,19 @@
     <title>RapidChat</title>
   </head>
   <style media="screen">
-    md-list.make-scrollable{ height : 600px;
-       overflow-y: scroll; }
-       md-sidenav,
-        md-sidenav.md-locked-open,
-        md-sidenav.md-closed.md-locked-open-add-active {
-            min-width: 50px !important;
-            width: 12vw !important;
-            max-width: 400px !important;
-        }
+    md-list.make-scrollable
+    {
+      height : 600px;
+      overflow-y: scroll;
+    }
+    md-sidenav,
+    md-sidenav.md-locked-open,
+    md-sidenav.md-closed.md-locked-open-add-active
+    {
+      min-width: 50px !important;
+      width: 12vw !important;
+      max-width: 400px !important;
+    }
   </style>
   <body ng-cloak layout="row" ng-controller="startUpCtrl as startUp">
 
@@ -40,13 +44,13 @@
               Close Sidenav Left
            </md-button>
            <!-- <p hide="" show-gt-md=""> -->
-             <h5 style="margin:0px">Public Chat Rooms</h5>
-             <li style="list-style:none" ng-repeat="room in roomCtrl.chatRooms[0].publicChatRooms track by $index" ui-sref="chatRoomById({chatRoomId: room._id})" ng-click="setOldRoom()" ui-sref-active="active">{{room.name}}</li>
-             <h5 style="margin:0px">Private Chat Rooms</h5>
-             <li style="list-style:none" ng-repeat="room in roomCtrl.chatRooms[1].allowedChatRooms track by $index" ui-sref="chatRoomById({chatRoomId: room._id})" ng-click="setOldRoom()" ng-show="room.direct === false" ui-sref-active="active">{{room.name}}<i class="fa fa-cog pull-right" data-toggle="modal" data-target="#invite" ng-click="setRoomName(room.name, room._id);initRoom(room._id)"></i></li>
-             <h5 style="margin:0px">Direct Messages</h5>
-             <li style="list-style:none" ng-repeat="room in chatRooms[1].allowedChatRooms track by $index" ui-sref="chatRoomById({chatRoomId: room._id})" ng-click="setOldRoom()" ng-show="room.direct === true" ui-sref-active="active"><identicon username='room.acceptedUsers[0]' size='16'></identicon>&nbsp;&nbsp;{{room.acceptedUsers[0]}}</li>
-             <md-button ng-click="roomCtrl.showCreate($event)">Create Chat Room</md-button>
+           <md-button class="remove-padding" ng-click="roomCtrl.showCreate($event)">Create Chat Room</md-button>
+           <h5 class="side-nav-margin">Public Chat Rooms</h5>
+           <li class="side-nav-list" ng-repeat="room in roomCtrl.chatRooms[0].publicChatRooms track by $index" ui-sref="chatRoomById({chatRoomId: room._id})" ng-click="setOldRoom()" ui-sref-active="active">{{room.name}}</li>
+           <h5 class="side-nav-margin">Private Chat Rooms</h5>
+           <li class="side-nav-list" ng-repeat="room in roomCtrl.chatRooms[1].allowedChatRooms track by $index" ui-sref="chatRoomById({chatRoomId: room._id})" ng-click="setOldRoom()" ng-show="room.direct === false" ui-sref-active="active">{{room.name}}<i class="fa fa-cog pull-right" data-toggle="modal" data-target="#invite" ng-click="setRoomName(room.name, room._id);initRoom(room._id)"></i></li>
+           <h5 class="side-nav-margin">Direct Messages</h5>
+           <li class="side-nav-list" ng-repeat="room in chatRooms[1].allowedChatRooms track by $index" ui-sref="chatRoomById({chatRoomId: room._id})" ng-click="setOldRoom()" ng-show="room.direct === true" ui-sref-active="active"><identicon username='room.acceptedUsers[0]' size='16'></identicon>&nbsp;&nbsp;{{room.acceptedUsers[0]}}</li>
            <!-- </p> -->
         </md-content>
       </md-sidenav>

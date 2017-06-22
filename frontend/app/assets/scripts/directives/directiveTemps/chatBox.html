@@ -1,63 +1,65 @@
-<!-- Chat Room UI -->
-
-<div flex="67" layout="column" ng-hide="" style="height:100%; width:67%; position:absolute; background-color:black; color:white;">
-  <div layout="row">
-    <div flex class="" style="background-color:red;">
-      1
+  <!-- Chat Room UI -->
+<div>
+  <div flex="67" ng-hide="" class="chat-video-view">
+    <div layout="row">
+      <div flex class="" style="background-color:red;">
+        1
+      </div>
+    </div>
+    <div layout="row">
+      <div flex class="" style="background-color:green;">
+        2
+      </div>
+      <div flex class="" style="background-color:blue;">
+        3
+      </div>
+      <div flex class="" style="background-color:yellow;">
+        4
+      </div>
     </div>
   </div>
-  <div layout="row">
-    <div flex class="" style="background-color:green;">
-      2
-    </div>
-    <div flex class="" style="background-color:blue;">
-      3
-    </div>
-    <div flex class="" style="background-color:yellow;">
-      4
-    </div>
-  </div>
-</div>
 
-<div flex layout="column">
-  <div layout="row" style="height:80%; width:33%; position:absolute; right:0;">
-    <md-list flex layout="column" class="make-scrollable" scroll-glue-bottom>
-     <!-- <md-subheader class="md-no-sticky">Chat room: </md-subheader> -->
-     <md-list-item class="md-3-line"  ng-repeat="message in messageTest track by $index" ng-click="null">
-       <identicon username='message.data.author' size='40' class="md-avatar"/>
-       <div class="md-list-item-text" layout="column">
-         <div>
-             <div ng-hide="message.isLink && message.data.gif">
-                 <strong class="primary-font">{{message.data.author}}</strong> <small class="pull-right text-muted">
+  <div flex>
+    <div layout="row" class="chat-text-view">
+      <md-list flex layout="column" class="make-scrollable" scroll-glue-bottom>
+                  <!-- Remove make-scrollable for chat height overriding -->
+       <!-- <md-subheader class="md-no-sticky">Chat room: </md-subheader> -->
+       <md-list-item class="md-3-line"  ng-repeat="message in messageTest track by $index" ng-click="null">
+         <identicon username='message.data.author' size='40' class="md-avatar"/>
+         <div class="md-list-item-text" layout="column">
+           <div>
+               <div ng-hide="message.isLink && message.data.gif">
+                   <strong class="primary-font">{{message.data.author}}</strong> <small class="pull-right text-muted">
+                       <span class="glyphicon glyphicon-time"></span> {{message.data.timestamp | date:'MM/dd/yyyy @ h:mma'}}</small>
+               </div>
+               <div ng-show="message.isLink && message.data.gif">
+                 <!-- <img width=420 height=420 src="data:image/png;base64,' + {{identicon}} + '"> -->
+                 <img src="assets/imgs/gifyIcon.png" width=40 height=50 alt="">
+                 <a href="https://giphy.com"><strong class="primary-font">{{message.data.author}} Powered by Giphy!</strong> <small class="pull-right text-muted"></a>
                      <span class="glyphicon glyphicon-time"></span> {{message.data.timestamp | date:'MM/dd/yyyy @ h:mma'}}</small>
-             </div>
-             <div ng-show="message.isLink && message.data.gif">
-               <!-- <img width=420 height=420 src="data:image/png;base64,' + {{identicon}} + '"> -->
-               <img src="assets/imgs/gifyIcon.png" width=40 height=50 alt="">
-               <a href="https://giphy.com"><strong class="primary-font">{{message.data.author}} Powered by Giphy!</strong> <small class="pull-right text-muted"></a>
-                   <span class="glyphicon glyphicon-time"></span> {{message.data.timestamp | date:'MM/dd/yyyy @ h:mma'}}</small>
 
-             </div>
-             <p class="p-wrap" ng-hide="message.isLink || message.data.gif">
-               {{message.data.messageContent}}
-             </p>
-             <p class="p-wrap" ng-show="message.data.gif">
-               <br>
-               <img ng-show="message.data.gif" ng-src="{{message.data.url}}" alt="gifyImage">
-             </p>
-             <p class="p-wrap" ng-show="message.isLink && !message.data.gif">
-               <a href="{{message.data.messageContent}}">{{message.data.messageContent}}</a>
-             </p>
+               </div>
+               <p class="p-wrap" ng-hide="message.isLink || message.data.gif">
+                 {{message.data.messageContent}}
+               </p>
+               <p class="p-wrap" ng-show="message.data.gif">
+                 <br>
+                 <img ng-show="message.data.gif" ng-src="{{message.data.url}}" alt="gifyImage">
+               </p>
+               <p class="p-wrap" ng-show="message.isLink && !message.data.gif">
+                 <a href="{{message.data.messageContent}}">{{message.data.messageContent}}</a>
+               </p>
 
+           </div>
          </div>
-       </div>
-    </md-list-item>
-    </md-list>
+      </md-list-item>
+      </md-list>
+    </div>
+    <div layout="row" class="chat-input-container">
+      <md-input-container flex layout="column" layout-padding layout-align="center end">
+        <label>Message</label>
+        <input type="text" ng-max='500' ng-model='message' focus ng-keypress="myFunct($event)">
+      </md-input-container>
+    </div>
   </div>
-  <div layout="row" style="height:20%; width:33%; position:absolute; bottom:0; right:0;">
-    <md-input-container flex layout="column" layout-padding layout-align="center end">
-      <label>Message</label>
-      <input type="text" ng-max='500' ng-model='message' focus ng-keypress="myFunct($event)">
-    </md-input-container>
-  </div>
-</div>
+<div>
