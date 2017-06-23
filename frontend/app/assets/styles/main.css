@@ -26,11 +26,11 @@
 
 .chat-text-view
 {
-  height: 64%;
+  height: 70%;
   width: 100%;
-  position: relative;
+  /*position: relative;*/
   right: 0;
-  padding-right: 5px;
+  /*padding-right: 5px;*/
 }
 .chat-text-view .md-button{
   word-break: break-all;
@@ -38,7 +38,6 @@
 
 .chat-input-container
 {
-  height: 15%;
   width: 100%;
   position: absolute;
   bottom: 0;

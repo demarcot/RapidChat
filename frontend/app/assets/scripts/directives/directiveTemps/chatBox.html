@@ -15,10 +15,9 @@
     </div>
   </div>
 
-  <div flex="auto" ng-style="showVideo == true ? {'background-color': 'cyan'} : {color: 'yellow'}">
-    <div layout="row" class="chat-text-view">
-      <div class="position-fix">
-      <md-list flex layout="column" class="make-scrollable" scroll-glue-bottom>
+  <div flex ng-style="showVideo == true ? {'background-color': 'cyan'} : {color: 'yellow'}" >
+    <div class="chat-text-view position-fix">
+      <md-list class="make-scrollable" scroll-glue-bottom>
                   <!-- Remove make-scrollable for chat height overriding -->
        <!-- <md-subheader class="md-no-sticky">Chat room: </md-subheader> -->
        <md-list-item class="md-3-line"  ng-repeat="message in messageTest track by $index" ng-click="null">
@@ -49,11 +48,13 @@
       </md-list-item>
       </md-list>
     </div>
-    </div>
+
+
     <div layout="row" class="chat-input-container">
-      <md-input-container flex layout="column" layout-padding layout-align="center end">
-        <label>Message</label>
-        <input type="text" ng-max='500' ng-model='message' focus ng-keypress="myFunct($event)">
+
+      <md-input-container flex layout="column" layout-align="center end" class="md-block">
+        <label for="message">Message</label>
+        <input id="message"type="text" class=" form-control input-message" ng-max='500' ng-model='message' focus ng-keypress="myFunct($event)" >
       </md-input-container>
     </div>
   </div>
