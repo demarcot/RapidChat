@@ -31,13 +31,15 @@
   position: relative;
   right: 0;
   padding-right: 5px;
-  word-wrap: break-word;
+}
+.chat-text-view .md-button{
+  word-break: break-all;
 }
 
 .chat-input-container
 {
   height: 15%;
-  /*width: 100%;*/
+  width: 100%;
   position: absolute;
   bottom: 0;
   right: 0;
