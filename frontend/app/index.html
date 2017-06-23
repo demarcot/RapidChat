@@ -5,6 +5,7 @@
     <!-- <link rel="stylesheet" href="assets\bower_components\bootstrap\dist\css\bootstrap.min.css">
     <link rel="stylesheet" href="assets/styles/Master.css">
     <link rel="stylesheet" href="assets\imgs\font-awesome-4.7.0\css\font-awesome.min.css"> -->
+    <link rel="stylesheet" href="assets/styles/main.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8">
@@ -70,7 +71,7 @@
            </md-button>
            <md-menu-content width="3">
              <md-menu-item>
-               <md-button>
+               <md-button ng-click="connectVideo(roomCtrl.chatRoomName)">
                  <md-icon md-svg-icon="call:contact-phone" md-menu-align-target></md-icon>
                  Video Call
                </md-button>
@@ -82,10 +83,8 @@
                </md-button>
              </md-menu-item>
              <md-menu-item>
-               <md-button>
-                 <a href="/login" target="_self">
-                 Log out
-                 </a>
+               <md-button ng-click="leaveVideo()">
+                 Leave Call
                </md-button>
              </md-menu-item>
            </md-menu-content>

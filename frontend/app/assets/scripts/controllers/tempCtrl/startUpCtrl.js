@@ -36,7 +36,10 @@
         		{
         			//TODO(Tom): Replace 'your-room-id' with the current chatroomID and _Video
         			// Ex. myCoolChatroom#5134_Video
+              $scope.showVideo = true;
         			$scope.connection.openOrJoin(roomId + '_video');
+              console.log("RoomID = ", roomId + '_video');
+              console.log($scope.connection);
         		}
 
         		$scope.leaveVideo = function()
@@ -44,6 +47,7 @@
         			console.log("Leaving video...");
         			//$scope.connection.leave();
         			$scope.connection.close();
+              $scope.showVideo = false;
         			//$scope.connection.disconnect();
         		}
 
@@ -79,7 +83,7 @@
         				{
         					// initiator's own stream
         					//alert('you are initiator');
-        					var loc = document.getElementById("localVideoContainer");
+        					var loc = document.getElementById("main-video");
         					if (loc == null)
         					{
         						console.log("Unable to locate local video container...");
@@ -96,7 +100,7 @@
         				{
         					// initiator recieved stream from someone else
         					//alert('dear initiator, you just receive a remote stream');
-        					var rem = document.getElementById("remoteVideoContainer");
+        					var rem = document.getElementById("remote-video");
         					if (rem == null)
         					{
         						console.log("Unable to locate remote video container...");

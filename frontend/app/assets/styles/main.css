@@ -16,8 +16,9 @@
 .chat-video-view
 {
   height: 70%;
-  width: 67%;
-  position: absolute;
+  /*width: 67%;*/
+  /*max-width: 67%;*/
+  /*position: absolute;*/
   padding-bottom: 2px;
   background-color: black;
   color: white;
@@ -26,26 +27,34 @@
 .chat-text-view
 {
   height: 64%;
-  width: 33%;
-  position: absolute;
+  width: 100%;
+  position: relative;
   right: 0;
   padding-right: 5px;
-  overflow-y: auto;
+  word-wrap: break-word;
 }
 
 .chat-input-container
 {
-  height: 20%;
-  width: 33%;
+  height: 15%;
+  /*width: 100%;*/
   position: absolute;
   bottom: 0;
   right: 0;
-  padding-top: 5px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  padding-left: 5px;
   padding-right: 5px;
+  margin: 0px;
 }
 
 .remove-padding
 {
   padding: 0px;
   margin: 0px;
+}
+
+.position-fix
+{
+  position: absolute;
 }
