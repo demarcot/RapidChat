@@ -1,12 +1,12 @@
 <!-- Create Chat Room Panel -->
 
-<div role="dialog" layout="column" layout-align="center center" ng-controller="chatRoomCtrl as roomCtrl">
+<div role="dialog" layout="column" layout-align="center center" >
   <md-toolbar>
     <div class="md-toolbar-tools">
       <h2>Create Chat Room</h2>
     </div>
   </md-toolbar>
-  <div class="demo-dialog-content" layout-padding ng-controller="initCtrl as init">
+  <div class="demo-dialog-content" layout-padding>
     <form class="form-group" ng-submit="" method="post">
       <p>
         Name the Chat Room and specify if it is Public or Private:
@@ -19,7 +19,7 @@
       </div>
     </form>
     <div layout="row">
-      <md-button type="button" ng-click="roomCtrl.createChatroom(init.username.username); roomCtrl.closeCreate($event);" ng-disabled="roomCtrl.chatRoomName == undefined || chatRoomNameLength === 0">Submit</md-button>
+      <md-button type="button" ng-click="roomCtrl.createChatroom(startUp.username.username); roomCtrl.closeCreate($event);" ng-disabled="roomCtrl.chatRoomName == undefined || chatRoomNameLength === 0">Submit</md-button>
     </div>
   </div>
 </div>

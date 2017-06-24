@@ -69,6 +69,7 @@
             $mdDialog.show({
               templateUrl:'/frontend/app/assets/templates/ChatroomDialogTemp.html',
               parent: angular.element(document.body),
+              scope: $scope.$new(), 
               targetEvent: ev,
               clickOutsideToClose:true,
             })

@@ -8,7 +8,7 @@
       </div>
     </md-toolbar>
     <div layout="column">
-      <div flex ng-repeat="user in allUsers" ng-hide="user.username===vm.user.username"><identicon username='user.username' size='40'></identicon><br /><a ng-click="setOldRoom(); createDirectMessage(vm.user.username, user.username)">{{user.username}}</a></div>
+      <div flex ng-repeat="user in startUp.allUsers" ng-hide="user.username===startUp.username.username"><identicon username='user.username' size='40'></identicon><br /><a ng-click="setOldRoom(); roomCtrl.createDirectMessage(startUp.username.username, user.username)">{{user.username}}</a></div>
     </div>
   </div>
 
@@ -19,7 +19,7 @@
       </div>
     </md-toolbar>
     <div layout="column">
-      <div flex ng-repeat="room in chatRooms[0].publicChatRooms track by $index" ><a ui-sref="chatRoomById({chatRoomId: room._id})" ng-click="setOldRoom()"><i class="fa fa-comments-o fa-lg"></i>&nbsp;{{room.name}}</a></div>
+      <div flex ng-repeat="room in roomCtrl.chatRooms[0].publicChatRooms track by $index" ><a ui-sref="chatRoomById({chatRoomId: room._id})" ng-click="setOldRoom()"><i class="fa fa-comments-o fa-lg"></i>&nbsp;{{room.name}}</a></div>
     </div>
   </div>
 </div>

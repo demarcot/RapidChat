@@ -47,11 +47,11 @@
            <!-- <p hide="" show-gt-md=""> -->
            <md-button class="remove-padding" ng-click="roomCtrl.showCreate($event)">Create Chat Room</md-button>
            <h5 class="side-nav-margin">Public Chat Rooms</h5>
-           <li class="side-nav-list" ng-repeat="room in roomCtrl.chatRooms[0].publicChatRooms track by $index" ui-sref="chatRoomById({chatRoomId: room._id})" ng-click="setOldRoom()" ui-sref-active="active">{{room.name}}</li>
+           <li class="side-nav-list" ng-repeat="room in roomCtrl.chatRooms[0].publicChatRooms track by $index" ui-sref="chatRoomById({chatRoomId: room._id})" ng-click="setOldRoom(room._id, room.name)" ui-sref-active="active">{{room.name}}</li>
            <h5 class="side-nav-margin">Private Chat Rooms</h5>
-           <li class="side-nav-list" ng-repeat="room in roomCtrl.chatRooms[1].allowedChatRooms track by $index" ui-sref="chatRoomById({chatRoomId: room._id})" ng-click="setOldRoom()" ng-show="room.direct === false" ui-sref-active="active">{{room.name}}<i class="fa fa-cog pull-right" data-toggle="modal" data-target="#invite" ng-click="setRoomName(room.name, room._id);initRoom(room._id)"></i></li>
+           <li class="side-nav-list" ng-repeat="room in roomCtrl.chatRooms[1].allowedChatRooms track by $index" ui-sref="chatRoomById({chatRoomId: room._id})" ng-click="setOldRoom(room._id, room.name)" ng-show="room.direct === false" ui-sref-active="active">{{room.name}}<i class="fa fa-cog pull-right" data-toggle="modal" data-target="#invite" ng-click="setRoomName(room.name, room._id);initRoom(room._id)"></i></li>
            <h5 class="side-nav-margin">Direct Messages</h5>
-           <li class="side-nav-list" ng-repeat="room in chatRooms[1].allowedChatRooms track by $index" ui-sref="chatRoomById({chatRoomId: room._id})" ng-click="setOldRoom()" ng-show="room.direct === true" ui-sref-active="active"><identicon username='room.acceptedUsers[0]' size='16'></identicon>&nbsp;&nbsp;{{room.acceptedUsers[0]}}</li>
+           <li class="side-nav-list" ng-repeat="room in roomCtrl.chatRooms[1].allowedChatRooms track by $index" ui-sref="chatRoomById({chatRoomId: room._id})" ng-click="setOldRoom(room._id, room.name)" ng-show="room.direct === true" ui-sref-active="active"><identicon username='room.acceptedUsers[0]' size='16'></identicon>&nbsp;&nbsp;{{room.acceptedUsers[0]}}</li>
            <!-- </p> -->
         </md-content>
       </md-sidenav>
@@ -63,15 +63,15 @@
            <md-icon md-svg-icon="img/icons/menu.svg"></md-icon>
          </md-button>
          <!-- <h2 flex md-truncate>Toolbar with Disabled/Enabled Icon Buttons</h2> -->
-        <md-button>Re-size</md-button>
+        <md-button href="/login" target="_self">Logout</md-button>
 
-         <md-menu>
-           <md-button class="md-icon-button" aria-label="More" ng-click="mdCtrl.openMenu($mdOpenMenu, $event)">
+         <md-menu >
+           <md-button ng-disabled="roomId === undefined" class="md-icon-button" aria-label="More" ng-click="mdCtrl.openMenu($mdOpenMenu, $event)">
              <md-icon md-menu-origin md-svg-icon="img/icons/more_vert.svg"></md-icon>
            </md-button>
            <md-menu-content width="3">
              <md-menu-item>
-               <md-button ng-click="connectVideo(roomCtrl.chatRoomName)">
+               <md-button ng-click="connectVideo(roomId)">
                  <md-icon md-svg-icon="call:contact-phone" md-menu-align-target></md-icon>
                  Video Call
                </md-button>
@@ -94,7 +94,7 @@
      <md-tabs md-stretch-tabs md-border-bottom>
         <md-tab label="Dashboard" ng-class="{active: activeTab === 'dashboard'}" ui-sref="dashboard"  ng-click="setOldRoom()"></md-tab>
         <md-tab label="Account"ng-class="{active: activeTab === 'personalize'}"ui-sref="personalize" ng-click="setOldRoom()"></md-tab>
-        <md-tab label="Video Chat" ng-class="{active: activeTab === 'video'}" ui-sref="video" ng-click="setOldRoom()"></md-tab>
+        <!-- <md-tab label="Video Chat" ng-class="{active: activeTab === 'video'}" ui-sref="video" ng-click="setOldRoom()"></md-tab> -->
         <!-- <md-tab label="Admin" ng-class="{active: activeTab === 'admin'}" ui-sref="admin" ng-click="setOldRoom()" ng-show=false></md-tab> -->
     </md-tabs>
       <div flex layout="column" style="padding-right:3px">
