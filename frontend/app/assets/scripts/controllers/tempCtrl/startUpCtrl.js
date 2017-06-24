@@ -46,6 +46,7 @@
         		{
         			console.log("Leaving video...");
         			//$scope.connection.leave();
+              $scope.connection.attachStreams[0].stop();
         			$scope.connection.close();
               $scope.showVideo = false;
         			//$scope.connection.disconnect();
