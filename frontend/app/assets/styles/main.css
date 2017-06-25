@@ -15,6 +15,7 @@
 
 .text-border
 {
+  overflow-y: auto;
 }
 
 .video-container
@@ -77,6 +78,7 @@
   /*position: relative;*/
   right: 0;
   /*padding-right: 5px;*/
+  overflow-y: auto;
 }
 
 .chat-text-view .md-button{
