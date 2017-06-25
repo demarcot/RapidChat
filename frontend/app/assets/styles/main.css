@@ -13,15 +13,48 @@
   padding-right: 3px;
 }
 
-.chat-video-view
+.video-container
 {
+  position: absolute;
+  width: 67%;
   height: 70%;
-  /*width: 67%;*/
-  /*max-width: 67%;*/
-  /*position: absolute;*/
-  padding-bottom: 2px;
+  left: 0;
+  background-color: blue;
+}
+
+.local-video-view
+{
+  background-color: black;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  object-fit: contain;
+}
+
+.local-video-view video
+{
+  object-fit: contain;
+  /*background-color: white;
+  padding: 10px;
+  position: absolute;
+  width: 50%;*/
+}
+
+video
+{
+  object-fit: cover;
+  float: right;
+}
+
+.remote-video-view
+{
   background-color: black;
   color: white;
+}
+
+.remote-video-view > video
+{
+  width: 33%;
 }
 
 .chat-text-view
@@ -32,6 +65,7 @@
   right: 0;
   /*padding-right: 5px;*/
 }
+
 .chat-text-view .md-button{
   word-break: break-all;
 }
@@ -58,4 +92,12 @@
 .position-fix
 {
   position: absolute;
+}
+
+.dashboard-users
+{
+  position: relative;
+  color: white;
+  width: 100%;
+  align-items: center;
 }

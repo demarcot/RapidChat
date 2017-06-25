@@ -1,22 +1,17 @@
 <!-- Chat Room UI -->
 <div flex layout="row">
-  <div flex="auto" ng-show="showVideo">
-    <div ng-hide="" class="chat-video-view">
-      <div layout="row">
-        <div id="main-video" flex class="" style="background-color:red;">
-          1
+  <div class="video-container" flex="grow" ng-show="showVideo">
+      <div class="remote-video-view">
+        <div id="remote-video" style="background-color:green;">
         </div>
       </div>
-      <div layout="row">
-        <div flex id="remote-video" class="" style="background-color:green;">
-          2
-        </div>
+      <div id="main-video" class="local-video-view">
+      
       </div>
-    </div>
   </div>
 
-  <div flex ng-style="showVideo == true ? {'background-color': 'cyan'} : {color: 'yellow'}" >
-    <div class="chat-text-view position-fix">
+  <div flex="grow">
+    <div class="chat-text-view position-fix" ng-style="showVideo == true ? {'background-color': 'brown', 'width': '33%'} : {color: 'yellow'}">
       <md-list class="make-scrollable" scroll-glue-bottom>
                   <!-- Remove make-scrollable for chat height overriding -->
        <!-- <md-subheader class="md-no-sticky">Chat room: </md-subheader> -->
