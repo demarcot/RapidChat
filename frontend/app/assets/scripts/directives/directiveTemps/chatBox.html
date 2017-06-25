@@ -2,18 +2,17 @@
 <div flex layout="row">
   <div class="video-container" flex="grow" ng-show="showVideo">
       <div class="remote-video-view">
-        <div id="remote-video" style="background-color:green;">
+        <div id="remote-video">
         </div>
       </div>
       <div id="main-video" class="local-video-view">
-      
+
       </div>
   </div>
 
   <div flex="grow">
-    <div class="chat-text-view position-fix" ng-style="showVideo == true ? {'background-color': 'brown', 'width': '33%'} : {color: 'yellow'}">
-      <md-list class="make-scrollable" scroll-glue-bottom>
-                  <!-- Remove make-scrollable for chat height overriding -->
+    <div class="chat-text-view position-fix" ng-style="showVideo == true ? {'width': '33%'} : {'width': '100%'}">
+      <md-list class="text-border" scroll-glue-bottom>
        <!-- <md-subheader class="md-no-sticky">Chat room: </md-subheader> -->
        <md-list-item class="md-3-line"  ng-repeat="message in messageTest track by $index" ng-click="null">
            <identicon username='message.data.author' size='40' class="md-avatar"/>

@@ -18,19 +18,19 @@
           <div class="alert alert-success"><%= success %></div>
       <% } %>
       <form method="post">
-          <md-input-container>
+          <div class="form-group">
               <label for="username">Username</label>
               <input type="text" name="username" id="username" value="<%= locals.username || '' %>" class="form-control" />
-          </md-input-container>
-          <br />
-          <md-input-container class="form-group">
-              <label for="password">Password</label>
-              <input type="password" name="password" id="password" class="form-control" />
-          </md-input-container>
+          </div>
           <br />
           <div class="form-group">
-              <button type="submit" class="btn btn-success">Login</button>
-              <a class="btn btn-link link-color" href="/register">Register</a>
+              <label for="password">Password</label>
+              <input type="password" name="password" id="password" class="form-control" />
+          </div>
+          <br />
+          <div class="form-group">
+              <button type="submit">Login</button>
+              <a href="/register">Register</a>
           </div>
       </form>
   </div>
