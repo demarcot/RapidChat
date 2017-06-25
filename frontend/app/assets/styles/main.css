@@ -24,27 +24,32 @@
 
 .local-video-view
 {
-  background-color: black;
   bottom: 0;
   right: 0;
   position: absolute;
   object-fit: contain;
+  width: 33%;
 }
 
 .local-video-view video
 {
-  object-fit: contain;
-  /*background-color: white;
-  padding: 10px;
-  position: absolute;
-  width: 50%;*/
+  object-fit: cover;
+  width: 100%;
+  display: block;
+  opacity: 0.85;
 }
 
-video
+.local-video-view video:hover
+{
+  opacity: 1;
+}
+
+/*video
 {
   object-fit: cover;
   float: right;
-}
+
+}*/
 
 .remote-video-view
 {
