@@ -10,9 +10,9 @@
       </div>
   </div>
 
-  <div flex="grow">
-    <div class="chat-text-view position-fix" ng-style="showVideo == true ? {'width': '33%'} : {'width': '100%'}">
-      <md-list class="text-border" scroll-glue-bottom>
+  <div flex="grow"  scroll-glue-bottom>
+    <div class="chat-text-view position-fix" ng-style="showVideo == true ? {'width': '33%'} : {'width': '100%'}" scroll-glue-bottom>
+      <md-list class="text-border">
        <!-- <md-subheader class="md-no-sticky">Chat room: </md-subheader> -->
        <md-list-item class="md-3-line"  ng-repeat="message in messageTest track by $index" ng-click="null">
            <identicon username='message.data.author' size='40' class="md-avatar"/>

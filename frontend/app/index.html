@@ -12,6 +12,7 @@
     <meta name="theme-color" content="{{frameColor}}" />
     <link rel="icon" type="image/png" href="assets/imgs/transIcon.PNG" sizes="16x16">
     <link rel="icon" type="image/png" href="assets/imgs/transIcon.PNG" sizes="32x32">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
 
     <title>RapidChat</title>
@@ -42,17 +43,17 @@
            <h1 class="md-toolbar-tools">Chats Or Logo</h1>
         </md-toolbar>
         <md-content layout-padding="" ng-controller="LeftCtrl">
-           <md-button ng-click="close()" class="md-primary" hide-gt-md="">
+           <!-- <md-button ng-click="close()" class="md-primary" hide-gt-md="">
               Close Sidenav Left
-           </md-button>
+           </md-button> -->
            <!-- <p hide="" show-gt-md=""> -->
            <md-button class="remove-padding" ng-click="roomCtrl.showCreate($event)">Create Chat Room</md-button>
            <h5 class="side-nav-margin">Public Chat Rooms</h5>
-           <li class="side-nav-list" ng-repeat="room in roomCtrl.chatRooms[0].publicChatRooms track by $index" ui-sref="chatRoomById({chatRoomId: room._id})" ng-click="setOldRoom(room._id, room.name)" ui-sref-active="active">{{room.name}}</li>
+           <li class="side-nav-list" style="padding-left:20px;" ng-repeat="room in roomCtrl.chatRooms[0].publicChatRooms track by $index" ui-sref="chatRoomById({chatRoomId: room._id})" ng-click="setOldRoom(room._id, room.name)" ui-sref-active="active">{{room.name}}</li>
            <h5 class="side-nav-margin">Private Chat Rooms</h5>
-           <li class="side-nav-list" ng-repeat="room in roomCtrl.chatRooms[1].allowedChatRooms track by $index" ui-sref="chatRoomById({chatRoomId: room._id})" ng-click="setOldRoom(room._id, room.name)" ng-show="room.direct === false" ui-sref-active="active">{{room.name}}<i class="fa fa-cog pull-right" data-toggle="modal" data-target="#invite" ng-click="setRoomName(room.name, room._id);initRoom(room._id)"></i></li>
+           <li class="side-nav-list" style="padding-left:20px;" ng-repeat="room in roomCtrl.chatRooms[1].allowedChatRooms track by $index" ui-sref="chatRoomById({chatRoomId: room._id})" ng-click="setOldRoom(room._id, room.name)" ng-show="room.direct === false" ui-sref-active="active">{{room.name}}<i class="fa fa-cog pull-right" data-toggle="modal" data-target="#invite" ng-click="setRoomName(room.name, room._id);initRoom(room._id)"></i></li>
            <h5 class="side-nav-margin">Direct Messages</h5>
-           <li class="side-nav-list" ng-repeat="room in roomCtrl.chatRooms[1].allowedChatRooms track by $index" ui-sref="chatRoomById({chatRoomId: room._id})" ng-click="setOldRoom(room._id, room.name)" ng-show="room.direct === true" ui-sref-active="active"><identicon username='room.acceptedUsers[0]' size='16'></identicon>&nbsp;&nbsp;{{room.acceptedUsers[0]}}</li>
+           <li class="side-nav-list" style="padding-left:20px;" ng-repeat="room in roomCtrl.chatRooms[1].allowedChatRooms track by $index" ui-sref="chatRoomById({chatRoomId: room._id})" ng-click="setOldRoom(room._id, room.name)" ng-show="room.direct === true" ui-sref-active="active"><identicon username='room.acceptedUsers[0]' size='16'></identicon>&nbsp;&nbsp;{{room.acceptedUsers[0]}}</li>
            <!-- </p> -->
         </md-content>
       </md-sidenav>
@@ -73,7 +74,7 @@
            <md-menu-content width="3">
              <md-menu-item>
                <md-button ng-click="connectVideo(roomId)">
-                 <md-icon md-svg-icon="call:contact-phone" md-menu-align-target></md-icon>
+                 <md-icon md-svg-icon="social:party-mode" md-menu-align-target></md-icon>
                  Video Call
                </md-button>
              </md-menu-item>
@@ -85,6 +86,7 @@
              </md-menu-item>
              <md-menu-item>
                <md-button ng-click="leaveVideo()">
+                 <md-icon md-svg-icon="call:call-end"></md-icon>
                  Leave Call
                </md-button>
              </md-menu-item>
