@@ -8,6 +8,25 @@
         vm.username = null;
         vm.callApi = callApi;
         vm.initConnection = initConnection;
+        vm.initNotifications = initNotifications;
+        //testing desktop notifications
+        function initNotifications(){
+          if (window.webkitNotifications) {
+              console.log('Your web browser does support notifications!');
+              if (window.webkitNotifications.checkPermission() == 0) {
+                  // Good to go, you can create a notification.
+                  var myNotification = window.webkitNotifications.createNotification('icon.png', 'Item Saved', 'My Application Name');
+                  myNotification.show();
+              } else {
+                  window.webkitNotifications.requestPermission(function(){});
+              }
+          } else {
+              console.log('Your web browser does not support notifications!');
+          }
+        }
+        initNotifications();
+
+        // end testing desktop notifications
         function callApi() {
 
             vm.chatRooms = [];
