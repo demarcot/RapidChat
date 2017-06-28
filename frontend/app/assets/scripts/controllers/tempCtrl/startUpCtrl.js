@@ -11,18 +11,24 @@
         vm.initNotifications = initNotifications;
         //testing desktop notifications
         function initNotifications(){
-          if (window.webkitNotifications) {
-              console.log('Your web browser does support notifications!');
-              if (window.webkitNotifications.checkPermission() == 0) {
-                  // Good to go, you can create a notification.
-                  var myNotification = window.webkitNotifications.createNotification('icon.png', 'Item Saved', 'My Application Name');
-                  myNotification.show();
-              } else {
-                  window.webkitNotifications.requestPermission(function(){});
-              }
-          } else {
-              console.log('Your web browser does not support notifications!');
+          if (!("Notification" in window)) {
+            alert("This browser does not support desktop notification");
           }
+
+          // Let's check whether notification permissions have already been granted
+          else if (Notification.permission === "granted") {
+            // If it's okay let's create a notification
+            var notification = new Notification("Hi there!");
+          }
+          else if (Notification.permission !== "denied") {
+           Notification.requestPermission(function (permission) {
+             // If the user accepts, let's create a notification
+             if (permission === "granted") {
+               var notification = new Notification("Hi there!");
+             }
+           });
+         }
+
         }
         initNotifications();
 
