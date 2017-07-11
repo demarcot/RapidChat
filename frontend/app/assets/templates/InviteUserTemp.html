@@ -1,6 +1,6 @@
 <!-- Edit Private Chat Room Panel -->
 
-<div role="dialog" layout="column" layout-align="center center" ng-controller="chatRoomCtrl as roomCtrl">
+<div role="dialog" layout="column" layout-align="center center">
   <md-toolbar>
     <div class="md-toolbar-tools">
       <h2>Manage Chat Room</h2>
@@ -8,18 +8,22 @@
   </md-toolbar>
   <div class="demo-dialog-content" layout-padding>
     <h6>Accepted Users</h6>
-    <div layout="row" ng-repeat="users in acceptedUsers track by $index">
-      {{users}}
-      <button type="button" name="button" ng-click="removeUser(roomId, users);moveUser($index,'remove')">-</button>
+    <div layout="row" ng-repeat="user in roomCtrl.acceptedUsers track by $index">
+      {{user.username}}
+      <button type="button" name="button" ng-click="removeUser(roomCtrl.tempID, user);moveUser($index,'remove')">-</button>
     </div>
     <h6>Pending Users</h6>
-    <div layout="row" ng-repeat="users in pendingUsers track by $index">
-      {{users}}
+    <div layout="row" ng-repeat="user in roomCtrl.pendingUsers track by $index">
+      {{user.username}}
     </div>
     <h6>Other Users</h6>
-    <div layout="row" ng-repeat="users in restOfUsers track by $index">
-      {{users.username}}
-      <button type="button" name="button" ng-click="inviteUser(roomId, users.username, username.username, roomName);moveUser($index,'add')">+</button>
+    <div layout="row" ng-repeat="user in roomCtrl.restOfUsers track by $index">
+      {{user.username}}
+      <button type="button" name="button" ng-click="roomCtrl.inviteAdd(roomCtrl.tempID, roomCtrl.tempName, user.username, startUp.username.username, $index, 'add')">+</button>
+      <!-- FIX VARIABLE NAMES USERNAME.USERNAME IS STOOPID -->
     </div>
   </div>
 </div>
+
+
+<!-- ng-click="inviteUser(roomCtrl.tempID, user.username, startUp.username.username, roomCtrl.tempName);moveUser($index,'add')" -->

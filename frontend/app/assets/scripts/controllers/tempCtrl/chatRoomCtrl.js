@@ -27,6 +27,12 @@
          vm.initRoom = initRoom; //line 157~ Params: ()
          vm.showCreate = showCreate;
          vm.closeCreate = closeCreate;
+         vm.showInvite = showInvite;
+         vm.closeInvite = closeInvite;
+
+         vm.tempID = null;
+         vm.tempName = null;
+         vm.inviteAdd = inviteAdd;
 
          var init = function() {
 
@@ -69,7 +75,7 @@
             $mdDialog.show({
               templateUrl:'/frontend/app/assets/templates/ChatroomDialogTemp.html',
               parent: angular.element(document.body),
-              scope: $scope.$new(), 
+              scope: $scope.$new(),
               targetEvent: ev,
               clickOutsideToClose:true,
             })
@@ -86,6 +92,33 @@
             });
           }
 
+          //  chatroom dialog function
+          function showInvite(ev, _id){
+            initRoom(_id);
+            $mdDialog.show({
+              templateUrl:'/frontend/app/assets/templates/InviteUserTemp.html',
+              parent: angular.element(document.body),
+              scope: $scope.$new(),
+              targetEvent: ev,
+              clickOutsideToClose:true,
+            })
+            .then(function(answer){
+              $scope.status = 'Modal closed';
+            }, function(){
+              $scope.status = 'Dialog cancelled';
+            });
+          };
+
+          function closeInvite(ev){
+            $mdDialog.hide({
+              targetEvent: ev,
+            });
+          }
+
+          function inviteAdd(_id, roomName, username, name2, index, expression){
+            inviteUser(_id, username, name2, roomName);
+            moveUser(index, expression);
+          }
 
           function createChatroom(user) {
             console.log("User: ", user);
@@ -152,6 +185,7 @@
           };
 
           var inviteUser = function(chatroomId, invitedUser, author, chatRoom){
+            console.log("HELLO I AM CALLED");
             var inviteUserInfo = {
               '_id': chatroomId,
               'username': invitedUser
@@ -182,6 +216,11 @@
         		var checkRoom = {'_id':roomId};
         		ChatRoomService.getUsers(checkRoom).then(function(roomInfo)
         		{
+              ChatRoomService.getById(checkRoom).then(function(roomInfo){
+                console.log("RoomInfo = ", roomInfo);
+                vm.tempName = roomInfo.roomName;
+                vm.tempID = roomId;
+              });
         			vm.acceptedUsers = roomInfo.acceptedUsers;
               //console.log($scope.acceptedUsers);
         			vm.pendingUsers = roomInfo.pendingUsers;
@@ -191,14 +230,18 @@
         			UserService.GetAll().then(function(users)
         			{
         				var tempUsrArr = users.slice();
-        				for (user in users)
+        				for (var user = 0; user < users.length; user++)
         				{
+                  console.log("user = ", user);
         					if(vm.acceptedUsers.includes(users[user].username) || vm.pendingUsers.includes(users[user].username))
         					{
         						tempUsrArr.splice(tempUsrArr.indexOf(users[user]), 1);
         					}
         				}
         				vm.restOfUsers = tempUsrArr;
+                console.log("restOfUsers = ", vm.restOfUsers);
+                console.log("acceptedUsers = ", vm.acceptedUsers);
+                console.log("pendingUsers = ", vm.pendingUsers);
         			});
         		});
         	};

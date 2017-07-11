@@ -3,8 +3,8 @@
   <head>
     <!--External Css Dependancies -->
     <!-- <link rel="stylesheet" href="assets\bower_components\bootstrap\dist\css\bootstrap.min.css">
-    <link rel="stylesheet" href="assets/styles/Master.css">
-    <link rel="stylesheet" href="assets\imgs\font-awesome-4.7.0\css\font-awesome.min.css"> -->
+    <link rel="stylesheet" href="assets/styles/Master.css"> -->
+    <link rel="stylesheet" href="assets\imgs\font-awesome-4.7.0\css\font-awesome.min.css">
     <link rel="stylesheet" href="assets/styles/main.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -40,7 +40,7 @@
     <div ng-controller="AppCtrl as mdCtrl" flex layout="row">
       <md-sidenav class="md-sidenav-left" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" md-whiteframe="4">
         <md-toolbar class="md-theme-indigo">
-           <h1 class="md-toolbar-tools">Chats Or Logo</h1>
+           <h1 class="md-toolbar-tools">RCTurbo</h1>
         </md-toolbar>
         <md-content layout-padding="" ng-controller="LeftCtrl">
            <!-- <md-button ng-click="close()" class="md-primary" hide-gt-md="">
@@ -51,7 +51,7 @@
            <h5 class="side-nav-margin">Public Chat Rooms</h5>
            <li class="side-nav-list" style="padding-left:20px;" ng-repeat="room in roomCtrl.chatRooms[0].publicChatRooms track by $index" ui-sref="chatRoomById({chatRoomId: room._id})" ng-click="setOldRoom(room._id, room.name)" ui-sref-active="active">{{room.name}}</li>
            <h5 class="side-nav-margin">Private Chat Rooms</h5>
-           <li class="side-nav-list" style="padding-left:20px;" ng-repeat="room in roomCtrl.chatRooms[1].allowedChatRooms track by $index" ui-sref="chatRoomById({chatRoomId: room._id})" ng-click="setOldRoom(room._id, room.name)" ng-show="room.direct === false" ui-sref-active="active">{{room.name}}<i class="fa fa-cog pull-right" data-toggle="modal" data-target="#invite" ng-click="setRoomName(room.name, room._id);initRoom(room._id)"></i></li>
+           <li class="side-nav-list" style="padding-left:20px;" ng-repeat="room in roomCtrl.chatRooms[1].allowedChatRooms track by $index" ui-sref="chatRoomById({chatRoomId: room._id})" ng-click="setOldRoom(room._id, room.name)" ng-show="room.direct === false" ui-sref-active="active">{{room.name}} <i class="fa fa-cog" ng-click="roomCtrl.showInvite($event, room._id)"></i></li>
            <h5 class="side-nav-margin">Direct Messages</h5>
            <li class="side-nav-list" style="padding-left:20px;" ng-repeat="room in roomCtrl.chatRooms[1].allowedChatRooms track by $index" ui-sref="chatRoomById({chatRoomId: room._id})" ng-click="setOldRoom(room._id, room.name)" ng-show="room.direct === true" ui-sref-active="active"><identicon username='room.acceptedUsers[0]' size='16'></identicon>&nbsp;&nbsp;{{room.acceptedUsers[0]}}</li>
            <!-- </p> -->
@@ -79,7 +79,7 @@
                </md-button>
              </md-menu-item>
              <md-menu-item>
-               <md-button>
+               <md-button ng-click="connectAudio(roomId)">
                  <md-icon md-svg-icon="call:call"></md-icon>
                  Voice Call
                </md-button>
