@@ -5,7 +5,7 @@
          .module('coreApp')
          .controller('chatRoomCtrl', Controller);
 
-     function Controller($window, UserService, ChatRoomService, FlashService, $state, $scope, $mdDialog) {
+     function Controller($window, UserService, ChatRoomService, FlashService, $state, $scope, $mdDialog, chatSocket) {
          var vm = this;
          vm.isPrivate = false;
          vm.newChatRoom = null;
@@ -29,6 +29,8 @@
          vm.closeCreate = closeCreate;
          vm.showInvite = showInvite;
          vm.closeInvite = closeInvite;
+         vm.showFile = showFile;
+         vm.closeFile = closeFile;
 
          vm.tempID = null;
          vm.tempName = null;
@@ -92,7 +94,7 @@
             });
           }
 
-          //  chatroom dialog function
+          //  invite user dialog function
           function showInvite(ev, _id){
             initRoom(_id);
             $mdDialog.show({
@@ -113,6 +115,41 @@
             $mdDialog.hide({
               targetEvent: ev,
             });
+          }
+
+          //  file transfer dialog function
+          function showFile(ev){
+            $mdDialog.show({
+              templateUrl:'/frontend/app/assets/templates/FileTransfer.html',
+              parent: angular.element(document.body),
+              scope: $scope.$new(),
+              targetEvent: ev,
+              clickOutsideToClose:true,
+            })
+            .then(function(answer){
+              $scope.status = 'Modal closed';
+            }, function(){
+              $scope.status = 'Dialog cancelled';
+            });
+          };
+
+          function closeFile(ev){
+            $mdDialog.hide({
+              targetEvent: ev,
+            });
+          }
+
+          function moveUser(index,type){
+            switch (type) {
+              case 'remove':
+                vm.acceptedUsers.splice(index,1)
+                break;
+              case 'add':
+              var user = vm.restOfUsers[index];
+              vm.restOfUsers.splice(index,1)
+              vm.pendingUsers.push(user.username);
+                break;
+            }
           }
 
           function inviteAdd(_id, roomName, username, name2, index, expression){
@@ -169,7 +206,7 @@
             });
           };
 
-          var removeUser = function(chatroomId, username){
+          function removeUser(chatroomId, username){
             var removed = true;
             var removeUserInfo = {
               '_id': chatroomId,

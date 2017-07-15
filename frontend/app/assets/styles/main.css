@@ -1,25 +1,32 @@
-.side-nav-margin
-{
+.side-nav-margin{
   margin: 0px;
 }
 
-.side-nav-list
-{
+.side-nav-list{
   list-style: none;
 }
 
-.ui-view-padding
-{
+.call-menu{
+  margin-left: 0px !important;
+}
+
+.notification-menu{
+  margin-right: 0px !important;
+}
+
+.no-top-margin{
+  margin-top: 0px;
+}
+
+.ui-view-padding{
   padding-right: 3px;
 }
 
-.text-border
-{
+.text-border{
   overflow-y: auto;
 }
 
-.video-container
-{
+.video-container{
   position: absolute;
   width: 67%;
   height: 70%;
@@ -31,8 +38,7 @@
   /*background-color: blue;*/
 }
 
-.local-video-view
-{
+.local-video-view{
   bottom: 0;
   right: 0;
   position: absolute;
@@ -40,39 +46,27 @@
   width: 33%;
 }
 
-.local-video-view video
-{
+.local-video-view video{
   object-fit: cover;
   width: 100%;
   display: block;
   opacity: 0.85;
 }
 
-.local-video-view video:hover
-{
+.local-video-view video:hover{
   opacity: 1;
 }
 
-/*video
-{
-  object-fit: cover;
-  float: right;
-
-}*/
-
-.remote-video-view
-{
+.remote-video-view{
   /*background-color: black;*/
   color: white;
 }
 
-.remote-video-view video
-{
+.remote-video-view video{
   width: 33%;
 }
 
-.chat-text-view
-{
+.chat-text-view{
   height: 70%;
   width: 100%;
   /*position: relative;*/
@@ -85,8 +79,7 @@
   word-break: break-all;
 }
 
-.chat-input-container
-{
+.chat-input-container{
   width: 100%;
   position: absolute;
   bottom: 0;
@@ -98,31 +91,26 @@
   margin: 0px;
 }
 
-.remove-padding
-{
+.remove-padding{
   padding: 0px;
   margin: 0px;
 }
 
-.position-fix
-{
+.position-fix{
   position: absolute;
 }
 
-.dashboard-users
-{
+.dashboard-users{
   position: relative;
   color: white;
   width: 100%;
 }
 
-.dashboard-room-columns
-{
+.dashboard-room-columns{
   width: 50%;
 }
 
-.public-room-scroll
-{
+.public-room-scroll{
   overflow-y: auto;
 }
 
@@ -140,16 +128,14 @@
   outline: 1px solid slategrey;
 }
 
-a
-{
+a{
   color: white;
   text-decoration: none;
   font-size: 18px;
   font-weight: bold;
 }
 
-a :focus
-{
+a :focus{
   color: white;
   text-decoration: none;
 }

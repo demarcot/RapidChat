@@ -64,10 +64,38 @@
          <md-button class="md-icon-button" aria-label="Settings"  ng-click="toggleLeft()">
            <md-icon md-svg-icon="img/icons/menu.svg"></md-icon>
          </md-button>
-         <!-- <h2 flex md-truncate>Toolbar with Disabled/Enabled Icon Buttons</h2> -->
         <md-button href="/login" target="_self">Logout</md-button>
 
-         <md-menu >
+         <md-menu class="notification-menu" ng-controller="notificationCtrl">
+           <md-button class="md-icon-button" aria-label="More" ng-click="mdCtrl.openMenu($mdOpenMenu, $event)">
+             <md-icon md-menu-origin md-svg-icon="social:notifications"></md-icon>
+           </md-button>
+           <md-menu-content width="3">
+             <md-menu-item>
+               <ul class="">
+                 <li ng-repeat="invite in initCtrl.invites track by $index" ui-sref="chatRoomById({chatRoomId: invite._id})" ng-click="oldRoomCtrl.setOldRoom();roomCtrl.acceptInvite(username.username, invite._id);initCtrl.eraseInvite($index)" ui-sref-active="active"><a>{{invite.message}} Click here to accept!</a></li>
+                 <li id="note-footer" class="side-nav-list" ng-click="notificationCtrl.showInvites()">Clear invites</li>
+               </ul>
+             </md-menu-item>
+           </md-menu-content>
+         </md-menu>
+
+         <md-menu class="notification-menu call-menu">
+           <md-button class="md-icon-button" ng-click="mdCtrl.openMenu($mdOpenMenu, $event)">
+             <md-icon md-menu-origin md-svg-icon="call:email">
+           </md-button>
+           <md-menu-content width="3">
+             <md-menu-item>
+               <md-menu-item>
+                 <md-button ng-click="roomCtrl.showFile($event)">
+                   Share a File
+                 </md-button>
+               </md-menu-item>
+             </md-menu-item>
+           </md-menu-content>
+         </md-menu>
+
+         <md-menu class="call-menu">
            <md-button ng-disabled="roomId === undefined" class="md-icon-button" aria-label="More" ng-click="mdCtrl.openMenu($mdOpenMenu, $event)">
              <md-icon md-menu-origin md-svg-icon="img/icons/more_vert.svg"></md-icon>
            </md-button>
@@ -92,14 +120,15 @@
              </md-menu-item>
            </md-menu-content>
          </md-menu>
+
        </div>
       </md-toolbar>
      <md-tabs md-stretch-tabs md-border-bottom>
         <md-tab label="Dashboard" ng-class="{active: activeTab === 'dashboard'}" ui-sref="dashboard"  ng-click="setOldRoom()"></md-tab>
         <md-tab label="Account"ng-class="{active: activeTab === 'personalize'}"ui-sref="personalize" ng-click="setOldRoom()"></md-tab>
         <!-- <md-tab label="Video Chat" ng-class="{active: activeTab === 'video'}" ui-sref="video" ng-click="setOldRoom()"></md-tab> -->
-        <!-- <md-tab label="Admin" ng-class="{active: activeTab === 'admin'}" ui-sref="admin" ng-click="setOldRoom()" ng-show=false></md-tab> -->
-    </md-tabs>
+        <md-tab label="Admin" ng-class="{active: activeTab === 'admin'}" ui-sref="admin" ng-click="setOldRoom()" ng-show=false></md-tab>
+     </md-tabs>
       <div flex layout="column" style="padding-right:3px">
            <!-- <p>
               The left sidenav will 'lock open' on a medium (=960px wide) device.

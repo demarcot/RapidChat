@@ -4,34 +4,49 @@
 
     angular
         .module('coreApp')
-        .controller('initCtrl', Controller);
+        .controller('notificationCtrl', Controller);
 
     function Controller($window, UserService, ChatRoomService, FlashService, chatSocket, $scope, $state) {
     	$scope.newNotifications = false;
     	$scope.newInvites = false;
     	$scope.currentPrivateCheck = false;
     	$scope.currentDirectCheck = false;
-    	$scope.clearNotifications = function()
+      var vm = this;
+      vm.showInvites = showInvites;
+      vm.clearNotifications = clearNotifications;
+      vm.clearInvites = clearInvites;
+      vm.eraseInvite = eraseInvite;
+      vm.eraseNotification = eraseNotification;
+      vm.inviteCheck = inviteCheck;
+
+//    DELETE AFTER TESTING
+      function showInvites()
+      {
+        clearInvites();
+      }
+
+    	function clearNotifications()
     	{
     		$scope.notifications = [];
     		$scope.newNotifications = false;
-    	};
+    	}
 
-    	$scope.clearInvites = function()
+    	function clearInvites()
     	{
+        console.log("This is the invites array", $scope.invites);
     		$scope.invites = [];
     		$scope.newInvites = false;
-    	};
+    	}
 
-    	$scope.eraseInvite = function(index)
+    	function eraseInvite(index)
     	{
             $scope.invites.splice(index, 1);
     				if ($scope.invites.length == 0)
     				{
             	$scope.newInvites = false;
         		}
-      };
-    	$scope.eraseNotification = function(index)
+      }
+    	function eraseNotification(index)
     	{
     				$scope.notifications.splice(index, 1);
     				if ($scope.notifications.length == 0)
@@ -40,7 +55,7 @@
     				}
     	};
 
-      $scope.inviteCheck = function()
+      function inviteCheck()
     	{
     		UserService.GetCurrent().then(function(user)
     		{

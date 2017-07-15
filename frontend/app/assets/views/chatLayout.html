@@ -11,7 +11,7 @@
       <div flex ng-repeat="user in startUp.allUsers" ng-hide="user.username===startUp.username.username">
         <identicon username='user.username' size='40'></identicon>
         <br />
-        <a ng-click="setOldRoom(); roomCtrl.createDirectMessage(startUp.username.username, user.username)">{{user.username}}</a>
+        <center><a ng-click="setOldRoom(); roomCtrl.createDirectMessage(startUp.username.username, user.username)">{{user.username}}</a></center>
       </div>
     </div>
   </div>
@@ -24,7 +24,7 @@
     </md-toolbar>
     <div layout="row">
       <div class="dashboard-room-columns public-room-scroll" layout="column" layout-align="start center">
-        <h3>Public Chat Rooms</h3>
+        <center><h3>Public Rooms</h3></center>
         <div ng-repeat="room in roomCtrl.chatRooms[0].publicChatRooms track by $index">
           <a ui-sref="chatRoomById({chatRoomId: room._id})" ng-click="setOldRoom(room._id, room.name)">
             &nbsp;{{room.name}}
@@ -32,7 +32,7 @@
         </div>
       </div>
       <div class="dashboard-room-columns" layout="column" layout-align="start center">
-        <h3>Private Chat Rooms</h3>
+        <center><h3>Private Rooms</h3></center>
         <div ng-repeat="room in roomCtrl.chatRooms[1].allowedChatRooms track by $index">
           <a ui-sref="chatRoomById({chatRoomId: room._id})" ng-click="setOldRoom(room._id, room.name)" ng-show="room.direct === false" ui-sref-active="active">
             {{room.name}}
