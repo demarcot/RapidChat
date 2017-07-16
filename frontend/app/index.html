@@ -126,8 +126,7 @@
      <md-tabs md-stretch-tabs md-border-bottom>
         <md-tab label="Dashboard" ng-class="{active: activeTab === 'dashboard'}" ui-sref="dashboard"  ng-click="setOldRoom()"></md-tab>
         <md-tab label="Account"ng-class="{active: activeTab === 'personalize'}"ui-sref="personalize" ng-click="setOldRoom()"></md-tab>
-        <!-- <md-tab label="Video Chat" ng-class="{active: activeTab === 'video'}" ui-sref="video" ng-click="setOldRoom()"></md-tab> -->
-        <md-tab label="Admin" ng-class="{active: activeTab === 'admin'}" ui-sref="admin" ng-click="setOldRoom()" ng-show=false></md-tab>
+        <md-tab label="Admin" ng-class="{active: activeTab === 'admin'}" ui-sref="admin" ng-click="setOldRoom()" ng-show="adminCheck"></md-tab>
      </md-tabs>
       <div flex layout="column" style="padding-right:3px">
            <!-- <p>

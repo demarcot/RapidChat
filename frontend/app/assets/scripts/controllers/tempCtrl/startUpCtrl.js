@@ -40,6 +40,14 @@
               vm.allUsers = user;
             });
 
+            $scope.isAdmin = function(){
+                UserService.isAdmin().then(function(admin){
+                    $scope.adminCheck = admin.isAdmin;
+                })
+
+
+            }
+            $scope.isAdmin();
 
           UserService.GetCurrent().then(function (user) {
             vm.username = {"username":user.username};
