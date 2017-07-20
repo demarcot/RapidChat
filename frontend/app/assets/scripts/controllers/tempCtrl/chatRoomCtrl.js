@@ -238,10 +238,11 @@
 
           };
 
-          var acceptInvite = function(username, _id)
+          function acceptInvite(username, _id)
           {
             //call the move user to accepted list re route to new chatroom
             var moveInfo = {'_id':_id, 'username': username};
+            console.log("Move Info for accept invite", moveInfo);
             ChatRoomService.moveToAccepted(moveInfo).then(function(bool){
               console.log(bool);
             });

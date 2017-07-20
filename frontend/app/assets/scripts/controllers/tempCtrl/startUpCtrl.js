@@ -5,13 +5,13 @@
 	function Controller($scope, $window, UserService, ChatRoomService, FlashService)
 	{
 		var vm = this
-			vm.initData = null;
+		vm.initData = null;
 		vm.allUsers = null;
 		vm.username = null;
 		vm.callApi = callApi;
 		vm.initConnection = initConnection;
 		vm.initNotifications = initNotifications;
-		
+
 		var isVideo = false;
 		var isVoice = false;
 		//testing desktop notifications
@@ -85,7 +85,7 @@
 				audio: true,
 				video: true
 			};
-			
+
 			$scope.connection.sdpConstraints.mandatory = {
 				OfferToReceiveAudio: true,
 				OfferToReceiveVideo: true
@@ -101,7 +101,7 @@
 			console.log("RoomID = ", roomId + '_video');
 			console.log($scope.connection);
 		}
-		
+
 
 		$scope.leaveVideo = function ()
 		{
@@ -114,7 +114,7 @@
 			$scope.showVideo = false;
 			//$scope.connection.disconnect();
 		}
-		
+
 		$scope.connectVoice = function (roomId)
 		{
 			//TODO(Tom): Replace 'your-room-id' with the current chatroomID and _Video
@@ -138,7 +138,7 @@
 			console.log("RoomID = ", roomId + '_voice');
 			console.log($scope.connection);
 		}
-		
+
 
 		$scope.leaveVoice = function ()
 		{
@@ -183,7 +183,7 @@
 
 				if(isVideo == true)
 				{
-					
+
 					if (event.type === 'local')
 					{
 						// initiator's own stream
@@ -204,7 +204,7 @@
 
 					if (event.type === 'remote')
 					{
-						
+
 						// initiator recieved stream from someone else
 						//alert('dear initiator, you just receive a remote stream');
 						var rem = document.getElementById("remote-video");
@@ -223,7 +223,7 @@
 				}
 				else if(isAudio == true)
 				{
-					
+
 					if (event.type === 'local')
 					{
 						// initiator's own stream

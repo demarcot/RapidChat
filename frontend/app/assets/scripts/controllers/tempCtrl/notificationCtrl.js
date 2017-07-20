@@ -22,8 +22,9 @@
 //    DELETE AFTER TESTING
       function showInvites()
       {
-        clearInvites();
+        // clearInvites();
       }
+
 
     	function clearNotifications()
     	{
@@ -64,14 +65,22 @@
           ChatRoomService.checkPending({'username':$scope.userInfo}).then(function(chat){
             $scope.invites = [];
             if(chat != false){
-              for(invite in chat){
-              $scope.invites.push(
-                {
-                  'message': "You have been invited to " + chat[invite].name,
-                  'source': chat[invite].name,
-                  '_id': chat[invite]._id,
-                })
-            }
+              chat.forEach(function(invite){
+                $scope.invites.push(
+                  {
+                    'message': "You have been invited to " + invite.name,
+                    'source': invite.name,
+                    '_id': invite._id,
+                  })
+              })
+            //   for(invite in chat){
+            //   $scope.invites.push(
+            //     {
+            //       'message': "You have been invited to " + chat[invite].name,
+            //       'source': chat[invite].name,
+            //       '_id': chat[invite]._id,
+            //     })
+            // }
             $scope.newInvites = true;
             }
             else {
@@ -81,6 +90,8 @@
           })
     		});
     	}
+      inviteCheck();
+
       $scope.$watch(function () {
           return $state.params.chatRoomId;
       }, function (newParams, oldParams) {
@@ -90,7 +101,6 @@
             $scope.currentChatRoomName = room[0].name;
             $scope.currentPrivateCheck = room[0].private;
             $scope.currentDirectCheck = room[0].direct;
-
           })
         }
         else {
@@ -136,8 +146,16 @@
     						  'author': data.source,
     						  'chatroom': data.chatRoom,
     						  '_id':data._id
-    						}
-    					)
+    						})
+                if (Notification.permission === "granted")
+          			{
+          				// If it's okay let's create a notification
+          				var notification = new Notification({
+      						  'author': data.source,
+      						  'chatroom': data.chatRoom,
+      						  '_id':data._id
+      						});
+          			}
     				}
     			});
     		});
