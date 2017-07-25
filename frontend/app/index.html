@@ -80,7 +80,7 @@
            </md-menu-content>
          </md-menu>
 
-         <md-menu class="notification-menu call-menu">
+         <!-- <md-menu class="notification-menu call-menu">
            <md-button class="md-icon-button" ng-click="mdCtrl.openMenu($mdOpenMenu, $event)">
              <md-icon md-menu-origin md-svg-icon="call:email">
            </md-button>
@@ -93,13 +93,19 @@
                </md-menu-item>
              </md-menu-item>
            </md-menu-content>
-         </md-menu>
+         </md-menu> -->
 
          <md-menu class="call-menu">
            <md-button ng-disabled="roomId === undefined" class="md-icon-button" aria-label="More" ng-click="mdCtrl.openMenu($mdOpenMenu, $event)">
              <md-icon md-menu-origin md-svg-icon="img/icons/more_vert.svg"></md-icon>
            </md-button>
            <md-menu-content width="3">
+             <md-menu-item>
+               <md-button ng-click="roomCtrl.showFile($event)">
+                 <md-icon md-svg-icon="call:email"></md-icon>
+                 File Transfer
+               </md-button>
+             </md-menu-item>
              <md-menu-item>
                <md-button ng-click="connectVideo(roomId)">
                  <md-icon md-svg-icon="social:party-mode" md-menu-align-target></md-icon>
