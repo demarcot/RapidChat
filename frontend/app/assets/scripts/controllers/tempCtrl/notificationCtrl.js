@@ -11,6 +11,7 @@
     	$scope.newInvites = false;
     	$scope.currentPrivateCheck = false;
     	$scope.currentDirectCheck = false;
+      $scope.notifications = [];
       var vm = this;
       vm.showInvites = showInvites;
       vm.clearNotifications = clearNotifications;
@@ -73,14 +74,6 @@
                     '_id': invite._id,
                   })
               })
-            //   for(invite in chat){
-            //   $scope.invites.push(
-            //     {
-            //       'message': "You have been invited to " + chat[invite].name,
-            //       'source': chat[invite].name,
-            //       '_id': chat[invite]._id,
-            //     })
-            // }
             $scope.newInvites = true;
             }
             else {
@@ -150,11 +143,7 @@
                 if (Notification.permission === "granted")
           			{
           				// If it's okay let's create a notification
-          				var notification = new Notification({
-      						  'author': data.source,
-      						  'chatroom': data.chatRoom,
-      						  '_id':data._id
-      						});
+          				var notification = new Notification("Message from: " + data.source + " in chatroom: " + data.chatRoom);
           			}
     				}
     			});

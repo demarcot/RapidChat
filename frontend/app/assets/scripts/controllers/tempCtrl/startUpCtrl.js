@@ -26,7 +26,6 @@
 			else if (Notification.permission === "granted")
 			{
 				// If it's okay let's create a notification
-				var notification = new Notification("Hi there!");
 			}
 			else if (Notification.permission !== "denied")
 			{
@@ -35,7 +34,7 @@
 					// If the user accepts, let's create a notification
 					if (permission === "granted")
 					{
-						var notification = new Notification("Hi there!");
+						console.log("Notifications Granted");
 					}
 				}
 				);

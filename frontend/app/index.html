@@ -73,7 +73,7 @@
            <md-menu-content width="3">
              <md-menu-item>
                <ul class="">
-                 <li ng-repeat="invite in invites track by $index" ui-sref="chatRoomById({chatRoomId: invite._id})" ng-click="oldRoomCtrl.setOldRoom();roomCtrl.acceptInvite(startUp.username.username, invite._id);notificationCtrl.eraseInvite($index)" ui-sref-active="active"><a>{{invites}} Click here to accept!</a></li>
+                 <li ng-repeat="invite in invites track by $index" ui-sref="chatRoomById({chatRoomId: invite._id})" ng-click="oldRoomCtrl.setOldRoom();roomCtrl.acceptInvite(startUp.username.username, invite._id);notificationCtrl.eraseInvite($index)" ui-sref-active="active">{{invite}} Click here to accept!</li>
                  <li id="note-footer" class="side-nav-list" ng-click="notificationCtrl.showInvites()">Clear invites</li>
                </ul>
              </md-menu-item>
