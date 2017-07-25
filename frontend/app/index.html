@@ -101,7 +101,7 @@
            </md-button>
            <md-menu-content width="3">
              <md-menu-item>
-               <md-button ng-click="roomCtrl.showFile($event)">
+               <md-button ng-click="roomCtrl.showFile($event);connectData(roomId)">
                  <md-icon md-svg-icon="call:email"></md-icon>
                  File Transfer
                </md-button>
@@ -254,6 +254,7 @@
     <script src="assets/scripts/services/socket.js"></script>
     <script src="assets/scripts/services/messageFormatter.js"></script>
     <script src="assets/scripts/directives/chatBox.js"></script>
+	<script src="https://cdn.webrtc-experiment.com:443/FileBufferReader.js"></script>
     <!-- <script src="assets/scripts/controllers/notifyCtrl.js" charset="utf-8"></script> -->
     <!-- <script src="assets/scripts/controllers/oldRoomCtrl.js"></script>
     <script src="assets/scripts/controllers/modalCtrl.js"></script> -->

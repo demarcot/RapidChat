@@ -14,6 +14,7 @@
 
 		var isVideo = false;
 		var isVoice = false;
+		var isData = false;
 		//testing desktop notifications
 		function initNotifications()
 		{
@@ -95,6 +96,7 @@
 			};
 			isVideo = true;
 			isAudio = false;
+			isData = false;
 			$scope.showVideo = true;
 			$scope.connection.openOrJoin(roomId + '_video');
 			console.log("RoomID = ", roomId + '_video');
@@ -106,6 +108,7 @@
 		{
 			isVideo = false;
 			isAudio = false;
+			isData = false;
 			console.log("Leaving video...");
 			//$scope.connection.leave();
 			$scope.connection.attachStreams[0].stop();
@@ -132,6 +135,7 @@
 			};
 			isVideo = false;
 			isAudio = true;
+			isData = false;
 			$scope.showVideo = false;
 			$scope.connection.openOrJoin(roomId + '_voice');
 			console.log("RoomID = ", roomId + '_voice');
@@ -143,11 +147,50 @@
 		{
 			isVideo = false;
 			isAudio = false;
+			isData = false;
 			console.log("Leaving video...");
 			//$scope.connection.leave();
 			//$scope.connection.attachStreams[0].stop();
 			$scope.connection.close();
 			//$scope.connection.disconnect();
+		}
+		
+		$scope.connectData = function(roomId)
+		{
+			
+			//TODO(Tom): Replace 'your-room-id' with the current chatroomID and _Video
+			// Ex. myCoolChatroom#5134_Video
+			$scope.connection.session =
+			{
+				data: true,
+			};
+			$scope.connection.sdpConstraints.mandatory = {
+				OfferToReceiveAudio: false,
+				OfferToReceiveVideo: false
+			};
+			$scope.connection.mediaConstraints = {
+				audio: false,
+				video: false
+			};
+			isVideo = false;
+			isAudio = false;
+			isData = true;
+			$scope.showVideo = false;
+			$scope.connection.openOrJoin(roomId + '_data');
+			//console.log("RoomID = ", roomId + '_data');
+			//console.log($scope.connection);
+			
+			$scope.connection.enableFileSharing = true;
+			$scope.connection.preferJSON = false;
+			//TODO(Tom): Make a container for the files being sent/received. 
+			// Maybe have the container be in the file share md-dialog?
+			$scope.connection.filesContainer = document.getElementById('remote-voice');
+		}
+		
+		$scope.sendFile = function()
+		{
+			var file = document.getElementById('fileSubmission').files[0];
+			$scope.connection.send(file);
 		}
 
 		$scope.getPartyPeople = function ()
@@ -260,6 +303,22 @@
 						event.mediaElement.id = event.streamid;
 						rem.appendChild(event.mediaElement);
 					}
+				}
+				else if(isData == true)
+				{
+					console.log("?????????????????????????");
+					var rem = document.getElementById("remote-voice");
+					if (rem == null)
+					{
+						console.log("Unable to locate file container...");
+						return;
+					}
+
+					if (document.getElementById(event.streamid))
+						return;
+
+					event.mediaElement.id = event.streamid;
+					rem.appendChild(event.mediaElement);
 				}
 				else
 				{
