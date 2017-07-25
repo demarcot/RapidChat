@@ -17,7 +17,7 @@
     <div class="chat-text-view position-fix" ng-style="showVideo == true ? {'width': '33%'} : {'width': '100%'}" scroll-glue-bottom>
       <md-list class="text-border">
        <!-- <md-subheader class="md-no-sticky">Chat room: </md-subheader> -->
-       <md-list-item class="md-3-line"  ng-repeat="message in messageTest track by $index" ng-click="null">
+       <md-list-item class="md-3-line"  ng-repeat="message in messageTest track by $index">
            <identicon username='message.data.author' size='40' class="md-avatar"/>
            <div class="md-list-item-text" layout="column">
                  <div ng-hide="message.isLink && message.data.gif">
@@ -31,7 +31,7 @@
                        <span class="glyphicon glyphicon-time"></span> {{message.data.timestamp | date:'MM/dd/yyyy @ h:mma'}}</small>
 
                  </div>
-                 <p class="p-wrap" ng-hide="message.isLink || message.data.gif">
+                 <p class="p-wrap" ng-hide="message.isLink || message.data.gif" linkify>
                    {{message.data.messageContent}}
                  </p>
                  <p class="p-wrap" ng-show="message.data.gif">
