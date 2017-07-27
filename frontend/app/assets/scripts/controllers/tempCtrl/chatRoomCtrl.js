@@ -142,7 +142,10 @@
           function moveUser(index,type){
             switch (type) {
               case 'remove':
+              console.log("Removed user", vm.acceptedUsers[index]);
+                var user = vm.acceptedUsers[index];
                 vm.acceptedUsers.splice(index,1)
+                vm.restOfUsers.push(user);
                 break;
               case 'add':
               var user = vm.restOfUsers[index];
@@ -206,12 +209,13 @@
             });
           };
 
-          function removeUser(chatroomId, username){
+          function removeUser(chatroomId, username, index, type){
             var removed = true;
             var removeUserInfo = {
               '_id': chatroomId,
               'username': username
             };
+            moveUser(index, type);
             //console.log($scope.removeUserInfo);
             // call the invite user function
             ChatRoomService.removeFromAccepted(removeUserInfo).then(function(bool){

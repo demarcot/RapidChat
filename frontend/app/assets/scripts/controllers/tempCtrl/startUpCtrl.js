@@ -15,6 +15,12 @@
 		var isVideo = false;
 		var isVoice = false;
 		var isData = false;
+		$scope.isAdmin = function(){
+				UserService.isAdmin().then(function(admin){
+						$scope.adminCheck = admin.isAdmin;
+				})
+		};
+		$scope.isAdmin();
 		//testing desktop notifications
 		function initNotifications()
 		{
@@ -154,10 +160,10 @@
 			$scope.connection.close();
 			//$scope.connection.disconnect();
 		}
-		
+
 		$scope.connectData = function(roomId)
 		{
-			
+
 			//TODO(Tom): Replace 'your-room-id' with the current chatroomID and _Video
 			// Ex. myCoolChatroom#5134_Video
 			$scope.connection.session =
@@ -179,14 +185,14 @@
 			$scope.connection.openOrJoin(roomId + '_data');
 			//console.log("RoomID = ", roomId + '_data');
 			//console.log($scope.connection);
-			
+
 			$scope.connection.enableFileSharing = true;
 			$scope.connection.preferJSON = false;
-			//TODO(Tom): Make a container for the files being sent/received. 
+			//TODO(Tom): Make a container for the files being sent/received.
 			// Maybe have the container be in the file share md-dialog?
 			$scope.connection.filesContainer = document.getElementById('remote-voice');
 		}
-		
+
 		$scope.sendFile = function()
 		{
 			var file = document.getElementById('fileSubmission').files[0];

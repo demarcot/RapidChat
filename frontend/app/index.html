@@ -132,7 +132,7 @@
      <md-tabs md-stretch-tabs md-border-bottom>
         <md-tab label="Dashboard" ng-class="{active: activeTab === 'dashboard'}" ui-sref="dashboard"  ng-click="setOldRoom()"></md-tab>
         <md-tab label="Account"ng-class="{active: activeTab === 'personalize'}"ui-sref="personalize" ng-click="setOldRoom()"></md-tab>
-        <md-tab label="Admin" ng-class="{active: activeTab === 'admin'}" ui-sref="admin" ng-click="setOldRoom()" ng-show="adminCheck"></md-tab>
+        <md-tab label="Admin" ng-class="{active: activeTab === 'admin'}" ui-sref="admin" ng-click="setOldRoom()" ng-if="adminCheck"></md-tab>
      </md-tabs>
       <div flex layout="column" style="padding-right:3px">
            <!-- <p>
@@ -173,46 +173,9 @@
         </md-content>
      </md-sidenav>
     </div>
-
-     <!-- <div ng-controller="DemoCtrl as demo" ng-cloak>
-
-    <md-content class="md-padding" layout="column">
-      <div class="lock-size" layout="row" layout-align="center center">
-        <md-fab-speed-dial md-open="demo.isOpen" md-direction="{{demo.selectedDirection}}"
-        ng-class="demo.selectedMode">
-        <md-fab-trigger>
-          <md-button aria-label="menu" class="md-fab md-warn">
-            <md-icon md-svg-src="img/icons/menu.svg"></md-icon>
-          </md-button>
-        </md-fab-trigger>
-
-        <md-fab-actions>
-          <md-button aria-label="Twitter" class="md-fab md-raised md-mini">
-            <md-icon md-svg-src="img/icons/twitter.svg" aria-label="Twitter"></md-icon>
-          </md-button>
-          <md-button aria-label="Facebook" class="md-fab md-raised md-mini">
-            <md-icon md-svg-src="img/icons/facebook.svg" aria-label="Facebook"></md-icon>
-          </md-button>
-          <md-button aria-label="Google Hangout" class="md-fab md-raised md-mini">
-            <md-icon md-svg-src="img/icons/hangout.svg" aria-label="Google Hangout"></md-icon>
-          </md-button>
-        </md-fab-actions>
-        </md-fab-speed-dial>
-      </div>
-
-    </md-content>
-</div> -->
-
-
-
-
     </div>
-
-
     <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
     <script src="assets/bower_components/jquery/dist/jquery.min.js" charset="utf-8"></script>
-
-    <!-- <script src="assets/bower_components/bootstrap/dist/js/bootstrap.min.js" charset="utf-8"></script> -->
     <script src="assets/bower_components/angular/angular.min.js" charset="utf-8"></script>
 		<script src="assets/bower_components/angular-ui-router/release/angular-ui-router.min.js" charset="utf-8"></script>
     <script src="assets/bower_components/angular-cookies/angular-cookies.js"></script>
@@ -254,10 +217,7 @@
     <script src="assets/scripts/services/socket.js"></script>
     <script src="assets/scripts/services/messageFormatter.js"></script>
     <script src="assets/scripts/directives/chatBox.js"></script>
-	<script src="https://cdn.webrtc-experiment.com:443/FileBufferReader.js"></script>
-    <!-- <script src="assets/scripts/controllers/notifyCtrl.js" charset="utf-8"></script> -->
-    <!-- <script src="assets/scripts/controllers/oldRoomCtrl.js"></script>
-    <script src="assets/scripts/controllers/modalCtrl.js"></script> -->
+	  <script src="https://cdn.webrtc-experiment.com:443/FileBufferReader.js"></script>
     <script src="assets/scripts/videoTest.js" charset="utf-8"></script>
     <script>if (window.module) module = window.module;</script>
     <!-- <script src="assets\scripts\services\factories\restFactory.js" charset="utf-8"></script> -->

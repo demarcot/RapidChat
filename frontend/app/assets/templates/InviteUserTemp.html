@@ -10,7 +10,7 @@
     <h6>Accepted Users</h6>
     <div layout="row" ng-repeat="user in roomCtrl.acceptedUsers track by $index">
       {{user}}
-      <button type="button" name="button" ng-click="roomCtrl.removeUser(roomCtrl.tempID, user);roomCtrl.moveUser($index,'remove')">-</button>
+      <button type="button" name="button" ng-click="roomCtrl.removeUser(roomCtrl.tempID, user, $index, 'remove')">-</button>
     </div>
     <h6>Pending Users</h6>
     <div layout="row" ng-repeat="user in roomCtrl.pendingUsers track by $index">
