@@ -39,8 +39,8 @@
 
     <div ng-controller="AppCtrl as mdCtrl" flex layout="row">
       <md-sidenav class="md-sidenav-left" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" md-whiteframe="4">
-        <md-toolbar class="md-theme-indigo">
-           <h1 class="md-toolbar-tools">RCTurbo</h1>
+        <md-toolbar layout-align="start center" class="md-theme-indigo">
+          <img src="/frontend/app/assets/imgs/RCT-Logo.png" style="width:56px;height:56px;">
         </md-toolbar>
         <md-content layout-padding="" ng-controller="LeftCtrl">
            <!-- <md-button ng-click="close()" class="md-primary" hide-gt-md="">
@@ -49,11 +49,11 @@
            <!-- <p hide="" show-gt-md=""> -->
            <md-button class="remove-padding" ng-click="roomCtrl.showCreate($event)">Create Chat Room</md-button>
            <h5 class="side-nav-margin">Public Chat Rooms</h5>
-           <li class="side-nav-list" style="padding-left:20px;" ng-repeat="room in roomCtrl.chatRooms[0].publicChatRooms track by $index" ui-sref="chatRoomById({chatRoomId: room._id})" ng-click="setOldRoom(room._id, room.name)" ui-sref-active="active">{{room.name}}</li>
+           <li class="remove-list-bullets" style="padding-left:20px;" ng-repeat="room in roomCtrl.chatRooms[0].publicChatRooms track by $index" ui-sref="chatRoomById({chatRoomId: room._id})" ng-click="setOldRoom(room._id, room.name)" ui-sref-active="active">{{room.name}}</li>
            <h5 class="side-nav-margin">Private Chat Rooms</h5>
-           <li class="side-nav-list" style="padding-left:20px;" ng-repeat="room in roomCtrl.chatRooms[1].allowedChatRooms track by $index" ui-sref="chatRoomById({chatRoomId: room._id})" ng-click="setOldRoom(room._id, room.name)" ng-show="room.direct === false" ui-sref-active="active">{{room.name}} <i class="fa fa-cog" ng-click="roomCtrl.showInvite($event, room._id)"></i></li>
+           <li class="remove-list-bullets" style="padding-left:20px;" ng-repeat="room in roomCtrl.chatRooms[1].allowedChatRooms track by $index" ui-sref="chatRoomById({chatRoomId: room._id})" ng-click="setOldRoom(room._id, room.name)" ng-show="room.direct === false" ui-sref-active="active">{{room.name}} <i class="fa fa-cog" ng-click="roomCtrl.showInvite($event, room._id)"></i></li>
            <h5 class="side-nav-margin">Direct Messages</h5>
-           <li class="side-nav-list" style="padding-left:20px;" ng-repeat="room in roomCtrl.chatRooms[1].allowedChatRooms track by $index" ui-sref="chatRoomById({chatRoomId: room._id})" ng-click="setOldRoom(room._id, room.name)" ng-show="room.direct === true" ui-sref-active="active"><identicon username='room.acceptedUsers[0]' size='16'></identicon>&nbsp;&nbsp;{{room.acceptedUsers[0]}}</li>
+           <li class="remove-list-bullets" style="padding-left:20px;" ng-repeat="room in roomCtrl.chatRooms[1].allowedChatRooms track by $index" ui-sref="chatRoomById({chatRoomId: room._id})" ng-click="setOldRoom(room._id, room.name)" ng-show="room.direct === true" ui-sref-active="active"><identicon username='room.acceptedUsers[0]' size='16'></identicon>&nbsp;&nbsp;{{room.acceptedUsers[0]}}</li>
            <!-- </p> -->
         </md-content>
       </md-sidenav>
@@ -64,17 +64,17 @@
          <md-button class="md-icon-button" aria-label="Settings"  ng-click="toggleLeft()">
            <md-icon md-svg-icon="img/icons/menu.svg"></md-icon>
          </md-button>
-        <md-button href="/login" target="_self">Logout</md-button>
 
          <md-menu class="notification-menu" ng-controller="notificationCtrl">
            <md-button class="md-icon-button" aria-label="More" ng-click="mdCtrl.openMenu($mdOpenMenu, $event)">
              <md-icon md-menu-origin md-svg-icon="social:notifications"></md-icon>
            </md-button>
-           <md-menu-content width="3">
+           <md-menu-content class="pop-up-style" width="3">
              <md-menu-item>
                <ul class="">
-                 <li ng-repeat="invite in invites track by $index" ui-sref="chatRoomById({chatRoomId: invite._id})" ng-click="oldRoomCtrl.setOldRoom();roomCtrl.acceptInvite(startUp.username.username, invite._id);notificationCtrl.eraseInvite($index)" ui-sref-active="active">{{invite}} Click here to accept!</li>
-                 <li id="note-footer" class="side-nav-list" ng-click="notificationCtrl.showInvites()">Clear invites</li>
+                 <li class="remove-list-bullets white-text" ng-repeat="invite in invites track by $index" ui-sref="chatRoomById({chatRoomId: invite._id})" ng-click="oldRoomCtrl.setOldRoom();roomCtrl.acceptInvite(startUp.username.username, invite._id);notificationCtrl.eraseInvite($index)" ui-sref-active="active">{{invite.message}} Click to join!</li>
+                 <br/>
+                 <li id="note-footer" class="remove-list-bullets white-text" ng-click="notificationCtrl.showInvites()">Clear invites</li>
                </ul>
              </md-menu-item>
            </md-menu-content>
@@ -99,34 +99,34 @@
            <md-button ng-disabled="roomId === undefined" class="md-icon-button" aria-label="More" ng-click="mdCtrl.openMenu($mdOpenMenu, $event)">
              <md-icon md-menu-origin md-svg-icon="img/icons/more_vert.svg"></md-icon>
            </md-button>
-           <md-menu-content width="3">
-             <md-menu-item>
+           <md-menu-content class="pop-up-style" width="3">
+             <md-menu-item class="white-text">
                <md-button ng-click="roomCtrl.showFile($event);connectData(roomId)">
-                 <md-icon md-svg-icon="call:email"></md-icon>
+                 <md-icon class="white-text" md-svg-icon="call:email"></md-icon>
                  File Transfer
                </md-button>
              </md-menu-item>
-             <md-menu-item>
+             <md-menu-item class="white-text">
                <md-button ng-click="connectVideo(roomId)">
-                 <md-icon md-svg-icon="social:party-mode" md-menu-align-target></md-icon>
+                 <md-icon class="white-text" md-svg-icon="social:party-mode" md-menu-align-target></md-icon>
                  Video Call
                </md-button>
              </md-menu-item>
-             <md-menu-item>
+             <md-menu-item class="white-text">
                <md-button ng-click="connectVoice(roomId)">
-                 <md-icon md-svg-icon="call:call"></md-icon>
+                 <md-icon class="white-text" md-svg-icon="call:call"></md-icon>
                  Voice Call
                </md-button>
              </md-menu-item>
-             <md-menu-item>
+             <md-menu-item class="white-text">
                <md-button ng-click="leaveVideo()">
-                 <md-icon md-svg-icon="call:call-end"></md-icon>
+                 <md-icon class="white-text" md-svg-icon="call:call-end"></md-icon>
                  Leave Call
                </md-button>
              </md-menu-item>
            </md-menu-content>
          </md-menu>
-
+         <md-button href="/login" target="_self">Logout</md-button>
        </div>
       </md-toolbar>
      <md-tabs md-stretch-tabs md-border-bottom>

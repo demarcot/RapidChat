@@ -9,13 +9,7 @@
   <div class="demo-dialog-content" layout-padding>
     <form class="form-group" ng-submit="" method="post">
       <p>
-        Select the user to receive the file.
-      </p>
-      <div ng-repeat="user in startUp.allUsers" ng-hide="user.username===startUp.username.username">
-        <input flex type="radio" name="user" ng-required>{{user.username}}
-      </div>
-      <p>
-        Input the full path of the file to be transfered.
+        Select the file to be transfered.
       </p>
       <div layout="row">
         <input type="file" id="fileSubmission" ng-required>
@@ -23,6 +17,9 @@
     </form>
     <div layout="row">
       <md-button type="button" ng-click="sendFile()" ng-disabled="">Send File</md-button>
+    </div>
+    <div layout="row" id="download-container">
+      testest
     </div>
   </div>
 </div>

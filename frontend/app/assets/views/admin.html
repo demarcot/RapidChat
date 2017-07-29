@@ -8,7 +8,7 @@
         <identicon username='user.username' size='24'></identicon>
         &nbsp;{{user.username}}&nbsp;
       </div>
-      <button layout="row" layout-align="end center" ng-click="vm.deleteUser(user._id); callApi()">Delete User</button>
+      <md-button class="md-warn" layout="row" layout-align="end center" ng-click="vm.deleteUser(user._id); callApi()">Delete User</button>
       &nbsp;
     </div>
   </div>
@@ -19,7 +19,7 @@
         <i class="fa fa-comments-o fa-lg"></i>
         &nbsp;{{room.name}}&nbsp;
       </div>
-        <button layout-align="end center" ng-click="vm.deleteChatroom(room._id); callApi()">Delete Chat Room</button>
+        <md-button class="md-warn" layout-align="end center" ng-click="vm.deleteChatroom(room._id); callApi()">Delete Chat Room</button>
         &nbsp;
     </div>
   </div>

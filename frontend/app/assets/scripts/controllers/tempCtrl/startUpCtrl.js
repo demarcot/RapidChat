@@ -190,7 +190,7 @@
 			$scope.connection.preferJSON = false;
 			//TODO(Tom): Make a container for the files being sent/received.
 			// Maybe have the container be in the file share md-dialog?
-			$scope.connection.filesContainer = document.getElementById('remote-voice');
+			$scope.connection.filesContainer = document.getElementById('download-container');
 		}
 
 		$scope.sendFile = function()

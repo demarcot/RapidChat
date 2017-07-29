@@ -1,36 +1,37 @@
 <%- include('temps/header') %>
-<div class="image">
+<div class="background">
 </div>
 <center>
   <div class="form-container login-style ">
+    <img src="RCT-Logo.png" style="width:128px;height:128px;">
       <h2>Create Rapid Chat Turbo Account</h2>
       <% if(locals.error) { %>
           <div class="alert alert-danger"><%= error %></div>
       <% } %>
       <form method="post">
-          <md-input-container class="form-group">
+          <div class="form-group">
               <label for="firstName">First name</label>
               <input type="text" name="firstName" id="firstName" class="form-control" value="<%= locals.firstName || '' %>" required />
-          </md-input-container>
+          </div>
           <br/>
-          <md-input-container class="form-group">
+          <div class="form-group">
               <label for="lastName">Last name</label>
               <input type="text" name="lastName" id="lastName" class="form-control" value="<%= locals.lastName || '' %>" required />
-          </md-input-container>
+          </div>
           <br/>
-          <md-input-container class="form-group">
+          <div class="form-group">
               <label for="username">Username</label>
               <input type="text" name="username" id="username" class="form-control" value="<%= locals.username || '' %>" required />
-          </md-input-container>
+          </div>
           <br/>
-          <md-input-container class="form-group">
+          <div class="form-group">
               <label for="password">Password</label>
               <input type="password" name="password" id="password" class="form-control" required />
-          </md-input-container>
+          </div>
           <br/>
           <div class="form-group">
               <button type="submit" class="btn btn-primary button-style">Register</button>
-              <a href="/login" class="btn btn-link link-color">Cancel</a>
+              <button><a href="/login" class="btn btn-link link-color">Cancel</a></button>
           </div>
       </form>
   </div>

@@ -2,28 +2,54 @@
   margin: 0px;
 }
 
-.side-nav-list{
+.remove-list-bullets{
   list-style: none;
 }
 
 .call-menu{
   margin-left: 0px !important;
+  margin-right: 0px !important;
+
 }
 
 .notification-menu{
   margin-right: 0px !important;
+  height: 125px;
 }
 
 .no-top-margin{
   margin-top: 0px;
 }
 
+.account-heading{
+  margin-top: 40px;
+  padding-top: 40px;
+}
+
 .ui-view-padding{
   padding-right: 3px;
 }
 
+.pop-up-style{
+  background-color: #303030;
+  min-height: 75px;
+}
+
+.white-text:hover{
+  background-color: #404040;
+}
+
+.white-text{
+  color: #FFFFFF;
+  padding: 3px;
+}
+
 .text-border{
   overflow-y: auto;
+}
+
+.hide-element{
+  display: none;
 }
 
 .video-container{
@@ -138,4 +164,13 @@ a{
 a :focus{
   color: white;
   text-decoration: none;
+}
+
+@media(max-width:500px)
+{
+  .chat-text-view{
+    height: 65%;
+  }
+
+
 }

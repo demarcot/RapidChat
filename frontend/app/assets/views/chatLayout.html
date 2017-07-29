@@ -10,8 +10,7 @@
     <div layout="column" layout-align="center center">
       <div flex ng-repeat="user in startUp.allUsers" ng-hide="user.username===startUp.username.username">
         <identicon username='user.username' size='40'></identicon>
-        <br />
-        <center><a ng-click="setOldRoom(); roomCtrl.createDirectMessage(startUp.username.username, user.username)">{{user.username}}</a></center>
+        <a ng-click="setOldRoom(); roomCtrl.createDirectMessage(startUp.username.username, user.username)">{{user.username}}</a>
       </div>
     </div>
   </div>

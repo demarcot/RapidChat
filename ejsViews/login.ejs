@@ -1,5 +1,5 @@
 <%- include('temps/header') %>
-<div class="image">
+<div class="background">
 </div>
 <!-- <div class="jumbotron" style="background-color: #748492;
     max-width: 50%;
@@ -10,7 +10,8 @@
     "> -->
 <center>
   <div class="login-style">
-      <h2>Rapid Chat Turbo</h2>
+      <img src="RCT-Logo.png" style="width:128px;height:128px;">
+      <h2>Welcome to Rapid Chat Turbo</h2>
       <% if(locals.error) { %>
           <div class="alert alert-danger"><%= error %></div>
       <% } %>
@@ -30,7 +31,7 @@
           <br />
           <div class="form-group">
               <button type="submit">Login</button>
-              <a href="/register">Register</a>
+              <button><a href="/register">Register</a></button>
           </div>
       </form>
   </div>
