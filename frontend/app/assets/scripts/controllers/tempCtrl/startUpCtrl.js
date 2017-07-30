@@ -2,7 +2,7 @@
 {
 	angular.module('coreApp').controller('startUpCtrl', Controller);
 
-	function Controller($scope, $window, UserService, ChatRoomService, FlashService)
+	function Controller($scope, $window, UserService, ChatRoomService, FlashService, $timeout)
 	{
 		var vm = this
 		vm.initData = null;
@@ -154,10 +154,10 @@
 			isVideo = false;
 			isAudio = false;
 			isData = false;
-			console.log("Leaving video...");
 			//$scope.connection.leave();
 			//$scope.connection.attachStreams[0].stop();
 			$scope.connection.close();
+			console.log("IT WORKS");
 			//$scope.connection.disconnect();
 		}
 
@@ -190,7 +190,17 @@
 			$scope.connection.preferJSON = false;
 			//TODO(Tom): Make a container for the files being sent/received.
 			// Maybe have the container be in the file share md-dialog?
-			$scope.connection.filesContainer = document.getElementById('download-container');
+
+			// console.log("1", $scope.connection);
+			// var fileContainer = document.querySelector('#download-container');
+			// console.log("fileContainer", fileContainer);
+      // $scope.connection.filesContainer = fileContainer;
+			// console.log("download-container", angular.element( document.querySelector( '#download-container' ) ));
+			// console.log("2", $scope.connection);
+			$timeout(function() { $scope.connection.filesContainer = document.getElementById('download-container');
+			console.log($scope.connection.filesContainer);
+		},500);
+
 		}
 
 		$scope.sendFile = function()

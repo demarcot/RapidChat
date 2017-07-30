@@ -124,7 +124,7 @@
               parent: angular.element(document.body),
               scope: $scope.$new(),
               targetEvent: ev,
-              clickOutsideToClose:true,
+              clickOutsideToClose:false,
             })
             .then(function(answer){
               $scope.status = 'Modal closed';
