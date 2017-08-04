@@ -44,6 +44,10 @@
   padding: 3px;
 }
 
+.admin-page-layout{
+  flex-direction: row;
+}
+
 .text-border{
   overflow-y: auto;
 }
@@ -166,11 +170,27 @@ a :focus{
   text-decoration: none;
 }
 
+.admin-page-children{
+  flex-basis: 50%;
+  flex-direction: row;
+}
+
 @media(max-width:500px)
 {
   .chat-text-view{
     height: 65%;
   }
 
+  .admin-page-layout{
+    flex-direction: column;
+  }
 
+  .admin-page-children{
+    flex-basis: 100%;
+    flex-direction: row;
+  }
+
+  .mobile-input-paddingg{
+    margin-top: 20px;
+  }
 }

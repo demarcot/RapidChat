@@ -1,6 +1,6 @@
 <center><h1>Admin</h1></center>
-<div layout="row">
-  <div flex='50' layout="column">
+<div class="admin-page-layout">
+  <div class="admin-page-children">
     <center><h3 class="no-top-margin">Users</h3></center>
     <div layout="row" ng-repeat="user in vm.allUsers" ng-hide="user.username===vm.user.username">
       <div flex>
@@ -10,17 +10,19 @@
       </div>
       <md-button class="md-warn" layout="row" layout-align="end center" ng-click="vm.deleteUser(user._id); callApi()">Delete User</button>
       &nbsp;
+      <br/>
     </div>
   </div>
-  <div flex='50' layout="column">
+  <div class="admin-page-children">
     <center><h3 class="no-top-margin">Chat Rooms</h3></center>
     <div layout="row" ng-repeat="room in vm.allChatRooms track by $index">
       <div flex>
         <i class="fa fa-comments-o fa-lg"></i>
         &nbsp;{{room.name}}&nbsp;
       </div>
-        <md-button class="md-warn" layout-align="end center" ng-click="vm.deleteChatroom(room._id); callApi()">Delete Chat Room</button>
+        <md-button class="md-warn" layout-align="end center" ng-click="vm.deleteChatroom(room._id); callApi()">Delete Room</button>
         &nbsp;
+        <br/>
     </div>
   </div>
 </div>
