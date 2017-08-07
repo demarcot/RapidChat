@@ -119,6 +119,7 @@
   padding-left: 5px;
   padding-right: 5px;
   margin: 0px;
+  background-color: #303030;
 }
 
 .remove-padding{
@@ -190,7 +191,7 @@ a :focus{
     flex-direction: row;
   }
 
-  .mobile-input-paddingg{
+  .mobile-input-padding{
     margin-top: 20px;
   }
 }
