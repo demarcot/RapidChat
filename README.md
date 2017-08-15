@@ -2,7 +2,10 @@
 A chat application for the modern world.
 Rapid Chat does not limit by users, messages sent, or the size of databases.
 Rapid Chat is only limited by the hardware supplied.
-For demo of application visit http://Rapidchat.today
+
+For demo of application visit http://rapidchat.today
+
+For more information visit http://rapidchat.today/LandingPage/Landing.html
 
 last edited April 7 2017
 
