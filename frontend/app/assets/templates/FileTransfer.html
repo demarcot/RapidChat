@@ -1,0 +1,25 @@
+<!-- Dialog to transfer files? -->
+
+<div role="dialog" layout="column" layout-align="center center" >
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <h2>Transfer a File</h2>
+    </div>
+  </md-toolbar>
+  <div class="demo-dialog-content" layout-padding>
+    <form class="form-group" ng-submit="" method="post">
+      <p>
+        Select the file to be transfered.
+      </p>
+      <div layout="row">
+        <input type="file" id="fileSubmission" ng-required>
+      </div>
+    </form>
+    <div layout="row">
+      <md-button type="button" ng-click="sendFile()" ng-disabled="">Send File</md-button>
+      <md-button type="button" ng-click="roomCtrl.closeFile($event);leaveVoice();">Close</md-button>
+    </div>
+    <div layout="row" id="download-container">
+    </div>
+  </div>
+</div>

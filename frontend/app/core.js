@@ -2,14 +2,20 @@
     'use strict';
 
     angular
-        .module('coreApp', ['ui.router', 'ngCookies', 'ngResource', 'ngSanitize', 'btford.socket-io', 'luegg.directives', 'ui.identicon'])
+        .module('coreApp', ['ui.router', 'ngCookies', 'ngResource', 'ngSanitize', 'btford.socket-io', 'luegg.directives', 'ui.identicon', 'ngMaterial', 'material.svgAssetsCache','linkify'])
         .value('nickName', 'Nick_name')
         .config(config)
         .run(run);
 
-    function config($stateProvider, $urlRouterProvider) {
+    function config($stateProvider, $urlRouterProvider, $mdIconProvider, $mdThemingProvider) {
         // default route
         $urlRouterProvider.otherwise("/dashboard");
+        $mdThemingProvider.theme('default').dark();
+
+        $mdIconProvider
+      .iconSet("call", 'img/icons/sets/communication-icons.svg', 24)
+      .iconSet("video", 'img/icons/sets/av-icons.svg',24)
+      .iconSet("social", 'img/icons/sets/social-icons.svg', 24);
 
         $stateProvider
             .state('dashboard', {
@@ -25,6 +31,13 @@
                 controller: 'personalizeCtrl',
                 controllerAs: 'vm',
                 data: { activeTab: 'personalize' }
+            })
+            .state('video', {
+                url: '/video',
+                controller: 'videoCtrl',
+                controllerAs: 'vm',
+                templateUrl: 'assets/views/videoChat.html',
+                data: { activeTab: 'video' }
             })
             .state('secretChat', {
                 url: '/secretChat',

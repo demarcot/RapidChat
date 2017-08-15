@@ -1,6 +1,7 @@
 require('rootpath')();
 var express = require('express'),
     http = require('http'),
+    https = require('https'),
     app = express(),
     server = http.createServer(app),
     io = require('socket.io'),
@@ -22,7 +23,7 @@ app.use(session({ secret: config.secret, resave: false, saveUninitialized: true 
 
 app.use(express.static(__dirname + '/public'));
 //server.listen(3000);
-server.listen(3000, function () {
+server.listen(8443, function () {
     console.log('Server listening at http://' + server.address().address + ':' + server.address().port);
 });
 app.use(bodyParser.urlencoded());
@@ -56,10 +57,5 @@ app.use('/test/api', require('./routes/controllers/api/chatroomAPI'));
 
 io.set('heatbeat', false);
 
-app.use(function (req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
-});
 
 module.exports = app;

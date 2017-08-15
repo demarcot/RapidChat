@@ -1,14 +1,28 @@
-<div class="scroll-admin">
-  <div class="container-fluid admin-page">
-    <div class="col-sm-12 col-md-12 admin-style admin-name" ng-repeat="user in vm.allUsers" ng-hide="user.username===vm.user.username">
-      <identicon username='user.username' size='24'></identicon>
-        {{user.username}}
-        <button class="admin-button" ng-click="vm.deleteUser(user._id); callApi()">Delete User</button>
+<center><h1>Admin</h1></center>
+<div class="admin-page-layout">
+  <div class="admin-page-children">
+    <center><h3 class="no-top-margin">Users</h3></center>
+    <div layout="row" ng-repeat="user in vm.allUsers" ng-hide="user.username===vm.user.username">
+      <div flex>
+        &nbsp;
+        <identicon username='user.username' size='24'></identicon>
+        &nbsp;{{user.username}}&nbsp;
       </div>
-      <div class="col-sm-12 admin-style admin-name" ng-repeat="room in vm.allChatRooms track by $index">
-        <i class="fa fa-comments-o fa-lg"></i>
-        &nbsp;{{room.name}}
-        <button class="admin-button" ng-click="vm.deleteChatroom(room._id); callApi()">Delete Chat Room</button>
-      </div>
+      <md-button class="md-warn" layout="row" layout-align="end center" ng-click="vm.deleteUser(user._id); callApi()">Delete User</button>
+      &nbsp;
+      <br/>
     </div>
+  </div>
+  <div class="admin-page-children">
+    <center><h3 class="no-top-margin">Chat Rooms</h3></center>
+    <div layout="row" ng-repeat="room in vm.allChatRooms track by $index">
+      <div flex>
+        <i class="fa fa-comments-o fa-lg"></i>
+        &nbsp;{{room.name}}&nbsp;
+      </div>
+        <md-button class="md-warn" layout-align="end center" ng-click="vm.deleteChatroom(room._id); callApi()">Delete Room</button>
+        &nbsp;
+        <br/>
+    </div>
+  </div>
 </div>
