@@ -1,0 +1,12 @@
+<md-button type="button" ng-click="leaveVideo()">LEAVE ROOM</md-button>
+<md-button type="button" ng-click="connectVideo()">Rejoin</md-button>
+<md-button type="button" ng-click="connectionInfo()">INFO</md-button>
+<md-button type="button" ng-click="getPartyPeople()">Participants</md-button>
+<md-input-container><label>Room Name</label><input type="text" name="roomName" ng-model="videoRoomName" value=""></md-input-container>
+
+<h1>video local</h1>
+<div id="localVideoContainer" muted></div>
+
+
+<h1>video Remote</h1>
+<div id="remoteVideoContainer"></div>

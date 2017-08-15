@@ -2,7 +2,7 @@ angular.module('coreApp')
 .controller('notifyCtrl', function ($scope, chatSocket, nickName, UserService, $state, ChatRoomService, $rootScope)
 {
 	$scope.selectedIndex;
-	$scope.notifications = [];
+	//$scope.notifications = [];
 	//$scope.invites = [];
 	$scope.readNotifications = true;
 	$scope.newNotifications = false;
@@ -47,7 +47,7 @@ angular.module('coreApp')
 		console.log($scope.removeUserInfo);
     // call the invite user function
     ChatRoomService.removeFromAccepted($scope.removeUserInfo).then(function(bool){
-			
+
 
     });
     //call the invite socket.io function

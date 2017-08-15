@@ -1,0 +1,29 @@
+<!-- Edit Private Chat Room Panel -->
+
+<div role="dialog" layout="column" layout-align="center center">
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <h2>Manage Chat Room</h2>
+    </div>
+  </md-toolbar>
+  <div class="demo-dialog-content" layout-padding>
+    <h6>Accepted Users</h6>
+    <div layout="row" ng-repeat="user in roomCtrl.acceptedUsers track by $index">
+      {{user}}
+      <button type="button" name="button" ng-click="roomCtrl.removeUser(roomCtrl.tempID, user, $index, 'remove')">-</button>
+    </div>
+    <h6>Pending Users</h6>
+    <div layout="row" ng-repeat="user in roomCtrl.pendingUsers track by $index">
+      {{user}}
+    </div>
+    <h6>Other Users</h6>
+    <div layout="row" ng-repeat="user in roomCtrl.restOfUsers track by $index">
+      {{user.username}}
+      <button type="button" name="button" ng-click="roomCtrl.inviteAdd(roomCtrl.tempID, roomCtrl.tempName, user.username, startUp.username.username, $index, 'add')">+</button>
+      <!-- FIX VARIABLE NAMES USERNAME.USERNAME IS STOOPID -->
+    </div>
+  </div>
+</div>
+
+
+<!-- ng-click="inviteUser(roomCtrl.tempID, user.username, startUp.username.username, roomCtrl.tempName);moveUser($index,'add')" -->
