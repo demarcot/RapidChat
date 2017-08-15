@@ -207,12 +207,12 @@ forever stop all
 - [Angular JS](https://angularjs.org/) - HTML enhanced for web apps
 - [Node JS](https://nodejs.org/en/) - Evented I/O for the backend
 - [Socket.io](https://socket.io/) - Database Communication
-- [WebRTC](https://www.github.com/Muaz-Khan/RTCMulticonnect) - Voice chat, Video chat, File Transfer
+- [WebRTC](https://github.com/muaz-khan/RTCMultiConnection) - Voice chat, Video chat, File Transfer
 
 ## Authors
 * **Kyle Cabral**
 * **Thomas DeMarco**
-* **Albert Saunders(Original Version)**
+* **Albert Saunders (Original Version)**
 * **Michael Withington**
 
 
